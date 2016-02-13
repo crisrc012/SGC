@@ -38,6 +38,5 @@ public class Roles {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
+
 }

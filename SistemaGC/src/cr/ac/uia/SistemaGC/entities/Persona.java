@@ -37,7 +37,5 @@ public class Persona {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-    
-    
+    }    
 }

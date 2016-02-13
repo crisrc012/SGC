@@ -1,0 +1,430 @@
+--Tablas de SGC
+--PostgreSQL 9.5
+
+--Crear DB llamada "dbSGC"
+
+create table tbl_becas(
+	id serial primary key,
+	nombre varchar(50) not null,
+	porcentaje integer not null
+);
+
+create table tbl_persona(
+	id serial primary key,
+	descripcion varchar(10) not null
+);
+
+create table tbl_personas(
+	cedula integer primary key,
+	nombre varchar(25) not null,
+	apellidos varchar(50) not null,
+	fecha_nacimiento date not null,
+	tel_celular integer,
+	tel_habitacion integer,
+	encargado varchar(50) not null,
+	id_persona integer references tbl_persona(id)
+);
+
+create table tbl_becados(
+	id serial primary key,
+	id_persona integer references tbl_personas(cedula),
+	id_beca integer references tbl_becas(id),
+	activo boolean not null,
+	observaciones varchar(200) not null
+);
+
+create table tbl_comida(
+	id serial primary key,
+	descripcion varchar(20) not null
+);
+
+create table tbl_precio(
+	id serial primary key,
+	id_persona integer references tbl_persona(id),
+	id_comida integer references tbl_comida(id),
+	precio integer not null
+);
+
+create table tbl_tiquetes(
+	id serial primary key,
+	id_persona integer references tbl_personas(cedula),
+	id_precio integer references tbl_precio(id),
+	fecha_compra date not null,
+	fecha_uso date not null,
+	activo boolean not null
+);
+
+-- Usuarios Login
+create table tbl_roles(
+	id serial primary key,
+	descripcion varchar(20)
+);
+
+create table tbl_usuarios(
+	cedula integer primary key,
+	usuario varchar(25) not null,
+	contrasena varchar(1000) not null,
+	nombre varchar(25) not null,
+	apellidos varchar(50) not null,
+	activo boolean not null,
+	observaciones varchar(200) not null,
+	id_rol integer references tbl_roles(id)
+);
+
+-- Funciones
+create or replace function f_becados(
+	in dml character varying,
+	in _id integer,
+	in _id_persona integer,
+	in _id_beca integer,
+	in _activo boolean,
+	in _observaciones character varying)
+returns table(
+	id integer,
+	id_persona integer,
+	id_beca integer,
+	activo boolean,
+	observaciones character varying) as
+$body$
+begin
+	case dml
+		when 'select' then
+			return query
+			select *
+			from tbl_becados t
+			where t.id = coalesce(_id, t.id) and
+			t.id = coalesce(_id, t.id) and
+			t.id_persona = coalesce(_id_persona, t.id_persona) and
+			t.id_beca = coalesce(_id_beca, t.id_beca) and
+			t.activo = coalesce(_activo, t.activo) and
+			t.observaciones like '%' || coalesce(upper(_observaciones), t.observaciones) || '%';
+		when 'insert' then
+			insert into tbl_becados (id_persona, id_beca, activo, observaciones)
+			values (_id_persona, _id_beca, _activo, upper(_observaciones));
+		when 'update' then
+			update tbl_becados t
+			set id_persona = _id_persona, id_beca = _id_beca, activo = _activo, observaciones = upper(_observaciones)
+			where t.id = _id;
+		when 'delete' then
+			delete from tbl_becados t where t.id = _id;
+	end case;
+end;
+$body$
+language plpgsql;
+
+
+create  or replace function f_becas(
+	in dml character varying,
+	in _id integer,
+	in _nombre character varying,
+	in _porcentaje integer)
+returns table(
+	id integer,
+	nombre character varying,
+	porcentaje integer) as
+$body$
+begin
+	case dml
+		when 'select' then
+			return query
+			select *
+			from tbl_becas t
+			where t.id = coalesce(_id, t.id) and
+			t.nombre like '%' || coalesce(upper(_nombre), t.nombre) || '%' and
+			t.porcentaje = coalesce(_porcentaje, t.porcentaje)
+			order by t.porcentaje;
+		when 'insert' then
+			insert into tbl_becas (nombre,porcentaje) VALUES (upper(_nombre),_porcentaje);
+		when 'update' then
+			update tbl_becas t set nombre=upper(_nombre), porcentaje=_porcentaje
+			where t.id = _id;
+		when 'delete' then
+			delete from tbl_becas t where t.id = _id;
+	end case;
+end;
+$body$
+language plpgsql;
+
+create or replace function f_comida(
+	in dml character varying,
+	in _id integer,
+	in _descripcion character varying)
+returns table(
+	id integer,
+	descripcion character varying) as
+$body$
+begin
+	case dml
+		when 'select' then
+			return query
+			select *
+			from tbl_comida t
+			where t.id = coalesce(_id, t.id) and
+			t.descripcion like '%' || coalesce(upper(_descripcion), t.descripcion) || '%'
+			order by t.descripcion;
+		when 'insert' then
+			insert into tbl_comida (descripcion) VALUES (upper(_descripcion));
+		when 'update' then
+			update tbl_comida t set descripcion=upper(_descripcion)
+			where t.id = _id;
+		when 'delete' then
+			delete from tbl_comida t where t.id = _id;
+	end case;
+end;
+$body$
+language plpgsql;
+
+create or replace function f_persona(
+	in dml character varying,
+	in _id integer,
+	in _descripcion character varying)
+returns table(
+	id integer,
+	descripcion character varying) as
+$body$
+begin
+	case dml
+		when 'select' then
+			return query
+			select *
+			from tbl_persona t
+			where t.id = coalesce(_id, t.id) and
+			t.descripcion like '%' || coalesce(upper(_descripcion), t.descripcion) || '%'
+			order by t.descripcion;
+		when 'insert' then
+			insert into tbl_persona (descripcion) VALUES (upper(_descripcion));
+		when 'update' then
+			update tbl_persona t set descripcion=upper(_descripcion)
+			where t.id = _id;
+		when 'delete' then
+			delete from tbl_persona t where t.id = _id;
+	end case;
+end;
+$body$
+language plpgsql;
+
+create or replace function f_personas(
+	in dml character varying,
+	in _cedula integer,
+	in _nombre character varying,
+	in _apellidos character varying,
+	in _fecha_nacimiento date,
+	in _tel_celular integer,
+	in _tel_habitacion integer,
+	in _encargado character varying,
+	in _id_persona integer)
+returns table(
+	cedula integer,
+	nombre character varying,
+	apellidos character varying,
+	fecha_nacimiento date,
+	tel_celular integer,
+	tel_habitacion integer,
+	encargado character varying,
+	id_persona integer) as
+$body$
+begin
+	case dml
+		when 'select' then
+			return query
+			select *
+			from tbl_personas t
+			where t.cedula = coalesce(_cedula, t.cedula) and
+			t.nombre like '%' || coalesce(upper(_nombre), t.nombre) || '%' and
+			t.apellidos like '%' || coalesce(upper(_apellidos), t.apellidos) || '%' and
+			t.fecha_nacimiento = coalesce(_fecha_nacimiento, t.fecha_nacimiento) and
+			t.tel_celular = coalesce(_tel_celular, t.tel_celular) and
+			t.tel_habitacion = coalesce(_tel_habitacion, t.tel_habitacion) and
+			t.encargado like '%' || coalesce(upper(_encargado), t.encargado) || '%' and
+			t.id_persona = coalesce(_id_persona, t.id_persona)
+			order by t.nombre;
+		when 'insert' then
+			insert into tbl_personas (cedula, nombre, apellidos, fecha_nacimiento, tel_celular, tel_habitacion, encargado, id_persona)
+			values (_cedula, upper(_nombre), upper(_apellidos), _fecha_nacimiento, _tel_celular, _tel_habitacion, upper(_encargado), _id_persona);
+		when 'update' then
+			update tbl_personas t
+			set cedula = _cedula,
+			nombre = upper(_nombre),
+			apellidos = upper(_apellidos),
+			fecha_nacimineto = _fecha_nacimiento,
+			tel_celular = _tel_celular,
+			tel_habitacion = _tel_habitacion,
+			encargado = upper(_encargado),
+			id_persona = _id_persona
+			where t.cedula = _cedula;
+		when 'delete' then
+			delete from tbl_personas t
+			where t.cedula = _cedula;
+	end case;
+end;
+$body$
+language plpgsql;
+
+create or replace function f_precio(
+	in dml character varying,
+	in _id integer,
+	in _id_persona integer,
+	in _id_comida integer,
+	in _precio integer)
+returns table(
+	id integer,
+	id_persona integer,
+	id_comida integer,
+	precio integer) as
+$body$
+begin
+	case dml
+		when 'select' then
+			return query
+			select *
+			from tbl_precio t
+			where t.id = coalesce(_id, t.id) and
+			t.id_persona = coalesce(_id_persona, t.id_persona) and
+			t.id_comida = coalesce(_id_comida, t.id_comida) and
+			t.precio = coalesce(_precio, t.precio);
+		when 'insert' then
+			insert into tbl_precio (id ,id_persona, id_comida, precio)
+			values (_id, _id_persona, _id_comida, _precio);
+		when 'update' then
+			update tbl_precio t
+			set id_persona = _id_persona, id_comida = _id_comida, precio = _precio
+			where t.id = _id;
+		when 'delete' then
+			delete from tbl_precio t where t.id = _id;
+	end case;
+end;
+$body$
+language plpgsql;
+
+create or replace function f_roles(
+	in dml character varying,
+	in _id integer,
+	in _descripcion character varying)
+returns table(
+	id integer,
+	descripcion character varying) as
+$body$
+begin
+	case dml
+		when 'select' then
+			return query
+			select *
+			from tbl_roles t
+			where t.id = coalesce(_id, t.id) and
+			t.descripcion like '%' || coalesce(upper(_descripcion), t.descripcion) || '%'
+			order by t.descripcion;
+		when 'insert' then
+			insert into tbl_roles (descripcion)
+			values (upper(_descripcion));
+		when 'update' then
+			update tbl_roles t set descripcion=upper(_descripcion)
+			where t.id = _id;
+		when 'delete' then
+			delete from tbl_roles t
+			where t.id = _id;
+	end case;
+end;
+$body$
+language plpgsql;
+
+create or replace function f_tiquetes(
+	in dml character varying,
+	in _id integer,
+	in _id_persona integer,
+	in _id_precio integer,
+	in _fecha_compra date,
+	in _fecha_uso date,
+	in _activo boolean)
+returns table(
+	id integer,
+	id_persona integer,
+	id_precio integer,
+	fecha_compra date,
+	fecha_uso date,
+	activo boolean) as
+$body$
+begin
+	case dml
+		when 'select' then
+			return query
+			select *
+			from tbl_tiquetes t
+			where t.id = coalesce(_id, t.id) and
+			t.id_persona = coalesce(_id_persona, t.id_persona) and
+			t.id_precio = coalesce(_id_precio, t.id_precio) and
+			t.fecha_compra = coalesce(_fecha_compra, t.fecha_compra) and
+			t.fecha_uso = coalesce(_fecha_uso, t.fecha_uso) and
+			t.activo = coalesce(_activo, t.activo);
+		when 'insert' then
+			insert into tbl_tiquetes (id_persona, id_precio, fecha_compra, fecha_uso, activo)
+			values (_id_persona, _id_precio, _fecha_compra, _fecha_uso, _activo);
+		when 'update' then
+			update tbl_tiquetes t
+			set id_persona = _id_persona,
+			id_precio = _id_precio,
+			fecha_compra = _fecha_compra,
+			fecha_uso = _fecha_uso,
+			activo = _activo
+			where t.id = _id;
+		when 'delete' then
+			delete from tbl_tiquetes t
+			where t.id = _id;
+	end case;
+end;
+$body$
+language plpgsql;
+
+create or replace function f_usuarios(
+	in dml character varying,
+	in _cedula integer,
+	in _usuario character varying,
+	in _contrasena character varying,
+	in _nombre character varying,
+	in _apellidos character varying,
+	in _activo boolean,
+	in _observaciones character varying,
+	in _id_rol integer)
+returns table(
+	cedula integer,
+	usuario character varying,
+	nombre character varying,
+	apellidos character varying,
+	activo boolean,
+	observaciones character varying,
+	id_rol integer) as
+$body$
+begin
+	case dml
+		when 'select' then
+			return query
+			select *
+			from tbl_personas t
+			where t.cedula = coalesce(_cedula, t.cedula) and
+			t.usuario like '%' || coalesce(lower(_usuario), t.usuario) || '%' and
+			t.nombre like '%' || coalesce(upper(_nombre), t.nombre) || '%' and
+			t.apellidos like '%' || coalesce(upper(_apellidos), t.apellidos) || '%' and
+			t.activo = coalesce(_activo, t.activo) and
+			t.observaciones like '%' || coalesce(upper(_observaciones), t.observaciones) || '%' and
+			t.id_rol = coalesce(_id_rol, t.id_rol)
+			order by t.nombre_completo;
+		when 'insert' then
+			insert into tbl_personas (cedula, usuario, contrasena, nombre, apellidos, activo, observaciones, id_rol)
+			values (_cedula, lower(_usuario), _contrasena, upper(_nombre), upper(apellidos), _activo, upper(_observaciones), _id_rol);
+		when 'update' then
+			update tbl_personas t
+			set cedula = _cedula,
+			usuario = lower(_usuario),
+			contrasena = _contrasena,
+			nombre = _nombre,
+			apellido = _nombre,
+			activo = _activo,
+			observaciones = _observaciones,
+			id_rol = _id_rol
+			where t.cedula = _cedula;
+		when 'delete' then
+			delete from tbl_personas t
+			where t.cedula = _cedula;
+	end case;
+end;
+$body$
+language plpgsql;

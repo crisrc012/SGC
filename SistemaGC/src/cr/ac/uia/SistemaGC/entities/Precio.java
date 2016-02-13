@@ -60,6 +60,4 @@ public class Precio {
     public void setPrecio(Integer precio) {
         this.precio = precio;
     }
-    
-    
 }
