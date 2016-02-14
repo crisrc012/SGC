@@ -398,7 +398,7 @@ begin
 		when 'select' then
 			return query
 			select *
-			from tbl_personas t
+			from tbl_usuarios t
 			where t.cedula = coalesce(_cedula, t.cedula) and
 			t.usuario like '%' || coalesce(lower(_usuario), t.usuario) || '%' and
 			t.nombre like '%' || coalesce(upper(_nombre), t.nombre) || '%' and
@@ -408,10 +408,10 @@ begin
 			t.id_rol = coalesce(_id_rol, t.id_rol)
 			order by t.nombre_completo;
 		when 'insert' then
-			insert into tbl_personas (cedula, usuario, contrasena, nombre, apellidos, activo, observaciones, id_rol)
-			values (_cedula, lower(_usuario), _contrasena, upper(_nombre), upper(apellidos), _activo, upper(_observaciones), _id_rol);
+			insert into tbl_usuarios (cedula, usuario, contrasena, nombre, apellidos, activo, observaciones, id_rol)
+			values (_cedula, lower(_usuario), _contrasena, upper(_nombre), upper(_apellidos), _activo, upper(_observaciones), _id_rol);
 		when 'update' then
-			update tbl_personas t
+			update tbl_usuarios t
 			set cedula = _cedula,
 			usuario = lower(_usuario),
 			contrasena = _contrasena,
@@ -422,7 +422,7 @@ begin
 			id_rol = _id_rol
 			where t.cedula = _cedula;
 		when 'delete' then
-			delete from tbl_personas t
+			delete from tbl_usuarios t
 			where t.cedula = _cedula;
 	end case;
 end;
