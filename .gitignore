@@ -62,3 +62,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 /SistemaGC/nbproject/private/
+/SistemaGC/build/
+/SistemaGC/dist/
