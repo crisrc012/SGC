@@ -22,7 +22,7 @@ public class Connection {
     public java.sql.Connection getConnection() throws SQLException {
         this.Connection = 
                 DriverManager.getConnection(
-                        "jdbc:postgresql://192.168.1.12:5432/dbSGC",
+                        "jdbc:postgresql://127.0.0.1:5432/dbSGC",
                         "postgres",
                         "postgres");
         return this.Connection;
