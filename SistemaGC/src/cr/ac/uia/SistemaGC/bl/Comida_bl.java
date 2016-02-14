@@ -36,8 +36,9 @@ public class Comida_bl {
                 descripcion = "'" + comida.getDescripcion() + "'";
             }
             try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_comida('select',"
-                    + id + "," + descripcion + ");")) {
+                    "SELECT * FROM f_comida('select', "
+                    + id + ", '"
+                    + descripcion + "');")) {
                 comidalst = new ArrayList<>();
                 while (rs.next()) {
                     Comida c = new Comida();
@@ -76,7 +77,9 @@ public class Comida_bl {
                 descripcion = "'" + comida.getDescripcion() + "'";
             }
             this.st.executeQuery("SELECT f_comida('"
-                    + dml + "'," + id + " ," + descripcion + ");");
+                    + dml + "',"
+                    + id + ", '"
+                    + descripcion + "');");
         } catch (SQLException e) {
             return false;
         } finally {
@@ -103,7 +106,8 @@ public class Comida_bl {
             this.st = null;
             this.conn = new Connection();
             this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_comida('delete'," + id + ",NULL);");
+            this.st.executeQuery("SELECT f_comida('delete', "
+                    + id + ", NULL);");
         } catch (SQLException e) {
             return false;
         } finally {

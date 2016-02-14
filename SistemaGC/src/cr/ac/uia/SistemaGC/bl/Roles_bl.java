@@ -103,7 +103,8 @@ public class Roles_bl {
             this.st = null;
             this.conn = new Connection();
             this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_roles('delete'," + id + ",NULL);");
+            this.st.executeQuery("SELECT f_roles('delete',"
+                    + id + ",NULL);");
         } catch (SQLException e) {
             return false;
         } finally {

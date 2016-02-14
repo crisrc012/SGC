@@ -10,10 +10,12 @@ package cr.ac.uia.SistemaGC.entities;
  * @author crisrc012
  */
 public class Usuarios {
+
     private Integer cedula;
     private String usuario;
     private String contrasena;
-    private String nombre_completo;
+    private String nombre;
+    private String apellidos;
     private Boolean activo;
     private String observaciones;
     private Integer id_rol;
@@ -22,17 +24,17 @@ public class Usuarios {
         this.cedula = null;
         this.usuario = null;
         this.contrasena = null;
-        this.nombre_completo = null;
+        this.nombre = null;
         this.activo = null;
         this.observaciones = null;
         this.id_rol = null;
     }
-    
+
     public Usuarios(Integer cedula, String usuario, String contrasena, String nombre_completo, Boolean activo, String observaciones, Integer id_rol) {
         this.cedula = cedula;
         this.usuario = usuario;
         this.contrasena = contrasena;
-        this.nombre_completo = nombre_completo;
+        this.nombre = nombre_completo;
         this.activo = activo;
         this.observaciones = observaciones;
         this.id_rol = id_rol;
@@ -58,16 +60,24 @@ public class Usuarios {
         return contrasena;
     }
 
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
 
-    public String getNombre_completo() {
-        return nombre_completo;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombre_completo(String nombre_completo) {
-        this.nombre_completo = nombre_completo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Boolean getActivo() {

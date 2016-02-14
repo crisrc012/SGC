@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * @author crisrc012
  */
 public class Persona_bl {
+
     private Connection conn;
     private Statement st;
 
@@ -36,13 +37,14 @@ public class Persona_bl {
             }
             try (ResultSet rs = this.st.executeQuery(
                     "SELECT * FROM f_persona('select',"
-                    + id + "," + descripcion + ");")) {
+                    + id + ", '"
+                    + descripcion + "');")) {
                 personalst = new ArrayList<>();
                 while (rs.next()) {
-                    Persona c = new Persona();
-                    c.setId(rs.getInt("id"));
-                    c.setDescripcion(rs.getString("descripcion"));
-                    personalst.add(c);
+                    Persona p = new Persona();
+                    p.setId(rs.getInt("id"));
+                    p.setDescripcion(rs.getString("descripcion"));
+                    personalst.add(p);
                 }
                 rs.close();
             }
@@ -75,7 +77,9 @@ public class Persona_bl {
                 descripcion = "'" + persona.getDescripcion() + "'";
             }
             this.st.executeQuery("SELECT f_persona('"
-                    + dml + "'," + id + " ," + descripcion + ");");
+                    + dml + "', "
+                    + id + ", '"
+                    + descripcion + "');");
         } catch (SQLException e) {
             return false;
         } finally {
@@ -102,7 +106,8 @@ public class Persona_bl {
             this.st = null;
             this.conn = new Connection();
             this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_persona('delete'," + id + ",NULL);");
+            this.st.executeQuery("SELECT f_persona('delete', "
+                    + id + ", NULL);");
         } catch (SQLException e) {
             return false;
         } finally {
