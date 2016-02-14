@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cr.ac.uia.SistemaGC.UI;
+package cr.ac.uia.SistemaGC.ui;
 
 /**
  *
@@ -53,6 +53,11 @@ public class Login extends javax.swing.JFrame {
         btnIngresar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         txtUsuario2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtUsuario2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -128,6 +133,10 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -156,10 +165,8 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login().setVisible(true);
         });
     }
 
