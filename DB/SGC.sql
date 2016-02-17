@@ -5,23 +5,23 @@
 
 create table tbl_becas(
 	id serial primary key,
-	nombre varchar(50) not null,
+	nombre text not null unique,
 	porcentaje integer not null
 );
 
 create table tbl_persona(
 	id serial primary key,
-	descripcion varchar(10) not null
+	descripcion text not null unique
 );
 
 create table tbl_personas(
 	cedula integer primary key,
-	nombre varchar(25) not null,
-	apellidos varchar(50) not null,
+	nombre text not null,
+	apellidos text not null,
 	fecha_nacimiento date not null,
 	tel_celular integer,
 	tel_habitacion integer,
-	encargado varchar(50) not null,
+	encargado text not null,
 	id_persona integer references tbl_persona(id)
 );
 
@@ -30,12 +30,12 @@ create table tbl_becados(
 	id_persona integer references tbl_personas(cedula),
 	id_beca integer references tbl_becas(id),
 	activo boolean not null,
-	observaciones varchar(200) not null
+	observaciones text not null
 );
 
 create table tbl_comida(
 	id serial primary key,
-	descripcion varchar(20) not null
+	descripcion text not null unique
 );
 
 create table tbl_precio(
@@ -57,17 +57,17 @@ create table tbl_tiquetes(
 -- Usuarios Login
 create table tbl_roles(
 	id serial primary key,
-	descripcion varchar(20)
+	descripcion text unique
 );
 
 create table tbl_usuarios(
 	cedula integer primary key,
-	usuario varchar(25) not null,
-	contrasena varchar(24) not null,
-	nombre varchar(25) not null,
-	apellidos varchar(50) not null,
+	usuario text not null unique,
+	contrasena text not null,
+	nombre text not null,
+	apellidos text not null,
 	activo boolean not null,
-	observaciones varchar(200) not null,
+	observaciones text not null,
 	id_rol integer references tbl_roles(id)
 );
 
@@ -443,6 +443,22 @@ begin
 			set contrasena = _contrasena
 			where t.cedula = _cedula;
 	end case;
+end;
+$body$
+language plpgsql;
+
+create or replace function f_check_password(
+	in _usuario character varying,
+	in _contrasena character varying)
+returns table(
+	activo boolean) as
+$body$
+begin
+	return query
+	select t.activo
+	from tbl_usuarios t
+	where t.usuario = _usuario and
+	contrasena = _contrasena;
 end;
 $body$
 language plpgsql;
