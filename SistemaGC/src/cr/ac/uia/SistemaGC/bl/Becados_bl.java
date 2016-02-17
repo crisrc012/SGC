@@ -45,15 +45,15 @@ public class Becados_bl {
                 activo = String.valueOf(becados.getActivo());
             }
             if (becados.getObservaciones() != null) {
-                observaciones = becados.getObservaciones();
+                observaciones = "'" + becados.getObservaciones() + "'";
             }
             try (ResultSet rs = this.st.executeQuery(
                     "SELECT * FROM f_becados('select',"
                     + id + ", "
                     + id_persona + ", "
                     + id_beca + ", "
-                    + activo + ", '"
-                    + observaciones + "');")) {
+                    + activo + ", "
+                    + observaciones + ");")) {
                 becadoslst = new ArrayList<>();
                 while (rs.next()) {
                     Becados b = new Becados();

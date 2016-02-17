@@ -44,10 +44,10 @@ public class Precio_bl {
                 _precio = String.valueOf(precio.getPrecio());
             }
             try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_precio('select',"
-                    + id + ", '"
-                    + id_persona + "', '"
-                    + id_comida + "', "
+                    "SELECT * FROM f_precio('select', "
+                    + id + ", "
+                    + id_persona + ", "
+                    + id_comida + ", "
                     + _precio + ");")) {
                 preciolst = new ArrayList<>();
                 while (rs.next()) {

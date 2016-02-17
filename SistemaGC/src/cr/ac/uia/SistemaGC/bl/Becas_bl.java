@@ -37,7 +37,7 @@ public class Becas_bl {
                 nombre = "'" + becas.getNombre() + "'";
             }
             if (becas.getPorcentaje() != null) {
-                id = String.valueOf(becas.getId());
+                porcentaje = String.valueOf(becas.getPorcentaje());
             }
             try (ResultSet rs = this.st.executeQuery(
                     "SELECT * FROM f_becas('select',"
@@ -86,12 +86,12 @@ public class Becas_bl {
             if (becas.getPorcentaje() == null) {
                 return false;
             } else {
-                porcentaje = "'" + becas.getPorcentaje() + "'";
+                porcentaje = String.valueOf(becas.getPorcentaje());
             }
             this.st.executeQuery("SELECT f_becas('"
                     + dml + "',"
-                    + id + ", '"
-                    + nombre + "', "
+                    + id + ", "
+                    + nombre + ", "
                     + porcentaje + ");");
         } catch (SQLException e) {
             return false;
@@ -119,7 +119,7 @@ public class Becas_bl {
             this.st = null;
             this.conn = new Connection();
             this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_becas('delete',"
+            this.st.executeQuery("SELECT f_becas('delete', "
                     + id + ", NULL, NULL);");
         } catch (SQLException e) {
             return false;
