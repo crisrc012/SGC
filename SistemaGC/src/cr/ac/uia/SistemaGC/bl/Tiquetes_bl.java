@@ -112,12 +112,12 @@ public class Tiquetes_bl {
             if (tiquetes.getFecha_compra() == null) {
                 return false;
             } else {
-                fecha_compra = String.valueOf(tiquetes.getFecha_compra());
+                fecha_compra = "'" + String.valueOf(tiquetes.getFecha_compra()) + "'";
             }
             if (tiquetes.getFecha_uso() == null) {
                 return false;
             } else {
-                fecha_uso = String.valueOf(tiquetes.getFecha_uso());
+                fecha_uso = "'" + String.valueOf(tiquetes.getFecha_uso() + "'");
             }
             if (tiquetes.getActivo() == null) {
                 return false;
@@ -128,8 +128,8 @@ public class Tiquetes_bl {
                     + dml + "', "
                     + id + ", "
                     + id_persona + ", "
-                    + id_precio + ", '"
-                    + fecha_compra + "', '"
+                    + id_precio + ", "
+                    + fecha_compra + ", "
                     + fecha_uso + "', "
                     + activo + ");");
         } catch (SQLException e) {

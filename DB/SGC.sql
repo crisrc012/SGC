@@ -5,23 +5,23 @@
 
 create table tbl_becas(
 	id serial primary key,
-	nombre varchar(50) not null,
+	nombre text not null unique,
 	porcentaje integer not null
 );
 
 create table tbl_persona(
 	id serial primary key,
-	descripcion varchar(10) not null
+	descripcion text not null unique
 );
 
 create table tbl_personas(
 	cedula integer primary key,
-	nombre varchar(25) not null,
-	apellidos varchar(50) not null,
+	nombre text not null,
+	apellidos text not null,
 	fecha_nacimiento date not null,
 	tel_celular integer,
 	tel_habitacion integer,
-	encargado varchar(50) not null,
+	encargado text not null,
 	id_persona integer references tbl_persona(id)
 );
 
@@ -30,12 +30,12 @@ create table tbl_becados(
 	id_persona integer references tbl_personas(cedula),
 	id_beca integer references tbl_becas(id),
 	activo boolean not null,
-	observaciones varchar(200) not null
+	observaciones text not null
 );
 
 create table tbl_comida(
 	id serial primary key,
-	descripcion varchar(20) not null
+	descripcion text not null unique
 );
 
 create table tbl_precio(
@@ -57,17 +57,17 @@ create table tbl_tiquetes(
 -- Usuarios Login
 create table tbl_roles(
 	id serial primary key,
-	descripcion varchar(20)
+	descripcion text unique
 );
 
 create table tbl_usuarios(
 	cedula integer primary key,
-	usuario varchar(25) not null,
-	contrasena varchar(1000) not null,
-	nombre varchar(25) not null,
-	apellidos varchar(50) not null,
+	usuario text not null unique,
+	contrasena text not null,
+	nombre text not null,
+	apellidos text not null,
 	activo boolean not null,
-	observaciones varchar(200) not null,
+	observaciones text not null,
 	id_rol integer references tbl_roles(id)
 );
 
@@ -103,10 +103,14 @@ begin
 			values (_id_persona, _id_beca, _activo, upper(_observaciones));
 		when 'update' then
 			update tbl_becados t
-			set id_persona = _id_persona, id_beca = _id_beca, activo = _activo, observaciones = upper(_observaciones)
+			set id_persona = _id_persona,
+			id_beca = _id_beca,
+			activo = _activo,
+			observaciones = upper(_observaciones)
 			where t.id = _id;
 		when 'delete' then
-			delete from tbl_becados t where t.id = _id;
+			delete from tbl_becados t
+			where t.id = _id;
 	end case;
 end;
 $body$
@@ -134,12 +138,16 @@ begin
 			t.porcentaje = coalesce(_porcentaje, t.porcentaje)
 			order by t.porcentaje;
 		when 'insert' then
-			insert into tbl_becas (nombre,porcentaje) VALUES (upper(_nombre),_porcentaje);
+			insert into tbl_becas (nombre, porcentaje)
+			values (upper(_nombre), _porcentaje);
 		when 'update' then
-			update tbl_becas t set nombre=upper(_nombre), porcentaje=_porcentaje
+			update tbl_becas t
+			set nombre = upper(_nombre),
+			porcentaje = _porcentaje
 			where t.id = _id;
 		when 'delete' then
-			delete from tbl_becas t where t.id = _id;
+			delete from tbl_becas t
+			where t.id = _id;
 	end case;
 end;
 $body$
@@ -165,10 +173,12 @@ begin
 		when 'insert' then
 			insert into tbl_comida (descripcion) VALUES (upper(_descripcion));
 		when 'update' then
-			update tbl_comida t set descripcion=upper(_descripcion)
+			update tbl_comida t
+			set descripcion = upper(_descripcion)
 			where t.id = _id;
 		when 'delete' then
-			delete from tbl_comida t where t.id = _id;
+			delete from tbl_comida t
+			where t.id = _id;
 	end case;
 end;
 $body$
@@ -192,12 +202,15 @@ begin
 			t.descripcion like '%' || coalesce(upper(_descripcion), t.descripcion) || '%'
 			order by t.descripcion;
 		when 'insert' then
-			insert into tbl_persona (descripcion) VALUES (upper(_descripcion));
+			insert into tbl_persona (descripcion)
+			values (upper(_descripcion));
 		when 'update' then
-			update tbl_persona t set descripcion=upper(_descripcion)
+			update tbl_persona t
+			set descripcion = upper(_descripcion)
 			where t.id = _id;
 		when 'delete' then
-			delete from tbl_persona t where t.id = _id;
+			delete from tbl_persona t
+			where t.id = _id;
 	end case;
 end;
 $body$
@@ -243,8 +256,7 @@ begin
 			values (_cedula, upper(_nombre), upper(_apellidos), _fecha_nacimiento, _tel_celular, _tel_habitacion, upper(_encargado), _id_persona);
 		when 'update' then
 			update tbl_personas t
-			set cedula = _cedula,
-			nombre = upper(_nombre),
+			set nombre = upper(_nombre),
 			apellidos = upper(_apellidos),
 			fecha_nacimineto = _fecha_nacimiento,
 			tel_celular = _tel_celular,
@@ -287,10 +299,13 @@ begin
 			values (_id, _id_persona, _id_comida, _precio);
 		when 'update' then
 			update tbl_precio t
-			set id_persona = _id_persona, id_comida = _id_comida, precio = _precio
+			set id_persona = _id_persona,
+			id_comida = _id_comida,
+			precio = _precio
 			where t.id = _id;
 		when 'delete' then
-			delete from tbl_precio t where t.id = _id;
+			delete from tbl_precio t
+			where t.id = _id;
 	end case;
 end;
 $body$
@@ -317,7 +332,8 @@ begin
 			insert into tbl_roles (descripcion)
 			values (upper(_descripcion));
 		when 'update' then
-			update tbl_roles t set descripcion=upper(_descripcion)
+			update tbl_roles t
+			set descripcion = upper(_descripcion)
 			where t.id = _id;
 		when 'delete' then
 			delete from tbl_roles t
@@ -397,7 +413,7 @@ begin
 	case dml
 		when 'select' then
 			return query
-			select *
+			select t.cedula, t.usuario, t.nombre, t.apellidos, t.activo, t.observaciones, t.id_rol
 			from tbl_usuarios t
 			where t.cedula = coalesce(_cedula, t.cedula) and
 			t.usuario like '%' || coalesce(lower(_usuario), t.usuario) || '%' and
@@ -406,25 +422,43 @@ begin
 			t.activo = coalesce(_activo, t.activo) and
 			t.observaciones like '%' || coalesce(upper(_observaciones), t.observaciones) || '%' and
 			t.id_rol = coalesce(_id_rol, t.id_rol)
-			order by t.nombre_completo;
+			order by t.nombre;
 		when 'insert' then
 			insert into tbl_usuarios (cedula, usuario, contrasena, nombre, apellidos, activo, observaciones, id_rol)
 			values (_cedula, lower(_usuario), _contrasena, upper(_nombre), upper(_apellidos), _activo, upper(_observaciones), _id_rol);
 		when 'update' then
 			update tbl_usuarios t
-			set cedula = _cedula,
-			usuario = lower(_usuario),
-			contrasena = _contrasena,
-			nombre = _nombre,
-			apellido = _nombre,
+			set usuario = lower(_usuario),
+			nombre = upper(_nombre),
+			apellidos = upper(_apellidos),
 			activo = _activo,
-			observaciones = _observaciones,
+			observaciones = upper(_observaciones),
 			id_rol = _id_rol
 			where t.cedula = _cedula;
 		when 'delete' then
 			delete from tbl_usuarios t
 			where t.cedula = _cedula;
+		when 'reset_password' then
+			update tbl_usuarios t
+			set contrasena = _contrasena
+			where t.cedula = _cedula;
 	end case;
+end;
+$body$
+language plpgsql;
+
+create or replace function f_check_password(
+	in _usuario character varying,
+	in _contrasena character varying)
+returns table(
+	activo boolean) as
+$body$
+begin
+	return query
+	select t.activo
+	from tbl_usuarios t
+	where t.usuario = _usuario and
+	contrasena = _contrasena;
 end;
 $body$
 language plpgsql;

@@ -14,10 +14,6 @@ import java.sql.SQLException;
  */
 public class Connection {
     private java.sql.Connection Connection;
-
-    public Connection() {
-        this.Connection = null;
-    }
     
     public java.sql.Connection getConnection() throws SQLException {
         this.Connection = 

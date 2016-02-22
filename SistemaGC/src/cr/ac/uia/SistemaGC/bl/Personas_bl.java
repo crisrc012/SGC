@@ -39,13 +39,13 @@ public class Personas_bl {
                 cedula = String.valueOf(personas.getCedula());
             }
             if (personas.getNombre() != null) {
-                nombre = String.valueOf(personas.getNombre());
+                nombre = "'" + personas.getNombre() + "'";
             }
             if (personas.getApellidos() != null) {
-                apellidos = String.valueOf(personas.getApellidos());
+                apellidos = "'" + personas.getApellidos() + "'";
             }
             if (personas.getFecha_nacimiento() != null) {
-                fecha_nacimiento = String.valueOf(personas.getFecha_nacimiento());
+                fecha_nacimiento = "'" + String.valueOf(personas.getFecha_nacimiento()) + "'";
             }
             if (personas.getTel_celular() != null) {
                 tel_celular = String.valueOf(personas.getTel_celular());
@@ -54,20 +54,20 @@ public class Personas_bl {
                 tel_habitacion = String.valueOf(personas.getTel_habitacion());
             }
             if (personas.getEncargado() != null) {
-                encargado = String.valueOf(personas.getEncargado());
+                encargado = "'" + personas.getEncargado() + "'";
             }
             if (personas.getId_persona() != null) {
                 id_persona = String.valueOf(personas.getId_persona());
             }
             try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_personas('select',"
-                    + cedula + ", '"
-                    + nombre + "', '"
-                    + apellidos + "', '"
-                    + fecha_nacimiento + "', "
+                    "SELECT * FROM f_personas('select', "
+                    + cedula + ", "
+                    + nombre + ", "
+                    + apellidos + ", "
+                    + fecha_nacimiento + ", "
                     + tel_celular + ", "
-                    + tel_habitacion + ", '"
-                    + encargado + "', "
+                    + tel_habitacion + ", "
+                    + encargado + ", "
                     + id_persona + ");")) {
                 personaslst = new ArrayList<>();
                 while (rs.next()) {
@@ -101,7 +101,7 @@ public class Personas_bl {
             this.st = null;
             this.conn = new Connection();
             this.st = conn.getConnection().createStatement();
-            String cedula = "NULL";
+            String cedula;
             String nombre;
             String apellidos;
             String fecha_nacimiento;
@@ -109,18 +109,20 @@ public class Personas_bl {
             String tel_habitacion;
             String encargado;
             String id_persona;
-            if (dml.equals("update")) {
+            if (personas.getCedula() == null) {
+                return false;
+            } else {
                 cedula = String.valueOf(personas.getCedula());
             }
             if (personas.getNombre() == null) {
                 return false;
             } else {
-                nombre = personas.getNombre();
+                nombre = "'" + personas.getNombre() + "'";
             }
             if (personas.getApellidos() == null) {
                 return false;
             } else {
-                apellidos = personas.getApellidos();
+                apellidos = "'" + personas.getApellidos() + "'";
             }
             if (personas.getFecha_nacimiento() == null) {
                 return false;
@@ -140,7 +142,7 @@ public class Personas_bl {
             if (personas.getEncargado() == null) {
                 return false;
             } else {
-                encargado = personas.getEncargado();
+                encargado = "'" + personas.getEncargado() + "'";
             }
             if (personas.getId_persona() == null) {
                 return false;
@@ -149,13 +151,13 @@ public class Personas_bl {
             }
             this.st.executeQuery("SELECT f_personas('"
                     + dml + "', "
-                    + cedula + ", '"
-                    + nombre + "', '"
-                    + apellidos + "', '"
-                    + fecha_nacimiento + "', "
+                    + cedula + ", "
+                    + nombre + ", "
+                    + apellidos + ", "
+                    + fecha_nacimiento + ", "
                     + tel_celular + ", "
-                    + tel_habitacion + ", '"
-                    + encargado + "', "
+                    + tel_habitacion + ", "
+                    + encargado + ", "
                     + id_persona + ");");
         } catch (SQLException e) {
             return false;
@@ -183,7 +185,7 @@ public class Personas_bl {
             this.st = null;
             this.conn = new Connection();
             this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_personas('delete',"
+            this.st.executeQuery("SELECT f_personas('delete', "
                     + cedula + ", NULL, NULL, NULL, NULL, NULL, NULL, NULL);");
         } catch (SQLException e) {
             return false;

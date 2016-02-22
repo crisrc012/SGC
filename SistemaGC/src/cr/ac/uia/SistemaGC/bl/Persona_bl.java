@@ -36,9 +36,9 @@ public class Persona_bl {
                 descripcion = "'" + persona.getDescripcion() + "'";
             }
             try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_persona('select',"
-                    + id + ", '"
-                    + descripcion + "');")) {
+                    "SELECT * FROM f_persona('select', "
+                    + id + ", "
+                    + descripcion + ");")) {
                 personalst = new ArrayList<>();
                 while (rs.next()) {
                     Persona p = new Persona();

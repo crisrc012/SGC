@@ -36,8 +36,9 @@ public class Roles_bl {
                 descripcion = "'" + roles.getDescripcion() + "'";
             }
             try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_roles('select',"
-                    + id + "," + descripcion + ");")) {
+                    "SELECT * FROM f_roles('select', "
+                    + id + ", "
+                    + descripcion + ");")) {
                 roleslst = new ArrayList<>();
                 while (rs.next()) {
                     Roles r = new Roles();
@@ -76,7 +77,9 @@ public class Roles_bl {
                 descripcion = "'" + roles.getDescripcion() + "'";
             }
             this.st.executeQuery("SELECT f_roles('"
-                    + dml + "'," + id + " ," + descripcion + ");");
+                    + dml + "', "
+                    + id + ", "
+                    + descripcion + ");");
         } catch (SQLException e) {
             return false;
         } finally {
@@ -103,8 +106,8 @@ public class Roles_bl {
             this.st = null;
             this.conn = new Connection();
             this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_roles('delete',"
-                    + id + ",NULL);");
+            this.st.executeQuery("SELECT f_roles('delete', "
+                    + id + ", NULL);");
         } catch (SQLException e) {
             return false;
         } finally {

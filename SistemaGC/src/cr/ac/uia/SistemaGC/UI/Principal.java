@@ -69,8 +69,8 @@ public class Principal extends javax.swing.JFrame {
         lblTexto.setText("Para poder comenzar a utilizar las diferentes opciones que presenta el sistema, por favor inicie sesión");
         getContentPane().add(lblTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 547, 47));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/LogoUIA.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, -1, 330));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/LogoUIA.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, 270, 330));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
         jMenu1.setText("Usuarios");
