@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cr.ac.uia.SistemaGC.ui;
+package cr.ac.uia.SistemaGC.UI;
 
 /**
  *
@@ -27,106 +27,127 @@ public class AsignarBeca extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        lblTituloAB = new javax.swing.JLabel();
+        lblCamposReq = new javax.swing.JLabel();
+        lblCedEstudiante = new javax.swing.JLabel();
+        lblNombreEstudiante = new javax.swing.JLabel();
+        lblNombreBeca = new javax.swing.JLabel();
+        lblPorcentaje = new javax.swing.JLabel();
+        lblObsBeca = new javax.swing.JLabel();
+        btnGuardarAsignacion = new javax.swing.JButton();
+        txtCedEstudiante = new javax.swing.JTextField();
+        txtNombreEstudiante = new javax.swing.JTextField();
+        txtNombreBeca = new javax.swing.JTextField();
+        txtProcentaje = new javax.swing.JTextField();
+        txtObsBeca = new javax.swing.JTextField();
+        btnConsultarCed = new javax.swing.JButton();
+        btnConsultarBeca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Cédula del estudiante:");
+        lblTituloAB.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTituloAB.setText("Administración de Becas");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Nombre Completo:");
+        lblCamposReq.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCamposReq.setText("* Campos Requeridos");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Nombre de beca:");
+        lblCedEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCedEstudiante.setText("Cédula de Estudiante:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Porcentaje de beca:");
+        lblNombreEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombreEstudiante.setText("Nombre de Estudiante:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Observaciones:");
+        lblNombreBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombreBeca.setText("Nombre de Beca:");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setText("Asignar Beca");
+        lblPorcentaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPorcentaje.setText("Porcentaje de Beca:");
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jButton2.setText("Consultar");
+        lblObsBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblObsBeca.setText("Observaciones:");
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jButton3.setText("Consultar");
+        btnGuardarAsignacion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnGuardarAsignacion.setText("Guardar Asignación");
+
+        btnConsultarCed.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        btnConsultarCed.setText("Consultar");
+
+        btnConsultarBeca.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        btnConsultarBeca.setText("Consultar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCedEstudiante)
+                            .addComponent(lblNombreEstudiante)
+                            .addComponent(lblNombreBeca)
+                            .addComponent(lblPorcentaje)
+                            .addComponent(lblObsBeca))
+                        .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtNombreEstudiante)
+                            .addComponent(txtCedEstudiante)
+                            .addComponent(txtNombreBeca)
+                            .addComponent(txtProcentaje)
+                            .addComponent(txtObsBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCamposReq)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                                .addComponent(btnGuardarAsignacion))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTituloAB)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(58, Short.MAX_VALUE))
+                    .addComponent(btnConsultarCed)
+                    .addComponent(btnConsultarBeca))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addContainerGap()
+                .addComponent(lblTituloAB)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCedEstudiante)
+                    .addComponent(txtCedEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConsultarCed))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addGap(21, 21, 21)
+                    .addComponent(lblNombreEstudiante)
+                    .addComponent(txtNombreEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNombreBeca)
+                    .addComponent(txtNombreBeca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConsultarBeca))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPorcentaje)
+                    .addComponent(txtProcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblObsBeca)
+                    .addComponent(txtObsBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)))
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnGuardarAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(28, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblCamposReq)
+                        .addContainerGap())))
         );
 
         pack();
@@ -168,18 +189,20 @@ public class AsignarBeca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton btnConsultarBeca;
+    private javax.swing.JButton btnConsultarCed;
+    private javax.swing.JButton btnGuardarAsignacion;
+    private javax.swing.JLabel lblCamposReq;
+    private javax.swing.JLabel lblCedEstudiante;
+    private javax.swing.JLabel lblNombreBeca;
+    private javax.swing.JLabel lblNombreEstudiante;
+    private javax.swing.JLabel lblObsBeca;
+    private javax.swing.JLabel lblPorcentaje;
+    private javax.swing.JLabel lblTituloAB;
+    private javax.swing.JTextField txtCedEstudiante;
+    private javax.swing.JTextField txtNombreBeca;
+    private javax.swing.JTextField txtNombreEstudiante;
+    private javax.swing.JTextField txtObsBeca;
+    private javax.swing.JTextField txtProcentaje;
     // End of variables declaration//GEN-END:variables
 }

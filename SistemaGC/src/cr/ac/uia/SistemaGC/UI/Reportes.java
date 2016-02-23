@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cr.ac.uia.SistemaGC.ui;
+package cr.ac.uia.SistemaGC.UI;
 
 /**
  *
@@ -27,137 +27,156 @@ public class Reportes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGroup1 = new javax.swing.ButtonGroup();
-        btnGroup2 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jLabel4 = new javax.swing.JLabel();
+        btnGTipos = new javax.swing.ButtonGroup();
+        btnGPeriodo = new javax.swing.ButtonGroup();
+        lblTitulo = new javax.swing.JLabel();
+        lblSelectPeriodo = new javax.swing.JLabel();
+        lblSelectTipo = new javax.swing.JLabel();
+        lblSelectDate = new javax.swing.JLabel();
+        RBSemanal = new javax.swing.JRadioButton();
+        RBMensual = new javax.swing.JRadioButton();
+        RBBecados = new javax.swing.JRadioButton();
+        RBNoBecados = new javax.swing.JRadioButton();
+        RBProfesores = new javax.swing.JRadioButton();
+        RBCierresCaja = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtDesde = new javax.swing.JFormattedTextField();
+        txtHasta = new javax.swing.JFormattedTextField();
+        btnGenerarReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("1. Seleccione el periodo");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTitulo.setText("Reportes");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("2. Seleccione el tipo de reporte");
+        lblSelectPeriodo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSelectPeriodo.setText("1. Seleccione el periodo");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("3. Seleccione el intervalo de fechas:");
+        lblSelectTipo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSelectTipo.setText("2. Seleccione el tipo de reporte");
 
-        btnGroup2.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jRadioButton1.setText("Informe Semanal");
+        lblSelectDate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSelectDate.setText("3. Seleccione la fecha");
 
-        btnGroup2.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jRadioButton2.setText("Informe Mensual");
+        btnGPeriodo.add(RBSemanal);
+        RBSemanal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RBSemanal.setText("Información Semanal");
 
-        btnGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jRadioButton3.setText("Cantidad de personas no becadas que asisten");
+        btnGPeriodo.add(RBMensual);
+        RBMensual.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RBMensual.setText("Información Mensual");
 
-        btnGroup1.add(jRadioButton4);
-        jRadioButton4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jRadioButton4.setText("Cantidad de personas becadas que asisten");
+        btnGTipos.add(RBBecados);
+        RBBecados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RBBecados.setText("Cantidad de personas becadas que asisten");
 
-        btnGroup1.add(jRadioButton5);
-        jRadioButton5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jRadioButton5.setText("Cantidad de profesores que utilizan este servicio");
+        btnGTipos.add(RBNoBecados);
+        RBNoBecados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RBNoBecados.setText("Cantidad de personas no becadas que asisten");
 
-        btnGroup1.add(jRadioButton6);
-        jRadioButton6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jRadioButton6.setText("Cierres de caja");
+        btnGTipos.add(RBProfesores);
+        RBProfesores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RBProfesores.setText("Cantidad de profesores que utilizan este servicio");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setText("Desde:");
+        btnGTipos.add(RBCierresCaja);
+        RBCierresCaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RBCierresCaja.setText("Cierres de caja");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText("Hasta:");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Desde:");
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Hasta:");
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtDesde.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+
+        txtHasta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+
+        btnGenerarReporte.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnGenerarReporte.setText("Generar Reporte");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(lblSelectDate)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton4)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton5)
-                            .addComponent(jRadioButton6))
-                        .addGap(198, 198, 198))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(214, 214, 214))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSelectPeriodo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RBBecados)
+                            .addComponent(lblSelectTipo)
+                            .addComponent(RBNoBecados)
+                            .addComponent(RBProfesores)
+                            .addComponent(RBCierresCaja)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(82, 82, 82))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblTitulo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RBMensual)
+                            .addComponent(RBSemanal))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnGenerarReporte)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
+                .addComponent(lblTitulo)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton3))
+                    .addComponent(lblSelectPeriodo)
+                    .addComponent(lblSelectTipo))
+                .addGap(18, 18, 18)
+                .addComponent(RBBecados)
+                .addGap(6, 6, 6)
+                .addComponent(RBSemanal)
+                .addGap(9, 9, 9)
+                .addComponent(RBNoBecados)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addComponent(RBMensual))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(jRadioButton4)
-                        .addGap(82, 82, 82)
-                        .addComponent(jRadioButton6)
-                        .addGap(32, 32, 32)))
-                .addComponent(jLabel3)
-                .addGap(37, 37, 37)
+                        .addGap(39, 39, 39)
+                        .addComponent(RBProfesores)))
+                .addGap(41, 41, 41)
+                .addComponent(RBCierresCaja)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(lblSelectDate)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66))
+                    .addComponent(jLabel6)
+                    .addComponent(txtDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnGenerarReporte)
+                .addContainerGap())
         );
 
         pack();
@@ -199,20 +218,22 @@ public class Reportes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup btnGroup1;
-    private javax.swing.ButtonGroup btnGroup2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JRadioButton RBBecados;
+    private javax.swing.JRadioButton RBCierresCaja;
+    private javax.swing.JRadioButton RBMensual;
+    private javax.swing.JRadioButton RBNoBecados;
+    private javax.swing.JRadioButton RBProfesores;
+    private javax.swing.JRadioButton RBSemanal;
+    private javax.swing.ButtonGroup btnGPeriodo;
+    private javax.swing.ButtonGroup btnGTipos;
+    private javax.swing.JButton btnGenerarReporte;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblSelectDate;
+    private javax.swing.JLabel lblSelectPeriodo;
+    private javax.swing.JLabel lblSelectTipo;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JFormattedTextField txtDesde;
+    private javax.swing.JFormattedTextField txtHasta;
     // End of variables declaration//GEN-END:variables
 }

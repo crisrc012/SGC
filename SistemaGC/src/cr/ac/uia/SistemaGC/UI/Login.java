@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cr.ac.uia.SistemaGC.ui;
+package cr.ac.uia.SistemaGC.UI;
 
 /**
  *
- * @author Michelle, Paola, Cristopher
- * Prueba para explicar a Paola
+ * @author Pao
  */
 public class Login extends javax.swing.JFrame {
 
@@ -28,55 +27,32 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblContraseña = new javax.swing.JLabel();
-        lblUsuario1 = new javax.swing.JLabel();
-        btnIngresar = new javax.swing.JButton();
-        txtUsuario2 = new javax.swing.JTextField();
-        lblAsterisco1 = new javax.swing.JLabel();
-        lblAsterisco2 = new javax.swing.JLabel();
-        lblCamposRequeridos = new javax.swing.JLabel();
-        passContraseña = new javax.swing.JPasswordField();
+        lblUserName = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        btnLogin = new javax.swing.JButton();
+        txtUserName = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
+        lblIndicacion = new javax.swing.JLabel();
+        lblTituloSGC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(554, 341));
-        setName("Login"); // NOI18N
-        setResizable(false);
 
-        lblContraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblContraseña.setText("Contraseña:");
-        lblContraseña.setToolTipText("");
+        lblUserName.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        lblUserName.setText("Nombre de Usuario:");
 
-        lblUsuario1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblUsuario1.setText("Nombre de Usuario:");
-        lblUsuario1.setToolTipText("");
+        lblPassword.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        lblPassword.setText("Contraseña:");
 
-        btnIngresar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnIngresar.setText("Ingresar");
-        btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
-            }
-        });
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnLogin.setText("Iniciar Sesión");
 
-        txtUsuario2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtUsuario2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtUsuario2.setToolTipText("Usuario");
+        txtPassword.setText("jPasswordField1");
 
-        lblAsterisco1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblAsterisco1.setText("*");
-        lblAsterisco1.setToolTipText("");
+        lblIndicacion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        lblIndicacion.setText("Por favor, digite su nobre de usuario y contraseña para comenzar.");
 
-        lblAsterisco2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblAsterisco2.setText("*");
-        lblAsterisco2.setToolTipText("");
-
-        lblCamposRequeridos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblCamposRequeridos.setText("* Campos Requeridos");
-        lblCamposRequeridos.setToolTipText("");
-
-        passContraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        passContraseña.setText("jPasswordField1");
+        lblTituloSGC.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblTituloSGC.setText("Sistema Gestor de Comedores");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,57 +61,47 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblUsuario1)
-                            .addComponent(lblContraseña))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(passContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblAsterisco2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblAsterisco1))))
+                        .addContainerGap()
+                        .addComponent(lblTituloSGC))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lblCamposRequeridos)))
-                .addContainerGap())
+                        .addComponent(lblIndicacion))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblUserName)
+                                    .addComponent(lblPassword))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addContainerGap()
+                .addComponent(lblTituloSGC)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIndicacion)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUsuario1)
-                    .addComponent(lblAsterisco1))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(lblContraseña))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblAsterisco2)
-                        .addComponent(passContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
-                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(lblCamposRequeridos)
-                .addContainerGap())
+                    .addComponent(lblUserName)
+                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPassword)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,7 +114,7 @@ public class Login extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -165,19 +131,20 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Login().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setVisible(true);
+            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIngresar;
-    private javax.swing.JLabel lblAsterisco1;
-    private javax.swing.JLabel lblAsterisco2;
-    private javax.swing.JLabel lblCamposRequeridos;
-    private javax.swing.JLabel lblContraseña;
-    private javax.swing.JLabel lblUsuario1;
-    private javax.swing.JPasswordField passContraseña;
-    private javax.swing.JTextField txtUsuario2;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JLabel lblIndicacion;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblTituloSGC;
+    private javax.swing.JLabel lblUserName;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cr.ac.uia.SistemaGC.ui;
+package cr.ac.uia.SistemaGC.UI;
 
 /**
  *
@@ -27,84 +27,159 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblTitulo = new javax.swing.JLabel();
-        btnInicio = new javax.swing.JButton();
-        lblWelcome = new javax.swing.JLabel();
-        lblTexto = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        Menu = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
+        lblLogoUIA = new javax.swing.JLabel();
+        lblSGC = new javax.swing.JLabel();
+        lblIndicacionInicial = new javax.swing.JLabel();
+        MenuBar = new javax.swing.JMenuBar();
+        MUsurio = new javax.swing.JMenu();
+        MPersonas = new javax.swing.JMenu();
+        MTipoBeca = new javax.swing.JMenu();
+        MAdmBeca = new javax.swing.JMenu();
+        MVentaTiq = new javax.swing.JMenu();
+        MGestionIngreso = new javax.swing.JMenu();
+        MGestionParam = new javax.swing.JMenu();
+        MReportes = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblTitulo.setText("Sistema Gestor de Comedores");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 12, -1, -1));
+        lblLogoUIA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/LogoUIA.png"))); // NOI18N
 
-        btnInicio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnInicio.setForeground(new java.awt.Color(0, 0, 255));
-        btnInicio.setText("Iniciar Sesión");
-        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+        lblSGC.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblSGC.setText("Sistema de Gestión de Comedores");
+
+        lblIndicacionInicial.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblIndicacionInicial.setText("Para poder comenzar a utilizar las diferentes opciones que presenta el sistema, por favor inicie sesión. Gracias");
+
+        MUsurio.setText("Usuario");
+        MUsurio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInicioActionPerformed(evt);
+                MUsurioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, -1, -1));
+        MenuBar.add(MUsurio);
 
-        lblWelcome.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblWelcome.setText("¡Bienvenido al Sistema de Gestión de Comedores!");
-        getContentPane().add(lblWelcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, 50));
+        MPersonas.setText("Personas");
+        MPersonas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MPersonasActionPerformed(evt);
+            }
+        });
+        MenuBar.add(MPersonas);
 
-        lblTexto.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        lblTexto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTexto.setText("Para poder comenzar a utilizar las diferentes opciones que presenta el sistema, por favor inicie sesión");
-        getContentPane().add(lblTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 547, 47));
+        MTipoBeca.setText("Tipos de Becas");
+        MTipoBeca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MTipoBecaActionPerformed(evt);
+            }
+        });
+        MenuBar.add(MTipoBeca);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/LogoUIA.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, 270, 330));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
+        MAdmBeca.setText("Administrar Becas");
+        MAdmBeca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MAdmBecaActionPerformed(evt);
+            }
+        });
+        MenuBar.add(MAdmBeca);
 
-        jMenu1.setText("Usuarios");
-        Menu.add(jMenu1);
+        MVentaTiq.setText("Venta de Tiquetes");
+        MVentaTiq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MVentaTiqActionPerformed(evt);
+            }
+        });
+        MenuBar.add(MVentaTiq);
 
-        jMenu2.setText("Tipos de Becas");
-        Menu.add(jMenu2);
+        MGestionIngreso.setText("Gestión de Ingreso");
+        MGestionIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MGestionIngresoActionPerformed(evt);
+            }
+        });
+        MenuBar.add(MGestionIngreso);
 
-        jMenu3.setText("Personas");
-        Menu.add(jMenu3);
+        MGestionParam.setText("Gestión de Parametros");
+        MGestionParam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MGestionParamActionPerformed(evt);
+            }
+        });
+        MenuBar.add(MGestionParam);
 
-        jMenu4.setText("Administar Becas");
-        Menu.add(jMenu4);
+        MReportes.setText("Reportes");
+        MReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MReportesActionPerformed(evt);
+            }
+        });
+        MenuBar.add(MReportes);
 
-        jMenu5.setText("Venta Tiquetes");
-        Menu.add(jMenu5);
+        setJMenuBar(MenuBar);
 
-        jMenu6.setText("Gestionar Parámetros");
-        Menu.add(jMenu6);
-
-        jMenu7.setText("Gestionar Ingreso");
-        Menu.add(jMenu7);
-
-        jMenu8.setText("Reportes");
-        Menu.add(jMenu8);
-
-        setJMenuBar(Menu);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblSGC))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(lblIndicacionInicial)))
+                .addContainerGap(377, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblLogoUIA)
+                .addGap(162, 162, 162))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(lblSGC)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(lblLogoUIA)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIndicacionInicial)
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInicioActionPerformed
+    private void MUsurioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MUsurioActionPerformed
+        new Usuarios().setVisible(true);
+    }//GEN-LAST:event_MUsurioActionPerformed
+
+    private void MPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPersonasActionPerformed
+        new Personas().setVisible(true);
+    }//GEN-LAST:event_MPersonasActionPerformed
+
+    private void MTipoBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MTipoBecaActionPerformed
+        new TipoBeca().setVisible(true);
+    }//GEN-LAST:event_MTipoBecaActionPerformed
+
+    private void MAdmBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MAdmBecaActionPerformed
+        new AdministrarBeca().setVisible(true);
+    }//GEN-LAST:event_MAdmBecaActionPerformed
+
+    private void MVentaTiqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MVentaTiqActionPerformed
+        new VentaTiquetes().setVisible(true);
+    }//GEN-LAST:event_MVentaTiqActionPerformed
+
+    private void MGestionIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MGestionIngresoActionPerformed
+        new GestionIngreso().setVisible(true);
+    }//GEN-LAST:event_MGestionIngresoActionPerformed
+
+    private void MGestionParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MGestionParamActionPerformed
+        new GestionParametros().setVisible(true);
+    }//GEN-LAST:event_MGestionParamActionPerformed
+
+    private void MReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MReportesActionPerformed
+        new Reportes().setVisible(true);
+    }//GEN-LAST:event_MReportesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,7 +192,7 @@ public class Principal extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -142,20 +217,17 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar Menu;
-    private javax.swing.JButton btnInicio;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JLabel lblTexto;
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblWelcome;
+    private javax.swing.JMenu MAdmBeca;
+    private javax.swing.JMenu MGestionIngreso;
+    private javax.swing.JMenu MGestionParam;
+    private javax.swing.JMenu MPersonas;
+    private javax.swing.JMenu MReportes;
+    private javax.swing.JMenu MTipoBeca;
+    private javax.swing.JMenu MUsurio;
+    private javax.swing.JMenu MVentaTiq;
+    private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JLabel lblIndicacionInicial;
+    private javax.swing.JLabel lblLogoUIA;
+    private javax.swing.JLabel lblSGC;
     // End of variables declaration//GEN-END:variables
 }
