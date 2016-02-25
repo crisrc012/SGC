@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cr.ac.uia.SistemaGC.UI;
+package cr.ac.uia.SistemaGC.ui;
 
 /**
  *
@@ -150,10 +150,8 @@ public class TipoBeca extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TipoBeca().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TipoBeca().setVisible(true);
         });
     }
 

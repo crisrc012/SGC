@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cr.ac.uia.SistemaGC.UI;
+package cr.ac.uia.SistemaGC.ui;
 
 /**
  *
@@ -162,7 +162,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_MTipoBecaActionPerformed
 
     private void MAdmBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MAdmBecaActionPerformed
-        new AdministrarBeca().setVisible(true);
+        new AdministrarBecas().setVisible(true);
     }//GEN-LAST:event_MAdmBecaActionPerformed
 
     private void MVentaTiqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MVentaTiqActionPerformed
@@ -209,10 +209,8 @@ public class Principal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Principal().setVisible(true);
         });
     }
 
