@@ -5,6 +5,14 @@
  */
 package cr.ac.uia.SistemaGC.ui;
 
+import java.awt.Image;
+import java.io.File;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Pao
@@ -47,8 +55,8 @@ public class AgregarPersona extends javax.swing.JFrame {
         txtObservacionesPersona = new javax.swing.JTextField();
         txtFechaPersona = new javax.swing.JFormattedTextField();
         lblTituloAgPersona = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        lblFoto = new javax.swing.JLabel();
+        btnCargarFoto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,10 +97,15 @@ public class AgregarPersona extends javax.swing.JFrame {
         lblTituloAgPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloAgPersona.setText("Gestión de Personas");
 
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Cargar Foto");
+        btnCargarFoto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCargarFoto.setText("Cargar Foto");
+        btnCargarFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarFotoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,7 +152,7 @@ public class AgregarPersona extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RBEstudiante)
@@ -152,7 +165,7 @@ public class AgregarPersona extends javax.swing.JFrame {
                         .addComponent(lblTituloAgPersona))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
-                        .addComponent(jButton1)))
+                        .addComponent(btnCargarFoto)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -168,9 +181,9 @@ public class AgregarPersona extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(lblTituloAgPersona)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnCargarFoto)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedulaPersona)
@@ -208,6 +221,24 @@ public class AgregarPersona extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    File fichero;
+    private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
+        int resultado;
+        SubirFoto file = new SubirFoto();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter ("JPG y PNG", "jpg","png");
+        file.FchCargarFoto.setFileFilter(filtro);
+        resultado=file.FchCargarFoto.showOpenDialog(null);
+        if(JFileChooser.APPROVE_OPTION == resultado){
+            fichero = file.FchCargarFoto.getSelectedFile();
+            try{
+                ImageIcon image = new ImageIcon(fichero.toString());
+                Icon icon = new ImageIcon(image.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
+                lblFoto.setIcon(icon);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "Error al intentar abrir la imagen " +ex);
+            }
+        }
+    }//GEN-LAST:event_btnCargarFotoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,13 +279,13 @@ public class AgregarPersona extends javax.swing.JFrame {
     private javax.swing.JRadioButton RBEstudiante;
     private javax.swing.JRadioButton RBProfesor;
     private javax.swing.ButtonGroup TipoPersona;
+    private javax.swing.JButton btnCargarFoto;
     private javax.swing.JButton btnGuardarPersona;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblApellidosPersona;
     private javax.swing.JLabel lblCedulaPersona;
     private javax.swing.JLabel lblContactoPersona;
     private javax.swing.JLabel lblFechaPersona;
+    private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblNombrePersona;
     private javax.swing.JLabel lblObservacionesPersona;
     private javax.swing.JLabel lblTelefonosPersona;
