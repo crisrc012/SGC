@@ -50,7 +50,7 @@ create table tbl_tiquetes(
 	id_persona integer references tbl_personas(cedula),
 	id_precio integer references tbl_precio(id),
 	fecha_compra date not null,
-	fecha_uso date not null,
+	fecha_uso date,
 	activo boolean not null
 );
 
