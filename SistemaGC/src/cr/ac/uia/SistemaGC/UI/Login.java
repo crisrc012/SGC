@@ -18,6 +18,8 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         // Mostrar centrado
         setLocationRelativeTo(null);
+        setResizable(false);
+        setTitle("Sistema de Gestión de Comedor - Iniciar");
     }
 
     /**
