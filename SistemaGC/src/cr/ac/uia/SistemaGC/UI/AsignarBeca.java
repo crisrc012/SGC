@@ -5,6 +5,13 @@
  */
 package cr.ac.uia.SistemaGC.ui;
 
+import cr.ac.uia.SistemaGC.bl.Becados_bl;
+import cr.ac.uia.SistemaGC.entities.Becados;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pao
@@ -68,6 +75,11 @@ public class AsignarBeca extends javax.swing.JFrame {
 
         btnGuardarAsignacion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardarAsignacion.setText("Guardar Asignación");
+        btnGuardarAsignacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarAsignacionActionPerformed(evt);
+            }
+        });
 
         btnConsultarCed.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnConsultarCed.setText("Consultar");
@@ -152,6 +164,11 @@ public class AsignarBeca extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAsignacionActionPerformed
+        
+        
+    }//GEN-LAST:event_btnGuardarAsignacionActionPerformed
 
     /**
      * @param args the command line arguments

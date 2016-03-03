@@ -44,7 +44,7 @@ public class AgregarBeca extends javax.swing.JFrame {
         lblNombreBeca.setText("Nombre de beca:");
 
         lblPorcentaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblPorcentaje.setText("Pocentaje de beca:");
+        lblPorcentaje.setText("Porcentaje de beca:");
 
         lblHabilitadaBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblHabilitadaBeca.setText("Habilitada:");
