@@ -225,17 +225,17 @@ public class AgregarPersona extends javax.swing.JFrame {
     private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
         int resultado;
         SubirFoto file = new SubirFoto();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter ("JPG y PNG", "jpg","png");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
         file.FchCargarFoto.setFileFilter(filtro);
-        resultado=file.FchCargarFoto.showOpenDialog(null);
-        if(JFileChooser.APPROVE_OPTION == resultado){
+        resultado = file.FchCargarFoto.showOpenDialog(null);
+        if (JFileChooser.APPROVE_OPTION == resultado) {
             fichero = file.FchCargarFoto.getSelectedFile();
-            try{
+            try {
                 ImageIcon image = new ImageIcon(fichero.toString());
-                Icon icon = new ImageIcon(image.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
+                Icon icon = new ImageIcon(image.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
                 lblFoto.setIcon(icon);
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, "Error al intentar abrir la imagen " +ex);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error al intentar abrir la imagen " + ex);
             }
         }
     }//GEN-LAST:event_btnCargarFotoActionPerformed
@@ -268,10 +268,8 @@ public class AgregarPersona extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgregarPersona().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AgregarPersona().setVisible(true);
         });
     }
 

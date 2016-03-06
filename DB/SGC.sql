@@ -25,6 +25,11 @@ create table tbl_personas(
 	id_persona integer references tbl_persona(id)
 );
 
+create table tbl_personas_avatar(
+	cedula integer references tbl_personas(cedula),
+	foto bytea not null
+);
+
 create table tbl_becados(
 	id serial primary key,
 	id_persona integer references tbl_personas(cedula),
