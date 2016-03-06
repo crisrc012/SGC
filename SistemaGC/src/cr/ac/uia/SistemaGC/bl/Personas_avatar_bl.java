@@ -7,7 +7,6 @@ package cr.ac.uia.SistemaGC.bl;
 
 import cr.ac.uia.SistemaGC.db.Connection;
 import cr.ac.uia.SistemaGC.entities.Personas_avatar;
-import cr.ac.uia.SistemaGC.entities.Precio;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -16,11 +15,10 @@ import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.Arrays;
 import javax.imageio.ImageIO;
 import org.apache.commons.codec.binary.Hex;
 
@@ -34,15 +32,16 @@ public class Personas_avatar_bl {
     private Statement st;
 
     public byte[] select(int cedula) throws SQLException {
-        byte[] foto;
+        byte[] foto = null;
         try {
             this.st = null;
             this.conn = new Connection();
             this.st = conn.getConnection().createStatement();
-            String Cedula = String.valueOf(cedula);
             try (ResultSet rs = this.st.executeQuery(
-                    "SELECT foto FROM tbl_personas_avatar WHERE cedula = " + cedula)) {
-                foto = rs.getBytes("foto");
+                    "SELECT foto FROM tbl_personas_avatar WHERE cedula=" + cedula + ";")) {
+                while (rs.next()) {
+                    foto = rs.getBytes("foto");
+                }
                 rs.close();
             }
         } catch (SQLException e) {
@@ -61,28 +60,28 @@ public class Personas_avatar_bl {
 
     private boolean insert_update(Personas_avatar personas_avatar, String dml) throws FileNotFoundException, SQLException, IOException {
         try {
+            this.st = null;
             conn = new Connection();
             this.st = conn.getConnection().createStatement();
-            String query = null;
-            if (null != dml) {
-                switch (dml) {
-                    case "insert":
-                        query = "insert into tbl_personas_avatar values ("
-                                + personas_avatar.getCedula()
-                                + ", "
-                                + Hex.encodeHexString(personas_avatar.getFoto()) + ";";
-                        break;
-                    case "update":
-                        query = "update tbl_personas_avatar set foto="
-                                + Hex.encodeHexString(personas_avatar.getFoto())
-                                + "where cedula=" + personas_avatar.getCedula() + ";";
-                        break;
-                    default:
-                        return false;
-                }
+            String query;
+            switch (dml) {
+                case "insert":
+                    query = "insert into tbl_personas_avatar values ("
+                            + personas_avatar.getCedula()
+                            + ", '"
+                            + Hex.encodeHexString(personas_avatar.getFoto()) + "');";
+                    break;
+                case "update":
+                    query = "update tbl_personas_avatar set foto='"
+                            + Hex.encodeHexString(personas_avatar.getFoto())
+                            + "' where cedula=" + personas_avatar.getCedula() + ");";
+                    break;
+                default:
+                    return false;
             }
             this.st.executeQuery(query);
         } catch (SQLException e) {
+            System.out.println(e.toString());
             return false;
         } finally {
             if (this.st != null) {
@@ -105,8 +104,8 @@ public class Personas_avatar_bl {
 
     // Recuperado de: http://stackoverflow.com/questions/4202244/resize-jpeg-image-in-java
     public byte[] resizeImage(String filePath) {
-        int w = 600;
-        int h = 600;
+        int w = 320;
+        int h = 240;
         String data = filePath;
         BufferedImage bsrc, bdest;
         try {

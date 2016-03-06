@@ -164,10 +164,8 @@ public class Personas extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Personas().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Personas().setVisible(true);
         });
     }
 
@@ -181,4 +179,5 @@ public class Personas extends javax.swing.JFrame {
     private javax.swing.JLabel lblTituloGP;
     private javax.swing.JTable tblPersonas;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -91,6 +91,11 @@ public class AgregarPersona extends javax.swing.JFrame {
 
         btnGuardarPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardarPersona.setText("Guardar Persona");
+        btnGuardarPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarPersonaActionPerformed(evt);
+            }
+        });
 
         txtFechaPersona.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
@@ -239,6 +244,10 @@ public class AgregarPersona extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnCargarFotoActionPerformed
+
+    private void btnGuardarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPersonaActionPerformed
+
+    }//GEN-LAST:event_btnGuardarPersonaActionPerformed
 
     /**
      * @param args the command line arguments

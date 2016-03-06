@@ -10,23 +10,24 @@ package cr.ac.uia.SistemaGC.entities;
  * @author crobles
  */
 public class Personas_avatar {
-    private int cedula;
+    private Integer cedula;
     private byte[] foto;
 
     public Personas_avatar() {
-        
+        this.cedula = null;
+        this.foto = null;
     }
     
-    public Personas_avatar(int cedula, byte[] foto) {
+    public Personas_avatar(Integer cedula, byte[] foto) {
         this.cedula = cedula;
         this.foto = foto;
     }
 
-    public int getCedula() {
+    public Integer getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(Integer cedula) {
         this.cedula = cedula;
     }
 

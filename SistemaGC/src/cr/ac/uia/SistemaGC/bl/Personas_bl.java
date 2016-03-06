@@ -127,7 +127,7 @@ public class Personas_bl {
             if (personas.getFecha_nacimiento() == null) {
                 return false;
             } else {
-                fecha_nacimiento = String.valueOf(personas.getFecha_nacimiento());
+                fecha_nacimiento = "'" + String.valueOf(personas.getFecha_nacimiento()) + "'";
             }
             if (personas.getTel_celular() == null) {
                 return false;
@@ -149,7 +149,7 @@ public class Personas_bl {
             } else {
                 id_persona = String.valueOf(personas.getId_persona());
             }
-            this.st.executeQuery("SELECT f_personas('"
+            this.st.executeQuery("SELECT * FROM f_personas('"
                     + dml + "', "
                     + cedula + ", "
                     + nombre + ", "
@@ -160,6 +160,7 @@ public class Personas_bl {
                     + encargado + ", "
                     + id_persona + ");");
         } catch (SQLException e) {
+            System.out.println(e.toString());
             return false;
         } finally {
             if (this.st != null) {
