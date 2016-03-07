@@ -78,18 +78,18 @@ create table tbl_usuarios(
 
 -- Funciones
 create or replace function f_becados(
-	in dml character varying,
+	in dml text,
 	in _id integer,
 	in _id_persona integer,
 	in _id_beca integer,
 	in _activo boolean,
-	in _observaciones character varying)
+	in _observaciones text)
 returns table(
 	id integer,
 	id_persona integer,
 	id_beca integer,
 	activo boolean,
-	observaciones character varying) as
+	observaciones text) as
 $body$
 begin
 	case dml
@@ -123,13 +123,13 @@ language plpgsql;
 
 
 create  or replace function f_becas(
-	in dml character varying,
+	in dml text,
 	in _id integer,
-	in _nombre character varying,
+	in _nombre text,
 	in _porcentaje integer)
 returns table(
 	id integer,
-	nombre character varying,
+	nombre text,
 	porcentaje integer) as
 $body$
 begin
@@ -159,12 +159,12 @@ $body$
 language plpgsql;
 
 create or replace function f_comida(
-	in dml character varying,
+	in dml text,
 	in _id integer,
-	in _descripcion character varying)
+	in _descripcion text)
 returns table(
 	id integer,
-	descripcion character varying) as
+	descripcion text) as
 $body$
 begin
 	case dml
@@ -190,12 +190,12 @@ $body$
 language plpgsql;
 
 create or replace function f_persona(
-	in dml character varying,
+	in dml text,
 	in _id integer,
-	in _descripcion character varying)
+	in _descripcion text)
 returns table(
 	id integer,
-	descripcion character varying) as
+	descripcion text) as
 $body$
 begin
 	case dml
@@ -222,23 +222,23 @@ $body$
 language plpgsql;
 
 create or replace function f_personas(
-	in dml character varying,
+	in dml text,
 	in _cedula integer,
-	in _nombre character varying,
-	in _apellidos character varying,
+	in _nombre text,
+	in _apellidos text,
 	in _fecha_nacimiento date,
 	in _tel_celular integer,
 	in _tel_habitacion integer,
-	in _encargado character varying,
+	in _encargado text,
 	in _id_persona integer)
 returns table(
 	cedula integer,
-	nombre character varying,
-	apellidos character varying,
+	nombre text,
+	apellidos text,
 	fecha_nacimiento date,
 	tel_celular integer,
 	tel_habitacion integer,
-	encargado character varying,
+	encargado text,
 	id_persona integer) as
 $body$
 begin
@@ -278,7 +278,7 @@ $body$
 language plpgsql;
 
 create or replace function f_precio(
-	in dml character varying,
+	in dml text,
 	in _id integer,
 	in _id_persona integer,
 	in _id_comida integer,
@@ -317,12 +317,12 @@ $body$
 language plpgsql;
 
 create or replace function f_roles(
-	in dml character varying,
+	in dml text,
 	in _id integer,
-	in _descripcion character varying)
+	in _descripcion text)
 returns table(
 	id integer,
-	descripcion character varying) as
+	descripcion text) as
 $body$
 begin
 	case dml
@@ -349,7 +349,7 @@ $body$
 language plpgsql;
 
 create or replace function f_tiquetes(
-	in dml character varying,
+	in dml text,
 	in _id integer,
 	in _id_persona integer,
 	in _id_precio integer,
@@ -396,22 +396,22 @@ $body$
 language plpgsql;
 
 create or replace function f_usuarios(
-	in dml character varying,
+	in dml text,
 	in _cedula integer,
-	in _usuario character varying,
-	in _contrasena character varying,
-	in _nombre character varying,
-	in _apellidos character varying,
+	in _usuario text,
+	in _contrasena text,
+	in _nombre text,
+	in _apellidos text,
 	in _activo boolean,
-	in _observaciones character varying,
+	in _observaciones text,
 	in _id_rol integer)
 returns table(
 	cedula integer,
-	usuario character varying,
-	nombre character varying,
-	apellidos character varying,
+	usuario text,
+	nombre text,
+	apellidos text,
 	activo boolean,
-	observaciones character varying,
+	observaciones text,
 	id_rol integer) as
 $body$
 begin
@@ -453,8 +453,8 @@ $body$
 language plpgsql;
 
 create or replace function f_check_password(
-	in _usuario character varying,
-	in _contrasena character varying)
+	in _usuario text,
+	in _contrasena text)
 returns table(
 	activo boolean) as
 $body$

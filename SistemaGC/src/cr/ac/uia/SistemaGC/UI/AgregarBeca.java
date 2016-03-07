@@ -5,6 +5,14 @@
  */
 package cr.ac.uia.SistemaGC.ui;
 
+import cr.ac.uia.SistemaGC.bl.Becas_bl;
+import cr.ac.uia.SistemaGC.entities.Becas;
+import java.awt.HeadlessException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pao
@@ -29,12 +37,10 @@ public class AgregarBeca extends javax.swing.JFrame {
 
         lblNombreBeca = new javax.swing.JLabel();
         lblPorcentaje = new javax.swing.JLabel();
-        lblHabilitadaBeca = new javax.swing.JLabel();
         lblObservacionesBeca = new javax.swing.JLabel();
         txtNombreBeca = new javax.swing.JTextField();
         txtPorcentajeBeca = new javax.swing.JTextField();
         txtObservacionesBeca = new javax.swing.JTextField();
-        CBHabilitadaBeca = new javax.swing.JCheckBox();
         btnGuardarBeca = new javax.swing.JButton();
         lblTituloAgBeca = new javax.swing.JLabel();
 
@@ -46,16 +52,22 @@ public class AgregarBeca extends javax.swing.JFrame {
         lblPorcentaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblPorcentaje.setText("Porcentaje de beca:");
 
-        lblHabilitadaBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblHabilitadaBeca.setText("Habilitada:");
-
         lblObservacionesBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblObservacionesBeca.setText("Observaciones:");
 
-        CBHabilitadaBeca.setSelected(true);
+        txtPorcentajeBeca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPorcentajeBecaKeyReleased(evt);
+            }
+        });
 
         btnGuardarBeca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardarBeca.setText("Guardar Beca");
+        btnGuardarBeca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarBecaActionPerformed(evt);
+            }
+        });
 
         lblTituloAgBeca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloAgBeca.setText("Administrar Beca");
@@ -67,21 +79,22 @@ public class AgregarBeca extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblNombreBeca)
-                        .addComponent(lblPorcentaje)
-                        .addComponent(lblObservacionesBeca)
-                        .addComponent(lblHabilitadaBeca))
+                    .addComponent(btnGuardarBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTituloAgBeca)
-                        .addGap(9, 9, 9)))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPorcentajeBeca)
-                    .addComponent(txtNombreBeca)
-                    .addComponent(CBHabilitadaBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtObservacionesBeca)
-                    .addComponent(btnGuardarBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblNombreBeca)
+                                .addComponent(lblPorcentaje)
+                                .addComponent(lblObservacionesBeca))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTituloAgBeca)
+                                .addGap(9, 9, 9)))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtPorcentajeBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                .addComponent(txtNombreBeca))
+                            .addComponent(txtObservacionesBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -97,21 +110,62 @@ public class AgregarBeca extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPorcentaje)
                     .addComponent(txtPorcentajeBeca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblHabilitadaBeca)
-                    .addComponent(CBHabilitadaBeca))
-                .addGap(38, 38, 38)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtObservacionesBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblObservacionesBeca))
-                .addGap(18, 18, 18)
-                .addComponent(btnGuardarBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblObservacionesBeca)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtObservacionesBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGuardarBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                        .addGap(72, 72, 72))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarBecaActionPerformed
+        try {
+            Becas b = new Becas();
+            Becas_bl bbl = new Becas_bl();
+            b.setNombre(txtNombreBeca.getText());
+            b.setPorcentaje(Integer.parseInt(txtPorcentajeBeca.getText()));
+            if (bbl.insert(b)) {
+                JOptionPane.showMessageDialog(null,
+                        "Se ha insertado correctamente la nueva beca.",
+                        "Correcto",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Ha ocurrido un error, revise los datos ingresados.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarBeca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnGuardarBecaActionPerformed
+
+    private void txtPorcentajeBecaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPorcentajeBecaKeyReleased
+        try {
+            if (txtPorcentajeBeca.getText().length() > 0) {
+                if(Integer.parseInt(txtPorcentajeBeca.getText()) > 100){
+                    txtPorcentajeBeca.setText("100");
+                    JOptionPane.showMessageDialog(null,
+                    "Por favor ingrese unicamente números iguales o menores a 100.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (NumberFormatException | HeadlessException e) {
+            txtPorcentajeBeca.setText("");
+            JOptionPane.showMessageDialog(null,
+                    "Por favor ingrese unicamente números.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtPorcentajeBecaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -124,20 +178,18 @@ public class AgregarBeca extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
+                } else {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarBeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarBeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarBeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AgregarBeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+
         //</editor-fold>
         //</editor-fold>
 
@@ -148,9 +200,7 @@ public class AgregarBeca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox CBHabilitadaBeca;
     private javax.swing.JButton btnGuardarBeca;
-    private javax.swing.JLabel lblHabilitadaBeca;
     private javax.swing.JLabel lblNombreBeca;
     private javax.swing.JLabel lblObservacionesBeca;
     private javax.swing.JLabel lblPorcentaje;

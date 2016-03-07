@@ -5,16 +5,24 @@
  */
 package cr.ac.uia.SistemaGC.ui;
 
+import cr.ac.uia.SistemaGC.bl.Personas_bl;
+import cr.ac.uia.SistemaGC.entities.Personas;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Pao
  */
-public class Personas extends javax.swing.JFrame {
+public class PersonasUI extends javax.swing.JFrame {
 
     /**
      * Creates new form Personas
      */
-    public Personas() {
+    public PersonasUI() {
         initComponents();
     }
 
@@ -37,6 +45,11 @@ public class Personas extends javax.swing.JFrame {
         btnImprimirCodigo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         tblPersonas.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
@@ -136,6 +149,29 @@ public class Personas extends javax.swing.JFrame {
         new AgregarPersona().setVisible(true);
     }//GEN-LAST:event_btnModificarPersonaActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            String col[] = {"cedula", "nombre", "apellidos", "fecha_nacimiento", "tel_celular", "Integer tel_habitacion", "String encargado", "Integer id_persona"};
+            DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+            Personas_bl pbl = new Personas_bl();
+            ArrayList<Personas> al = pbl.select(new Personas());
+            for (int i = 0; i < al.size(); i++) {
+                String[] ap = {al.get(i).getCedula().toString(),
+                    al.get(i).getNombre(),
+                    al.get(i).getApellidos(),
+                    al.get(i).getFecha_nacimiento().toString(),
+                    al.get(i).getTel_celular().toString(),
+                    al.get(i).getTel_habitacion().toString(),
+                    al.get(i).getEncargado(),
+                    al.get(i).getId_persona().toString()};
+                tableModel.addRow(ap);
+            }
+            this.tblPersonas.setModel(tableModel);
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonasUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -147,25 +183,23 @@ public class Personas extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Personas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Personas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Personas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Personas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PersonasUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Personas().setVisible(true);
+            new PersonasUI().setVisible(true);
         });
     }
 

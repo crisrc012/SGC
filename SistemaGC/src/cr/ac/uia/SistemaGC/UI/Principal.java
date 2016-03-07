@@ -161,7 +161,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_MUsurioActionPerformed
 
     private void MPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPersonasActionPerformed
-        new Personas().setVisible(true);
+        new PersonasUI().setVisible(true);
     }//GEN-LAST:event_MPersonasActionPerformed
 
     private void MTipoBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MTipoBecaActionPerformed

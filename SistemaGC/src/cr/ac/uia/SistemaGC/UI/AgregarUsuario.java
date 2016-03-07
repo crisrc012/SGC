@@ -5,6 +5,8 @@
  */
 package cr.ac.uia.SistemaGC.ui;
 
+import cr.ac.uia.SistemaGC.entities.Personas;
+
 /**
  *
  * @author Pao
@@ -71,6 +73,11 @@ public class AgregarUsuario extends javax.swing.JFrame {
 
         btnGuardarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardarUsuario.setText("Guardar Usuario");
+        btnGuardarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarUsuarioActionPerformed(evt);
+            }
+        });
 
         CBActivo.setSelected(true);
 
@@ -155,6 +162,11 @@ public class AgregarUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
+        Personas p = new Personas();
+        
+    }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
