@@ -1,4 +1,4 @@
-package cr.ac.uia.SistemaGC.ui;
+package cr.ac.uia.SistemaGC.uii;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

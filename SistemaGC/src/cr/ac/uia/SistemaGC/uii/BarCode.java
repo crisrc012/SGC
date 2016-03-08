@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cr.ac.uia.SistemaGC.UI;
+package cr.ac.uia.SistemaGC.uii;
 
 import java.awt.HeadlessException;
 import java.awt.print.PrinterException;
