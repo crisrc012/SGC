@@ -19,11 +19,6 @@ public class PrincipalUI extends javax.swing.JFrame {
      */
     public PrincipalUI() {
         initComponents();
-        // Obteniendo resolucion de pantalla para que se vea a pantalla completa
-        setResizable(false);
-        setAlwaysOnTop(true);
-        Dimension res = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(res);
     }
 
     /**
@@ -49,6 +44,14 @@ public class PrincipalUI extends javax.swing.JFrame {
         MReportes = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                formComponentMoved(evt);
+            }
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         lblLogoUIA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/LogoUIA.png"))); // NOI18N
 
@@ -129,16 +132,17 @@ public class PrincipalUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblLogoUIA)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(lblIndicacionInicial)
                 .addGap(0, 39, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblSGC)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblLogoUIA))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblSGC)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -187,6 +191,20 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void MReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MReportesActionPerformed
         new Reportes().setVisible(true);
     }//GEN-LAST:event_MReportesActionPerformed
+
+    private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
+        // Ventana centrada de forma mandatoria
+        this.setAlwaysOnTop(true);
+        this.setLocation(0, 0);
+    }//GEN-LAST:event_formComponentMoved
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // Obteniendo resolución de pantalla para que se vea a pantalla completa
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        // Definiendo propiedades de la ventana
+        this.setResizable(false);
+        this.setAlwaysOnTop(true);
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
