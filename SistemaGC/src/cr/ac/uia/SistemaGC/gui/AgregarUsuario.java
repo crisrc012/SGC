@@ -81,8 +81,6 @@ public class AgregarUsuario extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
-=======
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -90,7 +88,6 @@ public class AgregarUsuario extends javax.swing.JFrame {
         txtObsUsuario.setColumns(2);
         txtObsUsuario.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
->>>>>>> origin/master
         CBActivo.setSelected(true);
 
         txtContraseña.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
