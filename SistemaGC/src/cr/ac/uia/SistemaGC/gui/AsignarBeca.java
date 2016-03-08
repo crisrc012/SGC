@@ -44,11 +44,10 @@ public class AsignarBeca extends javax.swing.JFrame {
         btnGuardarAsignacion = new javax.swing.JButton();
         txtCedEstudiante = new javax.swing.JTextField();
         txtNombreEstudiante = new javax.swing.JTextField();
-        txtNombreBeca = new javax.swing.JTextField();
         txtProcentaje = new javax.swing.JTextField();
         txtObsBeca = new javax.swing.JTextField();
         btnConsultarCed = new javax.swing.JButton();
-        btnConsultarBeca = new javax.swing.JButton();
+        cboBecas = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,9 +83,6 @@ public class AsignarBeca extends javax.swing.JFrame {
         btnConsultarCed.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnConsultarCed.setText("Consultar");
 
-        btnConsultarBeca.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        btnConsultarBeca.setText("Consultar");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,9 +101,9 @@ public class AsignarBeca extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNombreEstudiante)
                             .addComponent(txtCedEstudiante)
-                            .addComponent(txtNombreBeca)
                             .addComponent(txtProcentaje)
-                            .addComponent(txtObsBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
+                            .addComponent(txtObsBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(cboBecas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,9 +115,7 @@ public class AsignarBeca extends javax.swing.JFrame {
                                 .addComponent(lblTituloAB)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConsultarCed)
-                    .addComponent(btnConsultarBeca))
+                .addComponent(btnConsultarCed)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -141,8 +135,7 @@ public class AsignarBeca extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreBeca)
-                    .addComponent(txtNombreBeca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultarBeca))
+                    .addComponent(cboBecas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPorcentaje)
@@ -155,7 +148,7 @@ public class AsignarBeca extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnGuardarAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(28, Short.MAX_VALUE))
+                        .addContainerGap(29, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblCamposReq)
@@ -200,9 +193,9 @@ public class AsignarBeca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsultarBeca;
     private javax.swing.JButton btnConsultarCed;
     private javax.swing.JButton btnGuardarAsignacion;
+    private javax.swing.JComboBox cboBecas;
     private javax.swing.JLabel lblCamposReq;
     private javax.swing.JLabel lblCedEstudiante;
     private javax.swing.JLabel lblNombreBeca;
@@ -211,7 +204,6 @@ public class AsignarBeca extends javax.swing.JFrame {
     private javax.swing.JLabel lblPorcentaje;
     private javax.swing.JLabel lblTituloAB;
     private javax.swing.JTextField txtCedEstudiante;
-    private javax.swing.JTextField txtNombreBeca;
     private javax.swing.JTextField txtNombreEstudiante;
     private javax.swing.JTextField txtObsBeca;
     private javax.swing.JTextField txtProcentaje;

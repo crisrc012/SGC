@@ -38,9 +38,9 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtNombreEstudiante" max="32767" attributes="0"/>
                           <Component id="txtCedEstudiante" max="32767" attributes="0"/>
-                          <Component id="txtNombreBeca" max="32767" attributes="0"/>
                           <Component id="txtProcentaje" max="32767" attributes="0"/>
                           <Component id="txtObsBeca" alignment="0" pref="250" max="32767" attributes="0"/>
+                          <Component id="cboBecas" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -59,10 +59,7 @@
                   </Group>
               </Group>
               <EmptySpace type="separate" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnConsultarCed" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnConsultarBeca" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="btnConsultarCed" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -86,8 +83,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblNombreBeca" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNombreBeca" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnConsultarBeca" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cboBecas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -103,7 +99,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnGuardarAsignacion" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -187,8 +183,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombreEstudiante">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNombreBeca">
-    </Component>
     <Component class="javax.swing.JTextField" name="txtProcentaje">
     </Component>
     <Component class="javax.swing.JTextField" name="txtObsBeca">
@@ -201,12 +195,11 @@
         <Property name="text" type="java.lang.String" value="Consultar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnConsultarBeca">
+    <Component class="javax.swing.JComboBox" name="cboBecas">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="11" style="0"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Consultar"/>
       </Properties>
     </Component>
   </SubComponents>
