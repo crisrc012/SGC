@@ -5,7 +5,13 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
-import cr.ac.uia.SistemaGC.entities.Personas;
+import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
+import cr.ac.uia.SistemaGC.entities.Usuarios;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -184,7 +190,37 @@ public class AgregarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
-        Personas p = new Personas();
+        int cedula = Integer.parseInt(txtCedula.getText().trim());
+        String contraseña;
+        String nombre= txtNombre.getText().trim();
+        String usuario = txtUsuario.getText().trim();
+        Boolean activo = true;
+        String observaciones = txtObsUsuario.getText().trim();
+        int rol= 1;
+        String verificar;
+        char [] array1 = txtContraseña.getPassword();
+        char [] array2 = txtRepetirCont.getPassword();
+        contraseña = Arrays.toString(array1);
+        verificar= Arrays.toString(array2);
+        if(contraseña.equals(verificar)){
+            try {
+                Usuarios nueva = new Usuarios(cedula,usuario,contraseña,nombre,activo,observaciones,rol);
+                Usuarios_bl p_bl = new Usuarios_bl();
+                boolean resultado = p_bl.insert(nueva);
+                if(resultado == true){
+                    JOptionPane.showMessageDialog(null, "Usuario guardado correctamente");
+                }else{
+                    JOptionPane.showMessageDialog(null, "El usuario no pudo ser guardado correctamente, por favor intente de nuevo");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(AgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden, por favor intente nuevamente");
+            txtContraseña.getCursor();
+            txtContraseña.setText("");
+            txtRepetirCont.setText("");
+        }
         
     }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
 
