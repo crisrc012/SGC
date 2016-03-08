@@ -79,11 +79,9 @@ public class AgregarUsuario extends javax.swing.JFrame {
             }
         });
 
+        txtObsUsuario.setColumns(2);
+
         CBActivo.setSelected(true);
-
-        txtContraseña.setText("jPasswordField1");
-
-        txtRepetirCont.setText("jPasswordField2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,7 +177,7 @@ public class AgregarUsuario extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -196,10 +194,8 @@ public class AgregarUsuario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgregarUsuario().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AgregarUsuario().setVisible(true);
         });
     }
 
