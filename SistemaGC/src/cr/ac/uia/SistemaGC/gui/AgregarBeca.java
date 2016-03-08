@@ -43,6 +43,8 @@ public class AgregarBeca extends javax.swing.JFrame {
         txtObservacionesBeca = new javax.swing.JTextField();
         btnGuardarBeca = new javax.swing.JButton();
         lblTituloAgBeca = new javax.swing.JLabel();
+        lblHabilitada = new javax.swing.JLabel();
+        CheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +74,11 @@ public class AgregarBeca extends javax.swing.JFrame {
         lblTituloAgBeca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloAgBeca.setText("Administrar Beca");
 
+        lblHabilitada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblHabilitada.setText("Habilitada:");
+
+        CheckBox.setSelected(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,7 +92,8 @@ public class AgregarBeca extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lblNombreBeca)
                                 .addComponent(lblPorcentaje)
-                                .addComponent(lblObservacionesBeca))
+                                .addComponent(lblObservacionesBeca)
+                                .addComponent(lblHabilitada))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblTituloAgBeca)
                                 .addGap(9, 9, 9)))
@@ -94,7 +102,8 @@ public class AgregarBeca extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtPorcentajeBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                                 .addComponent(txtNombreBeca))
-                            .addComponent(txtObservacionesBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtObservacionesBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CheckBox))))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -103,14 +112,19 @@ public class AgregarBeca extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(lblTituloAgBeca)
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombreBeca)
-                    .addComponent(txtNombreBeca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPorcentaje)
-                    .addComponent(txtPorcentajeBeca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNombreBeca)
+                            .addComponent(txtNombreBeca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPorcentaje)
+                            .addComponent(txtPorcentajeBeca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addComponent(lblHabilitada))
+                    .addComponent(CheckBox))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblObservacionesBeca)
@@ -118,7 +132,7 @@ public class AgregarBeca extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtObservacionesBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnGuardarBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                        .addComponent(btnGuardarBeca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(72, 72, 72))))
         );
 
@@ -200,7 +214,9 @@ public class AgregarBeca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox CheckBox;
     private javax.swing.JButton btnGuardarBeca;
+    private javax.swing.JLabel lblHabilitada;
     private javax.swing.JLabel lblNombreBeca;
     private javax.swing.JLabel lblObservacionesBeca;
     private javax.swing.JLabel lblPorcentaje;

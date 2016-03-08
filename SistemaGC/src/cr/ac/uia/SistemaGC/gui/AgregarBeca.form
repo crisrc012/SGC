@@ -33,6 +33,7 @@
                               <Component id="lblNombreBeca" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblPorcentaje" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblObservacionesBeca" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblHabilitada" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="lblTituloAgBeca" min="-2" max="-2" attributes="0"/>
@@ -46,6 +47,7 @@
                               <Component id="txtNombreBeca" max="32767" attributes="0"/>
                           </Group>
                           <Component id="txtObservacionesBeca" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                          <Component id="CheckBox" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -59,16 +61,23 @@
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="lblTituloAgBeca" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblNombreBeca" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNombreBeca" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblNombreBeca" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNombreBeca" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblPorcentaje" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPorcentajeBeca" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="lblHabilitada" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="CheckBox" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblPorcentaje" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPorcentajeBeca" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="lblObservacionesBeca" min="-2" max="-2" attributes="0"/>
@@ -77,7 +86,7 @@
                   <Group type="102" attributes="0">
                       <Component id="txtObservacionesBeca" min="-2" pref="99" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnGuardarBeca" pref="49" max="32767" attributes="0"/>
+                      <Component id="btnGuardarBeca" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -136,6 +145,19 @@
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Administrar Beca"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblHabilitada">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Habilitada:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="CheckBox">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
       </Properties>
     </Component>
   </SubComponents>
