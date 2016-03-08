@@ -6,7 +6,9 @@
 create table tbl_becas(
 	id serial primary key,
 	nombre text not null unique,
-	porcentaje integer not null
+	porcentaje integer not null,
+	activo boolean not null,
+	observaciones text not null
 );
 
 create table tbl_persona(
