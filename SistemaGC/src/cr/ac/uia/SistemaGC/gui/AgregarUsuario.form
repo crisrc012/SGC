@@ -196,9 +196,6 @@
     <Component class="javax.swing.JTextField" name="txtUsuario">
     </Component>
     <Component class="javax.swing.JTextField" name="txtObsUsuario">
-      <Properties>
-        <Property name="columns" type="int" value="2"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="CBActivo">
       <Properties>

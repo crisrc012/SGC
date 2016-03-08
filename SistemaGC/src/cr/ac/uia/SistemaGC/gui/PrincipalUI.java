@@ -193,7 +193,6 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
         // Ventana centrada de forma mandatoria
-        this.setAlwaysOnTop(true);
         this.setLocation(0, 0);
     }//GEN-LAST:event_formComponentMoved
 
@@ -202,7 +201,6 @@ public class PrincipalUI extends javax.swing.JFrame {
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         // Definiendo propiedades de la ventana
         this.setResizable(false);
-        this.setAlwaysOnTop(true);
     }//GEN-LAST:event_formComponentShown
 
     /**
