@@ -9,7 +9,7 @@
             <Property name="text" type="java.lang.String" value="Usuario"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MUsurioActionPerformed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MUsurioMousePressed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="MPersonas">
@@ -17,7 +17,7 @@
             <Property name="text" type="java.lang.String" value="Personas"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MPersonasActionPerformed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MPersonasMousePressed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="MTipoBeca">
@@ -25,7 +25,7 @@
             <Property name="text" type="java.lang.String" value="Tipos de Becas"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MTipoBecaActionPerformed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MTipoBecaMousePressed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="MAdmBeca">
@@ -33,7 +33,7 @@
             <Property name="text" type="java.lang.String" value="Administrar Becas"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MAdmBecaActionPerformed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MAdmBecaMousePressed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="MVentaTiq">
@@ -41,7 +41,7 @@
             <Property name="text" type="java.lang.String" value="Venta de Tiquetes"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MVentaTiqActionPerformed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MVentaTiqMousePressed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="MGestionIngreso">
@@ -49,7 +49,7 @@
             <Property name="text" type="java.lang.String" value="Gesti&#xf3;n de Ingreso"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MGestionIngresoActionPerformed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MGestionIngresoMousePressed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="MGestionParam">
@@ -57,7 +57,7 @@
             <Property name="text" type="java.lang.String" value="Gesti&#xf3;n de Parametros"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MGestionParamActionPerformed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MGestionParamMousePressed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="MReportes">
@@ -65,7 +65,7 @@
             <Property name="text" type="java.lang.String" value="Reportes"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MReportesActionPerformed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MReportesMousePressed"/>
           </Events>
         </Menu>
       </SubComponents>

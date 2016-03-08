@@ -61,65 +61,65 @@ public class PrincipalUI extends javax.swing.JFrame {
         lblIndicacionInicial.setText("Para poder comenzar a utilizar las diferentes opciones que presenta el sistema, por favor inicie sesión. Gracias");
 
         MUsurio.setText("Usuario");
-        MUsurio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MUsurioActionPerformed(evt);
+        MUsurio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MUsurioMousePressed(evt);
             }
         });
         MenuBar.add(MUsurio);
 
         MPersonas.setText("Personas");
-        MPersonas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MPersonasActionPerformed(evt);
+        MPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MPersonasMousePressed(evt);
             }
         });
         MenuBar.add(MPersonas);
 
         MTipoBeca.setText("Tipos de Becas");
-        MTipoBeca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MTipoBecaActionPerformed(evt);
+        MTipoBeca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MTipoBecaMousePressed(evt);
             }
         });
         MenuBar.add(MTipoBeca);
 
         MAdmBeca.setText("Administrar Becas");
-        MAdmBeca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MAdmBecaActionPerformed(evt);
+        MAdmBeca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MAdmBecaMousePressed(evt);
             }
         });
         MenuBar.add(MAdmBeca);
 
         MVentaTiq.setText("Venta de Tiquetes");
-        MVentaTiq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MVentaTiqActionPerformed(evt);
+        MVentaTiq.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MVentaTiqMousePressed(evt);
             }
         });
         MenuBar.add(MVentaTiq);
 
         MGestionIngreso.setText("Gestión de Ingreso");
-        MGestionIngreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MGestionIngresoActionPerformed(evt);
+        MGestionIngreso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MGestionIngresoMousePressed(evt);
             }
         });
         MenuBar.add(MGestionIngreso);
 
         MGestionParam.setText("Gestión de Parametros");
-        MGestionParam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MGestionParamActionPerformed(evt);
+        MGestionParam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MGestionParamMousePressed(evt);
             }
         });
         MenuBar.add(MGestionParam);
 
         MReportes.setText("Reportes");
-        MReportes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MReportesActionPerformed(evt);
+        MReportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MReportesMousePressed(evt);
             }
         });
         MenuBar.add(MReportes);
@@ -135,13 +135,10 @@ public class PrincipalUI extends javax.swing.JFrame {
                 .addComponent(lblIndicacionInicial)
                 .addGap(0, 39, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblLogoUIA))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblSGC)))
+                    .addComponent(lblLogoUIA, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblSGC, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -159,38 +156,6 @@ public class PrincipalUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MUsurioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MUsurioActionPerformed
-        new Usuarios().setVisible(true);
-    }//GEN-LAST:event_MUsurioActionPerformed
-
-    private void MPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPersonasActionPerformed
-        new PersonasUI().setVisible(true);
-    }//GEN-LAST:event_MPersonasActionPerformed
-
-    private void MTipoBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MTipoBecaActionPerformed
-        new TipoBeca().setVisible(true);
-    }//GEN-LAST:event_MTipoBecaActionPerformed
-
-    private void MAdmBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MAdmBecaActionPerformed
-        new AdministrarBecas().setVisible(true);
-    }//GEN-LAST:event_MAdmBecaActionPerformed
-
-    private void MVentaTiqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MVentaTiqActionPerformed
-        new VentaTiquetes().setVisible(true);
-    }//GEN-LAST:event_MVentaTiqActionPerformed
-
-    private void MGestionIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MGestionIngresoActionPerformed
-        new GestionIngreso().setVisible(true);
-    }//GEN-LAST:event_MGestionIngresoActionPerformed
-
-    private void MGestionParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MGestionParamActionPerformed
-        new GestionParametros().setVisible(true);
-    }//GEN-LAST:event_MGestionParamActionPerformed
-
-    private void MReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MReportesActionPerformed
-        new Reportes().setVisible(true);
-    }//GEN-LAST:event_MReportesActionPerformed
-
     private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
         // Ventana centrada de forma mandatoria
         this.setLocation(0, 0);
@@ -202,6 +167,38 @@ public class PrincipalUI extends javax.swing.JFrame {
         // Definiendo propiedades de la ventana
         this.setResizable(false);
     }//GEN-LAST:event_formComponentShown
+
+    private void MUsurioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MUsurioMousePressed
+        new Usuarios().setVisible(true);
+    }//GEN-LAST:event_MUsurioMousePressed
+
+    private void MPersonasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MPersonasMousePressed
+        new PersonasUI().setVisible(true);
+    }//GEN-LAST:event_MPersonasMousePressed
+
+    private void MTipoBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MTipoBecaMousePressed
+        new TipoBeca().setVisible(true);
+    }//GEN-LAST:event_MTipoBecaMousePressed
+
+    private void MAdmBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MAdmBecaMousePressed
+        new AdministrarBecas().setVisible(true);
+    }//GEN-LAST:event_MAdmBecaMousePressed
+
+    private void MVentaTiqMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MVentaTiqMousePressed
+        new VentaTiquetes().setVisible(true);
+    }//GEN-LAST:event_MVentaTiqMousePressed
+
+    private void MGestionIngresoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MGestionIngresoMousePressed
+        new GestionIngreso().setVisible(true);
+    }//GEN-LAST:event_MGestionIngresoMousePressed
+
+    private void MGestionParamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MGestionParamMousePressed
+        new GestionParametros().setVisible(true);
+    }//GEN-LAST:event_MGestionParamMousePressed
+
+    private void MReportesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MReportesMousePressed
+        new Reportes().setVisible(true);
+    }//GEN-LAST:event_MReportesMousePressed
 
     /**
      * @param args the command line arguments
