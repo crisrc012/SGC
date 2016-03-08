@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cr.ac.uia.SistemaGC.uii;
+package cr.ac.uia.SistemaGC.gui;
 
 /**
  *
@@ -111,7 +111,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        Principal p = new Principal();
+        PrincipalUI p = new PrincipalUI();
         p.setVisible(true);
         dispose();
         // setDefaultCloseOperation(DISPOSE_ON_CLOSE);
