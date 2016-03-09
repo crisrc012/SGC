@@ -13,17 +13,23 @@ public class Becas {
     private Integer id;
     private String nombre;
     private Integer porcentaje;
+    private Boolean activo;
+    private String observaciones;
 
     public Becas() {
         this.id = null;
         this.nombre = null;
         this.porcentaje = null;
+        this.activo= null;
+        this.observaciones = null;
     }
     
-    public Becas(Integer id, String nombre, Integer porcentaje) {
+    public Becas(Integer id, String nombre, Integer porcentaje, Boolean activo, String observaciones) {
         this.id = id;
         this.nombre = nombre;
         this.porcentaje = porcentaje;
+        this.activo = activo;
+        this.observaciones = observaciones;
     }
 
     public Integer getId() {
@@ -49,6 +55,21 @@ public class Becas {
     public void setPorcentaje(Integer porcentaje) {
         this.porcentaje = porcentaje;
     }
-    
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
     
 }
