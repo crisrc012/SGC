@@ -6,7 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -64,26 +64,21 @@
                       <Component id="txtObservacionesPersona" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                      <Component id="btnGuardarPersona" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="167" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblNombrePersona" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCedulaPersona" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtCedulaPersona" max="32767" attributes="0"/>
                           <Component id="txtNombrePersona" max="32767" attributes="0"/>
+                          <Component id="txtCedulaPersona" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="104" max="32767" attributes="0"/>
               <Component id="lblFoto" min="-2" pref="164" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -101,6 +96,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
                       <Component id="btnCargarFoto" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+                      <Component id="btnGuardarPersona" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -151,10 +150,8 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblCel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblTelefonosPersona" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTelefono1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblTelefonosPersona" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTelefono1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="txtTelefono2" min="-2" max="-2" attributes="0"/>
@@ -171,7 +168,7 @@
                   <Component id="lblObservacionesPersona" min="-2" max="-2" attributes="0"/>
                   <Component id="txtObservacionesPersona" min="-2" pref="79" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnGuardarPersona" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -285,7 +282,7 @@
     <Component class="javax.swing.JFormattedTextField" name="txtFechaPersona">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format subtype="0" type="1"/>
+          <Format format="yyyy-MM-dd" subtype="-1" type="1"/>
         </Property>
       </Properties>
     </Component>
