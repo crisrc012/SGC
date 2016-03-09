@@ -5,8 +5,15 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Personas_bl;
+import cr.ac.uia.SistemaGC.entities.Personas;
+import cr.ac.uia.SistemaGC.entities.Personas_avatar;
 import java.awt.Image;
 import java.io.File;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -57,6 +64,8 @@ public class AgregarPersona extends javax.swing.JFrame {
         lblTituloAgPersona = new javax.swing.JLabel();
         lblFoto = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
+        lblCel = new javax.swing.JLabel();
+        lblTel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +121,10 @@ public class AgregarPersona extends javax.swing.JFrame {
             }
         });
 
+        lblCel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Celular.png"))); // NOI18N
+
+        lblTel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Telefono.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,14 +142,18 @@ public class AgregarPersona extends javax.swing.JFrame {
                         .addComponent(txtFechaPersona))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTelefonosPersona)
-                        .addGap(120, 120, 120)
+                        .addGap(82, 82, 82)
+                        .addComponent(lblCel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTelefono1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblContactoPersona)
                         .addGap(41, 41, 41)
                         .addComponent(txtContactoPersona))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
+                        .addGap(143, 143, 143)
+                        .addComponent(lblTel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTelefono2))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblObservacionesPersona)
@@ -206,12 +223,17 @@ public class AgregarPersona extends javax.swing.JFrame {
                     .addComponent(lblFechaPersona)
                     .addComponent(txtFechaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTelefonosPersona)
-                    .addComponent(txtTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(txtTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblTelefonosPersona)
+                                .addComponent(txtTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTel))
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContactoPersona)
                     .addComponent(txtContactoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -246,7 +268,36 @@ public class AgregarPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCargarFotoActionPerformed
 
     private void btnGuardarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPersonaActionPerformed
-
+        try {
+            int id= Integer.parseInt(null);
+            if(RBEstudiante.isSelected()){
+                //Ejemplos
+                id=1;
+            }else {
+                if (RBProfesor.isSelected()){
+                    id=2;
+                }
+            }
+            Personas nueva = new Personas();
+            Personas_bl blp = new Personas_bl();
+            nueva.setCedula(Integer.parseInt(txtCedulaPersona.getText().trim()));
+            nueva.setNombre(txtNombrePersona.getText().trim());
+            nueva.setApellidos(txtApellidosPersona.getText().trim());
+            nueva.setFecha_nacimiento(Date.valueOf(txtFechaPersona.getText()));
+            nueva.setTel_celular(Integer.parseInt(txtTelefono1.getText()));
+            nueva.setTel_habitacion(Integer.parseInt(txtTelefono2.getText()));
+            nueva.setEncargado(txtContactoPersona.getText().trim());
+            nueva.setId_persona(id);
+            if(blp.insert(nueva)){
+                JOptionPane.showMessageDialog(null, "Se ha guardado correctamente.",
+                        "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error al guardar. Intente nuevamente.",
+                        "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarPersona.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
 
     /**
@@ -290,11 +341,13 @@ public class AgregarPersona extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarPersona;
     private javax.swing.JLabel lblApellidosPersona;
     private javax.swing.JLabel lblCedulaPersona;
+    private javax.swing.JLabel lblCel;
     private javax.swing.JLabel lblContactoPersona;
     private javax.swing.JLabel lblFechaPersona;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblNombrePersona;
     private javax.swing.JLabel lblObservacionesPersona;
+    private javax.swing.JLabel lblTel;
     private javax.swing.JLabel lblTelefonosPersona;
     private javax.swing.JLabel lblTituloAgPersona;
     private javax.swing.JTextField txtApellidosPersona;
