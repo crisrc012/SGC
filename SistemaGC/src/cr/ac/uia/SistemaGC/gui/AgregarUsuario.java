@@ -53,7 +53,7 @@ public class AgregarUsuario extends javax.swing.JFrame {
         lblCedula = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTituloGU.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloGU.setText("Gestión de Usuarios");

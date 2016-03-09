@@ -45,7 +45,7 @@ public class Reportes extends javax.swing.JFrame {
         txtHasta = new javax.swing.JFormattedTextField();
         btnGenerarReporte = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitulo.setText("Reportes");

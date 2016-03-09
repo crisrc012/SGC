@@ -37,7 +37,7 @@ public class GestionIngreso extends javax.swing.JFrame {
         txtNombrePersona = new javax.swing.JTextField();
         txtCondicion = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTituloGI.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloGI.setText("Gestión de Ingreso");
@@ -56,6 +56,11 @@ public class GestionIngreso extends javax.swing.JFrame {
 
         btnAplicarIngreso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAplicarIngreso.setText("Aplicar Ingreso");
+        btnAplicarIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAplicarIngresoActionPerformed(evt);
+            }
+        });
 
         txtCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
 
@@ -122,6 +127,10 @@ public class GestionIngreso extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAplicarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarIngresoActionPerformed
+        
+    }//GEN-LAST:event_btnAplicarIngresoActionPerformed
 
     /**
      * @param args the command line arguments

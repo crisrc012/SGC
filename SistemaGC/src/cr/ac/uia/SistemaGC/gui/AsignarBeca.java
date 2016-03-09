@@ -49,7 +49,7 @@ public class AsignarBeca extends javax.swing.JFrame {
         btnConsultarCed = new javax.swing.JButton();
         cboBecas = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTituloAB.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloAB.setText("Administración de Becas");

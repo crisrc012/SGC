@@ -34,7 +34,7 @@ public class Usuarios extends javax.swing.JFrame {
         btnModificarUsuario = new javax.swing.JButton();
         btnDesHabilitarUsuario = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTituloUsuarios.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTituloUsuarios.setText("Gestión de Usuarios");

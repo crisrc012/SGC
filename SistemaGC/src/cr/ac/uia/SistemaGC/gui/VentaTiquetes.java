@@ -46,7 +46,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
         btnComprar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTituloVT.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloVT.setText("VENTA DE TIQUETES");
@@ -87,8 +87,10 @@ public class VentaTiquetes extends javax.swing.JFrame {
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCedula.setEnabled(false);
 
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombre.setEnabled(false);
 
         btnCosultarCed.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnCosultarCed.setText("Consultar");

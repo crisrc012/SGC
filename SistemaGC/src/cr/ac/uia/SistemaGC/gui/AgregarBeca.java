@@ -46,7 +46,7 @@ public class AgregarBeca extends javax.swing.JFrame {
         lblHabilitada = new javax.swing.JLabel();
         CheckBox = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblNombreBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombreBeca.setText("Nombre de beca:");

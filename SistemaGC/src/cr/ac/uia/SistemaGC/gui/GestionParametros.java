@@ -5,6 +5,13 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Precio_bl;
+import cr.ac.uia.SistemaGC.entities.Precio;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pao
@@ -45,7 +52,7 @@ public class GestionParametros extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloGP.setText("Gestionar Parámetros");
@@ -69,15 +76,24 @@ public class GestionParametros extends javax.swing.JFrame {
         lblAlmProfesor.setText("Profesores:");
 
         btnGuardarParametros.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnGuardarParametros.setText("Guardar Parámetros");
+        btnGuardarParametros.setText("Modificar Parámetros");
+        btnGuardarParametros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarParametrosActionPerformed(evt);
+            }
+        });
 
         txtDesEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        txtDesEstudiante.setEnabled(false);
 
         txtDesProfesor.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        txtDesProfesor.setEnabled(false);
 
         txtAlmEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        txtAlmEstudiante.setEnabled(false);
 
         txtAlmProfesor.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        txtAlmProfesor.setEnabled(false);
 
         lblTituloPrecios.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloPrecios.setText("Precios");
@@ -181,6 +197,42 @@ public class GestionParametros extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarParametrosActionPerformed
+        try {
+            txtAlmEstudiante.setEnabled(true);
+            txtAlmProfesor.setEnabled(true);
+            txtDesEstudiante.setEnabled(true);
+            txtDesProfesor.setEnabled(true);
+            btnGuardarParametros.setText("Guardar Parámetros");
+            //UPDATE
+            Precio Aest = new Precio();
+            Precio Dest = new Precio();
+            Precio Aprf = new Precio();
+            Precio Dprf = new Precio();
+            Dest.setId_comida(1);
+            Dprf.setId_comida(1);
+            Aest.setId_comida(2);
+            Aprf.setId_comida(2);
+            Dest.setId_persona(1);
+            Aest.setId_persona(1);
+            Dprf.setId_persona(2);
+            Aprf.setId_persona(2);
+            Precio_bl bl = new Precio_bl();
+            if(bl.update(Dprf)&& bl.update(Aprf)&& bl.update(Dest)&& bl.update(Aest)){
+                JOptionPane.showMessageDialog(null, "Parámetros modificados correctamente", 
+                        "Gestión de Parámetros", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Se produjo un error, ingrese los datos nuevamente.", 
+                        "Gestión de Parámetros", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionParametros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+     
+    }//GEN-LAST:event_btnGuardarParametrosActionPerformed
 
     /**
      * @param args the command line arguments
