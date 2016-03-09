@@ -126,14 +126,12 @@ public class AgregarBeca extends javax.swing.JFrame {
                     .addComponent(CheckBox))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblObservacionesBeca)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblObservacionesBeca)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtObservacionesBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnGuardarBeca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(72, 72, 72))))
+                        .addComponent(btnGuardarBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,8 +141,10 @@ public class AgregarBeca extends javax.swing.JFrame {
         try {
             Becas b = new Becas();
             Becas_bl bbl = new Becas_bl();
-            b.setNombre(txtNombreBeca.getText());
-            b.setPorcentaje(Integer.parseInt(txtPorcentajeBeca.getText()));
+            b.setNombre(txtNombreBeca.getText().trim());
+            b.setPorcentaje(Integer.parseInt(txtPorcentajeBeca.getText().trim()));
+            b.setActivo(true);
+            b.setObservaciones(txtObservacionesBeca.getText().trim());
             if (bbl.insert(b)) {
                 JOptionPane.showMessageDialog(null,
                         "Se ha insertado correctamente la nueva beca.",
