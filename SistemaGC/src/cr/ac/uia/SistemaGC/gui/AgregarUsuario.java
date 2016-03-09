@@ -190,38 +190,44 @@ public class AgregarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
-        int cedula = Integer.parseInt(txtCedula.getText().trim());
-        String contraseña;
-        String nombre= txtNombre.getText().trim();
-        String usuario = txtUsuario.getText().trim();
-        Boolean activo = true;
-        String observaciones = txtObsUsuario.getText().trim();
-        int rol= 1;
-        String verificar;
-        char [] array1 = txtContraseña.getPassword();
-        char [] array2 = txtRepetirCont.getPassword();
-        contraseña = Arrays.toString(array1);
-        verificar= Arrays.toString(array2);
-        if(contraseña.equals(verificar)){
+        if(txtCedula.getText().isEmpty() == true || txtNombre.getText().isEmpty()==true||txtUsuario.getText().isEmpty()==true || txtObsUsuario.getText().isEmpty()==true){
+            JOptionPane.showMessageDialog(null, "No pueden haber campos vacíos, por favor ingrese la información correspondiente");
+        }else{
             try {
-                Usuarios nueva = new Usuarios(cedula,usuario,contraseña,nombre,activo,observaciones,rol);
-                Usuarios_bl p_bl = new Usuarios_bl();
-                boolean resultado = p_bl.insert(nueva);
-                if(resultado == true){
-                    JOptionPane.showMessageDialog(null, "Usuario guardado correctamente");
+                Usuarios nueva = new Usuarios();
+                String contraseña;
+                String verificar;
+                char [] array1 = txtContraseña.getPassword();
+                char [] array2 = txtRepetirCont.getPassword();
+                contraseña = Arrays.toString(array1);
+                verificar= Arrays.toString(array2);
+                if(contraseña.equals(verificar)){
+                    nueva.setContrasena(contraseña);
+                    nueva.setCedula(Integer.parseInt(txtCedula.getText().trim()));
+                    nueva.setNombre(txtNombre.getText().trim());
+                    nueva.setUsuario(txtUsuario.getText().trim()); 
+                    nueva.setActivo(true);
+                    nueva.setObservaciones(txtObsUsuario.getText().trim());
+                    nueva.setId_rol(1);
+                    Usuarios_bl p_bl = new Usuarios_bl();
+                    if(p_bl.insert(nueva)){
+                        JOptionPane.showMessageDialog(null, "Usuario guardado correctamente",
+                                "Guardar Usuario", JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "El usuario no pudo ser guardado correctamente, por favor intente de nuevo",
+                                "Guardar Usuario", JOptionPane.INFORMATION_MESSAGE);
+                    } 
                 }else{
-                    JOptionPane.showMessageDialog(null, "El usuario no pudo ser guardado correctamente, por favor intente de nuevo");
+                    JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden, por favor intente nuevamente");
+                    txtContraseña.requestFocus();
+                    txtContraseña.setText("");
+                    txtRepetirCont.setText("");
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(AgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden, por favor intente nuevamente");
-            txtContraseña.getCursor();
-            txtContraseña.setText("");
-            txtRepetirCont.setText("");
+                        Logger.getLogger(AgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         }
-        
+        //FIN DEL MÉTODO
     }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
 
     /**
