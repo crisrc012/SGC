@@ -5,7 +5,7 @@
  */
 package cr.ac.uia.SistemaGC.bl;
 
-import cr.ac.uia.SistemaGC.db.Connection;
+import cr.ac.uia.SistemaGC.db.Conexion;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,14 +18,14 @@ import java.util.ArrayList;
  */
 public class Usuarios_bl {
 
-    private Connection conn;
+    private Conexion conn;
     private Statement st;
 
     public ArrayList<Usuarios> select(Usuarios usuarios) throws SQLException {
         ArrayList<Usuarios> usuarioslst = null;
         try {
             this.st = null;
-            this.conn = new Connection();
+            this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
             String cedula = "NULL";
             String usuario = "NULL";
@@ -100,7 +100,7 @@ public class Usuarios_bl {
         Boolean control = false;
         try {
             this.st = null;
-            this.conn = new Connection();
+            this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
             String cedula;
             String usuario;
@@ -188,7 +188,7 @@ public class Usuarios_bl {
     public boolean delete(int cedula) throws SQLException {
         try {
             this.st = null;
-            this.conn = new Connection();
+            this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
             this.st.executeQuery("SELECT f_usuarios('delete',"
                     + cedula + ", NULL, NULL, NULL, NULL, NULL, NULL, NULL);");

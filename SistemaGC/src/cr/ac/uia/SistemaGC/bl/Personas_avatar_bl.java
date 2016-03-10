@@ -5,7 +5,7 @@
  */
 package cr.ac.uia.SistemaGC.bl;
 
-import cr.ac.uia.SistemaGC.db.Connection;
+import cr.ac.uia.SistemaGC.db.Conexion;
 import cr.ac.uia.SistemaGC.entities.Personas_avatar;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -28,14 +28,14 @@ import org.apache.commons.codec.binary.Hex;
  */
 public class Personas_avatar_bl {
 
-    private Connection conn;
+    private Conexion conn;
     private Statement st;
 
     public byte[] select(int cedula) throws SQLException {
         byte[] foto = null;
         try {
             this.st = null;
-            this.conn = new Connection();
+            this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
             try (ResultSet rs = this.st.executeQuery(
                     "SELECT foto FROM tbl_personas_avatar WHERE cedula=" + cedula + ";")) {
@@ -61,7 +61,7 @@ public class Personas_avatar_bl {
     private boolean insert_update(Personas_avatar personas_avatar, String dml) throws FileNotFoundException, SQLException, IOException {
         try {
             this.st = null;
-            conn = new Connection();
+            conn = new Conexion();
             this.st = conn.getConnection().createStatement();
             String query;
             switch (dml) {
@@ -128,7 +128,7 @@ public class Personas_avatar_bl {
 
     public boolean delete(int id) throws SQLException {
         try {
-            this.conn = new Connection();
+            this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
             this.st.executeQuery("");
         } catch (SQLException e) {

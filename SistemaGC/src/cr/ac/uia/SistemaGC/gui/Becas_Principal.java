@@ -144,7 +144,7 @@ public class Becas_Principal extends javax.swing.JFrame {
 
     private void btnAgregarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecaActionPerformed
         new Becas_Agregar().setVisible(true);
-        this.dispose();
+        //this.setEnabled(false);
     }//GEN-LAST:event_btnAgregarBecaActionPerformed
 
     private void btnModificarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarBecaActionPerformed

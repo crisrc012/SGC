@@ -26,10 +26,11 @@ public class Becas_Agregar extends javax.swing.JFrame {
     /**
      * Creates new form Becas_Principal
      */
+
     public Becas_Agregar() {
         initComponents();
         isUpdate = false;
-        this.becas = null;
+        this.becas = new Becas();
     }
 
     public Becas_Agregar(boolean update, Becas becas) {
@@ -157,33 +158,31 @@ public class Becas_Agregar extends javax.swing.JFrame {
     private void btnGuardarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarBecaActionPerformed
         try {
             Becas_bl bbl = new Becas_bl();
-            becas.setNombre(txtNombreBeca.getText().trim());
+            becas.setNombre(txtNombreBeca.getText());
             becas.setPorcentaje(Integer.parseInt(txtPorcentajeBeca.getText().trim()));
             becas.setActivo(ChckBoxActivo.isSelected());
-            becas.setObservaciones(txtObservacionesBeca.getText().trim());
+            becas.setObservaciones(txtObservacionesBeca.getText());
             if (this.isUpdate) {
                 if (bbl.update(becas)) {
-                    JOptionPane.showMessageDialog(null,
+                    JOptionPane.showMessageDialog(this,
                             "Se ha actualizado correctamente la beca.",
                             "Correcto",
                             JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
-                    new Becas_Principal().setVisible(true);
+                    this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null,
+                    JOptionPane.showMessageDialog(this,
                             "Ha ocurrido un error, revise los datos ingresados.",
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
             } else if (bbl.insert(becas)) {
-                JOptionPane.showMessageDialog(null,
+                JOptionPane.showMessageDialog(this,
                         "Se ha insertado correctamente la nueva beca.",
                         "Correcto",
                         JOptionPane.INFORMATION_MESSAGE);
-                setVisible(false);
-                new Becas_Principal().setVisible(true);
+                this.dispose();
             } else {
-                JOptionPane.showMessageDialog(null,
+                JOptionPane.showMessageDialog(this,
                         "Ha ocurrido un error, revise los datos ingresados.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
@@ -198,7 +197,7 @@ public class Becas_Agregar extends javax.swing.JFrame {
             if (txtPorcentajeBeca.getText().length() > 0) {
                 if (Integer.parseInt(txtPorcentajeBeca.getText()) > 100) {
                     txtPorcentajeBeca.setText("100");
-                    JOptionPane.showMessageDialog(null,
+                    JOptionPane.showMessageDialog(this,
                             "Por favor ingrese unicamente números iguales o menores a 100.",
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
@@ -206,7 +205,7 @@ public class Becas_Agregar extends javax.swing.JFrame {
             }
         } catch (NumberFormatException | HeadlessException e) {
             txtPorcentajeBeca.setText("");
-            JOptionPane.showMessageDialog(null,
+            JOptionPane.showMessageDialog(this,
                     "Por favor ingrese unicamente números.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -214,6 +213,10 @@ public class Becas_Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPorcentajeBecaKeyReleased
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setAutoRequestFocus(true);
+        this.setAlwaysOnTop(true);
+        this.setLocationRelativeTo(null);
         if (this.isUpdate) {
             btnGuardarBeca.setText("Modificar Beca");
             txtNombreBeca.setText(this.becas.getNombre());

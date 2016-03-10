@@ -67,6 +67,11 @@ public class Personas_Agregar extends javax.swing.JFrame {
         lblTel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         TipoPersona.add(RBEstudiante);
         RBEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -296,6 +301,13 @@ public class Personas_Agregar extends javax.swing.JFrame {
             Logger.getLogger(Personas_Agregar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setAutoRequestFocus(true);
+        this.setAlwaysOnTop(true);
+        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
