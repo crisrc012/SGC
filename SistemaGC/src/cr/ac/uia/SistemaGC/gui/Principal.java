@@ -11,12 +11,12 @@ import java.awt.Toolkit;
  *
  * @author Pao
  */
-public class PrincipalUI extends javax.swing.JFrame {
+public class Principal extends javax.swing.JFrame {
 
     /**
      * Creates new form Principal
      */
-    public PrincipalUI() {
+    public Principal() {
         initComponents();
     }
 
@@ -169,22 +169,22 @@ public class PrincipalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void MUsurioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MUsurioMousePressed
-        new UsuariosUI().setVisible(true);
+        new Usuarios_Principal().setVisible(true);
         this.setEnabled(false);
     }//GEN-LAST:event_MUsurioMousePressed
 
     private void MPersonasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MPersonasMousePressed
-        new PersonasUI().setVisible(true);
+        new Personas_Principal().setVisible(true);
         this.setEnabled(false);
     }//GEN-LAST:event_MPersonasMousePressed
 
     private void MTipoBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MTipoBecaMousePressed
-        new TipoBeca().setVisible(true);
+        new Becas_Principal().setVisible(true);
         this.setEnabled(false);
     }//GEN-LAST:event_MTipoBecaMousePressed
 
     private void MAdmBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MAdmBecaMousePressed
-        new AdministrarBecas().setVisible(true);
+        new Becados_Principal().setVisible(true);
         this.setEnabled(false);
     }//GEN-LAST:event_MAdmBecaMousePressed
 
@@ -225,8 +225,10 @@ public class PrincipalUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PrincipalUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
@@ -235,7 +237,7 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new PrincipalUI().setVisible(true);
+            new Principal().setVisible(true);
         });
     }
 

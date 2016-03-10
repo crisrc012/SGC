@@ -7,7 +7,7 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
-import static cr.ac.uia.SistemaGC.gui.Login.PUI;
+import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pao
  */
-public class UsuariosUI extends javax.swing.JFrame {
+public class Usuarios_Principal extends javax.swing.JFrame {
 
     /**
      * Creates new form Usuarios
      */
-    public UsuariosUI() {
+    public Usuarios_Principal() {
         initComponents();
     }
 
@@ -135,11 +135,11 @@ public class UsuariosUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioActionPerformed
-        new AgregarUsuario().setVisible(true);
+        new Usuarios_Agregar().setVisible(true);
     }//GEN-LAST:event_btnAgregarUsuarioActionPerformed
 
     private void btnModificarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarUsuarioActionPerformed
-        new AgregarUsuario().setVisible(true);
+        new Usuarios_Agregar().setVisible(true);
     }//GEN-LAST:event_btnModificarUsuarioActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -158,7 +158,7 @@ public class UsuariosUI extends javax.swing.JFrame {
             }
             this.tblUsuarios.setModel(tableModel);
         } catch (SQLException ex) {
-            Logger.getLogger(PersonasUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Personas_Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -191,8 +191,10 @@ public class UsuariosUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UsuariosUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Usuarios_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
@@ -201,7 +203,7 @@ public class UsuariosUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new UsuariosUI().setVisible(true);
+            new Usuarios_Principal().setVisible(true);
         });
     }
 

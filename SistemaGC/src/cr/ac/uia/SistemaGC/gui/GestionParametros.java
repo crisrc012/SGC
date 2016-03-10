@@ -7,7 +7,7 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Precio_bl;
 import cr.ac.uia.SistemaGC.entities.Precio;
-import static cr.ac.uia.SistemaGC.gui.Login.PUI;
+import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

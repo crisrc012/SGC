@@ -7,7 +7,7 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
-import static cr.ac.uia.SistemaGC.gui.Login.PUI;
+import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pao
  */
-public class PersonasUI extends javax.swing.JFrame {
+public class Personas_Principal extends javax.swing.JFrame {
 
     /**
      * Creates new form Personas
      */
-    public PersonasUI() {
+    public Personas_Principal() {
         initComponents();
     }
 
@@ -151,7 +151,7 @@ public class PersonasUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPersonaActionPerformed
-        new AgregarPersona().setVisible(true);
+        new Personas_Agregar().setVisible(true);
     }//GEN-LAST:event_btnAgregarPersonaActionPerformed
 
     private void btnModificarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPersonaActionPerformed
@@ -159,7 +159,7 @@ public class PersonasUI extends javax.swing.JFrame {
         if(i > -1){
             
         }
-        new AgregarPersona().setVisible(true);
+        new Personas_Agregar().setVisible(true);
     }//GEN-LAST:event_btnModificarPersonaActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -181,7 +181,7 @@ public class PersonasUI extends javax.swing.JFrame {
             }
             this.tblPersonas.setModel(tableModel);
         } catch (SQLException ex) {
-            Logger.getLogger(PersonasUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Personas_Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -214,8 +214,10 @@ public class PersonasUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PersonasUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Personas_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
@@ -224,7 +226,7 @@ public class PersonasUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new PersonasUI().setVisible(true);
+            new Personas_Principal().setVisible(true);
         });
     }
 

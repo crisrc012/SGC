@@ -9,12 +9,12 @@ package cr.ac.uia.SistemaGC.gui;
  *
  * @author Pao
  */
-public class Login extends javax.swing.JFrame {
+public class Iniciar_Sesion extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Iniciar_Sesion() {
         initComponents();
     }
 
@@ -110,9 +110,9 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public static PrincipalUI PUI;
+public static Principal PUI;
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        PUI = new PrincipalUI();
+        PUI = new Principal();
         PUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -141,15 +141,16 @@ public static PrincipalUI PUI;
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Iniciar_Sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Login().setVisible(true);
+            new Iniciar_Sesion().setVisible(true);
         });
     }
 

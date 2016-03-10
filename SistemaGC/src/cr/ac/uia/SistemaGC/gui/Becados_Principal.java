@@ -5,18 +5,18 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
-import static cr.ac.uia.SistemaGC.gui.Login.PUI;
+import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 
 /**
  *
  * @author Pao
  */
-public class AdministrarBecas extends javax.swing.JFrame {
+public class Becados_Principal extends javax.swing.JFrame {
 
     /**
      * Creates new form AdministrarBecas
      */
-    public AdministrarBecas() {
+    public Becados_Principal() {
         initComponents();
     }
 
@@ -129,11 +129,11 @@ public class AdministrarBecas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAsignarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarBecaActionPerformed
-        new AsignarBeca().setVisible(true);
+        new Becados_Agregar().setVisible(true);
     }//GEN-LAST:event_btnAsignarBecaActionPerformed
 
     private void btnModificarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarAsignacionActionPerformed
-        new AsignarBeca().setVisible(true);
+        new Becados_Agregar().setVisible(true);
     }//GEN-LAST:event_btnModificarAsignacionActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -169,15 +169,16 @@ public class AdministrarBecas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdministrarBecas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Becados_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new AdministrarBecas().setVisible(true);
+            new Becados_Principal().setVisible(true);
         });
     }
 

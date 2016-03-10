@@ -17,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class AgregarUsuario extends javax.swing.JFrame {
+public class Usuarios_Agregar extends javax.swing.JFrame {
 
     /**
      * Creates new form AgregarUsuario
      */
-    public AgregarUsuario() {
+    public Usuarios_Agregar() {
         initComponents();
     }
 
@@ -36,7 +36,7 @@ public class AgregarUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTituloGU = new javax.swing.JLabel();
-        lblNombreComp = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
         lblContraseña = new javax.swing.JLabel();
         lblRepetir = new javax.swing.JLabel();
@@ -52,14 +52,21 @@ public class AgregarUsuario extends javax.swing.JFrame {
         txtRepetirCont = new javax.swing.JPasswordField();
         lblCedula = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
+        lblApellidos = new javax.swing.JLabel();
+        txtApellidos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         lblTituloGU.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloGU.setText("Gestión de Usuarios");
 
-        lblNombreComp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreComp.setText("Nombre Completo:");
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombre.setText("Nombre:");
 
         lblNombreUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombreUsuario.setText("Nombre de Usuario:");
@@ -105,6 +112,9 @@ public class AgregarUsuario extends javax.swing.JFrame {
 
         txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
+        lblApellidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblApellidos.setText("Apellidos:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,37 +123,43 @@ public class AgregarUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTituloGU)
-                            .addComponent(lblCamposReq))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
-                        .addComponent(btnGuardarUsuario))
+                        .addComponent(lblTituloGU)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombreUsuario)
-                            .addComponent(lblActivo)
-                            .addComponent(lblObservacionesUsuario)
-                            .addComponent(lblContraseña)
-                            .addComponent(lblRepetir)
-                            .addComponent(lblCedula)
-                            .addComponent(lblNombreComp))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCamposReq)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnGuardarUsuario))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtUsuario)
-                                    .addComponent(txtContraseña)
-                                    .addComponent(txtRepetirCont)
-                                    .addComponent(txtObsUsuario)
+                                    .addComponent(lblNombreUsuario)
+                                    .addComponent(lblActivo)
+                                    .addComponent(lblObservacionesUsuario)
+                                    .addComponent(lblContraseña)
+                                    .addComponent(lblRepetir)
+                                    .addComponent(lblCedula)
+                                    .addComponent(lblNombre)
+                                    .addComponent(lblApellidos))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(CBActivo)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addGap(76, 76, 76)))
+                                        .addGap(66, 66, 66)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtUsuario)
+                                            .addComponent(txtContraseña)
+                                            .addComponent(txtRepetirCont)
+                                            .addComponent(txtObsUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(CBActivo)
+                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                            .addComponent(txtApellidos)
+                                            .addComponent(txtCedula))))
+                                .addGap(76, 76, 76)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -155,57 +171,57 @@ public class AgregarUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreUsuario)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContraseña)
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRepetir)
-                    .addComponent(txtRepetirCont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(txtRepetirCont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRepetir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombreComp)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCedula)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(lblApellidos)
+                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCedula))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblActivo)
-                    .addComponent(CBActivo))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtObsUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblObservacionesUsuario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCamposReq, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnGuardarUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(CBActivo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtObsUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblObservacionesUsuario))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnGuardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCamposReq))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
-        if (txtCedula.getText().isEmpty() == true || txtNombre.getText().isEmpty() == true || txtUsuario.getText().isEmpty() == true || txtObsUsuario.getText().isEmpty() == true) {
+        if (txtCedula.getText().isEmpty() || txtNombre.getText().isEmpty() || txtUsuario.getText().isEmpty() || txtObsUsuario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "No pueden haber campos vacíos, por favor ingrese la información correspondiente");
         } else {
             try {
-                Usuarios nueva = new Usuarios();
-                String contraseña;
-                String verificar;
-                char[] array1 = txtContraseña.getPassword();
-                char[] array2 = txtRepetirCont.getPassword();
-                contraseña = Arrays.toString(array1);
-                verificar = Arrays.toString(array2);
-                if (contraseña.equals(verificar)) {
-                    nueva.setContrasena(contraseña);
+                if (Arrays.equals(txtContraseña.getPassword(), txtRepetirCont.getPassword())) {
+                    Usuarios nueva = new Usuarios();
+                    nueva.setContrasena(Arrays.toString(txtContraseña.getPassword()));
                     nueva.setCedula(Integer.parseInt(txtCedula.getText().trim()));
                     nueva.setNombre(txtNombre.getText().trim());
+                    nueva.setApellidos(txtApellidos.getText());
                     nueva.setUsuario(txtUsuario.getText().trim());
                     nueva.setActivo(true);
                     nueva.setObservaciones(txtObsUsuario.getText().trim());
@@ -214,8 +230,7 @@ public class AgregarUsuario extends javax.swing.JFrame {
                     if (p_bl.insert(nueva)) {
                         JOptionPane.showMessageDialog(this, "Usuario guardado correctamente",
                                 "Guardar Usuario", JOptionPane.INFORMATION_MESSAGE);
-                        setVisible(false);
-                        new UsuariosUI().setVisible(true);
+                        this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(this, "El usuario no pudo ser guardado correctamente, por favor intente de nuevo",
                                 "Guardar Usuario", JOptionPane.INFORMATION_MESSAGE);
@@ -228,11 +243,18 @@ public class AgregarUsuario extends javax.swing.JFrame {
                     txtRepetirCont.setText("");
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(AgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Usuarios_Agregar.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         //FIN DEL MÉTODO
     }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setAutoRequestFocus(true);
+        this.setAlwaysOnTop(true);
+        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -251,15 +273,16 @@ public class AgregarUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Usuarios_Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new AgregarUsuario().setVisible(true);
+            new Usuarios_Agregar().setVisible(true);
         });
     }
 
@@ -267,14 +290,16 @@ public class AgregarUsuario extends javax.swing.JFrame {
     private javax.swing.JCheckBox CBActivo;
     private javax.swing.JButton btnGuardarUsuario;
     private javax.swing.JLabel lblActivo;
+    private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCamposReq;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblContraseña;
-    private javax.swing.JLabel lblNombreComp;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblObservacionesUsuario;
     private javax.swing.JLabel lblRepetir;
     private javax.swing.JLabel lblTituloGU;
+    private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtNombre;

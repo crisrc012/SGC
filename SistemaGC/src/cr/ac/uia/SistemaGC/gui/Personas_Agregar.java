@@ -23,12 +23,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Pao
  */
-public class AgregarPersona extends javax.swing.JFrame {
+public class Personas_Agregar extends javax.swing.JFrame {
 
     /**
      * Creates new form AgregarPersona
      */
-    public AgregarPersona() {
+    public Personas_Agregar() {
         initComponents();
     }
 
@@ -248,7 +248,7 @@ public class AgregarPersona extends javax.swing.JFrame {
     File fichero;
     private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
         int resultado;
-        SubirFoto file = new SubirFoto();
+        Personas_Agregar_SubirFoto file = new Personas_Agregar_SubirFoto();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
         file.FchCargarFoto.setFileFilter(filtro);
         resultado = file.FchCargarFoto.showOpenDialog(null);
@@ -293,7 +293,7 @@ public class AgregarPersona extends javax.swing.JFrame {
                         "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AgregarPersona.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Personas_Agregar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
 
@@ -314,15 +314,16 @@ public class AgregarPersona extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Personas_Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new AgregarPersona().setVisible(true);
+            new Personas_Agregar().setVisible(true);
         });
     }
 

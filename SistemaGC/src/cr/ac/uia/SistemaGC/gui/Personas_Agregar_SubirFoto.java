@@ -10,12 +10,12 @@ package cr.ac.uia.SistemaGC.gui;
  *
  * @author Pao
  */
-public class SubirFoto extends javax.swing.JFrame {
+public class Personas_Agregar_SubirFoto extends javax.swing.JFrame {
 
     /**
      * Creates new form SubirFoto
      */
-    public SubirFoto() {
+    public Personas_Agregar_SubirFoto() {
         initComponents();
     }
 
@@ -67,15 +67,16 @@ public class SubirFoto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SubirFoto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Personas_Agregar_SubirFoto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new SubirFoto().setVisible(true);
+            new Personas_Agregar_SubirFoto().setVisible(true);
         });
     }
 

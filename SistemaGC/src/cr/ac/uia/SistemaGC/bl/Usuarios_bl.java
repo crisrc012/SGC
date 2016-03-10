@@ -17,10 +17,10 @@ import java.util.ArrayList;
  * @author crisrc012
  */
 public class Usuarios_bl {
-    
+
     private Connection conn;
     private Statement st;
-    
+
     public ArrayList<Usuarios> select(Usuarios usuarios) throws SQLException {
         ArrayList<Usuarios> usuarioslst = null;
         try {
@@ -95,15 +95,16 @@ public class Usuarios_bl {
         }
         return usuarioslst;
     }
-    
+
     private boolean insert_update(Usuarios usuarios, String dml) throws SQLException {
+        Boolean control = false;
         try {
             this.st = null;
             this.conn = new Connection();
             this.st = conn.getConnection().createStatement();
             String cedula;
             String usuario;
-            String contrasena = null;
+            String contrasena;
             String nombre;
             String apellidos;
             String activo;
@@ -119,16 +120,6 @@ public class Usuarios_bl {
             } else {
                 usuario = "'" + usuarios.getUsuario() + "'";
             }
-            if (dml.equals("insert")) {
-                if (usuarios.getContrasena() == null) {
-                    return false;
-                } else {
-                    contrasena = "'" + cr.ac.uia.SistemaGC.utils.AES.encrypt(
-                            String.valueOf(usuarios.getCedula()),
-                            usuarios.getUsuario(),
-                            usuarios.getContrasena()) + "'";
-                }
-            }
             if (usuarios.getNombre() == null) {
                 return false;
             } else {
@@ -138,6 +129,14 @@ public class Usuarios_bl {
                 return false;
             } else {
                 apellidos = "'" + usuarios.getApellidos() + "'";
+            }
+            if (usuarios.getContrasena() == null) {
+                return false;
+            } else {
+                contrasena = "'" + cr.ac.uia.SistemaGC.utils.AES.encrypt(
+                        String.valueOf(usuarios.getCedula()),
+                        usuarios.getUsuario(),
+                        usuarios.getContrasena()) + "'";
             }
             if (usuarios.getActivo() == null) {
                 return false;
@@ -164,8 +163,9 @@ public class Usuarios_bl {
                     + activo + ", "
                     + observaciones + ", "
                     + id_rol + ");");
+            control = true;
         } catch (SQLException e) {
-            return false;
+            System.out.println(e.toString());
         } finally {
             if (this.st != null) {
                 this.st.close();
@@ -174,17 +174,17 @@ public class Usuarios_bl {
                 this.conn.close();
             }
         }
-        return true;
+        return control;
     }
-    
+
     public boolean insert(Usuarios usuarios) throws SQLException {
         return insert_update(usuarios, "insert");
     }
-    
+
     public boolean update(Usuarios usuarios) throws SQLException {
         return insert_update(usuarios, "update");
     }
-    
+
     public boolean delete(int cedula) throws SQLException {
         try {
             this.st = null;

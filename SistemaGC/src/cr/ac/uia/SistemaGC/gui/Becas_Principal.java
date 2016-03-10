@@ -7,7 +7,7 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.entities.Becas;
-import static cr.ac.uia.SistemaGC.gui.Login.PUI;
+import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,12 +19,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pao
  */
-public class TipoBeca extends javax.swing.JFrame {
+public class Becas_Principal extends javax.swing.JFrame {
 
     /**
      * Creates new form TipoBeca
      */
-    public TipoBeca() {
+    public Becas_Principal() {
         initComponents();
     }
 
@@ -143,14 +143,14 @@ public class TipoBeca extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecaActionPerformed
-        new AgregarBeca().setVisible(true);
+        new Becas_Agregar().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAgregarBecaActionPerformed
 
     private void btnModificarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarBecaActionPerformed
         int i = tblTiposBecas.getSelectedRow();
         if (i > -1) {
-            new AgregarBeca(true,
+            new Becas_Agregar(true,
                     new Becas(
                             Integer.parseInt((String) tblTiposBecas.getValueAt(i, 0)),
                             (String) tblTiposBecas.getValueAt(i, 1),
@@ -187,7 +187,7 @@ public class TipoBeca extends javax.swing.JFrame {
             this.tblTiposBecas.getColumnModel().getColumn(0).setMaxWidth(0);
             this.tblTiposBecas.getColumnModel().getColumn(0).setWidth(0);
         } catch (SQLException ex) {
-            Logger.getLogger(TipoBeca.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -218,7 +218,7 @@ public class TipoBeca extends javax.swing.JFrame {
                             JOptionPane.ERROR_MESSAGE);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(TipoBeca.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(this,
@@ -257,15 +257,16 @@ public class TipoBeca extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TipoBeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Becas_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new TipoBeca().setVisible(true);
+            new Becas_Principal().setVisible(true);
         });
     }
 

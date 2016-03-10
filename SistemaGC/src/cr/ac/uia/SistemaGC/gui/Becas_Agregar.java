@@ -17,22 +17,22 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class AgregarBeca extends javax.swing.JFrame {
+public class Becas_Agregar extends javax.swing.JFrame {
 
     // Propiedad que determina si la ventana se ejecuta para insertar o actualizar
     private final boolean isUpdate;
     private Becas becas;
 
     /**
-     * Creates new form TipoBeca
+     * Creates new form Becas_Principal
      */
-    public AgregarBeca() {
+    public Becas_Agregar() {
         initComponents();
         isUpdate = false;
         this.becas = null;
     }
 
-    public AgregarBeca(boolean update, Becas becas) {
+    public Becas_Agregar(boolean update, Becas becas) {
         initComponents();
         isUpdate = update;
         this.becas = becas;
@@ -168,7 +168,7 @@ public class AgregarBeca extends javax.swing.JFrame {
                             "Correcto",
                             JOptionPane.INFORMATION_MESSAGE);
                     dispose();
-                    new TipoBeca().setVisible(true);
+                    new Becas_Principal().setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null,
                             "Ha ocurrido un error, revise los datos ingresados.",
@@ -181,7 +181,7 @@ public class AgregarBeca extends javax.swing.JFrame {
                         "Correcto",
                         JOptionPane.INFORMATION_MESSAGE);
                 setVisible(false);
-                new TipoBeca().setVisible(true);
+                new Becas_Principal().setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Ha ocurrido un error, revise los datos ingresados.",
@@ -189,7 +189,7 @@ public class AgregarBeca extends javax.swing.JFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AgregarBeca.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Becas_Agregar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGuardarBecaActionPerformed
 
@@ -241,8 +241,10 @@ public class AgregarBeca extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarBeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Becas_Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -251,7 +253,7 @@ public class AgregarBeca extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new AgregarBeca().setVisible(true);
+            new Becas_Agregar().setVisible(true);
         });
     }
 

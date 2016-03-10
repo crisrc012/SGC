@@ -5,7 +5,7 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
-import static cr.ac.uia.SistemaGC.gui.Login.PUI;
+import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 
 /**
  *
