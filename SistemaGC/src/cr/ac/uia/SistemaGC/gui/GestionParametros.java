@@ -7,6 +7,7 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Precio_bl;
 import cr.ac.uia.SistemaGC.entities.Precio;
+import static cr.ac.uia.SistemaGC.gui.Login.PUI;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,6 +54,16 @@ public class GestionParametros extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloGP.setText("Gestionar Parámetros");
@@ -220,19 +231,32 @@ public class GestionParametros extends javax.swing.JFrame {
             Aprf.setId_persona(2);
             Precio_bl bl = new Precio_bl();
             if(bl.update(Dprf)&& bl.update(Aprf)&& bl.update(Dest)&& bl.update(Aest)){
-                JOptionPane.showMessageDialog(null, "Parámetros modificados correctamente", 
-                        "Gestión de Parámetros", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this,
+                        "Parámetros modificados correctamente", 
+                        "Gestión de Parámetros",
+                        JOptionPane.INFORMATION_MESSAGE);
             }else{
-                JOptionPane.showMessageDialog(null, "Se produjo un error, ingrese los datos nuevamente.", 
-                        "Gestión de Parámetros", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this,
+                        "Se produjo un error, ingrese los datos nuevamente.", 
+                        "Gestión de Parámetros",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(GestionParametros.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-     
     }//GEN-LAST:event_btnGuardarParametrosActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setAutoRequestFocus(true);
+        this.setAlwaysOnTop(true);
+        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_formComponentShown
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        PUI.setEnabled(true);
+        PUI.toFront();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -245,27 +269,21 @@ public class GestionParametros extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestionParametros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestionParametros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestionParametros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GestionParametros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GestionParametros().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new GestionParametros().setVisible(true);
         });
     }
 

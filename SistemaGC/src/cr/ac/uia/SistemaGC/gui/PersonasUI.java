@@ -7,6 +7,7 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
+import static cr.ac.uia.SistemaGC.gui.Login.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -45,7 +46,15 @@ public class PersonasUI extends javax.swing.JFrame {
         btnImprimirCodigo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -147,7 +156,7 @@ public class PersonasUI extends javax.swing.JFrame {
 
     private void btnModificarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPersonaActionPerformed
         int i = tblPersonas.getSelectedRow();
-        if(i!=1){
+        if(i > -1){
             
         }
         new AgregarPersona().setVisible(true);
@@ -155,7 +164,7 @@ public class PersonasUI extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
-            String col[] = {"cedula", "nombre", "apellidos", "fecha_nacimiento", "tel_celular", "Integer tel_habitacion", "String encargado", "Integer id_persona"};
+            String col[] = {"Cedula", "Nombre", "Apellidos", "Fecha de nacimiento", "Celular", "Teléfono", "Encargado", "Comunidad"};
             DefaultTableModel tableModel = new DefaultTableModel(col, 0);
             Personas_bl pbl = new Personas_bl();
             ArrayList<Personas> al = pbl.select(new Personas());
@@ -175,6 +184,18 @@ public class PersonasUI extends javax.swing.JFrame {
             Logger.getLogger(PersonasUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setAutoRequestFocus(true);
+        this.setAlwaysOnTop(true);
+        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_formComponentShown
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        PUI.setEnabled(true);
+        PUI.toFront();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

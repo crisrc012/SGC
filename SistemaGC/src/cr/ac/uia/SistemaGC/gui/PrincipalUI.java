@@ -170,30 +170,37 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     private void MUsurioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MUsurioMousePressed
         new UsuariosUI().setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_MUsurioMousePressed
 
     private void MPersonasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MPersonasMousePressed
         new PersonasUI().setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_MPersonasMousePressed
 
     private void MTipoBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MTipoBecaMousePressed
         new TipoBeca().setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_MTipoBecaMousePressed
 
     private void MAdmBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MAdmBecaMousePressed
         new AdministrarBecas().setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_MAdmBecaMousePressed
 
     private void MVentaTiqMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MVentaTiqMousePressed
         new VentaTiquetes().setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_MVentaTiqMousePressed
 
     private void MGestionIngresoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MGestionIngresoMousePressed
         new GestionIngreso().setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_MGestionIngresoMousePressed
 
     private void MGestionParamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MGestionParamMousePressed
         new GestionParametros().setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_MGestionParamMousePressed
 
     private void MReportesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MReportesMousePressed

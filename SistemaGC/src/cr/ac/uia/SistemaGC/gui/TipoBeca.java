@@ -7,10 +7,12 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.entities.Becas;
+import static cr.ac.uia.SistemaGC.gui.Login.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,7 +45,15 @@ public class TipoBeca extends javax.swing.JFrame {
         btnDesHabilitarBeca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -84,6 +94,11 @@ public class TipoBeca extends javax.swing.JFrame {
 
         btnDesHabilitarBeca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDesHabilitarBeca.setText("Des/Habilitar Beca");
+        btnDesHabilitarBeca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDesHabilitarBecaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,45 +144,101 @@ public class TipoBeca extends javax.swing.JFrame {
 
     private void btnAgregarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecaActionPerformed
         new AgregarBeca().setVisible(true);
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_btnAgregarBecaActionPerformed
 
     private void btnModificarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarBecaActionPerformed
         int i = tblTiposBecas.getSelectedRow();
-        if (i != -1) {
-            try {
-                Becas b = new Becas();
-                Becas_bl bl = new Becas_bl();
-                b.setNombre(tblTiposBecas.getValueAt(i, 0).toString());
-                b.setPorcentaje(Integer.parseInt(tblTiposBecas.getValueAt(i, 1).toString()));
-                b.setActivo(Boolean.parseBoolean(tblTiposBecas.getValueAt(i, 3).toString()));
-                b.setObservaciones(tblTiposBecas.getValueAt(i, 4).toString());
-                new AgregarBeca(false, bl.select(b).get(0)).setVisible(true);
-            } catch (SQLException ex) {
-                Logger.getLogger(TipoBeca.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (i > -1) {
+            new AgregarBeca(true,
+                    new Becas(
+                            Integer.parseInt((String) tblTiposBecas.getValueAt(i, 0)),
+                            (String) tblTiposBecas.getValueAt(i, 1),
+                            Integer.parseInt((String) tblTiposBecas.getValueAt(i, 2)),
+                            Boolean.parseBoolean((String) tblTiposBecas.getValueAt(i, 3)),
+                            (String) tblTiposBecas.getValueAt(i, 4))).setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Por favor seleccione una celda.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnModificarBecaActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void refreshJTable(){
         try {
-            String col[] = {"Nombre Beca", "Porcentaje Beca", "Activo", "Observaciones"};
+            String col[] = {"", "Nombre", "Porcentaje", "Activo", "Observaciones"};
             DefaultTableModel tableModel = new DefaultTableModel(col, 0);
             Becas_bl bbl = new Becas_bl();
             ArrayList<Becas> al = bbl.select(new Becas());
             for (int i = 0; i < al.size(); i++) {
-                Object[] ap
-                        = {al.get(i).getNombre(),
-                            al.get(i).getPorcentaje(),
-                            al.get(i).getActivo(),
+                String[] ap
+                        = {al.get(i).getId().toString(),
+                            al.get(i).getNombre(),
+                            al.get(i).getPorcentaje().toString(),
+                            al.get(i).getActivo().toString(),
                             al.get(i).getObservaciones()};
                 tableModel.addRow(ap);
             }
             this.tblTiposBecas.setModel(tableModel);
+            // Ocultando columna id
+            this.tblTiposBecas.getColumnModel().getColumn(0).setMinWidth(0);
+            this.tblTiposBecas.getColumnModel().getColumn(0).setMaxWidth(0);
+            this.tblTiposBecas.getColumnModel().getColumn(0).setWidth(0);
         } catch (SQLException ex) {
             Logger.getLogger(TipoBeca.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        refreshJTable();
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnDesHabilitarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesHabilitarBecaActionPerformed
+        int i = tblTiposBecas.getSelectedRow();
+        if (i > -1) {
+            try {
+                Becas_bl bbl = new Becas_bl();
+                if (bbl.update(new Becas(
+                        Integer.parseInt((String) tblTiposBecas.getValueAt(i, 0)),
+                        (String) tblTiposBecas.getValueAt(i, 1),
+                        Integer.parseInt((String) tblTiposBecas.getValueAt(i, 2)),
+                        !(Boolean.parseBoolean((String) tblTiposBecas.getValueAt(i, 3))),
+                        (String) tblTiposBecas.getValueAt(i, 4)))) {
+                    refreshJTable();
+                    JOptionPane.showMessageDialog(this,
+                            "Se ha actualizado correctamente la beca.",
+                            "Correcto",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Ha ocurrido un error.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(TipoBeca.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor seleccione una celda.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDesHabilitarBecaActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setAutoRequestFocus(true);
+        this.setAlwaysOnTop(true);
+        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_formComponentShown
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        PUI.setEnabled(true);
+        PUI.toFront();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -189,7 +260,7 @@ public class TipoBeca extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TipoBeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

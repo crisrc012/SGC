@@ -5,13 +5,6 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
-import cr.ac.uia.SistemaGC.bl.Becados_bl;
-import cr.ac.uia.SistemaGC.entities.Becados;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Pao

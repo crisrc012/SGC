@@ -9,7 +9,6 @@ import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.entities.Becas;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -157,16 +156,13 @@ public class AgregarBeca extends javax.swing.JFrame {
 
     private void btnGuardarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarBecaActionPerformed
         try {
-            Becas b = new Becas();
             Becas_bl bbl = new Becas_bl();
-            b.setNombre(txtNombreBeca.getText().trim());
-            b.setPorcentaje(Integer.parseInt(txtPorcentajeBeca.getText().trim()));
-            b.setActivo(ChckBoxActivo.isSelected());
-            b.setObservaciones(txtObservacionesBeca.getText().trim());
+            becas.setNombre(txtNombreBeca.getText().trim());
+            becas.setPorcentaje(Integer.parseInt(txtPorcentajeBeca.getText().trim()));
+            becas.setActivo(ChckBoxActivo.isSelected());
+            becas.setObservaciones(txtObservacionesBeca.getText().trim());
             if (this.isUpdate) {
-                // Para realizar el update, se necesita el id
-                b.setId(this.becas.getId());
-                if (bbl.update(b)) {
+                if (bbl.update(becas)) {
                     JOptionPane.showMessageDialog(null,
                             "Se ha actualizado correctamente la beca.",
                             "Correcto",
@@ -179,7 +175,7 @@ public class AgregarBeca extends javax.swing.JFrame {
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
-            } else if (bbl.insert(b)) {
+            } else if (bbl.insert(becas)) {
                 JOptionPane.showMessageDialog(null,
                         "Se ha insertado correctamente la nueva beca.",
                         "Correcto",
@@ -222,6 +218,7 @@ public class AgregarBeca extends javax.swing.JFrame {
             btnGuardarBeca.setText("Modificar Beca");
             txtNombreBeca.setText(this.becas.getNombre());
             txtPorcentajeBeca.setText(this.becas.getPorcentaje().toString());
+            ChckBoxActivo.setSelected(this.becas.getActivo());
             txtObservacionesBeca.setText(this.becas.getObservaciones());
         }
     }//GEN-LAST:event_formComponentShown

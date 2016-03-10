@@ -80,6 +80,7 @@ public class Becas_bl {
     }
 
     private boolean insert_update(Becas becas, String dml) throws SQLException {
+        Boolean control = false;
         try {
             this.st = null;
             this.conn = new Connection();
@@ -119,9 +120,9 @@ public class Becas_bl {
                     + porcentaje + ", "
                     + activo + ", "
                     + observaciones + ");");
+            control = true;
         } catch (SQLException e) {
             System.out.println(e.toString());
-            return false;
         } finally {
             if (this.st != null) {
                 this.st.close();
@@ -130,7 +131,7 @@ public class Becas_bl {
                 this.conn.close();
             }
         }
-        return true;
+        return control;
     }
 
     public boolean insert(Becas becas) throws SQLException {
@@ -142,14 +143,16 @@ public class Becas_bl {
     }
 
     public boolean delete(int id) throws SQLException {
+        Boolean control = false;
         try {
             this.st = null;
             this.conn = new Connection();
             this.st = conn.getConnection().createStatement();
             this.st.executeQuery("SELECT f_becas('delete', "
                     + id + ", NULL, NULL, NULL, NULL, NULL);");
+            control = true;
         } catch (SQLException e) {
-            return false;
+            System.out.println(e.toString());
         } finally {
             if (this.st != null) {
                 this.st.close();
@@ -158,6 +161,6 @@ public class Becas_bl {
                 this.conn.close();
             }
         }
-        return true;
+        return control;
     }
 }
