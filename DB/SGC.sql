@@ -280,7 +280,7 @@ begin
 			update tbl_personas t
 			set nombre = upper(_nombre),
 			apellidos = upper(_apellidos),
-			fecha_nacimineto = _fecha_nacimiento,
+			fecha_nacimiento = _fecha_nacimiento,
 			tel_celular = _tel_celular,
 			tel_habitacion = _tel_habitacion,
 			encargado = upper(_encargado),
