@@ -198,6 +198,7 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     private void MReportesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MReportesMousePressed
         new Reportes().setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_MReportesMousePressed
 
     /**

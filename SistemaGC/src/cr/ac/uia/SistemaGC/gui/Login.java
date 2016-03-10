@@ -16,10 +16,6 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        // Mostrar centrado
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setTitle("Sistema de Gestión de Comedor - Iniciar");
     }
 
     /**
@@ -40,6 +36,11 @@ public class Login extends javax.swing.JFrame {
         lblTituloSGC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         lblUserName.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         lblUserName.setText("Nombre de Usuario:");
@@ -109,13 +110,19 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public static PrincipalUI PUI;
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        PrincipalUI p = new PrincipalUI();
-        p.setVisible(true);
-        dispose();
-        // setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        PUI = new PrincipalUI();
+        PUI.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // Mostrar centrado
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setTitle("Sistema de Gestión de Comedor - Iniciar");
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments

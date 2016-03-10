@@ -5,6 +5,8 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import static cr.ac.uia.SistemaGC.gui.Login.PUI;
+
 /**
  *
  * @author Pao
@@ -46,6 +48,17 @@ public class Reportes extends javax.swing.JFrame {
         btnGenerarReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitulo.setText("Reportes");
@@ -95,6 +108,11 @@ public class Reportes extends javax.swing.JFrame {
 
         btnGenerarReporte.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGenerarReporte.setText("Generar Reporte");
+        btnGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarReporteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,6 +200,22 @@ public class Reportes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGenerarReporteActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setAutoRequestFocus(true);
+        this.setAlwaysOnTop(true);
+        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_formComponentShown
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        PUI.setEnabled(true);
+        PUI.toFront();
+    }//GEN-LAST:event_formWindowClosed
+
     /**
      * @param args the command line arguments
      */
@@ -210,10 +244,8 @@ public class Reportes extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Reportes().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Reportes().setVisible(true);
         });
     }
 
