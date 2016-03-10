@@ -5,16 +5,24 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
+import cr.ac.uia.SistemaGC.entities.Usuarios;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Pao
  */
-public class Usuarios extends javax.swing.JFrame {
+public class UsuariosUI extends javax.swing.JFrame {
 
     /**
      * Creates new form Usuarios
      */
-    public Usuarios() {
+    public UsuariosUI() {
         initComponents();
     }
 
@@ -35,6 +43,11 @@ public class Usuarios extends javax.swing.JFrame {
         btnDesHabilitarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         lblTituloUsuarios.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTituloUsuarios.setText("Gestión de Usuarios");
@@ -120,6 +133,26 @@ public class Usuarios extends javax.swing.JFrame {
         new AgregarUsuario().setVisible(true);
     }//GEN-LAST:event_btnModificarUsuarioActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            String col[] = {"Usuario", "Nombre", "Cédula", "Activo"};
+            DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+            Usuarios_bl ubl = new Usuarios_bl();
+            ArrayList<Usuarios> u = ubl.select(new Usuarios());
+            for (int i = 0; i < u.size(); i++) {
+                String[] ap = {
+                    u.get(i).getUsuario(),
+                    u.get(i).getNombre(),
+                    u.get(i).getCedula().toString(),
+                    u.get(i).getActivo().toString()};
+                tableModel.addRow(ap);
+            }
+            this.tblUsuarios.setModel(tableModel);
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonasUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -137,20 +170,21 @@ public class Usuarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuariosUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Usuarios().setVisible(true);
+                new UsuariosUI().setVisible(true);
             }
         });
     }
