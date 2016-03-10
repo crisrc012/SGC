@@ -24,12 +24,21 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Pao
  */
 public class Personas_Agregar extends javax.swing.JFrame {
+    private final boolean isUpdate;
+    private Personas persona;
 
     /**
      * Creates new form AgregarPersona
      */
     public Personas_Agregar() {
         initComponents();
+        isUpdate= false;
+        this.persona= new Personas();
+    }
+    public Personas_Agregar(boolean Update, Personas persona) {
+        initComponents();
+        this.isUpdate= Update;
+        this.persona = persona;
     }
 
     /**
@@ -280,17 +289,26 @@ public class Personas_Agregar extends javax.swing.JFrame {
                     id=2;
                 }
             }
-            Personas nueva = new Personas();
             Personas_bl blp = new Personas_bl();
-            nueva.setCedula(Integer.parseInt(txtCedulaPersona.getText().trim()));
-            nueva.setNombre(txtNombrePersona.getText().trim());
-            nueva.setApellidos(txtApellidosPersona.getText().trim());
-            nueva.setFecha_nacimiento(Date.valueOf(txtFechaPersona.getText()));
-            nueva.setTel_celular(Integer.parseInt(txtTelefono1.getText()));
-            nueva.setTel_habitacion(Integer.parseInt(txtTelefono2.getText()));
-            nueva.setEncargado(txtContactoPersona.getText().trim());
-            nueva.setId_persona(id);
-            if(blp.insert(nueva)){
+            persona.setCedula(Integer.parseInt(txtCedulaPersona.getText().trim()));
+            persona.setNombre(txtNombrePersona.getText().trim());
+            persona.setApellidos(txtApellidosPersona.getText().trim());
+            persona.setFecha_nacimiento(Date.valueOf(txtFechaPersona.getText()));
+            persona.setTel_celular(Integer.parseInt(txtTelefono1.getText()));
+            persona.setTel_habitacion(Integer.parseInt(txtTelefono2.getText()));
+            persona.setEncargado(txtContactoPersona.getText().trim());
+            persona.setId_persona(id);
+            if(this.isUpdate){
+                if(blp.update(persona)){
+                    JOptionPane.showMessageDialog(null, "Persona actualizada correctamente", 
+                            "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Error al actualizar, por favor verifique los datos", 
+                            "Error", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }else 
+            if(blp.insert(persona)){
                 JOptionPane.showMessageDialog(null, "Se ha guardado correctamente.",
                         "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
             }else{
@@ -307,6 +325,21 @@ public class Personas_Agregar extends javax.swing.JFrame {
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
+        if(this.isUpdate){
+            btnGuardarPersona.setText("Modificar Persona");
+            txtCedulaPersona.setText(this.persona.getCedula().toString());
+            txtNombrePersona.setText(this.persona.getNombre());
+            txtApellidosPersona.setText(this.persona.getApellidos());
+            txtFechaPersona.setText(this.persona.getFecha_nacimiento().toString());
+            txtTelefono1.setText(this.persona.getTel_celular().toString());
+            txtTelefono2.setText(this.persona.getTel_habitacion().toString());
+            txtContactoPersona.setText(this.persona.getEncargado()); 
+            if(this.persona.getId_persona()==1){
+                RBEstudiante.setSelected(true);
+            }else{
+                RBProfesor.setSelected(true);
+            }
+        }
     }//GEN-LAST:event_formComponentShown
 
     /**

@@ -8,10 +8,12 @@ package cr.ac.uia.SistemaGC.gui;
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -157,9 +159,24 @@ public class Personas_Principal extends javax.swing.JFrame {
     private void btnModificarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPersonaActionPerformed
         int i = tblPersonas.getSelectedRow();
         if(i > -1){
-            
+           new Personas_Agregar(true,
+                   new Personas(
+                           Integer.parseInt((String)tblPersonas.getValueAt(i, 0)),
+                           (String)tblPersonas.getValueAt(i, 1), 
+                           (String) tblPersonas.getValueAt(i, 2),
+                           Date.valueOf((String) tblPersonas.getValueAt(i, 3)),
+                           Integer.parseInt((String) tblPersonas.getValueAt(i, 4)),
+                           Integer.parseInt((String)tblPersonas.getValueAt(i, 5)),
+                           (String)tblPersonas.getValueAt(i, 6),
+                           Integer.parseInt((String)tblPersonas.getValueAt(i, 7)))).setVisible(true);
+           this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null,
+                    "Por favor seleccione una celda.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
-        new Personas_Agregar().setVisible(true);
+        
     }//GEN-LAST:event_btnModificarPersonaActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -193,8 +210,8 @@ public class Personas_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        PUI.setEnabled(true);
-        PUI.toFront();
+        /*PUI.setEnabled(true);
+        PUI.toFront();*/
     }//GEN-LAST:event_formWindowClosed
 
     /**
