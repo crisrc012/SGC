@@ -5,6 +5,14 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Becas_bl;
+import cr.ac.uia.SistemaGC.entities.Becas;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Pao
@@ -35,6 +43,11 @@ public class TipoBeca extends javax.swing.JFrame {
         btnDesHabilitarBeca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         lblTituloBecas.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTituloBecas.setText("Tipos de Becas");
@@ -116,11 +129,46 @@ public class TipoBeca extends javax.swing.JFrame {
 
     private void btnAgregarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecaActionPerformed
         new AgregarBeca().setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnAgregarBecaActionPerformed
 
     private void btnModificarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarBecaActionPerformed
-        new AgregarBeca().setVisible(true);
+        int i = tblTiposBecas.getSelectedRow();
+        if(i!=-1){
+            try {
+                Becas b = new Becas();
+                Becas_bl bl = new Becas_bl();
+                b.setNombre(tblTiposBecas.getValueAt(i, 0).toString());
+                b.setPorcentaje(Integer.parseInt(tblTiposBecas.getValueAt(i, 1).toString()));
+                ArrayList<Becas> ab = bl.select(b);
+                AgregarBeca nuevo = new AgregarBeca();
+                nuevo.recibir(ab);
+                setVisible(false);
+            } catch (SQLException ex) {
+                Logger.getLogger(TipoBeca.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }//GEN-LAST:event_btnModificarBecaActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            String col[] = {"Nombre Beca", "Porcentaje Beca"};
+            DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+            Becas_bl bbl = new Becas_bl();
+            ArrayList<Becas> al = bbl.select(new Becas());
+            for (int i = 0; i < al.size(); i++) { 
+                String[] ap =
+                {al.get(i).getNombre(),
+                    al.get(i).getPorcentaje().toString(),
+                };
+                tableModel.addRow(ap);
+            }
+            this.tblTiposBecas.setModel(tableModel);
+        } catch (SQLException ex) {
+            Logger.getLogger(TipoBeca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

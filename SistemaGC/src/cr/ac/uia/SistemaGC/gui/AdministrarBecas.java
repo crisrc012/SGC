@@ -5,6 +5,14 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Becados_bl;
+import cr.ac.uia.SistemaGC.entities.Becados;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Pao
@@ -35,6 +43,11 @@ public class AdministrarBecas extends javax.swing.JFrame {
         btnDesasignarBeca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         tblAdmBecas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,6 +133,10 @@ public class AdministrarBecas extends javax.swing.JFrame {
     private void btnModificarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarAsignacionActionPerformed
         new AsignarBeca().setVisible(true);
     }//GEN-LAST:event_btnModificarAsignacionActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
