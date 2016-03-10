@@ -1,7 +1,15 @@
 --Tablas de SGC
 --PostgreSQL 9.5
 
---Crear DB llamada "dbSGC"
+drop database "dbSGC";
+
+create database "dbSGC"
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'Spanish_Costa Rica.1252'
+       LC_CTYPE = 'Spanish_Costa Rica.1252'
+       CONNECTION LIMIT = -1;
 
 create table tbl_becas(
 	id serial primary key,
@@ -123,16 +131,19 @@ end;
 $body$
 language plpgsql;
 
-
 create  or replace function f_becas(
 	in dml text,
 	in _id integer,
 	in _nombre text,
-	in _porcentaje integer)
+	in _porcentaje integer,
+	in _activo boolean,
+	in _observaciones text)
 returns table(
 	id integer,
 	nombre text,
-	porcentaje integer) as
+	porcentaje integer,
+	activo boolean,
+	observaciones text) as
 $body$
 begin
 	case dml
@@ -142,15 +153,19 @@ begin
 			from tbl_becas t
 			where t.id = coalesce(_id, t.id) and
 			t.nombre like '%' || coalesce(upper(_nombre), t.nombre) || '%' and
-			t.porcentaje = coalesce(_porcentaje, t.porcentaje)
+			t.porcentaje = coalesce(_porcentaje, t.porcentaje) and
+			t.activo = coalesce(_activo, t.activo) and
+			t.observaciones = coalesce(_observaciones, t.observaciones)
 			order by t.porcentaje;
 		when 'insert' then
-			insert into tbl_becas (nombre, porcentaje)
-			values (upper(_nombre), _porcentaje);
+			insert into tbl_becas (nombre, porcentaje, activo, observaciones)
+			values (upper(_nombre), _porcentaje, _activo, upper(_observaciones));
 		when 'update' then
 			update tbl_becas t
 			set nombre = upper(_nombre),
-			porcentaje = _porcentaje
+			porcentaje = _porcentaje,
+			activo = _activo,
+			observaciones = upper(_observaciones)
 			where t.id = _id;
 		when 'delete' then
 			delete from tbl_becas t
