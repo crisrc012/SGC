@@ -30,6 +30,8 @@ public class Becas_bl {
             String id = "NULL";
             String nombre = "NULL";
             String porcentaje = "NULL";
+            String activo = "NULL";
+            String observaciones = "NULL";
             if (becas.getId() != null) {
                 id = String.valueOf(becas.getId());
             }
@@ -39,17 +41,27 @@ public class Becas_bl {
             if (becas.getPorcentaje() != null) {
                 porcentaje = String.valueOf(becas.getPorcentaje());
             }
+            if (becas.getActivo() != null) {
+                activo = String.valueOf(becas.getActivo());
+            }
+            if (becas.getObservaciones() != null) {
+                observaciones = "'" + String.valueOf(becas.getObservaciones()) + "'";
+            }
             try (ResultSet rs = this.st.executeQuery(
                     "SELECT * FROM f_becas('select',"
                     + id + ", "
                     + nombre + ", "
-                    + porcentaje + ");")) {
+                    + porcentaje + ","
+                    + activo + ", "
+                    + observaciones + ");")) {
                 becaslst = new ArrayList<>();
                 while (rs.next()) {
                     Becas b = new Becas();
                     b.setId(rs.getInt("id"));
                     b.setNombre(rs.getString("nombre"));
                     b.setPorcentaje(rs.getInt("porcentaje"));
+                    b.setActivo(rs.getBoolean("activo"));
+                    b.setObservaciones(rs.getString("observaciones"));
                     becaslst.add(b);
                 }
                 rs.close();
@@ -75,6 +87,8 @@ public class Becas_bl {
             String id = "NULL";
             String nombre;
             String porcentaje;
+            String activo;
+            String observaciones;
             if (dml.equals("update")) {
                 id = String.valueOf(becas.getId());
             }
@@ -88,11 +102,24 @@ public class Becas_bl {
             } else {
                 porcentaje = String.valueOf(becas.getPorcentaje());
             }
+            if (becas.getActivo() == null) {
+                return false;
+            } else {
+                activo = String.valueOf(becas.getActivo());
+            }
+            if (becas.getObservaciones() == null) {
+                return false;
+            } else {
+                observaciones = String.valueOf(becas.getObservaciones());
+            }
             this.st.executeQuery("SELECT f_becas('"
                     + dml + "',"
                     + id + ", "
                     + nombre + ", "
-                    + porcentaje + ");");
+                    + porcentaje + ", "
+                    + activo + ", "
+                    + observaciones + ","
+                    + ");");
         } catch (SQLException e) {
             return false;
         } finally {
@@ -120,7 +147,7 @@ public class Becas_bl {
             this.conn = new Connection();
             this.st = conn.getConnection().createStatement();
             this.st.executeQuery("SELECT f_becas('delete', "
-                    + id + ", NULL, NULL);");
+                    + id + ", NULL, NULL, NULL, NULL, NULL);");
         } catch (SQLException e) {
             return false;
         } finally {

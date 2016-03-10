@@ -129,39 +129,36 @@ public class TipoBeca extends javax.swing.JFrame {
 
     private void btnAgregarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecaActionPerformed
         new AgregarBeca().setVisible(true);
-        setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnAgregarBecaActionPerformed
 
     private void btnModificarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarBecaActionPerformed
         int i = tblTiposBecas.getSelectedRow();
-        if(i!=-1){
+        if (i != -1) {
             try {
                 Becas b = new Becas();
                 Becas_bl bl = new Becas_bl();
                 b.setNombre(tblTiposBecas.getValueAt(i, 0).toString());
                 b.setPorcentaje(Integer.parseInt(tblTiposBecas.getValueAt(i, 1).toString()));
-                ArrayList<Becas> ab = bl.select(b);
-                AgregarBeca nuevo = new AgregarBeca();
-                nuevo.recibir(ab);
-                setVisible(false);
+                new AgregarBeca(false, bl.select(b).get(0)).setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(TipoBeca.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
     }//GEN-LAST:event_btnModificarBecaActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
-            String col[] = {"Nombre Beca", "Porcentaje Beca"};
+            String col[] = {"Nombre Beca", "Porcentaje Beca", "Activo", "Observaciones"};
             DefaultTableModel tableModel = new DefaultTableModel(col, 0);
             Becas_bl bbl = new Becas_bl();
             ArrayList<Becas> al = bbl.select(new Becas());
-            for (int i = 0; i < al.size(); i++) { 
-                String[] ap =
-                {al.get(i).getNombre(),
-                    al.get(i).getPorcentaje().toString(),
-                };
+            for (int i = 0; i < al.size(); i++) {
+                Object[] ap
+                        = {al.get(i).getNombre(),
+                            al.get(i).getPorcentaje(),
+                            al.get(i).getActivo(),
+                            al.get(i).getObservaciones()};
                 tableModel.addRow(ap);
             }
             this.tblTiposBecas.setModel(tableModel);
@@ -181,20 +178,16 @@ public class TipoBeca extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TipoBeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TipoBeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TipoBeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TipoBeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */

@@ -10,6 +10,7 @@ package cr.ac.uia.SistemaGC.entities;
  * @author crisrc012
  */
 public class Becas {
+
     private Integer id;
     private String nombre;
     private Integer porcentaje;
@@ -20,10 +21,10 @@ public class Becas {
         this.id = null;
         this.nombre = null;
         this.porcentaje = null;
-        this.activo= null;
+        this.activo = null;
         this.observaciones = null;
     }
-    
+
     public Becas(Integer id, String nombre, Integer porcentaje, Boolean activo, String observaciones) {
         this.id = id;
         this.nombre = nombre;
@@ -71,5 +72,5 @@ public class Becas {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-    
+
 }

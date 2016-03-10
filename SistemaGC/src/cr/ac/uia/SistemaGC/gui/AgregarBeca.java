@@ -20,11 +20,23 @@ import javax.swing.JOptionPane;
  */
 public class AgregarBeca extends javax.swing.JFrame {
 
+    // Propiedad que determina si la ventana se ejecuta para insertar o actualizar
+    private final boolean isUpdate;
+    private Becas becas;
+
     /**
      * Creates new form TipoBeca
      */
     public AgregarBeca() {
         initComponents();
+        isUpdate = false;
+        this.becas = null;
+    }
+
+    public AgregarBeca(boolean update, Becas becas) {
+        initComponents();
+        isUpdate = update;
+        this.becas = becas;
     }
 
     /**
@@ -48,6 +60,11 @@ public class AgregarBeca extends javax.swing.JFrame {
         CheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         lblNombreBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombreBeca.setText("Nombre de beca:");
@@ -146,7 +163,23 @@ public class AgregarBeca extends javax.swing.JFrame {
             b.setPorcentaje(Integer.parseInt(txtPorcentajeBeca.getText().trim()));
             b.setActivo(true);
             b.setObservaciones(txtObservacionesBeca.getText().trim());
-            if (bbl.insert(b)) {
+            if (this.isUpdate) {
+                // Para realizar el update, se necesita el id
+                b.setId(this.becas.getId());
+                if (bbl.update(b)) {
+                    JOptionPane.showMessageDialog(null,
+                            "Se ha actualizado correctamente la beca.",
+                            "Correcto",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    setVisible(false);
+                    new TipoBeca().setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Ha ocurrido un error, revise los datos ingresados.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } else if (bbl.insert(b)) {
                 JOptionPane.showMessageDialog(null,
                         "Se ha insertado correctamente la nueva beca.",
                         "Correcto",
@@ -167,12 +200,12 @@ public class AgregarBeca extends javax.swing.JFrame {
     private void txtPorcentajeBecaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPorcentajeBecaKeyReleased
         try {
             if (txtPorcentajeBeca.getText().length() > 0) {
-                if(Integer.parseInt(txtPorcentajeBeca.getText()) > 100){
+                if (Integer.parseInt(txtPorcentajeBeca.getText()) > 100) {
                     txtPorcentajeBeca.setText("100");
                     JOptionPane.showMessageDialog(null,
-                    "Por favor ingrese unicamente números iguales o menores a 100.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                            "Por favor ingrese unicamente números iguales o menores a 100.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (NumberFormatException | HeadlessException e) {
@@ -183,16 +216,16 @@ public class AgregarBeca extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_txtPorcentajeBecaKeyReleased
-     
-    public void recibir (ArrayList<Becas> ab){
-        for (int i = 0; i < ab.size(); i++) {
-            txtNombreBeca.setText(ab.get(i).getNombre());
-            txtPorcentajeBeca.setText(ab.get(i).getPorcentaje().toString());
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        if (this.isUpdate) {
+            btnGuardarBeca.setText("Modificar Beca");
+            txtNombreBeca.setText(this.becas.getNombre());
+            txtPorcentajeBeca.setText(this.becas.getPorcentaje().toString());
+            txtObservacionesBeca.setText(this.becas.getObservaciones());
         }
-        setVisible(true);
-        
-        
-    }
+    }//GEN-LAST:event_formComponentShown
+
     /**
      * @param args the command line arguments
      */
