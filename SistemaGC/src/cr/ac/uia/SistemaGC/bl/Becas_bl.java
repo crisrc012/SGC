@@ -110,7 +110,7 @@ public class Becas_bl {
             if (becas.getObservaciones() == null) {
                 return false;
             } else {
-                observaciones = String.valueOf(becas.getObservaciones());
+                observaciones = "'" + String.valueOf(becas.getObservaciones()) + "'";
             }
             this.st.executeQuery("SELECT f_becas('"
                     + dml + "',"
@@ -118,9 +118,9 @@ public class Becas_bl {
                     + nombre + ", "
                     + porcentaje + ", "
                     + activo + ", "
-                    + observaciones + ","
-                    + ");");
+                    + observaciones + ");");
         } catch (SQLException e) {
+            System.out.println(e.toString());
             return false;
         } finally {
             if (this.st != null) {

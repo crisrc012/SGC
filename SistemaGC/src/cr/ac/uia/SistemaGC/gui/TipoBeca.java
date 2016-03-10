@@ -129,7 +129,7 @@ public class TipoBeca extends javax.swing.JFrame {
 
     private void btnAgregarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecaActionPerformed
         new AgregarBeca().setVisible(true);
-        this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnAgregarBecaActionPerformed
 
     private void btnModificarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarBecaActionPerformed
@@ -140,6 +140,8 @@ public class TipoBeca extends javax.swing.JFrame {
                 Becas_bl bl = new Becas_bl();
                 b.setNombre(tblTiposBecas.getValueAt(i, 0).toString());
                 b.setPorcentaje(Integer.parseInt(tblTiposBecas.getValueAt(i, 1).toString()));
+                b.setActivo(Boolean.parseBoolean(tblTiposBecas.getValueAt(i, 3).toString()));
+                b.setObservaciones(tblTiposBecas.getValueAt(i, 4).toString());
                 new AgregarBeca(false, bl.select(b).get(0)).setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(TipoBeca.class.getName()).log(Level.SEVERE, null, ex);

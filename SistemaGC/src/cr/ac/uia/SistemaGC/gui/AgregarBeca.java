@@ -57,7 +57,7 @@ public class AgregarBeca extends javax.swing.JFrame {
         btnGuardarBeca = new javax.swing.JButton();
         lblTituloAgBeca = new javax.swing.JLabel();
         lblHabilitada = new javax.swing.JLabel();
-        CheckBox = new javax.swing.JCheckBox();
+        ChckBoxActivo = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -95,7 +95,7 @@ public class AgregarBeca extends javax.swing.JFrame {
         lblHabilitada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblHabilitada.setText("Habilitada:");
 
-        CheckBox.setSelected(true);
+        ChckBoxActivo.setSelected(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,7 +121,7 @@ public class AgregarBeca extends javax.swing.JFrame {
                                 .addComponent(txtPorcentajeBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                                 .addComponent(txtNombreBeca))
                             .addComponent(txtObservacionesBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CheckBox))))
+                            .addComponent(ChckBoxActivo))))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -141,7 +141,7 @@ public class AgregarBeca extends javax.swing.JFrame {
                             .addComponent(txtPorcentajeBeca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37)
                         .addComponent(lblHabilitada))
-                    .addComponent(CheckBox))
+                    .addComponent(ChckBoxActivo))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblObservacionesBeca)
@@ -161,7 +161,7 @@ public class AgregarBeca extends javax.swing.JFrame {
             Becas_bl bbl = new Becas_bl();
             b.setNombre(txtNombreBeca.getText().trim());
             b.setPorcentaje(Integer.parseInt(txtPorcentajeBeca.getText().trim()));
-            b.setActivo(true);
+            b.setActivo(ChckBoxActivo.isSelected());
             b.setObservaciones(txtObservacionesBeca.getText().trim());
             if (this.isUpdate) {
                 // Para realizar el update, se necesita el id
@@ -171,7 +171,7 @@ public class AgregarBeca extends javax.swing.JFrame {
                             "Se ha actualizado correctamente la beca.",
                             "Correcto",
                             JOptionPane.INFORMATION_MESSAGE);
-                    setVisible(false);
+                    dispose();
                     new TipoBeca().setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null,
@@ -259,7 +259,7 @@ public class AgregarBeca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox CheckBox;
+    private javax.swing.JCheckBox ChckBoxActivo;
     private javax.swing.JButton btnGuardarBeca;
     private javax.swing.JLabel lblHabilitada;
     private javax.swing.JLabel lblNombreBeca;
