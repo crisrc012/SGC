@@ -213,6 +213,8 @@ public class AgregarUsuario extends javax.swing.JFrame {
                     if(p_bl.insert(nueva)){
                         JOptionPane.showMessageDialog(null, "Usuario guardado correctamente",
                                 "Guardar Usuario", JOptionPane.INFORMATION_MESSAGE);
+                        setVisible(false);
+                        new UsuariosUI().setVisible(true);
                     }else{
                         JOptionPane.showMessageDialog(null, "El usuario no pudo ser guardado correctamente, por favor intente de nuevo",
                                 "Guardar Usuario", JOptionPane.INFORMATION_MESSAGE);

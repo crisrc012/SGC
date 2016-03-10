@@ -169,7 +169,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void MUsurioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MUsurioMousePressed
-        new Usuarios().setVisible(true);
+        new UsuariosUI().setVisible(true);
     }//GEN-LAST:event_MUsurioMousePressed
 
     private void MPersonasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MPersonasMousePressed

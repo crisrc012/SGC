@@ -146,6 +146,10 @@ public class PersonasUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarPersonaActionPerformed
 
     private void btnModificarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPersonaActionPerformed
+        int i = tblPersonas.getSelectedRow();
+        if(i!=1){
+            
+        }
         new AgregarPersona().setVisible(true);
     }//GEN-LAST:event_btnModificarPersonaActionPerformed
 
