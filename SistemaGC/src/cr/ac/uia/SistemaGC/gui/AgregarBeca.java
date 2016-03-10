@@ -9,6 +9,7 @@ import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.entities.Becas;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -150,6 +151,8 @@ public class AgregarBeca extends javax.swing.JFrame {
                         "Se ha insertado correctamente la nueva beca.",
                         "Correcto",
                         JOptionPane.INFORMATION_MESSAGE);
+                setVisible(false);
+                new TipoBeca().setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Ha ocurrido un error, revise los datos ingresados.",
@@ -180,7 +183,16 @@ public class AgregarBeca extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_txtPorcentajeBecaKeyReleased
-
+     
+    public void recibir (ArrayList<Becas> ab){
+        for (int i = 0; i < ab.size(); i++) {
+            txtNombreBeca.setText(ab.get(i).getNombre());
+            txtPorcentajeBeca.setText(ab.get(i).getPorcentaje().toString());
+        }
+        setVisible(true);
+        
+        
+    }
     /**
      * @param args the command line arguments
      */
