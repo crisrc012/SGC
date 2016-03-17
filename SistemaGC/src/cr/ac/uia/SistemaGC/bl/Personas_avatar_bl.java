@@ -5,7 +5,7 @@
  */
 package cr.ac.uia.SistemaGC.bl;
 
-import cr.ac.uia.SistemaGC.db.Conexion;
+import cr.ac.uia.SistemaGC.db.Personas_avatar_db;
 import cr.ac.uia.SistemaGC.entities.Personas_avatar;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -15,83 +15,28 @@ import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Arrays;
 import javax.imageio.ImageIO;
 import org.apache.commons.codec.binary.Hex;
 
 /**
  *
- * @author crobles
+ * @author crisrc012
  */
 public class Personas_avatar_bl {
 
-    private Conexion conn;
-    private Statement st;
+    private final Personas_avatar_db padb;
+    
+    public Personas_avatar_bl(){
+        padb = new Personas_avatar_db();
+    }
 
     public byte[] select(int cedula) throws SQLException {
-        byte[] foto = null;
-        try {
-            this.st = null;
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            try (ResultSet rs = this.st.executeQuery(
-                    "SELECT foto FROM tbl_personas_avatar WHERE cedula=" + cedula + ";")) {
-                while (rs.next()) {
-                    foto = rs.getBytes("foto");
-                }
-                rs.close();
-            }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-            return null;
-        } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
-        }
-        return foto;
+        return padb.select(cedula);
     }
 
     private boolean insert_update(Personas_avatar personas_avatar, String dml) throws FileNotFoundException, SQLException, IOException {
-        try {
-            this.st = null;
-            conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            String query;
-            switch (dml) {
-                case "insert":
-                    query = "insert into tbl_personas_avatar values ("
-                            + personas_avatar.getCedula()
-                            + ", '"
-                            + Hex.encodeHexString(personas_avatar.getFoto()) + "');";
-                    break;
-                case "update":
-                    query = "update tbl_personas_avatar set foto='"
-                            + Hex.encodeHexString(personas_avatar.getFoto())
-                            + "' where cedula=" + personas_avatar.getCedula() + ");";
-                    break;
-                default:
-                    return false;
-            }
-            this.st.executeQuery(query);
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-            return false;
-        } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
-        }
-        return true;
+        return padb.insert_update(personas_avatar.getCedula().toString(), Hex.encodeHexString(personas_avatar.getFoto()), dml);
     }
 
     public boolean insert(Personas_avatar personas_avatar) throws SQLException, IOException {
@@ -125,22 +70,8 @@ public class Personas_avatar_bl {
             return null;
         }
     }
-
-    public boolean delete(int id) throws SQLException {
-        try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("");
-        } catch (SQLException e) {
-            return false;
-        } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
-        }
-        return true;
+    
+    public boolean delete(int cedula) throws SQLException {
+        return padb.delete(cedula);
     }
 }

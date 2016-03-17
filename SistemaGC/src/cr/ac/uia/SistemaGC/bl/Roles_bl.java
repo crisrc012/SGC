@@ -5,11 +5,9 @@
  */
 package cr.ac.uia.SistemaGC.bl;
 
-import cr.ac.uia.SistemaGC.db.Conexion;
+import cr.ac.uia.SistemaGC.db.Roles_db;
 import cr.ac.uia.SistemaGC.entities.Roles;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -17,107 +15,48 @@ import java.util.ArrayList;
  * @author crisrc012
  */
 public class Roles_bl {
-
-    private Conexion conn;
-    private Statement st;
-
+    
+    private final Roles_db rdb;
+    
+    public Roles_bl() {
+        rdb = new Roles_db();
+    }
+    
     public ArrayList<Roles> select(Roles roles) throws SQLException {
-        ArrayList<Roles> roleslst = null;
-        try {
-            this.st = null;
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            String id = "NULL";
-            String descripcion = "NULL";
-            if (null != roles.getId()) {
-                id = String.valueOf(roles.getId());
-            }
-            if (roles.getDescripcion() != null) {
-                descripcion = "'" + roles.getDescripcion() + "'";
-            }
-            try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_roles('select', "
-                    + id + ", "
-                    + descripcion + ");")) {
-                roleslst = new ArrayList<>();
-                while (rs.next()) {
-                    Roles r = new Roles();
-                    r.setId(rs.getInt("id"));
-                    r.setDescripcion(rs.getString("descripcion"));
-                    roleslst.add(r);
-                }
-                rs.close();
-            }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-        } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+        String id = "NULL";
+        String descripcion = "NULL";
+        if (null != roles.getId()) {
+            id = String.valueOf(roles.getId());
         }
-        return roleslst;
+        if (roles.getDescripcion() != null) {
+            descripcion = "'" + roles.getDescripcion() + "'";
+        }
+        return rdb.select(id, descripcion);
     }
-
+    
     private boolean insert_update(Roles roles, String dml) throws SQLException {
-        try {
-            this.st = null;
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            String id = "NULL";
-            String descripcion;
-            if (dml.equals("update")) {
-                id = String.valueOf(roles.getId());
-            }
-            if (roles.getDescripcion() == null) {
-                return false;
-            } else {
-                descripcion = "'" + roles.getDescripcion() + "'";
-            }
-            this.st.executeQuery("SELECT f_roles('"
-                    + dml + "', "
-                    + id + ", "
-                    + descripcion + ");");
-        } catch (SQLException e) {
-            return false;
-        } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+        String id = "NULL";
+        String descripcion;
+        if (dml.equals("update")) {
+            id = String.valueOf(roles.getId());
         }
-        return true;
+        if (roles.getDescripcion() == null) {
+            return false;
+        } else {
+            descripcion = "'" + roles.getDescripcion() + "'";
+        }
+        return rdb.insert_update(id, descripcion, dml);
     }
-
+    
     public boolean insert(Roles roles) throws SQLException {
         return insert_update(roles, "insert");
     }
-
+    
     public boolean update(Roles roles) throws SQLException {
         return insert_update(roles, "update");
     }
-
+    
     public boolean delete(int id) throws SQLException {
-        try {
-            this.st = null;
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_roles('delete', "
-                    + id + ", NULL);");
-        } catch (SQLException e) {
-            return false;
-        } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
-        }
-        return true;
+        return rdb.delete(id);
     }
 }

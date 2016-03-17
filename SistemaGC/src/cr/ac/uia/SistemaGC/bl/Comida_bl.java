@@ -5,28 +5,24 @@
  */
 package cr.ac.uia.SistemaGC.bl;
 
-import cr.ac.uia.SistemaGC.db.Conexion;
+import cr.ac.uia.SistemaGC.db.Comida_db;
 import cr.ac.uia.SistemaGC.entities.Comida;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
  *
- * @author crobles
+ * @author crisrc012
  */
 public class Comida_bl {
 
-    private Conexion conn;
-    private Statement st;
+    private final Comida_db cdb;
+    
+    public Comida_bl(){
+        cdb = new Comida_db();
+    }
 
     public ArrayList<Comida> select(Comida comida) throws SQLException {
-        ArrayList<Comida> comidalst = null;
-        try {
-            this.st = null;
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
             String id = "NULL";
             String descripcion = "NULL";
             if (null != comida.getId()) {
@@ -35,37 +31,10 @@ public class Comida_bl {
             if (comida.getDescripcion() != null) {
                 descripcion = "'" + comida.getDescripcion() + "'";
             }
-            try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_comida('select', "
-                    + id + ", "
-                    + descripcion + ");")) {
-                comidalst = new ArrayList<>();
-                while (rs.next()) {
-                    Comida c = new Comida();
-                    c.setId(rs.getInt("id"));
-                    c.setDescripcion(rs.getString("descripcion"));
-                    comidalst.add(c);
-                }
-                rs.close();
-            }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-        } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
-        }
-        return comidalst;
+        return cdb.select(id, descripcion);
     }
 
     private boolean insert_update(Comida comida, String dml) throws SQLException {
-        try {
-            this.st = null;
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
             String id = "NULL";
             String descripcion;
             if (dml.equals("update")) {
@@ -76,21 +45,7 @@ public class Comida_bl {
             } else {
                 descripcion = "'" + comida.getDescripcion() + "'";
             }
-            this.st.executeQuery("SELECT f_comida('"
-                    + dml + "',"
-                    + id + ", "
-                    + descripcion + ");");
-        } catch (SQLException e) {
-            return false;
-        } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
-        }
-        return true;
+        return cdb.insert_update(id, descripcion, dml);
     }
 
     public boolean insert(Comida comida) throws SQLException {
@@ -102,22 +57,6 @@ public class Comida_bl {
     }
 
     public boolean delete(int id) throws SQLException {
-        try {
-            this.st = null;
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_comida('delete', "
-                    + id + ", NULL);");
-        } catch (SQLException e) {
-            return false;
-        } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
-        }
-        return true;
+        return cdb.delete(id);
     }
 }
