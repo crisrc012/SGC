@@ -153,13 +153,13 @@ public class Personas_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPersonaActionPerformed
-        new Personas_Agregar().setVisible(true);
+        new Personas_Formulario().setVisible(true);
     }//GEN-LAST:event_btnAgregarPersonaActionPerformed
 
     private void btnModificarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPersonaActionPerformed
         int i = tblPersonas.getSelectedRow();
         if(i > -1){
-           new Personas_Agregar(true,
+           new Personas_Formulario(true,
                    new Personas(
                            Integer.parseInt((String)tblPersonas.getValueAt(i, 0)),
                            (String)tblPersonas.getValueAt(i, 1), 

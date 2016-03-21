@@ -13,17 +13,21 @@ import java.sql.SQLException;
  * @author crisrc012
  */
 public class Conexion {
-    private java.sql.Connection Connection;
-    
-    public java.sql.Connection getConnection() throws SQLException {
-        this.Connection = 
-                DriverManager.getConnection(
+
+    private final java.sql.Connection Connection;
+
+    public Conexion() throws SQLException {
+        this.Connection
+                = DriverManager.getConnection(
                         "jdbc:postgresql://127.0.0.1:5432/dbSGC",
                         "postgres",
                         "postgres");
+    }
+
+    public java.sql.Connection getConnection() throws SQLException {
         return this.Connection;
     }
-    
+
     public void close() throws SQLException {
         this.Connection.close();
     }

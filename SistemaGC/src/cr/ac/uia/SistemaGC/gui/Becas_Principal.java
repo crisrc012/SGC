@@ -143,14 +143,14 @@ public class Becas_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecaActionPerformed
-        new Becas_Agregar().setVisible(true);
+        new Becas_Formulario().setVisible(true);
         //this.setEnabled(false);
     }//GEN-LAST:event_btnAgregarBecaActionPerformed
 
     private void btnModificarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarBecaActionPerformed
         int i = tblTiposBecas.getSelectedRow();
         if (i > -1) {
-            new Becas_Agregar(true,
+            new Becas_Formulario(true,
                     new Becas(
                             Integer.parseInt((String) tblTiposBecas.getValueAt(i, 0)),
                             (String) tblTiposBecas.getValueAt(i, 1),

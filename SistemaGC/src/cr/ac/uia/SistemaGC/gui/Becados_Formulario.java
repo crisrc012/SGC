@@ -9,12 +9,12 @@ package cr.ac.uia.SistemaGC.gui;
  *
  * @author Pao
  */
-public class Becados_Agregar extends javax.swing.JFrame {
+public class Becados_Formulario extends javax.swing.JFrame {
 
     /**
      * Creates new form AsignarBeca
      */
-    public Becados_Agregar() {
+    public Becados_Formulario() {
         initComponents();
     }
 
@@ -173,8 +173,10 @@ public class Becados_Agregar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Becados_Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Becados_Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
@@ -182,7 +184,7 @@ public class Becados_Agregar extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Becados_Agregar().setVisible(true);
+            new Becados_Formulario().setVisible(true);
         });
     }
 

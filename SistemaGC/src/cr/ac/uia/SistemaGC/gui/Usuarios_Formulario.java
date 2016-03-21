@@ -17,13 +17,25 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class Usuarios_Agregar extends javax.swing.JFrame {
+public class Usuarios_Formulario extends javax.swing.JFrame {
 
+    // Propiedad que determina si la ventana se ejecuta para insertar o actualizar
+    private final boolean isUpdate;
+    private final Usuarios usuarios;
+    
     /**
      * Creates new form AgregarUsuario
      */
-    public Usuarios_Agregar() {
+    public Usuarios_Formulario() {
         initComponents();
+        isUpdate = false;
+        this.usuarios = new Usuarios();
+    }
+    
+    public Usuarios_Formulario(boolean update, Usuarios usuarios) {
+        initComponents();
+        isUpdate = update;
+        this.usuarios = usuarios;
     }
 
     /**
@@ -42,11 +54,9 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
         lblRepetir = new javax.swing.JLabel();
         lblActivo = new javax.swing.JLabel();
         lblObservacionesUsuario = new javax.swing.JLabel();
-        lblCamposReq = new javax.swing.JLabel();
         btnGuardarUsuario = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
         txtUsuario = new javax.swing.JTextField();
-        txtObsUsuario = new javax.swing.JTextField();
         CBActivo = new javax.swing.JCheckBox();
         txtContraseña = new javax.swing.JPasswordField();
         txtRepetirCont = new javax.swing.JPasswordField();
@@ -54,6 +64,8 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
         txtCedula = new javax.swing.JTextField();
         lblApellidos = new javax.swing.JLabel();
         txtApellidos = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtObsUsuario = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -83,9 +95,6 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
         lblObservacionesUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblObservacionesUsuario.setText("Observaciones:");
 
-        lblCamposReq.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        lblCamposReq.setText("* Campos Requeridos");
-
         btnGuardarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardarUsuario.setText("Guardar Usuario");
         btnGuardarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -97,9 +106,6 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-
-        txtObsUsuario.setColumns(2);
-        txtObsUsuario.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         CBActivo.setSelected(true);
 
@@ -115,6 +121,8 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
         lblApellidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblApellidos.setText("Apellidos:");
 
+        jScrollPane1.setViewportView(txtObsUsuario);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,8 +137,7 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCamposReq)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnGuardarUsuario))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,22 +150,22 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
                                     .addComponent(lblNombre)
                                     .addComponent(lblApellidos))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(66, 66, 66)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtUsuario)
-                                            .addComponent(txtContraseña)
-                                            .addComponent(txtRepetirCont)
-                                            .addComponent(txtObsUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(CBActivo)
-                                                .addGap(0, 0, Short.MAX_VALUE))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                                             .addComponent(txtApellidos)
-                                            .addComponent(txtCedula))))
+                                            .addComponent(txtCedula)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(66, 66, 66)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtUsuario)
+                                            .addComponent(txtContraseña)
+                                            .addComponent(txtRepetirCont)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(CBActivo)
+                                                .addGap(0, 259, Short.MAX_VALUE)))))
                                 .addGap(76, 76, 76)))))
                 .addContainerGap())
         );
@@ -197,13 +204,12 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(CBActivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtObsUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblObservacionesUsuario))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblObservacionesUsuario)))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnGuardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCamposReq))
+                .addComponent(btnGuardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -243,7 +249,7 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
                     txtRepetirCont.setText("");
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Usuarios_Agregar.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Usuarios_Formulario.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         //FIN DEL MÉTODO
@@ -254,6 +260,15 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
+        if (this.isUpdate) {
+            btnGuardarUsuario.setText("Modificar Usuario");
+            txtApellidos.setText(this.usuarios.getApellidos());
+            txtCedula.setText(this.usuarios.getCedula().toString());
+            txtNombre.setText(this.usuarios.getNombre());
+            txtObsUsuario.setText(this.usuarios.getObservaciones());
+            txtUsuario.setText(this.usuarios.getUsuario());
+            CBActivo.setSelected(this.usuarios.getActivo());
+        }
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -273,8 +288,10 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Usuarios_Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Usuarios_Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -282,16 +299,16 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Usuarios_Agregar().setVisible(true);
+            new Usuarios_Formulario().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox CBActivo;
     private javax.swing.JButton btnGuardarUsuario;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblActivo;
     private javax.swing.JLabel lblApellidos;
-    private javax.swing.JLabel lblCamposReq;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblNombre;
@@ -303,7 +320,7 @@ public class Usuarios_Agregar extends javax.swing.JFrame {
     private javax.swing.JTextField txtCedula;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtObsUsuario;
+    private javax.swing.JTextPane txtObsUsuario;
     private javax.swing.JPasswordField txtRepetirCont;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

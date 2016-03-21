@@ -36,9 +36,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="lblCamposReq" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="btnGuardarUsuario" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -53,25 +52,25 @@
                                   <Component id="lblApellidos" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtUsuario" max="32767" attributes="0"/>
-                                          <Component id="txtContraseña" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtRepetirCont" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtObsUsuario" alignment="0" pref="280" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="CBActivo" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="txtNombre" pref="280" max="32767" attributes="0"/>
                                           <Component id="txtApellidos" max="32767" attributes="0"/>
                                           <Component id="txtCedula" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="txtUsuario" max="32767" attributes="0"/>
+                                          <Component id="txtContraseña" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtRepetirCont" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="CBActivo" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="259" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -125,17 +124,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="CBActivo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtObsUsuario" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="lblObservacionesUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                          <Component id="lblObservacionesUsuario" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="btnGuardarUsuario" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="lblCamposReq" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="btnGuardarUsuario" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -198,14 +194,6 @@
         <Property name="text" type="java.lang.String" value="Observaciones:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCamposReq">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="12" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="* Campos Requeridos"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btnGuardarUsuario">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -226,14 +214,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtUsuario">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="12" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtObsUsuario">
-      <Properties>
-        <Property name="columns" type="int" value="2"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="12" style="0"/>
         </Property>
@@ -283,5 +263,16 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtApellidos">
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextPane" name="txtObsUsuario">
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

@@ -5,13 +5,16 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
+import cr.ac.uia.SistemaGC.entities.Becas;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,11 +22,15 @@ import javax.swing.table.DefaultTableModel;
  * @author Pao
  */
 public class Usuarios_Principal extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Usuarios
      */
     public Usuarios_Principal() {
+        initComponents();
+    }
+    
+    public Usuarios_Principal(boolean update, Usuarios usuarios) {
         initComponents();
     }
 
@@ -134,32 +141,58 @@ public class Usuarios_Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioActionPerformed
-        new Usuarios_Agregar().setVisible(true);
-    }//GEN-LAST:event_btnAgregarUsuarioActionPerformed
-
-    private void btnModificarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarUsuarioActionPerformed
-        new Usuarios_Agregar().setVisible(true);
-    }//GEN-LAST:event_btnModificarUsuarioActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void refreshJTable(){
         try {
-            String col[] = {"Usuario", "Nombre", "Cédula", "Activo"};
+            String col[] = {"Cédula","Usuario","Nombre","Apellidos","Activo","Observaciones"};
             DefaultTableModel tableModel = new DefaultTableModel(col, 0);
             Usuarios_bl ubl = new Usuarios_bl();
             ArrayList<Usuarios> u = ubl.select(new Usuarios());
             for (int i = 0; i < u.size(); i++) {
                 String[] ap = {
+                    u.get(i).getCedula().toString(),
                     u.get(i).getUsuario(),
                     u.get(i).getNombre(),
-                    u.get(i).getCedula().toString(),
-                    u.get(i).getActivo().toString()};
+                    u.get(i).getApellidos(),
+                    u.get(i).getActivo().toString(),
+                    u.get(i).getObservaciones()
+                };
                 tableModel.addRow(ap);
             }
             this.tblUsuarios.setModel(tableModel);
         } catch (SQLException ex) {
             Logger.getLogger(Personas_Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void btnAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioActionPerformed
+        new Usuarios_Formulario().setVisible(true);
+    }//GEN-LAST:event_btnAgregarUsuarioActionPerformed
+
+    private void btnModificarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarUsuarioActionPerformed
+        int i = tblUsuarios.getSelectedRow();
+        if (i > -1) {
+            new Usuarios_Formulario(true,
+                    new Usuarios(
+                            Integer.parseInt((String) tblUsuarios.getValueAt(i, 0)),
+                            (String) tblUsuarios.getValueAt(i, 1),
+                            null,
+                            (String) tblUsuarios.getValueAt(i, 2),
+                            (String) tblUsuarios.getValueAt(i, 3),
+                            Boolean.parseBoolean((String) tblUsuarios.getValueAt(i, 4)),
+                            (String) tblUsuarios.getValueAt(i, 5),
+                            1
+                    )).setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Por favor seleccione una celda.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnModificarUsuarioActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        refreshJTable();
     }//GEN-LAST:event_formWindowOpened
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown

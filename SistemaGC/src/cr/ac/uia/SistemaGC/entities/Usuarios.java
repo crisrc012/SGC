@@ -25,16 +25,18 @@ public class Usuarios {
         this.usuario = null;
         this.contrasena = null;
         this.nombre = null;
+        this.apellidos = null;
         this.activo = null;
         this.observaciones = null;
         this.id_rol = null;
     }
 
-    public Usuarios(Integer cedula, String usuario, String contrasena, String nombre_completo, Boolean activo, String observaciones, Integer id_rol) {
+    public Usuarios(Integer cedula, String usuario, String contrasena, String nombre, String apellidos, Boolean activo, String observaciones, Integer id_rol) {
         this.cedula = cedula;
         this.usuario = usuario;
         this.contrasena = contrasena;
-        this.nombre = nombre_completo;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
         this.activo = activo;
         this.observaciones = observaciones;
         this.id_rol = id_rol;

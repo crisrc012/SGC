@@ -129,11 +129,11 @@ public class Becados_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAsignarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarBecaActionPerformed
-        new Becados_Agregar().setVisible(true);
+        new Becados_Formulario().setVisible(true);
     }//GEN-LAST:event_btnAsignarBecaActionPerformed
 
     private void btnModificarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarAsignacionActionPerformed
-        new Becados_Agregar().setVisible(true);
+        new Becados_Formulario().setVisible(true);
     }//GEN-LAST:event_btnModificarAsignacionActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

@@ -23,19 +23,19 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Pao
  */
-public class Personas_Agregar extends javax.swing.JFrame {
+public class Personas_Formulario extends javax.swing.JFrame {
     private final boolean isUpdate;
     private Personas persona;
 
     /**
      * Creates new form AgregarPersona
      */
-    public Personas_Agregar() {
+    public Personas_Formulario() {
         initComponents();
         isUpdate= false;
         this.persona= new Personas();
     }
-    public Personas_Agregar(boolean Update, Personas persona) {
+    public Personas_Formulario(boolean Update, Personas persona) {
         initComponents();
         this.isUpdate= Update;
         this.persona = persona;
@@ -316,7 +316,7 @@ public class Personas_Agregar extends javax.swing.JFrame {
                         "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Personas_Agregar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Personas_Formulario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
 
@@ -359,8 +359,10 @@ public class Personas_Agregar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Personas_Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Personas_Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
@@ -368,7 +370,7 @@ public class Personas_Agregar extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Personas_Agregar().setVisible(true);
+            new Personas_Formulario().setVisible(true);
         });
     }
 

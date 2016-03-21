@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class Becas_Agregar extends javax.swing.JFrame {
+public class Becas_Formulario extends javax.swing.JFrame {
 
     // Propiedad que determina si la ventana se ejecuta para insertar o actualizar
     private final boolean isUpdate;
@@ -27,13 +27,13 @@ public class Becas_Agregar extends javax.swing.JFrame {
      * Creates new form Becas_Principal
      */
 
-    public Becas_Agregar() {
+    public Becas_Formulario() {
         initComponents();
         isUpdate = false;
         this.becas = new Becas();
     }
 
-    public Becas_Agregar(boolean update, Becas becas) {
+    public Becas_Formulario(boolean update, Becas becas) {
         initComponents();
         isUpdate = update;
         this.becas = becas;
@@ -188,7 +188,7 @@ public class Becas_Agregar extends javax.swing.JFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Becas_Agregar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Becas_Formulario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGuardarBecaActionPerformed
 
@@ -244,8 +244,12 @@ public class Becas_Agregar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Becas_Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Becas_Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -256,7 +260,7 @@ public class Becas_Agregar extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Becas_Agregar().setVisible(true);
+            new Becas_Formulario().setVisible(true);
         });
     }
 
