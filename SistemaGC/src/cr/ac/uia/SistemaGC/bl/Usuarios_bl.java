@@ -15,13 +15,13 @@ import java.util.ArrayList;
  * @author crisrc012
  */
 public class Usuarios_bl {
-    
+
     private final Usuarios_db udb;
-    
+
     public Usuarios_bl() {
         udb = new Usuarios_db();
     }
-    
+
     public ArrayList<Usuarios> select(Usuarios usuarios) throws SQLException {
         String cedula = "NULL";
         String usuario = "NULL";
@@ -57,11 +57,11 @@ public class Usuarios_bl {
         }
         return udb.select(cedula, usuario, contrasena, nombre, apellidos, activo, observaciones, id_rol);
     }
-    
+
     private boolean insert_update(Usuarios usuarios, String dml) throws SQLException {
         String cedula;
         String usuario;
-        String contrasena;
+        String contrasena = "NULL";
         String nombre;
         String apellidos;
         String activo;
@@ -87,9 +87,7 @@ public class Usuarios_bl {
         } else {
             apellidos = "'" + usuarios.getApellidos() + "'";
         }
-        if (usuarios.getContrasena() == null) {
-            return false;
-        } else {
+        if (usuarios.getContrasena() != null) {
             contrasena = "'" + cr.ac.uia.SistemaGC.utils.AES.encrypt(
                     String.valueOf(usuarios.getCedula()),
                     usuarios.getUsuario(),
@@ -112,15 +110,15 @@ public class Usuarios_bl {
         }
         return udb.insert_update(cedula, usuario, contrasena, nombre, apellidos, activo, observaciones, id_rol, dml);
     }
-    
+
     public boolean insert(Usuarios usuarios) throws SQLException {
         return insert_update(usuarios, "insert");
     }
-    
+
     public boolean update(Usuarios usuarios) throws SQLException {
         return insert_update(usuarios, "update");
     }
-    
+
     public boolean delete(int cedula) throws SQLException {
         return udb.delete(cedula);
     }

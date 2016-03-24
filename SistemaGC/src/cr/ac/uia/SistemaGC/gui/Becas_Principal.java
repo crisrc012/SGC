@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -143,30 +144,30 @@ public class Becas_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecaActionPerformed
+        this.dispose();
         new Becas_Formulario().setVisible(true);
-        //this.setEnabled(false);
     }//GEN-LAST:event_btnAgregarBecaActionPerformed
 
     private void btnModificarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarBecaActionPerformed
         int i = tblTiposBecas.getSelectedRow();
-        if (i > -1) {
-            new Becas_Formulario(true,
-                    new Becas(
-                            Integer.parseInt((String) tblTiposBecas.getValueAt(i, 0)),
-                            (String) tblTiposBecas.getValueAt(i, 1),
-                            Integer.parseInt((String) tblTiposBecas.getValueAt(i, 2)),
-                            Boolean.parseBoolean((String) tblTiposBecas.getValueAt(i, 3)),
-                            (String) tblTiposBecas.getValueAt(i, 4))).setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null,
+        if (i < 0) {
+            JOptionPane.showMessageDialog(this,
                     "Por favor seleccione una celda.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        new Becas_Formulario(true,
+                new Becas(
+                        Integer.parseInt((String) tblTiposBecas.getValueAt(i, 0)),
+                        (String) tblTiposBecas.getValueAt(i, 1),
+                        Integer.parseInt((String) tblTiposBecas.getValueAt(i, 2)),
+                        Boolean.parseBoolean((String) tblTiposBecas.getValueAt(i, 3)),
+                        (String) tblTiposBecas.getValueAt(i, 4))).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnModificarBecaActionPerformed
 
-    private void refreshJTable(){
+    private void refreshJTable() {
         try {
             String col[] = {"", "Nombre", "Porcentaje", "Activo", "Observaciones"};
             DefaultTableModel tableModel = new DefaultTableModel(col, 0);
@@ -181,6 +182,7 @@ public class Becas_Principal extends javax.swing.JFrame {
                             al.get(i).getObservaciones()};
                 tableModel.addRow(ap);
             }
+            this.tblTiposBecas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             this.tblTiposBecas.setModel(tableModel);
             // Ocultando columna id
             this.tblTiposBecas.getColumnModel().getColumn(0).setMinWidth(0);
@@ -190,41 +192,41 @@ public class Becas_Principal extends javax.swing.JFrame {
             Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         refreshJTable();
     }//GEN-LAST:event_formWindowOpened
 
     private void btnDesHabilitarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesHabilitarBecaActionPerformed
         int i = tblTiposBecas.getSelectedRow();
-        if (i > -1) {
-            try {
-                Becas_bl bbl = new Becas_bl();
-                if (bbl.update(new Becas(
-                        Integer.parseInt((String) tblTiposBecas.getValueAt(i, 0)),
-                        (String) tblTiposBecas.getValueAt(i, 1),
-                        Integer.parseInt((String) tblTiposBecas.getValueAt(i, 2)),
-                        !(Boolean.parseBoolean((String) tblTiposBecas.getValueAt(i, 3))),
-                        (String) tblTiposBecas.getValueAt(i, 4)))) {
-                    refreshJTable();
-                    JOptionPane.showMessageDialog(this,
-                            "Se ha actualizado correctamente la beca.",
-                            "Correcto",
-                            JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this,
-                            "Ha ocurrido un error.",
-                            "Error",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
+        if (i < 0) {
             JOptionPane.showMessageDialog(this,
                     "Por favor seleccione una celda.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            Becas_bl bbl = new Becas_bl();
+            if (bbl.update(new Becas(
+                    Integer.parseInt((String) tblTiposBecas.getValueAt(i, 0)),
+                    (String) tblTiposBecas.getValueAt(i, 1),
+                    Integer.parseInt((String) tblTiposBecas.getValueAt(i, 2)),
+                    !(Boolean.parseBoolean((String) tblTiposBecas.getValueAt(i, 3))),
+                    (String) tblTiposBecas.getValueAt(i, 4)))) {
+                refreshJTable();
+                JOptionPane.showMessageDialog(this,
+                        "Se ha actualizado correctamente la beca.",
+                        "Correcto",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Ha ocurrido un error.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDesHabilitarBecaActionPerformed
 

@@ -65,6 +65,11 @@ public class Becas_Formulario extends javax.swing.JFrame {
                 formComponentShown(evt);
             }
         });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         lblNombreBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombreBeca.setText("Nombre de beca:");
@@ -225,6 +230,10 @@ public class Becas_Formulario extends javax.swing.JFrame {
             txtObservacionesBeca.setText(this.becas.getObservaciones());
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        new Becas_Principal().setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

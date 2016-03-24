@@ -22,7 +22,7 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
     // Propiedad que determina si la ventana se ejecuta para insertar o actualizar
     private final boolean isUpdate;
     private final Usuarios usuarios;
-    
+
     /**
      * Creates new form AgregarUsuario
      */
@@ -31,7 +31,7 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
         isUpdate = false;
         this.usuarios = new Usuarios();
     }
-    
+
     public Usuarios_Formulario(boolean update, Usuarios usuarios) {
         initComponents();
         isUpdate = update;
@@ -71,6 +71,11 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
 
@@ -206,8 +211,7 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblObservacionesUsuario)))))
+                            .addComponent(lblObservacionesUsuario))))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -217,42 +221,59 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
+        // Validaciones de campos
         if (txtCedula.getText().isEmpty() || txtNombre.getText().isEmpty() || txtUsuario.getText().isEmpty() || txtObsUsuario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "No pueden haber campos vacíos, por favor ingrese la información correspondiente");
-        } else {
-            try {
-                if (Arrays.equals(txtContraseña.getPassword(), txtRepetirCont.getPassword())) {
-                    Usuarios nueva = new Usuarios();
-                    nueva.setContrasena(Arrays.toString(txtContraseña.getPassword()));
-                    nueva.setCedula(Integer.parseInt(txtCedula.getText().trim()));
-                    nueva.setNombre(txtNombre.getText().trim());
-                    nueva.setApellidos(txtApellidos.getText());
-                    nueva.setUsuario(txtUsuario.getText().trim());
-                    nueva.setActivo(true);
-                    nueva.setObservaciones(txtObsUsuario.getText().trim());
-                    nueva.setId_rol(1);
-                    Usuarios_bl p_bl = new Usuarios_bl();
-                    if (p_bl.insert(nueva)) {
-                        JOptionPane.showMessageDialog(this, "Usuario guardado correctamente",
-                                "Guardar Usuario", JOptionPane.INFORMATION_MESSAGE);
-                        this.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "El usuario no pudo ser guardado correctamente, por favor intente de nuevo",
-                                "Guardar Usuario", JOptionPane.INFORMATION_MESSAGE);
-                    }
+            return;
+        }
+        if (!Arrays.equals(txtContraseña.getPassword(), txtRepetirCont.getPassword())) {
+            JOptionPane.showMessageDialog(this,
+                    "Las contraseñas no coinciden, por favor intente nuevamente");
+            txtContraseña.requestFocus();
+            txtContraseña.setText("");
+            txtRepetirCont.setText("");
+            return;
+        }
+        // Fin validaciones de campo
+        try {
+            Usuarios_bl p_bl = new Usuarios_bl();
+            usuarios.setContrasena(Arrays.toString(txtContraseña.getPassword()));
+            usuarios.setCedula(Integer.parseInt(txtCedula.getText().trim()));
+            usuarios.setNombre(txtNombre.getText().trim());
+            usuarios.setApellidos(txtApellidos.getText());
+            usuarios.setUsuario(txtUsuario.getText().trim());
+            usuarios.setActivo(CBActivo.isSelected());
+            usuarios.setObservaciones(txtObsUsuario.getText().trim());
+            usuarios.setId_rol(1);
+            if (this.isUpdate) {
+                if (p_bl.update(usuarios)) {
+                    JOptionPane.showMessageDialog(this,
+                            "Se ha actualizado correctamente el usuario.",
+                            "Correcto",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this,
-                            "Las contraseñas no coinciden, por favor intente nuevamente");
-                    txtContraseña.requestFocus();
-                    txtContraseña.setText("");
-                    txtRepetirCont.setText("");
+                            "Ha ocurrido un error, revise los datos ingresados.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(Usuarios_Formulario.class.getName()).log(Level.SEVERE, null, ex);
+            } else if (p_bl.insert(usuarios)) {
+                JOptionPane.showMessageDialog(this,
+                        "Se ha insertado correctamente el usuario.",
+                        "Correcto",
+                        JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Ha ocurrido un error, revise los datos ingresados.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuarios_Formulario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //FIN DEL MÉTODO
     }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -268,8 +289,15 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
             txtObsUsuario.setText(this.usuarios.getObservaciones());
             txtUsuario.setText(this.usuarios.getUsuario());
             CBActivo.setSelected(this.usuarios.getActivo());
+            txtCedula.setEditable(false);
+            txtContraseña.setEnabled(false);
+            txtRepetirCont.setEnabled(false);
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        new Usuarios_Principal().setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
