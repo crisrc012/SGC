@@ -5,7 +5,15 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Becados_bl;
+import cr.ac.uia.SistemaGC.entities.Becados;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -53,15 +61,23 @@ public class Becados_Principal extends javax.swing.JFrame {
 
         tblAdmBecas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombre Persona", "Apellidos", "Alumno o Profesor", "Nombre Beca", "Porcentaje Beca"
+                "Cédula", "Nombre Persona", "Apellidos", "Alumno o Profesor", "Nombre Beca", "Porcentaje Beca", "Activo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblAdmBecas);
 
         lblTituloAdmiBecas.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -136,8 +152,34 @@ public class Becados_Principal extends javax.swing.JFrame {
         new Becados_Formulario().setVisible(true);
     }//GEN-LAST:event_btnModificarAsignacionActionPerformed
 
+    private void refreshJTable() {
+//        try {
+//            String col[] = {"ID","ID_Persona", "Nombre", "Porcentaje", "Activo", "Observaciones"};
+//            DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+//            Becados_bl bbl = new Becados_bl();
+//            ArrayList<Becados> al = bbl.select(new Becados());
+//            for (int i = 0; i < al.size(); i++) {
+//                String[] ap
+//                        = {al.get(i).getId().toString(),
+//                            al.get(i).getNombre(),
+//                            al.get(i).getPorcentaje().toString(),
+//                            al.get(i).getActivo().toString(),
+//                            al.get(i).getObservaciones()};
+//                tableModel.addRow(ap);
+//            }
+//            this.tblAdmBecas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//            this.tblAdmBecas.setModel(tableModel);
+//            // Ocultando columna id
+//            this.tblAdmBecas.getColumnModel().getColumn(0).setMinWidth(0);
+//            this.tblAdmBecas.getColumnModel().getColumn(0).setMaxWidth(0);
+//            this.tblAdmBecas.getColumnModel().getColumn(0).setWidth(0);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+        refreshJTable();
     }//GEN-LAST:event_formWindowOpened
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown

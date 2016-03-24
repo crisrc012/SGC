@@ -210,8 +210,8 @@ public class Personas_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        /*PUI.setEnabled(true);
-        PUI.toFront();*/
+        PUI.setEnabled(true);
+        PUI.toFront();
     }//GEN-LAST:event_formWindowClosed
 
     /**
