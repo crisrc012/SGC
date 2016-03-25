@@ -67,17 +67,25 @@ public class Becados_Principal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombre Persona", "Apellidos", "Alumno o Profesor", "Nombre Beca", "Porcentaje Beca", "Activo"
+                "Cédula", "Nombre", "Apellidos", "Descripción", "Nombre Beca", "Porcentaje Beca", "Activo"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tblAdmBecas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblAdmBecas);
 
         lblTituloAdmiBecas.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -154,30 +162,30 @@ public class Becados_Principal extends javax.swing.JFrame {
 
     private void refreshJTable() {
 //        try {
-//            String col[] = {"ID","ID_Persona", "Nombre", "Porcentaje", "Activo", "Observaciones"};
-//            DefaultTableModel tableModel = new DefaultTableModel(col, 0);
-//            Becados_bl bbl = new Becados_bl();
-//            ArrayList<Becados> al = bbl.select(new Becados());
+//            DefaultTableModel tableModel = (DefaultTableModel) tblAdmBecas.getModel();
+//            tableModel.setRowCount(0); // Limpiando tabla
+//            Becas_bl bbl = new Becas_bl();
+//            ArrayList<Becas> al = bbl.select(new Becas());
 //            for (int i = 0; i < al.size(); i++) {
-//                String[] ap
+//                Object[] ap
 //                        = {al.get(i).getId().toString(),
 //                            al.get(i).getNombre(),
 //                            al.get(i).getPorcentaje().toString(),
-//                            al.get(i).getActivo().toString(),
+//                            al.get(i).getActivo(),
 //                            al.get(i).getObservaciones()};
 //                tableModel.addRow(ap);
 //            }
-//            this.tblAdmBecas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//            this.tblAdmBecas.setModel(tableModel);
+//            this.tblTiposBecas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//            this.tblTiposBecas.setModel(tableModel);
 //            // Ocultando columna id
-//            this.tblAdmBecas.getColumnModel().getColumn(0).setMinWidth(0);
-//            this.tblAdmBecas.getColumnModel().getColumn(0).setMaxWidth(0);
-//            this.tblAdmBecas.getColumnModel().getColumn(0).setWidth(0);
+//            this.tblTiposBecas.getColumnModel().getColumn(0).setMinWidth(0);
+//            this.tblTiposBecas.getColumnModel().getColumn(0).setMaxWidth(0);
+//            this.tblTiposBecas.getColumnModel().getColumn(0).setWidth(0);
 //        } catch (SQLException ex) {
 //            Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }
-    
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         refreshJTable();
     }//GEN-LAST:event_formWindowOpened
@@ -215,7 +223,7 @@ public class Becados_Principal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

@@ -66,15 +66,30 @@ public class Becas_Principal extends javax.swing.JFrame {
         tblTiposBecas.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         tblTiposBecas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre de Beca", "Porcentaje de Beca"
+                "ID", "Nombre", "Porcentaje", "Activo", "Observaciones"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblTiposBecas);
 
         btnAgregarBeca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -159,26 +174,26 @@ public class Becas_Principal extends javax.swing.JFrame {
         }
         new Becas_Formulario(true,
                 new Becas(
-                        Integer.parseInt((String) tblTiposBecas.getValueAt(i, 0)),
+                        (Integer) tblTiposBecas.getValueAt(i, 0),
                         (String) tblTiposBecas.getValueAt(i, 1),
-                        Integer.parseInt((String) tblTiposBecas.getValueAt(i, 2)),
-                        Boolean.parseBoolean((String) tblTiposBecas.getValueAt(i, 3)),
+                        (Integer) tblTiposBecas.getValueAt(i, 2),
+                        (Boolean) tblTiposBecas.getValueAt(i, 3),
                         (String) tblTiposBecas.getValueAt(i, 4))).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnModificarBecaActionPerformed
 
     private void refreshJTable() {
         try {
-            String col[] = {"", "Nombre", "Porcentaje", "Activo", "Observaciones"};
-            DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+            DefaultTableModel tableModel = (DefaultTableModel) tblTiposBecas.getModel();
+            tableModel.setRowCount(0); // Limpiando tabla
             Becas_bl bbl = new Becas_bl();
             ArrayList<Becas> al = bbl.select(new Becas());
             for (int i = 0; i < al.size(); i++) {
-                String[] ap
-                        = {al.get(i).getId().toString(),
+                Object[] ap
+                        = {al.get(i).getId(),
                             al.get(i).getNombre(),
-                            al.get(i).getPorcentaje().toString(),
-                            al.get(i).getActivo().toString(),
+                            al.get(i).getPorcentaje(),
+                            al.get(i).getActivo(),
                             al.get(i).getObservaciones()};
                 tableModel.addRow(ap);
             }
@@ -209,10 +224,10 @@ public class Becas_Principal extends javax.swing.JFrame {
         try {
             Becas_bl bbl = new Becas_bl();
             if (bbl.update(new Becas(
-                    Integer.parseInt((String) tblTiposBecas.getValueAt(i, 0)),
+                    (Integer) tblTiposBecas.getValueAt(i, 0),
                     (String) tblTiposBecas.getValueAt(i, 1),
-                    Integer.parseInt((String) tblTiposBecas.getValueAt(i, 2)),
-                    !(Boolean.parseBoolean((String) tblTiposBecas.getValueAt(i, 3))),
+                    (Integer) tblTiposBecas.getValueAt(i, 2),
+                    !(Boolean) tblTiposBecas.getValueAt(i, 3),
                     (String) tblTiposBecas.getValueAt(i, 4)))) {
                 refreshJTable();
                 JOptionPane.showMessageDialog(this,

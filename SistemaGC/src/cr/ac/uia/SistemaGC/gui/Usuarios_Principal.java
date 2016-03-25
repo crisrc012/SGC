@@ -69,15 +69,30 @@ public class Usuarios_Principal extends javax.swing.JFrame {
 
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Usuario", "Nombre Completo", "Cédula", "Activo"
+                "Cédula", "Usuario", "Nombre", "Apellidos", "Activo", "Observaciones"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblUsuarios);
 
         btnAgregarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -147,17 +162,17 @@ public class Usuarios_Principal extends javax.swing.JFrame {
 
     private void refreshJTable() {
         try {
-            String col[] = {"Cédula", "Usuario", "Nombre", "Apellidos", "Activo", "Observaciones"};
-            DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+            DefaultTableModel tableModel = (DefaultTableModel) tblUsuarios.getModel();
+            tableModel.setRowCount(0);
             Usuarios_bl ubl = new Usuarios_bl();
             ArrayList<Usuarios> u = ubl.select(new Usuarios());
             for (int i = 0; i < u.size(); i++) {
-                String[] ap = {
-                    u.get(i).getCedula().toString(),
+                Object[] ap = {
+                    u.get(i).getCedula(),
                     u.get(i).getUsuario(),
                     u.get(i).getNombre(),
                     u.get(i).getApellidos(),
-                    u.get(i).getActivo().toString(),
+                    u.get(i).getActivo(),
                     u.get(i).getObservaciones()
                 };
                 tableModel.addRow(ap);
@@ -185,12 +200,12 @@ public class Usuarios_Principal extends javax.swing.JFrame {
         }
         new Usuarios_Formulario(true,
                 new Usuarios(
-                        Integer.parseInt((String) tblUsuarios.getValueAt(i, 0)),
+                        (Integer) tblUsuarios.getValueAt(i, 0),
                         (String) tblUsuarios.getValueAt(i, 1),
                         null,
                         (String) tblUsuarios.getValueAt(i, 2),
                         (String) tblUsuarios.getValueAt(i, 3),
-                        Boolean.parseBoolean((String) tblUsuarios.getValueAt(i, 4)),
+                        (Boolean) tblUsuarios.getValueAt(i, 4),
                         (String) tblUsuarios.getValueAt(i, 5),
                         1
                 )).setVisible(true);
@@ -226,12 +241,12 @@ public class Usuarios_Principal extends javax.swing.JFrame {
         try {
             Usuarios_bl ubl = new Usuarios_bl();
             if (ubl.update(new Usuarios(
-                    Integer.parseInt((String) tblUsuarios.getValueAt(i, 0)),
+                    (Integer) tblUsuarios.getValueAt(i, 0),
                     (String) tblUsuarios.getValueAt(i, 1),
                     null,
                     (String) tblUsuarios.getValueAt(i, 2),
                     (String) tblUsuarios.getValueAt(i, 3),
-                    !Boolean.parseBoolean((String) tblUsuarios.getValueAt(i, 4)),
+                    !(Boolean) tblUsuarios.getValueAt(i, 4),
                     (String) tblUsuarios.getValueAt(i, 5),
                     1))) {
                 refreshJTable();
