@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author crisrc012
  */
 public class Personas {
+
     private Integer cedula;
     private String nombre;
     private String apellidos;
@@ -31,7 +32,7 @@ public class Personas {
         this.encargado = null;
         this.id_persona = null;
     }
-    
+
     public Personas(Integer cedula, String nombre, String apellidos, Date fecha_nacimiento, Integer tel_celular, Integer tel_habitacion, String encargado, Integer id_persona) {
         this.cedula = cedula;
         this.nombre = nombre;

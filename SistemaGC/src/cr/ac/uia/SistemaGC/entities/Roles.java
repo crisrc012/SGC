@@ -10,6 +10,7 @@ package cr.ac.uia.SistemaGC.entities;
  * @author crisrc012
  */
 public class Roles {
+
     private Integer id;
     private String descripcion;
 
@@ -17,7 +18,7 @@ public class Roles {
         this.id = null;
         this.descripcion = null;
     }
-    
+
     public Roles(Integer id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;

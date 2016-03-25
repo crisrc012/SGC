@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author crisrc012
  */
 public class Tiquetes {
+
     private Integer id;
     private Integer id_persona;
     private Integer id_precio;
@@ -27,7 +28,7 @@ public class Tiquetes {
         this.fecha_uso = null;
         this.activo = null;
     }
-    
+
     public Tiquetes(Integer id, Integer id_persona, Integer id_precio, Date fecha_compra, Date fecha_uso, Boolean activo) {
         this.id = id;
         this.id_persona = id_persona;

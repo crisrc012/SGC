@@ -10,6 +10,7 @@ package cr.ac.uia.SistemaGC.entities;
  * @author crisrc012
  */
 public class Becados {
+
     private Integer id;
     private Integer id_persona;
     private Integer id_beca;
@@ -23,7 +24,7 @@ public class Becados {
         this.activo = null;
         this.observaciones = null;
     }
-    
+
     public Becados(int id, int id_persona, int id_beca, boolean activo, String observaciones) {
         this.id = id;
         this.id_persona = id_persona;

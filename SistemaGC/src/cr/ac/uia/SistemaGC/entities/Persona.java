@@ -10,6 +10,7 @@ package cr.ac.uia.SistemaGC.entities;
  * @author crisrc012
  */
 public class Persona {
+
     private Integer id;
     private String descripcion;
 
@@ -17,7 +18,7 @@ public class Persona {
         this.id = null;
         this.descripcion = null;
     }
-    
+
     public Persona(Integer id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
@@ -37,5 +38,5 @@ public class Persona {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }    
+    }
 }

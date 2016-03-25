@@ -10,6 +10,7 @@ package cr.ac.uia.SistemaGC.entities;
  * @author crisrc012
  */
 public class Precio {
+
     private Integer id;
     private Integer id_persona;
     private Integer id_comida;
@@ -21,7 +22,7 @@ public class Precio {
         this.id_comida = null;
         this.precio = null;
     }
-    
+
     public Precio(Integer id, Integer id_persona, Integer id_comida, Integer precio) {
         this.id = id;
         this.id_persona = id_persona;

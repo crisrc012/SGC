@@ -5,13 +5,16 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Becados_VW_bl;
 import cr.ac.uia.SistemaGC.bl.Becados_bl;
 import cr.ac.uia.SistemaGC.entities.Becados;
+import cr.ac.uia.SistemaGC.entities.Becados_VW;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -67,11 +70,11 @@ public class Becados_Principal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombre", "Apellidos", "Descripción", "Nombre Beca", "Porcentaje Beca", "Activo"
+                "Cédula", "Nombre", "Apellidos", "Descripción", "Beca", "Porcentaje", "Activo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -109,6 +112,11 @@ public class Becados_Principal extends javax.swing.JFrame {
 
         btnDesasignarBeca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDesasignarBeca.setText("Desasignar Beca");
+        btnDesasignarBeca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDesasignarBecaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,29 +169,27 @@ public class Becados_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarAsignacionActionPerformed
 
     private void refreshJTable() {
-//        try {
-//            DefaultTableModel tableModel = (DefaultTableModel) tblAdmBecas.getModel();
-//            tableModel.setRowCount(0); // Limpiando tabla
-//            Becas_bl bbl = new Becas_bl();
-//            ArrayList<Becas> al = bbl.select(new Becas());
-//            for (int i = 0; i < al.size(); i++) {
-//                Object[] ap
-//                        = {al.get(i).getId().toString(),
-//                            al.get(i).getNombre(),
-//                            al.get(i).getPorcentaje().toString(),
-//                            al.get(i).getActivo(),
-//                            al.get(i).getObservaciones()};
-//                tableModel.addRow(ap);
-//            }
-//            this.tblTiposBecas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//            this.tblTiposBecas.setModel(tableModel);
-//            // Ocultando columna id
-//            this.tblTiposBecas.getColumnModel().getColumn(0).setMinWidth(0);
-//            this.tblTiposBecas.getColumnModel().getColumn(0).setMaxWidth(0);
-//            this.tblTiposBecas.getColumnModel().getColumn(0).setWidth(0);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            DefaultTableModel tableModel = (DefaultTableModel) tblAdmBecas.getModel();
+            tableModel.setRowCount(0); // Limpiando tabla
+            Becados_VW_bl bbl = new Becados_VW_bl();
+            ArrayList<Becados_VW> al = bbl.select(new Becados_VW());
+            for (int i = 0; i < al.size(); i++) {
+                Object[] ap
+                        = {al.get(i).getCedula(),
+                            al.get(i).getNombre(),
+                            al.get(i).getApellidos(),
+                            al.get(i).getDescripcion(),
+                            al.get(i).getBeca(),
+                            al.get(i).getPorcentaje(),
+                            al.get(i).getActivo()};
+                tableModel.addRow(ap);
+            }
+            this.tblAdmBecas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            this.tblAdmBecas.setModel(tableModel);
+        } catch (SQLException ex) {
+            Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -201,6 +207,38 @@ public class Becados_Principal extends javax.swing.JFrame {
         PUI.setEnabled(true);
         PUI.toFront();
     }//GEN-LAST:event_formWindowClosed
+
+    private void btnDesasignarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesasignarBecaActionPerformed
+        int i = tblAdmBecas.getSelectedRow();
+        if (i < 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor seleccione una celda.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            Becados_bl bbl = new Becados_bl();
+            Becados b = new Becados();
+            b.setId_persona((Integer) tblAdmBecas.getValueAt(i, 0));
+            b = bbl.select(b).get(0);
+            b.setActivo(!b.getActivo());
+            if (bbl.update(b)) {
+                refreshJTable();
+                JOptionPane.showMessageDialog(this,
+                        "Se ha actualizado correctamente la asiganción de beca.",
+                        "Correcto",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Ha ocurrido un error.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDesasignarBecaActionPerformed
 
     /**
      * @param args the command line arguments

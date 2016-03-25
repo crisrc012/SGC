@@ -7,9 +7,10 @@ package cr.ac.uia.SistemaGC.entities;
 
 /**
  *
- * @author crobles
+ * @author crisrc012
  */
 public class Comida {
+
     private Integer id;
     private String descripcion;
 
@@ -17,7 +18,7 @@ public class Comida {
         this.id = null;
         this.descripcion = null;
     }
-    
+
     public Comida(Integer id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;

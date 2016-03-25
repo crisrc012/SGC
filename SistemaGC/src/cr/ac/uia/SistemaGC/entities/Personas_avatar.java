@@ -7,9 +7,10 @@ package cr.ac.uia.SistemaGC.entities;
 
 /**
  *
- * @author crobles
+ * @author crisrc012
  */
 public class Personas_avatar {
+
     private Integer cedula;
     private byte[] foto;
 
@@ -17,7 +18,7 @@ public class Personas_avatar {
         this.cedula = null;
         this.foto = null;
     }
-    
+
     public Personas_avatar(Integer cedula, byte[] foto) {
         this.cedula = cedula;
         this.foto = foto;
