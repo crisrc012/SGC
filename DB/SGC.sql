@@ -86,6 +86,16 @@ create table tbl_usuarios(
 	id_rol integer references tbl_roles(id)
 );
 
+-- Vistas
+create view vw_becados as
+	select tps.cedula, tps.nombre, tps.apellidos, tp.descripcion, tb.nombre as beca, tb.porcentaje, tbs.activo
+	from tbl_becados tbs, tbl_persona tp, tbl_personas tps, tbl_becas tb
+	where
+	tbs.id_persona = tps.cedula and
+	tps.id_persona = tp.id and
+	tbs.id_beca = tb.id
+	order by tps.apellidos;
+
 -- Funciones
 create or replace function f_becados(
 	in dml text,
