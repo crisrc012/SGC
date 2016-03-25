@@ -9,8 +9,8 @@
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <Events>
-    <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="formComponentShown"/>
     <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
+    <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="formComponentShown"/>
   </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -274,6 +274,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="COMPRAR TIQUETE"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnComprarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>
@@ -282,6 +285,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="CANCELAR COMPRA"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

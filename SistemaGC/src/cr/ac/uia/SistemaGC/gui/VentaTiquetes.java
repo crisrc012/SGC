@@ -5,7 +5,14 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
+import cr.ac.uia.SistemaGC.entities.Tiquetes;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
+import java.util.Date;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,14 +56,14 @@ public class VentaTiquetes extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
             }
         });
 
@@ -109,9 +116,19 @@ public class VentaTiquetes extends javax.swing.JFrame {
 
         btnComprar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnComprar.setText("COMPRAR TIQUETE");
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCancelar.setText("CANCELAR COMPRA");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,6 +232,43 @@ public class VentaTiquetes extends javax.swing.JFrame {
         PUI.setEnabled(true);
         PUI.toFront();
     }//GEN-LAST:event_formWindowClosed
+
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        int answ = JOptionPane.showConfirmDialog(this, "¿Está seguro de realizar la compra?","Confirmación",JOptionPane.YES_NO_OPTION);
+        if(answ == JOptionPane.YES_OPTION){
+            int cant = Integer.parseInt(txtCantidad.getText().trim());
+            int id_comida = 0;
+            Date fecha = new Date();
+            java.sql.Date fechaActual = new java.sql.Date(fecha.getTime());
+            if(cboTiposComida.getSelectedIndex()==0){
+                id_comida = 1;
+            }else{
+                if(cboTiposComida.getSelectedIndex()==0){
+                    id_comida = 2;
+                }
+            }
+            for (int i = 0; i < cant; i++) {
+                try {
+                    Tiquetes_bl tbl = new Tiquetes_bl();
+                    Tiquetes tiquete = new Tiquetes(
+                            null, Integer.parseInt(txtCedula.getText().trim()),
+                            id_comida,fechaActual,null,true
+                    );
+                    tbl.insert(tiquete);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentaTiquetes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Compra realizada con éxito",
+                    "Correcto",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        txtCantidad.setText("");
+        txtCedula.setText("");
+        txtNombre.setText("");
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
