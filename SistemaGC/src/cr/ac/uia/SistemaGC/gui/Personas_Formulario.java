@@ -300,19 +300,19 @@ public class Personas_Formulario extends javax.swing.JFrame {
             persona.setId_persona(id);
             if(this.isUpdate){
                 if(blp.update(persona)){
-                    JOptionPane.showMessageDialog(null, "Persona actualizada correctamente", 
+                    JOptionPane.showMessageDialog(this, "Persona actualizada correctamente", 
                             "Correcto", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                 }else{
-                    JOptionPane.showMessageDialog(null, "Error al actualizar, por favor verifique los datos", 
+                    JOptionPane.showMessageDialog(this, "Error al actualizar, por favor verifique los datos", 
                             "Error", JOptionPane.INFORMATION_MESSAGE);
                 }
             }else 
             if(blp.insert(persona)){
-                JOptionPane.showMessageDialog(null, "Se ha guardado correctamente.",
+                JOptionPane.showMessageDialog(this, "Se ha guardado correctamente.",
                         "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
             }else{
-                JOptionPane.showMessageDialog(null, "Ha ocurrido un error al guardar. Intente nuevamente.",
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar. Intente nuevamente.",
                         "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {

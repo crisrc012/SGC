@@ -181,6 +181,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Eliminar Persona"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarPersonaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDesHabilitarPersona">
       <Properties>

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -97,6 +98,11 @@ public class Personas_Principal extends javax.swing.JFrame {
 
         btnEliminarPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEliminarPersona.setText("Eliminar Persona");
+        btnEliminarPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarPersonaActionPerformed(evt);
+            }
+        });
 
         btnDesHabilitarPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDesHabilitarPersona.setText("Des/Habilitar Persona");
@@ -207,12 +213,29 @@ public class Personas_Principal extends javax.swing.JFrame {
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
+        tblPersonas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }//GEN-LAST:event_formComponentShown
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         PUI.setEnabled(true);
         PUI.toFront();
     }//GEN-LAST:event_formWindowClosed
+
+    private void btnEliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPersonaActionPerformed
+        int i = tblPersonas.getSelectedRow();
+        if(i > -1){
+            try {
+                Personas_bl blp = new Personas_bl();
+                if(blp.delete(Integer.parseInt((String) tblPersonas.getValueAt(i, 0)))){
+                    JOptionPane.showMessageDialog(this, "Persona eliminada correctamente", 
+                            "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Personas_Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnEliminarPersonaActionPerformed
 
     /**
      * @param args the command line arguments

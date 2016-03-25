@@ -206,6 +206,7 @@ public class Usuarios_Principal extends javax.swing.JFrame {
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
+        tblUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }//GEN-LAST:event_formComponentShown
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
