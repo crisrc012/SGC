@@ -44,6 +44,7 @@ public class Personas_db {
                     p.setFecha_nacimiento(rs.getDate("fecha_nacimiento"));
                     p.setTel_celular(rs.getInt("tel_celular"));
                     p.setTel_habitacion(rs.getInt("tel_habitacion"));
+                    p.setEncargado(rs.getString("encargado"));
                     p.setId_persona(rs.getInt("id_persona"));
                     personaslst.add(p);
                 }
@@ -90,7 +91,7 @@ public class Personas_db {
         }
         return control;
     }
-    
+
     public boolean delete(int cedula) throws SQLException {
         Boolean control = false;
         try {

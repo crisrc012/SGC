@@ -21,7 +21,7 @@ public class Becas_Formulario extends javax.swing.JFrame {
 
     // Propiedad que determina si la ventana se ejecuta para insertar o actualizar
     private final boolean isUpdate;
-    private Becas becas;
+    private final Becas becas;
 
     /**
      * Creates new form Becas_Principal

@@ -45,7 +45,6 @@ public class Personas_Principal extends javax.swing.JFrame {
         btnAgregarPersona = new javax.swing.JButton();
         btnModificarPersona = new javax.swing.JButton();
         btnEliminarPersona = new javax.swing.JButton();
-        btnDesHabilitarPersona = new javax.swing.JButton();
         btnImprimirCodigo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -66,15 +65,30 @@ public class Personas_Principal extends javax.swing.JFrame {
         tblPersonas.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombre", "Apellidos", "Teléfono", "Alumno o Profesor", "Activo"
+                "Cédula", "Nombre", "Apellidos", "Fecha de Nacimiento", "Celular", "Teléfono", "Encargado", "Descripción"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblPersonas);
 
         lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -104,9 +118,6 @@ public class Personas_Principal extends javax.swing.JFrame {
             }
         });
 
-        btnDesHabilitarPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnDesHabilitarPersona.setText("Des/Habilitar Persona");
-
         btnImprimirCodigo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnImprimirCodigo.setText("Imprimir Código de Barra");
 
@@ -118,23 +129,20 @@ public class Personas_Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(btnModificarPersona)
+                        .addGap(56, 56, 56)
+                        .addComponent(btnEliminarPersona)
+                        .addGap(317, 317, 317)
+                        .addComponent(btnImprimirCodigo)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAgregarPersona))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(btnModificarPersona)
-                                .addGap(56, 56, 56)
-                                .addComponent(btnEliminarPersona)
-                                .addGap(48, 48, 48)
-                                .addComponent(btnDesHabilitarPersona)
-                                .addGap(50, 50, 50)
-                                .addComponent(btnImprimirCodigo))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(301, 301, 301)
-                                .addComponent(lblTituloGP)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(btnAgregarPersona, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblTituloGP)
+                                .addGap(367, 367, 367)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -149,57 +157,57 @@ public class Personas_Principal extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDesHabilitarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnImprimirCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPersonaActionPerformed
+        this.dispose();
         new Personas_Formulario().setVisible(true);
     }//GEN-LAST:event_btnAgregarPersonaActionPerformed
 
     private void btnModificarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPersonaActionPerformed
         int i = tblPersonas.getSelectedRow();
-        if(i > -1){
-           new Personas_Formulario(true,
-                   new Personas(
-                           Integer.parseInt((String)tblPersonas.getValueAt(i, 0)),
-                           (String)tblPersonas.getValueAt(i, 1), 
-                           (String) tblPersonas.getValueAt(i, 2),
-                           Date.valueOf((String) tblPersonas.getValueAt(i, 3)),
-                           Integer.parseInt((String) tblPersonas.getValueAt(i, 4)),
-                           Integer.parseInt((String)tblPersonas.getValueAt(i, 5)),
-                           (String)tblPersonas.getValueAt(i, 6),
-                           Integer.parseInt((String)tblPersonas.getValueAt(i, 7)))).setVisible(true);
-           this.dispose();
-        }else{
+        if (i > -1) {
+            new Personas_Formulario(true,
+                    new Personas(
+                            (Integer) tblPersonas.getValueAt(i, 0),
+                            (String) tblPersonas.getValueAt(i, 1),
+                            (String) tblPersonas.getValueAt(i, 2),
+                            (Date) tblPersonas.getValueAt(i, 3),
+                            (Integer) tblPersonas.getValueAt(i, 4),
+                            (Integer) tblPersonas.getValueAt(i, 5),
+                            (String) tblPersonas.getValueAt(i, 6),
+                            (Integer) tblPersonas.getValueAt(i, 7))).setVisible(true);
+            this.dispose();
+        } else {
             JOptionPane.showMessageDialog(null,
                     "Por favor seleccione una celda.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnModificarPersonaActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
-            String col[] = {"Cedula", "Nombre", "Apellidos", "Fecha de nacimiento", "Celular", "Teléfono", "Encargado", "Comunidad"};
-            DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+            DefaultTableModel tableModel = (DefaultTableModel) tblPersonas.getModel();
+            tableModel.setRowCount(0);
             Personas_bl pbl = new Personas_bl();
             ArrayList<Personas> al = pbl.select(new Personas());
             for (int i = 0; i < al.size(); i++) {
-                String[] ap = {al.get(i).getCedula().toString(),
+                Object[] ap = {al.get(i).getCedula(),
                     al.get(i).getNombre(),
                     al.get(i).getApellidos(),
-                    al.get(i).getFecha_nacimiento().toString(),
-                    al.get(i).getTel_celular().toString(),
-                    al.get(i).getTel_habitacion().toString(),
+                    al.get(i).getFecha_nacimiento(),
+                    al.get(i).getTel_celular(),
+                    al.get(i).getTel_habitacion(),
                     al.get(i).getEncargado(),
-                    al.get(i).getId_persona().toString()};
+                    al.get(i).getId_persona()};
                 tableModel.addRow(ap);
             }
             this.tblPersonas.setModel(tableModel);
@@ -223,11 +231,11 @@ public class Personas_Principal extends javax.swing.JFrame {
 
     private void btnEliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPersonaActionPerformed
         int i = tblPersonas.getSelectedRow();
-        if(i > -1){
+        if (i > -1) {
             try {
                 Personas_bl blp = new Personas_bl();
-                if(blp.delete(Integer.parseInt((String) tblPersonas.getValueAt(i, 0)))){
-                    JOptionPane.showMessageDialog(this, "Persona eliminada correctamente", 
+                if (blp.delete(Integer.parseInt((String) tblPersonas.getValueAt(i, 0)))) {
+                    JOptionPane.showMessageDialog(this, "Persona eliminada correctamente",
                             "Correcto", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                 }
@@ -260,7 +268,7 @@ public class Personas_Principal extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 
@@ -272,7 +280,6 @@ public class Personas_Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPersona;
-    private javax.swing.JButton btnDesHabilitarPersona;
     private javax.swing.JButton btnEliminarPersona;
     private javax.swing.JButton btnImprimirCodigo;
     private javax.swing.JButton btnModificarPersona;
