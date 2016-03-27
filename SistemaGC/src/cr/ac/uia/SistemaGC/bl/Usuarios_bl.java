@@ -125,16 +125,16 @@ public class Usuarios_bl {
     }
 
     public Boolean login(Usuarios usuarios) throws SQLException {
+        Boolean control = null;
         String contrasena = usuarios.getContrasena();
         ArrayList<Usuarios> al = this.select(usuarios);
         if (al.size() > 0) {
             usuarios = al.get(0);
-            return udb.login(usuarios.getUsuario(),
+            control = udb.login(usuarios.getUsuario(),
                     AES.encrypt(usuarios.getCedula().toString(),
                             usuarios.getUsuario(),
                             contrasena));
-        } else {
-            return false;
         }
+        return control;
     }
 }

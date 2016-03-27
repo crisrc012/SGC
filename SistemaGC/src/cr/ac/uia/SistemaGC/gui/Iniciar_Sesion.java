@@ -125,20 +125,19 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         try {
             usuario.setUsuario(txtUserName.getText());
             usuario.setContrasena(Arrays.toString(txtPassword.getPassword()));
-            if (usuario == null) {
+            Boolean conexion = ubl.login(usuario);
+            if (conexion == null) {
                 JOptionPane.showMessageDialog(this,
-                        "Por favor digite su nombre de usuario y contraseña",
-                        "Error",
-                        JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-            if (ubl.login(usuario)) {
+                        "Ha ocurrido un error al contactar el servidor de base de datos.",
+                        "Inicio de sesión incorreto",
+                        JOptionPane.ERROR_MESSAGE);
+            } else if (conexion) {
                 PUI = new Principal();
                 PUI.setVisible(true);
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this,
-                        "Ha ocurrido un error, revise los datos ingresados.",
+                        "Su usuario está deshabilitado.",
                         "Inicio de sesión incorreto",
                         JOptionPane.ERROR_MESSAGE);
             }
