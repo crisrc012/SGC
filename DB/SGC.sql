@@ -24,6 +24,11 @@ create table tbl_persona(
 	descripcion text not null unique
 );
 
+insert into tbl_persona
+values
+	(1,'Estudiante'),
+	(2,'Docente');
+
 create table tbl_personas(
 	cedula integer primary key,
 	nombre text not null,
@@ -53,12 +58,24 @@ create table tbl_comida(
 	descripcion text not null unique
 );
 
+insert into tbl_comida
+values
+	(1,'Desayuno'),
+	(2,'Almuerzo');
+
 create table tbl_precio(
 	id serial primary key,
 	id_persona integer references tbl_persona(id),
 	id_comida integer references tbl_comida(id),
 	precio integer not null
 );
+
+insert into tbl_precio
+values
+	(1,1,1,0),
+	(2,2,1,0),
+	(3,1,2,0),
+	(4,2,2,0);
 
 create table tbl_tiquetes(
 	id serial primary key,
@@ -85,6 +102,10 @@ create table tbl_usuarios(
 	observaciones text not null,
 	id_rol integer references tbl_roles(id)
 );
+
+insert into tbl_usuarios
+values
+	(0,'root','Jj8OpRmCIuqBLvN+35WZJw==','root','root',true,'Superusuario',1);
 
 -- Vistas
 create view vw_becados as
@@ -326,9 +347,10 @@ begin
 			t.id_persona = coalesce(_id_persona, t.id_persona) and
 			t.id_comida = coalesce(_id_comida, t.id_comida) and
 			t.precio = coalesce(_precio, t.precio);
+			order by t.id;
 		when 'insert' then
-			insert into tbl_precio (id ,id_persona, id_comida, precio)
-			values (_id, _id_persona, _id_comida, _precio);
+			insert into tbl_precio (id_persona, id_comida, precio)
+			values (_id_persona, _id_comida, _precio);
 		when 'update' then
 			update tbl_precio t
 			set id_persona = _id_persona,
