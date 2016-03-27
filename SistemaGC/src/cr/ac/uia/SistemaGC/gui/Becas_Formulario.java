@@ -51,11 +51,12 @@ public class Becas_Formulario extends javax.swing.JFrame {
         lblObservacionesBeca = new javax.swing.JLabel();
         txtNombreBeca = new javax.swing.JTextField();
         txtPorcentajeBeca = new javax.swing.JTextField();
-        txtObservacionesBeca = new javax.swing.JTextField();
         btnGuardarBeca = new javax.swing.JButton();
         lblTituloAgBeca = new javax.swing.JLabel();
         lblHabilitada = new javax.swing.JLabel();
         ChckBoxActivo = new javax.swing.JCheckBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtObservacionesBeca = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -98,7 +99,9 @@ public class Becas_Formulario extends javax.swing.JFrame {
         lblHabilitada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblHabilitada.setText("Habilitada:");
 
-        ChckBoxActivo.setSelected(true);
+        txtObservacionesBeca.setColumns(20);
+        txtObservacionesBeca.setRows(5);
+        jScrollPane1.setViewportView(txtObservacionesBeca);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,14 +121,18 @@ public class Becas_Formulario extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblTituloAgBeca)
                                 .addGap(9, 9, 9)))
-                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtPorcentajeBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                                .addComponent(txtNombreBeca))
-                            .addComponent(txtObservacionesBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ChckBoxActivo))))
-                .addContainerGap(89, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtPorcentajeBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                        .addComponent(txtNombreBeca))
+                                    .addComponent(ChckBoxActivo)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,8 +156,8 @@ public class Becas_Formulario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblObservacionesBeca)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtObservacionesBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
                         .addComponent(btnGuardarBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -274,13 +281,14 @@ public class Becas_Formulario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox ChckBoxActivo;
     private javax.swing.JButton btnGuardarBeca;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHabilitada;
     private javax.swing.JLabel lblNombreBeca;
     private javax.swing.JLabel lblObservacionesBeca;
     private javax.swing.JLabel lblPorcentaje;
     private javax.swing.JLabel lblTituloAgBeca;
     private javax.swing.JTextField txtNombreBeca;
-    private javax.swing.JTextField txtObservacionesBeca;
+    private javax.swing.JTextArea txtObservacionesBeca;
     private javax.swing.JTextField txtPorcentajeBeca;
     // End of variables declaration//GEN-END:variables
 }
