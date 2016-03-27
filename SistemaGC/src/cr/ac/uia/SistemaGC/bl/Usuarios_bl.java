@@ -7,6 +7,7 @@ package cr.ac.uia.SistemaGC.bl;
 
 import cr.ac.uia.SistemaGC.db.Usuarios_db;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
+import cr.ac.uia.SistemaGC.utils.AES;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -88,7 +89,7 @@ public class Usuarios_bl {
             apellidos = "'" + usuarios.getApellidos() + "'";
         }
         if (usuarios.getContrasena() != null) {
-            contrasena = "'" + cr.ac.uia.SistemaGC.utils.AES.encrypt(
+            contrasena = "'" + AES.encrypt(
                     String.valueOf(usuarios.getCedula()),
                     usuarios.getUsuario(),
                     usuarios.getContrasena()) + "'";
@@ -121,5 +122,19 @@ public class Usuarios_bl {
 
     public boolean delete(int cedula) throws SQLException {
         return udb.delete(cedula);
+    }
+
+    public Boolean login(Usuarios usuarios) throws SQLException {
+        String contrasena = usuarios.getContrasena();
+        ArrayList<Usuarios> al = this.select(usuarios);
+        if (al.size() > 0) {
+            usuarios = al.get(0);
+            return udb.login(usuarios.getUsuario(),
+                    AES.encrypt(usuarios.getCedula().toString(),
+                            usuarios.getUsuario(),
+                            contrasena));
+        } else {
+            return false;
+        }
     }
 }

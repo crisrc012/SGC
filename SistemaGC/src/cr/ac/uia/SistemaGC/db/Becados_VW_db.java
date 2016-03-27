@@ -21,13 +21,12 @@ public class Becados_VW_db {
     private Statement st;
     
     public ArrayList<Becados_VW> select() throws SQLException {
-        ArrayList<Becados_VW> becadoslst = null;
+        ArrayList<Becados_VW> becadoslst = new ArrayList<>();
         try {
             this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
             try (ResultSet rs = this.st.executeQuery(
                     "SELECT * FROM vw_becados;")) {
-                becadoslst = new ArrayList<>();
                 while (rs.next()) {
                     Becados_VW b = new Becados_VW();
                     b.setCedula(rs.getInt("cedula"));
@@ -53,5 +52,4 @@ public class Becados_VW_db {
         }
         return becadoslst;
     }
-    
 }

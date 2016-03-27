@@ -21,7 +21,7 @@ public class Tiquetes_db {
     private Statement st;
 
     public ArrayList<Tiquetes> select(String id, String id_persona, String id_precio, String fecha_compra, String fecha_uso, String activo) throws SQLException {
-        ArrayList<Tiquetes> tiqueteslst = null;
+        ArrayList<Tiquetes> tiqueteslst = new ArrayList<>();
         try {
             this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
@@ -33,7 +33,6 @@ public class Tiquetes_db {
                     + fecha_compra + ", "
                     + fecha_uso + ", "
                     + activo + ");")) {
-                tiqueteslst = new ArrayList<>();
                 while (rs.next()) {
                     Tiquetes p = new Tiquetes();
                     p.setId(rs.getInt("id"));

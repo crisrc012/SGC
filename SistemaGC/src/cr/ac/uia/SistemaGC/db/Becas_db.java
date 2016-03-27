@@ -21,7 +21,7 @@ public class Becas_db {
     private Statement st;
 
     public ArrayList<Becas> select(String id, String nombre, String porcentaje, String activo, String observaciones) throws SQLException {
-        ArrayList<Becas> becaslst = null;
+        ArrayList<Becas> becaslst = new ArrayList<>();
         try {
             this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
@@ -32,7 +32,6 @@ public class Becas_db {
                     + porcentaje + ","
                     + activo + ", "
                     + observaciones + ");")) {
-                becaslst = new ArrayList<>();
                 while (rs.next()) {
                     Becas b = new Becas();
                     b.setId(rs.getInt("id"));

@@ -21,7 +21,7 @@ public class Comida_db {
     private Statement st;
 
     public ArrayList<Comida> select(String id, String descripcion) throws SQLException {
-        ArrayList<Comida> comidalst = null;
+        ArrayList<Comida> comidalst = new ArrayList<>();
         try {
             this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
@@ -29,7 +29,6 @@ public class Comida_db {
                     "SELECT * FROM f_comida('select', "
                     + id + ", "
                     + descripcion + ");")) {
-                comidalst = new ArrayList<>();
                 while (rs.next()) {
                     Comida c = new Comida();
                     c.setId(rs.getInt("id"));

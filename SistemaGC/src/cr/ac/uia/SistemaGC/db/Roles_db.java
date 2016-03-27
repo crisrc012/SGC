@@ -21,7 +21,7 @@ public class Roles_db {
     private Statement st;
 
     public ArrayList<Roles> select(String id, String descripcion) throws SQLException {
-        ArrayList<Roles> roleslst = null;
+        ArrayList<Roles> roleslst = new ArrayList<>();
         try {
             this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
@@ -29,7 +29,6 @@ public class Roles_db {
                     "SELECT * FROM f_roles('select', "
                     + id + ", "
                     + descripcion + ");")) {
-                roleslst = new ArrayList<>();
                 while (rs.next()) {
                     Roles r = new Roles();
                     r.setId(rs.getInt("id"));

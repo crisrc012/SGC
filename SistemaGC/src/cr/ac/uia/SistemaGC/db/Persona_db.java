@@ -21,7 +21,7 @@ public class Persona_db {
     private Statement st;
 
     public ArrayList<Persona> select(String id, String descripcion) throws SQLException {
-        ArrayList<Persona> personalst = null;
+        ArrayList<Persona> personalst = new ArrayList<>();
         try {
             this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
@@ -29,7 +29,6 @@ public class Persona_db {
                     "SELECT * FROM f_persona('select', "
                     + id + ", "
                     + descripcion + ");")) {
-                personalst = new ArrayList<>();
                 while (rs.next()) {
                     Persona p = new Persona();
                     p.setId(rs.getInt("id"));

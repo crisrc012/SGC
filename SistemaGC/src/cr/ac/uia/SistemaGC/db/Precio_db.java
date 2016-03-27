@@ -31,7 +31,6 @@ public class Precio_db {
                     + id_persona + ", "
                     + id_comida + ", "
                     + precio + ");")) {
-                preciolst = new ArrayList<>();
                 while (rs.next()) {
                     Precio p = new Precio();
                     p.setId(rs.getInt("id"));

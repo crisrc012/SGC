@@ -21,7 +21,7 @@ public class Personas_db {
     private Statement st;
 
     public ArrayList<Personas> select(String cedula, String nombre, String apellidos, String fecha_nacimiento, String tel_celular, String tel_habitacion, String encargado, String id_persona) throws SQLException {
-        ArrayList<Personas> personaslst = null;
+        ArrayList<Personas> personaslst = new ArrayList<>();
         try {
             this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
@@ -35,7 +35,6 @@ public class Personas_db {
                     + tel_habitacion + ", "
                     + encargado + ", "
                     + id_persona + ");")) {
-                personaslst = new ArrayList<>();
                 while (rs.next()) {
                     Personas p = new Personas();
                     p.setCedula(rs.getInt("cedula"));
