@@ -11,8 +11,6 @@ import java.awt.Image;
 import java.io.File;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -25,7 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Personas_Formulario extends javax.swing.JFrame {
     private final boolean isUpdate;
-    private Personas persona;
+    private final Personas persona;
 
     /**
      * Creates new form AgregarPersona
@@ -325,8 +323,8 @@ public class Personas_Formulario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar. Intente nuevamente.",
                         "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Personas_Formulario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
 

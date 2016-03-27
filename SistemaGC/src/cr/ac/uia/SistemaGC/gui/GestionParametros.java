@@ -9,8 +9,6 @@ import cr.ac.uia.SistemaGC.bl.Precio_bl;
 import cr.ac.uia.SistemaGC.entities.Precio;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -241,8 +239,8 @@ public class GestionParametros extends javax.swing.JFrame {
                         "Gestión de Parámetros",
                         JOptionPane.INFORMATION_MESSAGE);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(GestionParametros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGuardarParametrosActionPerformed
 

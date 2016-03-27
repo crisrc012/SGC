@@ -10,8 +10,6 @@ import cr.ac.uia.SistemaGC.entities.Usuarios;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -179,8 +177,8 @@ public class Usuarios_Principal extends javax.swing.JFrame {
             }
             this.tblUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             this.tblUsuarios.setModel(tableModel);
-        } catch (SQLException ex) {
-            Logger.getLogger(Personas_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
     }
 
@@ -233,7 +231,7 @@ public class Usuarios_Principal extends javax.swing.JFrame {
         int i = tblUsuarios.getSelectedRow();
         if (i < 0) {
             JOptionPane.showMessageDialog(this,
-                    "Por favor seleccione una celda.",
+                    "Por favor seleccione una fila.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
             return;
@@ -260,8 +258,8 @@ public class Usuarios_Principal extends javax.swing.JFrame {
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnDesHabilitarUsuarioActionPerformed
 

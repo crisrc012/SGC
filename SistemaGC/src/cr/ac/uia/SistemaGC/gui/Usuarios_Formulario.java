@@ -9,8 +9,6 @@ import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -271,8 +269,8 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Usuarios_Formulario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
 

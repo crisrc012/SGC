@@ -10,8 +10,6 @@ import cr.ac.uia.SistemaGC.entities.Becas;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -203,8 +201,8 @@ public class Becas_Principal extends javax.swing.JFrame {
             this.tblTiposBecas.getColumnModel().getColumn(0).setMinWidth(0);
             this.tblTiposBecas.getColumnModel().getColumn(0).setMaxWidth(0);
             this.tblTiposBecas.getColumnModel().getColumn(0).setWidth(0);
-        } catch (SQLException ex) {
-            Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
     }
 
@@ -240,8 +238,8 @@ public class Becas_Principal extends javax.swing.JFrame {
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Becas_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnDesHabilitarBecaActionPerformed
 

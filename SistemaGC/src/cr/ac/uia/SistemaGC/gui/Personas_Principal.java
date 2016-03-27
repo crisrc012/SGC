@@ -11,8 +11,6 @@ import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -213,8 +211,8 @@ public class Personas_Principal extends javax.swing.JFrame {
                 tableModel.addRow(ap);
             }
             this.tblPersonas.setModel(tableModel);
-        } catch (SQLException ex) {
-            Logger.getLogger(Personas_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -241,8 +239,8 @@ public class Personas_Principal extends javax.swing.JFrame {
                             "Correcto", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(Personas_Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException e) {
+            System.out.println(e.toString());
             }
         }
     }//GEN-LAST:event_btnEliminarPersonaActionPerformed

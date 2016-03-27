@@ -13,8 +13,6 @@ import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -242,49 +240,42 @@ public class VentaTiquetes extends javax.swing.JFrame {
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         try {
-            int answ = JOptionPane.showConfirmDialog(this, "¿Está seguro de realizar la compra?","Confirmación",JOptionPane.YES_NO_OPTION);
-            if(answ == JOptionPane.YES_OPTION){
+            int answ = JOptionPane.showConfirmDialog(this, "¿Está seguro de realizar la compra?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (answ == JOptionPane.YES_OPTION) {
                 int cant = Integer.parseInt(txtCantidad.getText().trim());
                 int id_comida = 0;
                 Date fecha = new Date();
                 java.sql.Date fechaActual = new java.sql.Date(fecha.getTime());
-                if(cboTiposComida.getSelectedIndex()== 0 && id_persona == 1){
+                if (cboTiposComida.getSelectedIndex() == 0 && id_persona == 1) {
                     id_comida = 1;
-                }else{
-                    if(cboTiposComida.getSelectedIndex()== 0 && id_persona == 2){
-                        id_comida = 3;
-                    }else{
-                        if(cboTiposComida.getSelectedIndex()== 1 && id_persona == 1){
-                            id_comida = 2;
-                        }else{
-                            if(cboTiposComida.getSelectedIndex()== 1 && id_persona == 2){
-                                id_comida = 4;
-                            } 
-                        }
-                    }
+                } else if (cboTiposComida.getSelectedIndex() == 0 && id_persona == 2) {
+                    id_comida = 3;
+                } else if (cboTiposComida.getSelectedIndex() == 1 && id_persona == 1) {
+                    id_comida = 2;
+                } else if (cboTiposComida.getSelectedIndex() == 1 && id_persona == 2) {
+                    id_comida = 4;
                 }
                 for (int i = 0; i < cant; i++) {
-                        Tiquetes_bl tbl = new Tiquetes_bl();
-                        Tiquetes tiquete = new Tiquetes(
-                                null, Integer.parseInt(txtCedula.getText().trim()),
-                                id_comida,fechaActual,null,true);
-                        if(tbl.insert(tiquete)){
-                            JOptionPane.showMessageDialog(this, "Compra realizada con éxito",
-                                "Correcto",JOptionPane.INFORMATION_MESSAGE);
-                        }else{
-                            JOptionPane.showMessageDialog(this, "La compra no pudo ser efectuada",
-                                "Error",JOptionPane.INFORMATION_MESSAGE);
-                        }
+                    Tiquetes_bl tbl = new Tiquetes_bl();
+                    Tiquetes tiquete = new Tiquetes(
+                            null, Integer.parseInt(txtCedula.getText().trim()),
+                            id_comida, fechaActual, null, true);
+                    if (tbl.insert(tiquete)) {
+                        JOptionPane.showMessageDialog(this, "Compra realizada con éxito",
+                                "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "La compra no pudo ser efectuada",
+                                "Error", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
-
-            }else{
+            } else {
                 txtCantidad.setText("");
                 txtCedula.setText("");
                 txtNombre.setText("");
             }
-        } catch (SQLException ex) {
-                    Logger.getLogger(VentaTiquetes.class.getName()).log(Level.SEVERE, null, ex);
-                }    
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -292,19 +283,19 @@ public class VentaTiquetes extends javax.swing.JFrame {
         txtCedula.setText("");
         txtNombre.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
-int id_persona;
+    int id_persona;
     private void btnCosultarCedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCosultarCedActionPerformed
         try {
             Personas_bl pbl = new Personas_bl();
-            Personas p = new Personas ();
+            Personas p = new Personas();
             p.setCedula(Integer.parseInt((String) txtCedula.getText().trim()));
             ArrayList<Personas> al = pbl.select(p);
             for (int i = 0; i < al.size(); i++) {
                 txtNombre.setText(al.get(i).getNombre() + " " + al.get(i).getApellidos());
                 id_persona = al.get(i).getId_persona();
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(VentaTiquetes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnCosultarCedActionPerformed
 
@@ -328,7 +319,7 @@ int id_persona;
             java.util.logging.Logger.getLogger(VentaTiquetes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

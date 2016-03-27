@@ -152,8 +152,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAsignacionActionPerformed
-        
-        
+
     }//GEN-LAST:event_btnGuardarAsignacionActionPerformed
 
     /**
