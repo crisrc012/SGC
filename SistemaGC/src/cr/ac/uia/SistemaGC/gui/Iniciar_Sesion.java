@@ -123,7 +123,14 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         try {
-            usuario.setUsuario(txtUserName.getText());
+            if (txtUserName.getText().trim().isEmpty() || txtPassword.getPassword().length == 0) {
+                JOptionPane.showMessageDialog(this,
+                        "Por favor digite su nombre de usuario y contraseña.",
+                        "Inicio de sesión incorreto",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            usuario.setUsuario(txtUserName.getText().trim());
             usuario.setContrasena(Arrays.toString(txtPassword.getPassword()));
             Boolean conexion = ubl.login(usuario);
             if (conexion == null) {
