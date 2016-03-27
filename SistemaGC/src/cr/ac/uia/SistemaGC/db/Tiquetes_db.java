@@ -70,7 +70,7 @@ public class Tiquetes_db {
                     + id_persona + ", "
                     + id_precio + ", "
                     + fecha_compra + ", "
-                    + fecha_uso + "', "
+                    + fecha_uso + ", "
                     + activo + ");");
             control = true;
         } catch (SQLException e) {

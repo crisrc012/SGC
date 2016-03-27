@@ -76,7 +76,7 @@ public class Tiquetes_bl {
             fecha_compra = "'" + String.valueOf(tiquetes.getFecha_compra()) + "'";
         }
         if (tiquetes.getFecha_uso() == null) {
-            return false;
+            fecha_uso = String.valueOf(tiquetes.getFecha_uso());
         } else {
             fecha_uso = "'" + String.valueOf(tiquetes.getFecha_uso() + "'");
         }
