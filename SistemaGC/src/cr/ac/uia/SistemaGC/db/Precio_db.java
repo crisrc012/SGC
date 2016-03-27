@@ -21,7 +21,7 @@ public class Precio_db {
     private Statement st;
 
     public ArrayList<Precio> select(String id, String id_persona, String id_comida, String precio) throws SQLException {
-        ArrayList<Precio> preciolst = null;
+        ArrayList<Precio> preciolst = new ArrayList<>();
         try {
             this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();

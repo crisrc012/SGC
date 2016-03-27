@@ -9,6 +9,7 @@ import cr.ac.uia.SistemaGC.bl.Precio_bl;
 import cr.ac.uia.SistemaGC.entities.Precio;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class GestionParametros extends javax.swing.JFrame {
 
+    private Precio_bl bl;
     /**
      * Creates new form GestionParametros
      */
@@ -209,33 +211,54 @@ public class GestionParametros extends javax.swing.JFrame {
 
     private void btnGuardarParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarParametrosActionPerformed
         try {
-            txtAlmEstudiante.setEnabled(true);
-            txtAlmProfesor.setEnabled(true);
-            txtDesEstudiante.setEnabled(true);
-            txtDesProfesor.setEnabled(true);
-            btnGuardarParametros.setText("Guardar Parámetros");
-            //UPDATE
-            Precio Aest = new Precio();
+            if (!txtAlmEstudiante.isEnabled() || !txtAlmProfesor.isEnabled()
+                    || !txtDesEstudiante.isEnabled() || !txtDesProfesor.isEnabled()) {
+                txtAlmEstudiante.setEnabled(true);
+                txtAlmProfesor.setEnabled(true);
+                txtDesEstudiante.setEnabled(true);
+                txtDesProfesor.setEnabled(true);
+                btnGuardarParametros.setText("Guardar Parámetros");
+                return;
+            }
+            // UPDATE
+            // Desayuno
+            // Estudiante
             Precio Dest = new Precio();
-            Precio Aprf = new Precio();
-            Precio Dprf = new Precio();
+            Dest.setId(1);
             Dest.setId_comida(1);
-            Dprf.setId_comida(1);
-            Aest.setId_comida(2);
-            Aprf.setId_comida(2);
             Dest.setId_persona(1);
-            Aest.setId_persona(1);
+            Dest.setPrecio(Integer.parseInt(txtDesEstudiante.getText()));
+            // Docente
+            Precio Dprf = new Precio();
+            Dprf.setId(2);
+            Dprf.setId_comida(1);
             Dprf.setId_persona(2);
+            Dprf.setPrecio(Integer.parseInt(txtDesProfesor.getText()));
+            // Fin Desayuno
+            // Almuerzo
+            // Estudiante
+            Precio Aest = new Precio();
+            Aest.setId(3);
+            Aest.setId_comida(2);
+            Aest.setId_persona(1);
+            Aest.setPrecio(Integer.parseInt(txtAlmEstudiante.getText()));
+            // Docente
+            Precio Aprf = new Precio();
+            Aprf.setId(4);
+            Aprf.setId_comida(2);
             Aprf.setId_persona(2);
-            Precio_bl bl = new Precio_bl();
-            if(bl.update(Dprf)&& bl.update(Aprf)&& bl.update(Dest)&& bl.update(Aest)){
+            Aprf.setPrecio(Integer.parseInt(txtAlmProfesor.getText()));
+            // Fin almuerzo
+            bl = new Precio_bl();
+            if (bl.update(Dprf) && bl.update(Aprf) && bl.update(Dest) && bl.update(Aest)) {
                 JOptionPane.showMessageDialog(this,
-                        "Parámetros modificados correctamente", 
+                        "Parámetros modificados correctamente",
                         "Gestión de Parámetros",
                         JOptionPane.INFORMATION_MESSAGE);
-            }else{
+                this.dispose();
+            } else {
                 JOptionPane.showMessageDialog(this,
-                        "Se produjo un error, ingrese los datos nuevamente.", 
+                        "Se produjo un error, ingrese los datos nuevamente.",
                         "Gestión de Parámetros",
                         JOptionPane.INFORMATION_MESSAGE);
             }
@@ -245,10 +268,20 @@ public class GestionParametros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarParametrosActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setAutoRequestFocus(true);
-        this.setAlwaysOnTop(true);
-        this.setLocationRelativeTo(null);
+        try {
+            this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            this.setAutoRequestFocus(true);
+            this.setAlwaysOnTop(true);
+            this.setLocationRelativeTo(null);
+            bl = new Precio_bl();
+            ArrayList<Precio> ap = bl.select(new Precio());
+            txtDesEstudiante.setText(ap.get(0).getPrecio().toString());
+            txtDesProfesor.setText(ap.get(1).getPrecio().toString());
+            txtAlmEstudiante.setText(ap.get(2).getPrecio().toString());
+            txtAlmProfesor.setText(ap.get(3).getPrecio().toString());
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
     }//GEN-LAST:event_formComponentShown
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -276,7 +309,7 @@ public class GestionParametros extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GestionParametros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
