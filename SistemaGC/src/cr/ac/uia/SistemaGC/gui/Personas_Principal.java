@@ -172,24 +172,26 @@ public class Personas_Principal extends javax.swing.JFrame {
 
     private void btnModificarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPersonaActionPerformed
         int i = tblPersonas.getSelectedRow();
-        if (i > -1) {
-            new Personas_Formulario(true,
-                    new Personas(
-                            (Integer) tblPersonas.getValueAt(i, 0),
-                            (String) tblPersonas.getValueAt(i, 1),
-                            (String) tblPersonas.getValueAt(i, 2),
-                            (Date) tblPersonas.getValueAt(i, 3),
-                            (Integer) tblPersonas.getValueAt(i, 4),
-                            (Integer) tblPersonas.getValueAt(i, 5),
-                            (String) tblPersonas.getValueAt(i, 6),
-                            (Integer) tblPersonas.getValueAt(i, 7))).setVisible(true);
-            this.dispose();
-        } else {
+        if (i < 0) {
+            
             JOptionPane.showMessageDialog(null,
                     "Por favor seleccione una celda.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
-        }
+            return;
+        } 
+        new Personas_Formulario(true,
+                new Personas(
+                        (Integer) tblPersonas.getValueAt(i, 0),
+                        (String) tblPersonas.getValueAt(i, 1),
+                        (String) tblPersonas.getValueAt(i, 2),
+                        (Date) tblPersonas.getValueAt(i, 3),
+                        (Integer) tblPersonas.getValueAt(i, 4),
+                        (Integer) tblPersonas.getValueAt(i, 5),
+                        (String) tblPersonas.getValueAt(i, 6),
+                        (Integer) tblPersonas.getValueAt(i, 7))).setVisible(true);
+        this.dispose();
+        
 
     }//GEN-LAST:event_btnModificarPersonaActionPerformed
 

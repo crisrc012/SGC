@@ -67,13 +67,14 @@ public class Personas_Formulario extends javax.swing.JFrame {
         txtTelefono1 = new javax.swing.JTextField();
         txtTelefono2 = new javax.swing.JTextField();
         txtContactoPersona = new javax.swing.JTextField();
-        txtObservacionesPersona = new javax.swing.JTextField();
         txtFechaPersona = new javax.swing.JFormattedTextField();
         lblTituloAgPersona = new javax.swing.JLabel();
         lblFoto = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
         lblCel = new javax.swing.JLabel();
         lblTel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtObservacionesPersona = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -143,6 +144,10 @@ public class Personas_Formulario extends javax.swing.JFrame {
 
         lblTel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Telefono.png"))); // NOI18N
 
+        txtObservacionesPersona.setColumns(20);
+        txtObservacionesPersona.setRows(5);
+        jScrollPane1.setViewportView(txtObservacionesPersona);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -165,18 +170,10 @@ public class Personas_Formulario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTelefono1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblContactoPersona)
-                        .addGap(41, 41, 41)
-                        .addComponent(txtContactoPersona))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addComponent(lblTel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTelefono2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblObservacionesPersona)
-                        .addGap(89, 89, 89)
-                        .addComponent(txtObservacionesPersona))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombrePersona)
@@ -184,10 +181,18 @@ public class Personas_Formulario extends javax.swing.JFrame {
                         .addGap(128, 128, 128)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombrePersona)
-                            .addComponent(txtCedulaPersona))))
+                            .addComponent(txtCedulaPersona)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblContactoPersona)
+                            .addComponent(lblObservacionesPersona))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtContactoPersona)
+                            .addComponent(jScrollPane1))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
+                .addContainerGap(107, Short.MAX_VALUE)
                 .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +208,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
                         .addGap(133, 133, 133)
                         .addComponent(btnCargarFoto))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
+                        .addGap(159, 159, 159)
                         .addComponent(btnGuardarPersona)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -256,10 +261,10 @@ public class Personas_Formulario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblObservacionesPersona)
-                    .addComponent(txtObservacionesPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(btnGuardarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -389,6 +394,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
     private javax.swing.ButtonGroup TipoPersona;
     private javax.swing.JButton btnCargarFoto;
     private javax.swing.JButton btnGuardarPersona;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblApellidosPersona;
     private javax.swing.JLabel lblCedulaPersona;
     private javax.swing.JLabel lblCel;
@@ -405,7 +411,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
     private javax.swing.JTextField txtContactoPersona;
     private javax.swing.JFormattedTextField txtFechaPersona;
     private javax.swing.JTextField txtNombrePersona;
-    private javax.swing.JTextField txtObservacionesPersona;
+    private javax.swing.JTextArea txtObservacionesPersona;
     private javax.swing.JTextField txtTelefono1;
     private javax.swing.JTextField txtTelefono2;
     // End of variables declaration//GEN-END:variables
