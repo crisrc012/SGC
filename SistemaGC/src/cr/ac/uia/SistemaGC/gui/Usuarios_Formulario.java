@@ -290,6 +290,7 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
             txtCedula.setEditable(false);
             txtContraseña.setEnabled(false);
             txtRepetirCont.setEnabled(false);
+            txtUsuario.setEnabled(false);
         }
     }//GEN-LAST:event_formComponentShown
 
