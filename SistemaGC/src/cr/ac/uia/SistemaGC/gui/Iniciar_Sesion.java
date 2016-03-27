@@ -5,11 +5,21 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
+import cr.ac.uia.SistemaGC.entities.Usuarios;
+import java.sql.SQLException;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pao
  */
 public class Iniciar_Sesion extends javax.swing.JFrame {
+
+    public static Principal PUI;
+    private Usuarios usuario;
+    private Usuarios_bl ubl;
 
     /**
      * Creates new form Login
@@ -110,11 +120,31 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public static Principal PUI;
+
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        PUI = new Principal();
-        PUI.setVisible(true);
-        this.dispose();
+        try {
+            usuario.setUsuario(txtUserName.getText());
+            usuario.setContrasena(Arrays.toString(txtPassword.getPassword()));
+            if (usuario == null) {
+                JOptionPane.showMessageDialog(this,
+                        "Por favor digite su nombre de usuario y contraseña",
+                        "Error",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            if (ubl.login(usuario)) {
+                PUI = new Principal();
+                PUI.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Ha ocurrido un error, revise los datos ingresados.",
+                        "Inicio de sesión incorreto",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -122,6 +152,8 @@ public static Principal PUI;
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("Sistema de Gestión de Comedor - Iniciar");
+        usuario = new Usuarios();
+        ubl = new Usuarios_bl();
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -145,7 +177,7 @@ public static Principal PUI;
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

@@ -21,7 +21,7 @@ public class Usuarios_db {
     private Statement st;
 
     public ArrayList<Usuarios> select(String cedula, String usuario, String contrasena, String nombre, String apellidos, String activo, String observaciones, String id_rol) throws SQLException {
-        ArrayList<Usuarios> usuarioslst = null;
+        ArrayList<Usuarios> usuarioslst = new ArrayList<>();
         try {
             this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
@@ -35,7 +35,6 @@ public class Usuarios_db {
                     + activo + ", "
                     + observaciones + ", "
                     + id_rol + ");")) {
-                usuarioslst = new ArrayList<>();
                 while (rs.next()) {
                     Usuarios u = new Usuarios();
                     u.setCedula(rs.getInt("cedula"));
@@ -99,6 +98,30 @@ public class Usuarios_db {
             this.st.executeQuery("SELECT f_usuarios('delete',"
                     + cedula + ", NULL, NULL, NULL, NULL, NULL, NULL, NULL);");
             control = true;
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        } finally {
+            if (this.st != null) {
+                this.st.close();
+            }
+            if (this.conn != null) {
+                this.conn.close();
+            }
+        }
+        return control;
+    }
+
+    public Boolean login(String usuario, String contrasena) throws SQLException {
+        Boolean control = false;
+        try {
+            this.conn = new Conexion();
+            this.st = conn.getConnection().createStatement();
+            try (ResultSet rs = this.st.executeQuery("SELECT * FROM f_check_password('" + usuario + "','" + contrasena + "');")) {
+                while (rs.next()) {
+                    control = rs.getBoolean("activo");
+                }
+                rs.close();
+            }
         } catch (SQLException e) {
             System.out.println(e.toString());
         } finally {
