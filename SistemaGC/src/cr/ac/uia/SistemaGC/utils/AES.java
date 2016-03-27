@@ -19,8 +19,7 @@ import org.apache.commons.codec.binary.Base64;
 
 /**
  *
- * @author crisrc012
- * Inspirado en:
+ * @author crisrc012 Inspirado en:
  * http://stackoverflow.com/questions/15554296/simple-java-aes-encrypt-decrypt-example
  */
 public class AES {
@@ -35,8 +34,11 @@ public class AES {
     }
 
     public static String encrypt(String cedula, String usuario, String contrasena) {
-        // Método para cifrar contraseñas
-        // String key, String initVector, String value
+        //<editor-fold defaultstate="collapsed" desc="Método para cifrar contraseñas">
+        /*
+        * Inspirado en:
+        * http://stackoverflow.com/questions/15554296/simple-java-aes-encrypt-decrypt-example
+         */
         try {
             IvParameterSpec iv = new IvParameterSpec(fitString(usuario, 16).getBytes("UTF-8"));
             SecretKeySpec skeySpec = new SecretKeySpec(fitString(cedula, 16).getBytes("UTF-8"), "AES");
@@ -48,9 +50,10 @@ public class AES {
             System.out.println(e.toString());
         }
         return null;
+        //</editor-fold>
     }
-
-//    Método para descifrar las contraseñas
+    
+    //<editor-fold defaultstate="collapsed" desc="Método para descifrar las contraseñas">
 //    public static String decrypt(String key, String initVector, String encrypted) {
 //        try {
 //            IvParameterSpec iv = new IvParameterSpec(fitString(initVector, 16).getBytes("UTF-8"));
@@ -64,4 +67,5 @@ public class AES {
 //        }
 //        return null;
 //    }
+    //</editor-fold>
 }
