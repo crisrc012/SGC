@@ -318,11 +318,6 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Usuarios_Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
