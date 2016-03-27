@@ -19,7 +19,7 @@ import org.apache.commons.codec.binary.Base64;
 
 /**
  *
- * @author crobles
+ * @author crisrc012
  * Inspirado en:
  * http://stackoverflow.com/questions/15554296/simple-java-aes-encrypt-decrypt-example
  */
@@ -34,13 +34,15 @@ public class AES {
         }
     }
 
-    public static String encrypt(String key, String initVector, String value) {
+    public static String encrypt(String cedula, String usuario, String contrasena) {
+        // Método para cifrar contraseñas
+        // String key, String initVector, String value
         try {
-            IvParameterSpec iv = new IvParameterSpec(fitString(initVector, 16).getBytes("UTF-8"));
-            SecretKeySpec skeySpec = new SecretKeySpec(fitString(key, 16).getBytes("UTF-8"), "AES");
+            IvParameterSpec iv = new IvParameterSpec(fitString(usuario, 16).getBytes("UTF-8"));
+            SecretKeySpec skeySpec = new SecretKeySpec(fitString(cedula, 16).getBytes("UTF-8"), "AES");
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
-            byte[] encrypted = cipher.doFinal(value.getBytes());
+            byte[] encrypted = cipher.doFinal(contrasena.getBytes());
             return Base64.encodeBase64String(encrypted);
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
             System.out.println(e.toString());
@@ -48,6 +50,7 @@ public class AES {
         return null;
     }
 
+//    Método para descifrar las contraseñas
 //    public static String decrypt(String key, String initVector, String encrypted) {
 //        try {
 //            IvParameterSpec iv = new IvParameterSpec(fitString(initVector, 16).getBytes("UTF-8"));
