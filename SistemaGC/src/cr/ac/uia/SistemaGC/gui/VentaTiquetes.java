@@ -5,11 +5,14 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
+import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.util.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -106,13 +109,17 @@ public class VentaTiquetes extends javax.swing.JFrame {
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCedula.setEnabled(false);
 
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombre.setEnabled(false);
 
         btnCosultarCed.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnCosultarCed.setText("Consultar");
+        btnCosultarCed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCosultarCedActionPerformed(evt);
+            }
+        });
 
         btnComprar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnComprar.setText("COMPRAR TIQUETE");
@@ -234,34 +241,50 @@ public class VentaTiquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        int answ = JOptionPane.showConfirmDialog(this, "¿Está seguro de realizar la compra?","Confirmación",JOptionPane.YES_NO_OPTION);
-        if(answ == JOptionPane.YES_OPTION){
-            int cant = Integer.parseInt(txtCantidad.getText().trim());
-            int id_comida = 0;
-            Date fecha = new Date();
-            java.sql.Date fechaActual = new java.sql.Date(fecha.getTime());
-            if(cboTiposComida.getSelectedIndex()==0){
-                id_comida = 1;
+        try {
+            int answ = JOptionPane.showConfirmDialog(this, "¿Está seguro de realizar la compra?","Confirmación",JOptionPane.YES_NO_OPTION);
+            if(answ == JOptionPane.YES_OPTION){
+                int cant = Integer.parseInt(txtCantidad.getText().trim());
+                int id_comida = 0;
+                Date fecha = new Date();
+                java.sql.Date fechaActual = new java.sql.Date(fecha.getTime());
+                if(cboTiposComida.getSelectedIndex()== 0 && id_persona == 1){
+                    id_comida = 1;
+                }else{
+                    if(cboTiposComida.getSelectedIndex()== 0 && id_persona == 2){
+                        id_comida = 3;
+                    }else{
+                        if(cboTiposComida.getSelectedIndex()== 1 && id_persona == 1){
+                            id_comida = 2;
+                        }else{
+                            if(cboTiposComida.getSelectedIndex()== 1 && id_persona == 2){
+                                id_comida = 4;
+                            } 
+                        }
+                    }
+                }
+                for (int i = 0; i < cant; i++) {
+                        Tiquetes_bl tbl = new Tiquetes_bl();
+                        Tiquetes tiquete = new Tiquetes(
+                                null, Integer.parseInt(txtCedula.getText().trim()),
+                                id_comida,fechaActual,null,true);
+                        if(tbl.insert(tiquete)){
+                            JOptionPane.showMessageDialog(this, "Compra realizada con éxito",
+                                "Correcto",JOptionPane.INFORMATION_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(this, "La compra no pudo ser efectuada",
+                                "Error",JOptionPane.INFORMATION_MESSAGE);
+                        }
+                }
+
             }else{
-                if(cboTiposComida.getSelectedIndex()==0){
-                    id_comida = 2;
-                }
+                txtCantidad.setText("");
+                txtCedula.setText("");
+                txtNombre.setText("");
             }
-            for (int i = 0; i < cant; i++) {
-                try {
-                    Tiquetes_bl tbl = new Tiquetes_bl();
-                    Tiquetes tiquete = new Tiquetes(
-                            null, Integer.parseInt(txtCedula.getText().trim()),
-                            id_comida,fechaActual,null,true
-                    );
-                    tbl.insert(tiquete);
-                } catch (SQLException ex) {
+        } catch (SQLException ex) {
                     Logger.getLogger(VentaTiquetes.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            JOptionPane.showMessageDialog(this, "Compra realizada con éxito",
-                    "Correcto",JOptionPane.INFORMATION_MESSAGE);
-        }
+                }    
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -269,6 +292,21 @@ public class VentaTiquetes extends javax.swing.JFrame {
         txtCedula.setText("");
         txtNombre.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
+int id_persona;
+    private void btnCosultarCedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCosultarCedActionPerformed
+        try {
+            Personas_bl pbl = new Personas_bl();
+            Personas p = new Personas ();
+            p.setCedula(Integer.parseInt((String) txtCedula.getText().trim()));
+            ArrayList<Personas> al = pbl.select(p);
+            for (int i = 0; i < al.size(); i++) {
+                txtNombre.setText(al.get(i).getNombre() + " " + al.get(i).getApellidos());
+                id_persona = al.get(i).getId_persona();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VentaTiquetes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCosultarCedActionPerformed
 
     /**
      * @param args the command line arguments
