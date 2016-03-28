@@ -14,8 +14,6 @@ import cr.ac.uia.SistemaGC.entities.Personas;
 import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -298,8 +296,8 @@ public class Becados_Formulario extends javax.swing.JFrame {
                     id_beca = abl.get(0).getId();
                     txtPorcentaje.setText(String.valueOf(abl.get(0).getPorcentaje()));
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(Becados_Formulario.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException e) {
+                System.out.println(e.toString());
             }
         }
     }//GEN-LAST:event_cboBecasItemStateChanged

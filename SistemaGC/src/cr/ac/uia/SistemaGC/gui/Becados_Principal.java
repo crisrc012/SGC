@@ -14,8 +14,6 @@ import cr.ac.uia.SistemaGC.entities.Becas;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -193,8 +191,8 @@ public class Becados_Principal extends javax.swing.JFrame {
                             (String) tblAdmBecas.getValueAt(i, 3))
             ).setVisible(true);
             this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(Becados_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
 
 
