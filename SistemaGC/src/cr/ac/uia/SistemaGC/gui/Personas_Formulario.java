@@ -5,12 +5,22 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Personas_avatar_bl;
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
+import cr.ac.uia.SistemaGC.entities.Personas_avatar;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -22,6 +32,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Pao
  */
 public class Personas_Formulario extends javax.swing.JFrame {
+
     private final boolean isUpdate;
     private final Personas persona;
 
@@ -30,12 +41,13 @@ public class Personas_Formulario extends javax.swing.JFrame {
      */
     public Personas_Formulario() {
         initComponents();
-        isUpdate= false;
-        this.persona= new Personas();
+        isUpdate = false;
+        this.persona = new Personas();
     }
+
     public Personas_Formulario(boolean Update, Personas persona) {
         initComponents();
-        this.isUpdate= Update;
+        this.isUpdate = Update;
         this.persona = persona;
     }
 
@@ -162,12 +174,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addComponent(txtFechaPersona))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTelefonosPersona)
-                        .addGap(82, 82, 82)
-                        .addComponent(lblCel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTelefono1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addComponent(lblTel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -187,11 +193,20 @@ public class Personas_Formulario extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtContactoPersona)
-                            .addComponent(jScrollPane1))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCargarFoto)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTelefonosPersona)
+                                .addGap(82, 82, 82)
+                                .addComponent(lblCel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTelefono1)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(107, Short.MAX_VALUE)
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RBEstudiante)
@@ -203,9 +218,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(lblTituloAgPersona))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(btnCargarFoto))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
                         .addComponent(btnGuardarPersona)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -213,20 +225,20 @@ public class Personas_Formulario extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(RBEstudiante)
-                        .addGap(42, 42, 42)
-                        .addComponent(RBProfesor))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addComponent(lblTituloAgPersona)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCargarFoto)
-                .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCargarFoto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(RBEstudiante)
+                        .addGap(18, 18, 18)
+                        .addComponent(RBProfesor)
+                        .addGap(74, 74, 74)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedulaPersona)
                     .addComponent(txtCedulaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -267,35 +279,34 @@ public class Personas_Formulario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    File fichero;
+
     private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
         int resultado;
+        File fichero;
         Personas_Agregar_SubirFoto file = new Personas_Agregar_SubirFoto();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
         file.FchCargarFoto.setFileFilter(filtro);
-        resultado = file.FchCargarFoto.showOpenDialog(null);
+        resultado = file.FchCargarFoto.showOpenDialog(this);
         if (JFileChooser.APPROVE_OPTION == resultado) {
             fichero = file.FchCargarFoto.getSelectedFile();
             try {
                 ImageIcon image = new ImageIcon(fichero.toString());
                 Icon icon = new ImageIcon(image.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
                 lblFoto.setIcon(icon);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error al intentar abrir la imagen " + ex);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al intentar abrir la imagen " + e);
             }
         }
     }//GEN-LAST:event_btnCargarFotoActionPerformed
 
     private void btnGuardarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPersonaActionPerformed
         try {
-            int id= 0;
-            if(RBEstudiante.isSelected()){
+            int id = 0;
+            if (RBEstudiante.isSelected()) {
                 //Ejemplos
-                id=1;
-            }else {
-                if (RBProfesor.isSelected()){
-                    id=2;
-                }
+                id = 1;
+            } else if (RBProfesor.isSelected()) {
+                id = 2;
             }
             Personas_bl blp = new Personas_bl();
             persona.setCedula(Integer.parseInt(txtCedulaPersona.getText().trim()));
@@ -306,46 +317,85 @@ public class Personas_Formulario extends javax.swing.JFrame {
             persona.setTel_habitacion(Integer.parseInt(txtTelefono2.getText()));
             persona.setEncargado(txtContactoPersona.getText().trim());
             persona.setId_persona(id);
-            if(this.isUpdate){
-                if(blp.update(persona)){
-                    JOptionPane.showMessageDialog(this, "Persona actualizada correctamente", 
+            if (this.isUpdate) {
+                if (blp.update(persona)) {
+                    if (lblFoto.getIcon() != null) {
+                        BufferedImage image = new BufferedImage(lblFoto.getIcon().getIconWidth(),
+                                lblFoto.getIcon().getIconHeight(), BufferedImage.TYPE_INT_RGB);
+                        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                            try (ImageOutputStream ios = ImageIO.createImageOutputStream(baos)) {
+                                ImageIO.write(image, "jpg", ios);
+                            }
+                            byte[] bytes = baos.toByteArray();
+                            Personas_avatar pa = new Personas_avatar(persona.getCedula(), bytes);
+                            Personas_avatar_bl pabl = new Personas_avatar_bl();
+                            pabl.insert(pa);
+                        } catch (IOException e) {
+                            System.out.println(e.toString());
+                        }
+                    }
+                    JOptionPane.showMessageDialog(this, "Persona actualizada correctamente",
                             "Correcto", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
-                }else{
-                    JOptionPane.showMessageDialog(this, "Error al actualizar, por favor verifique los datos", 
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al actualizar, por favor verifique los datos",
                             "Error", JOptionPane.INFORMATION_MESSAGE);
                 }
-            }else 
-            if(blp.insert(persona)){
-                JOptionPane.showMessageDialog(this, "Se ha guardado correctamente.",
-                        "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar. Intente nuevamente.",
-                        "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
+            } else if (blp.insert(persona)) {
+                if (lblFoto.getIcon() != null) {
+                    BufferedImage image = new BufferedImage(lblFoto.getIcon().getIconWidth(),
+                            lblFoto.getIcon().getIconHeight(), BufferedImage.TYPE_INT_RGB);
+                    try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                        try (ImageOutputStream ios = ImageIO.createImageOutputStream(baos)) {
+                            ImageIO.write(image, "jpg", ios);
+                        }
+                        byte[] bytes = baos.toByteArray();
+                        Personas_avatar pa = new Personas_avatar(persona.getCedula(), bytes);
+                        Personas_avatar_bl pabl = new Personas_avatar_bl();
+                        pabl.insert(pa);
+                    } catch (IOException | SQLException e) {
+                        System.out.println(e.toString());
+                    }
+                    JOptionPane.showMessageDialog(this, "Se ha guardado correctamente.",
+                            "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar. Intente nuevamente.",
+                            "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
 
+
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
-        if(this.isUpdate){
-            btnGuardarPersona.setText("Modificar Persona");
-            txtCedulaPersona.setText(this.persona.getCedula().toString());
-            txtNombrePersona.setText(this.persona.getNombre());
-            txtApellidosPersona.setText(this.persona.getApellidos());
-            txtFechaPersona.setText(this.persona.getFecha_nacimiento().toString());
-            txtTelefono1.setText(this.persona.getTel_celular().toString());
-            txtTelefono2.setText(this.persona.getTel_habitacion().toString());
-            txtContactoPersona.setText(this.persona.getEncargado()); 
-            if(this.persona.getId_persona()==1){
-                RBEstudiante.setSelected(true);
-            }else{
-                RBProfesor.setSelected(true);
+        if (this.isUpdate) {
+            try {
+                Personas_avatar_bl pabl = new Personas_avatar_bl();
+                byte[] foto = pabl.select(this.persona.getCedula());
+                ImageIcon image = new ImageIcon(foto);
+                Icon icon = new ImageIcon(image.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
+                lblFoto.setIcon(icon);
+                btnGuardarPersona.setText("Modificar Persona");
+                txtCedulaPersona.setText(this.persona.getCedula().toString());
+                txtNombrePersona.setText(this.persona.getNombre());
+                txtApellidosPersona.setText(this.persona.getApellidos());
+                txtFechaPersona.setText(this.persona.getFecha_nacimiento().toString());
+                txtTelefono1.setText(this.persona.getTel_celular().toString());
+                txtTelefono2.setText(this.persona.getTel_habitacion().toString());
+                txtContactoPersona.setText(this.persona.getEncargado());
+                if (this.persona.getId_persona() == 1) {
+                    RBEstudiante.setSelected(true);
+                } else {
+                    RBProfesor.setSelected(true);
+                }
+            } catch (SQLException e) {
+                System.out.println(e.toString());
             }
         }
     }//GEN-LAST:event_formComponentShown
@@ -377,7 +427,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

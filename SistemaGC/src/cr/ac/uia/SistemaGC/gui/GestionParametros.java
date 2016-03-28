@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 public class GestionParametros extends javax.swing.JFrame {
 
     private Precio_bl bl;
+
     /**
      * Creates new form GestionParametros
      */
