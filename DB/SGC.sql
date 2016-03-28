@@ -41,7 +41,7 @@ create table tbl_personas(
 );
 
 create table tbl_personas_avatar(
-	cedula integer references tbl_personas(cedula),
+	cedula integer unique references tbl_personas(cedula),
 	foto bytea not null
 );
 
