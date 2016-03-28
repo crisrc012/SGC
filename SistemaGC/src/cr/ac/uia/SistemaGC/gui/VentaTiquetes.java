@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
  */
 public class VentaTiquetes extends javax.swing.JFrame {
 
+    private int id_persona;
+
     /**
      * Creates new form VentaTiquetes
      */
@@ -57,14 +59,15 @@ public class VentaTiquetes extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
+        setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
 
@@ -84,10 +87,10 @@ public class VentaTiquetes extends javax.swing.JFrame {
         lblSigno2.setText("₡");
 
         lblPrecioDes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblPrecioDes.setText("500");
+        lblPrecioDes.setText("---");
 
         lblPrecioAlm.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblPrecioAlm.setText("500");
+        lblPrecioAlm.setText("---");
 
         lblTipoComida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTipoComida.setText("Tipo de comida:");
@@ -152,7 +155,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(127, 127, 127)
                             .addComponent(lblSigno1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblPrecioDes)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(127, 127, 127)
@@ -167,7 +170,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(lblSigno2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(lblPrecioAlm))
                         .addComponent(lblAlmuerzo)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -231,6 +234,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
+
     }//GEN-LAST:event_formComponentShown
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -255,19 +259,19 @@ public class VentaTiquetes extends javax.swing.JFrame {
                 } else if (cboTiposComida.getSelectedIndex() == 1 && id_persona == 2) {
                     id_comida = 4;
                 }
+                int correctos = 0;
                 for (int i = 0; i < cant; i++) {
                     Tiquetes_bl tbl = new Tiquetes_bl();
                     Tiquetes tiquete = new Tiquetes(
                             null, Integer.parseInt(txtCedula.getText().trim()),
                             id_comida, fechaActual, null, true);
                     if (tbl.insert(tiquete)) {
-                        JOptionPane.showMessageDialog(this, "Compra realizada con éxito",
-                                "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "La compra no pudo ser efectuada",
-                                "Error", JOptionPane.INFORMATION_MESSAGE);
+                        correctos++;
                     }
                 }
+                JOptionPane.showMessageDialog(this,
+                        "Se han comprado con éxito " + correctos + " tiquetes",
+                        "Correcto", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 txtCantidad.setText("");
                 txtCedula.setText("");
@@ -283,7 +287,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
         txtCedula.setText("");
         txtNombre.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
-    int id_persona;
+
     private void btnCosultarCedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCosultarCedActionPerformed
         try {
             Personas_bl pbl = new Personas_bl();

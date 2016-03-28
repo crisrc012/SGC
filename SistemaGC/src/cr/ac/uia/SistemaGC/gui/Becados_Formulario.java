@@ -43,6 +43,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
         cboBecas = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         lblTituloAB.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloAB.setText("Administración de Becas");
