@@ -7,11 +7,15 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Becados_VW_bl;
 import cr.ac.uia.SistemaGC.bl.Becados_bl;
+import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.entities.Becados;
 import cr.ac.uia.SistemaGC.entities.Becados_VW;
+import cr.ac.uia.SistemaGC.entities.Becas;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -160,11 +164,40 @@ public class Becados_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAsignarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarBecaActionPerformed
+        this.dispose();
         new Becados_Formulario().setVisible(true);
     }//GEN-LAST:event_btnAsignarBecaActionPerformed
 
     private void btnModificarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarAsignacionActionPerformed
-        new Becados_Formulario().setVisible(true);
+        int i = tblAdmBecas.getSelectedRow();
+        if (i < 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor seleccione una celda.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String nombre = String.valueOf(tblAdmBecas.getValueAt(i, 4));
+        int id = 0;
+        try {
+            Becas beca = new Becas();
+            Becas_bl Bbl = new Becas_bl();
+            beca.setNombre(nombre);
+            ArrayList<Becas> abl = Bbl.select(beca);
+            if (abl.size() > 0) {
+                id = abl.get(0).getId();
+            }
+            new Becados_Formulario(true,
+                    new Becados(null, (Integer) tblAdmBecas.getValueAt(i, 0),
+                            id, (Boolean) tblAdmBecas.getValueAt(i, 6),
+                            (String) tblAdmBecas.getValueAt(i, 3))
+            ).setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Becados_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_btnModificarAsignacionActionPerformed
 
     private void refreshJTable() {

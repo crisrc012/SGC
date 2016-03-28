@@ -101,6 +101,7 @@ public class Becas_Formulario extends javax.swing.JFrame {
         lblHabilitada.setText("Habilitada:");
 
         txtObservacionesBeca.setColumns(20);
+        txtObservacionesBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtObservacionesBeca.setRows(5);
         jScrollPane1.setViewportView(txtObservacionesBeca);
 
@@ -157,10 +158,10 @@ public class Becas_Formulario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblObservacionesBeca)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnGuardarBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

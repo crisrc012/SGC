@@ -25,7 +25,7 @@ public class Becados {
         this.observaciones = null;
     }
 
-    public Becados(int id, int id_persona, int id_beca, boolean activo, String observaciones) {
+    public Becados(Integer id, int id_persona, int id_beca, boolean activo, String observaciones) {
         this.id = id;
         this.id_persona = id_persona;
         this.id_beca = id_beca;
