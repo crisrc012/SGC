@@ -6,10 +6,13 @@
 package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
+import cr.ac.uia.SistemaGC.bl.Precio_bl;
 import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
+import cr.ac.uia.SistemaGC.entities.Precio;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
+import java.awt.HeadlessException;
 import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +25,8 @@ import javax.swing.JOptionPane;
 public class VentaTiquetes extends javax.swing.JFrame {
 
     private int id_persona;
+    private Integer precioD;
+    private Integer precioA;
 
     /**
      * Creates new form VentaTiquetes
@@ -87,10 +92,10 @@ public class VentaTiquetes extends javax.swing.JFrame {
         lblSigno2.setText("₡");
 
         lblPrecioDes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblPrecioDes.setText("---");
+        lblPrecioDes.setText("0");
 
         lblPrecioAlm.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblPrecioAlm.setText("---");
+        lblPrecioAlm.setText("0");
 
         lblTipoComida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTipoComida.setText("Tipo de comida:");
@@ -108,6 +113,12 @@ public class VentaTiquetes extends javax.swing.JFrame {
         cboTiposComida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Desayuno", "Almuerzo" }));
 
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCantidad.setText("1");
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
 
         txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -144,19 +155,18 @@ public class VentaTiquetes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblTipoComida)
-                                .addComponent(lblCedPersona)
-                                .addComponent(lblNombre)
-                                .addComponent(lblCantTique)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(127, 127, 127)
-                            .addComponent(lblSigno1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblPrecioDes)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTipoComida)
+                            .addComponent(lblCedPersona)
+                            .addComponent(lblNombre)
+                            .addComponent(lblCantTique)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(lblSigno1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPrecioDes))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addComponent(lblDesayuno)))
@@ -170,7 +180,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(lblSigno2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(lblPrecioAlm))
                         .addComponent(lblAlmuerzo)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -234,7 +244,26 @@ public class VentaTiquetes extends javax.swing.JFrame {
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
-
+        Precio_bl pbl = new Precio_bl();
+        try {
+            ArrayList<Precio> ap = pbl.select(new Precio());
+            for (int i = 0; i < ap.size(); i++) {
+                if (ap.get(i).getId_persona() == 1) { // Estudiante
+                    if (ap.get(i).getId_comida() == 1) {
+                        precioD = ap.get(i).getPrecio();
+                    } else if (ap.get(i).getId_comida() == 2) {
+                        precioA = ap.get(i).getPrecio();
+                    }
+                } else // Docente
+                 if (ap.get(i).getId_comida() == 1) {
+                        precioD = ap.get(i).getPrecio();
+                    } else if (ap.get(i).getId_comida() == 2) {
+                        precioA = ap.get(i).getPrecio();
+                    }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
     }//GEN-LAST:event_formComponentShown
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -253,9 +282,9 @@ public class VentaTiquetes extends javax.swing.JFrame {
                 if (cboTiposComida.getSelectedIndex() == 0 && id_persona == 1) {
                     id_comida = 1;
                 } else if (cboTiposComida.getSelectedIndex() == 0 && id_persona == 2) {
-                    id_comida = 3;
-                } else if (cboTiposComida.getSelectedIndex() == 1 && id_persona == 1) {
                     id_comida = 2;
+                } else if (cboTiposComida.getSelectedIndex() == 1 && id_persona == 1) {
+                    id_comida = 3;
                 } else if (cboTiposComida.getSelectedIndex() == 1 && id_persona == 2) {
                     id_comida = 4;
                 }
@@ -290,18 +319,52 @@ public class VentaTiquetes extends javax.swing.JFrame {
 
     private void btnCosultarCedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCosultarCedActionPerformed
         try {
+            if (txtCedula.getText().isEmpty()) {
+                return;
+            }
             Personas_bl pbl = new Personas_bl();
             Personas p = new Personas();
             p.setCedula(Integer.parseInt((String) txtCedula.getText().trim()));
             ArrayList<Personas> al = pbl.select(p);
-            for (int i = 0; i < al.size(); i++) {
-                txtNombre.setText(al.get(i).getNombre() + " " + al.get(i).getApellidos());
-                id_persona = al.get(i).getId_persona();
+            if (al.size() > 0) {
+                txtNombre.setText(al.get(0).getNombre() + " " + al.get(0).getApellidos());
+                id_persona = al.get(0).getId_persona();
+                lblPrecioDes.setText(precioD.toString());
+                lblPrecioAlm.setText(precioA.toString());
+                calcularTotal();
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "No existe ninguna persona relacionada a la cédula ingresada",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnCosultarCedActionPerformed
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        try {
+            if (Integer.parseInt(txtCantidad.getText()) < 1) {
+                JOptionPane.showMessageDialog(this,
+                        "Por favor digite únicamente números positivos",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                txtCantidad.setText("1");
+            }
+            calcularTotal();
+        } catch (NumberFormatException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor digite únicamente números",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            txtCantidad.setText("1");
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void calcularTotal() {
+        Integer total = precioA * Integer.parseInt(txtCantidad.getText());
+        lblPrecioAlm.setText(total.toString());
+        total = precioD * Integer.parseInt(txtCantidad.getText());
+        lblPrecioDes.setText(total.toString());
+    }
 
     /**
      * @param args the command line arguments
