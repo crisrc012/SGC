@@ -26,6 +26,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.commons.codec.DecoderException;
 
 /**
  *
@@ -319,21 +320,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
             persona.setId_persona(id);
             if (this.isUpdate) {
                 if (blp.update(persona)) {
-                    if (lblFoto.getIcon() != null) {
-                        BufferedImage image = new BufferedImage(lblFoto.getIcon().getIconWidth(),
-                                lblFoto.getIcon().getIconHeight(), BufferedImage.TYPE_INT_RGB);
-                        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-                            try (ImageOutputStream ios = ImageIO.createImageOutputStream(baos)) {
-                                ImageIO.write(image, "jpg", ios);
-                            }
-                            byte[] bytes = baos.toByteArray();
-                            Personas_avatar pa = new Personas_avatar(persona.getCedula(), bytes);
-                            Personas_avatar_bl pabl = new Personas_avatar_bl();
-                            pabl.insert(pa);
-                        } catch (IOException e) {
-                            System.out.println(e.toString());
-                        }
-                    }
                     JOptionPane.showMessageDialog(this, "Persona actualizada correctamente",
                             "Correcto", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
@@ -375,27 +361,18 @@ public class Personas_Formulario extends javax.swing.JFrame {
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
         if (this.isUpdate) {
-            try {
-                Personas_avatar_bl pabl = new Personas_avatar_bl();
-                byte[] foto = pabl.select(this.persona.getCedula());
-                ImageIcon image = new ImageIcon(foto);
-                Icon icon = new ImageIcon(image.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
-                lblFoto.setIcon(icon);
-                btnGuardarPersona.setText("Modificar Persona");
-                txtCedulaPersona.setText(this.persona.getCedula().toString());
-                txtNombrePersona.setText(this.persona.getNombre());
-                txtApellidosPersona.setText(this.persona.getApellidos());
-                txtFechaPersona.setText(this.persona.getFecha_nacimiento().toString());
-                txtTelefono1.setText(this.persona.getTel_celular().toString());
-                txtTelefono2.setText(this.persona.getTel_habitacion().toString());
-                txtContactoPersona.setText(this.persona.getEncargado());
-                if (this.persona.getId_persona() == 1) {
-                    RBEstudiante.setSelected(true);
-                } else {
-                    RBProfesor.setSelected(true);
-                }
-            } catch (SQLException e) {
-                System.out.println(e.toString());
+            btnGuardarPersona.setText("Modificar Persona");
+            txtCedulaPersona.setText(this.persona.getCedula().toString());
+            txtNombrePersona.setText(this.persona.getNombre());
+            txtApellidosPersona.setText(this.persona.getApellidos());
+            txtFechaPersona.setText(this.persona.getFecha_nacimiento().toString());
+            txtTelefono1.setText(this.persona.getTel_celular().toString());
+            txtTelefono2.setText(this.persona.getTel_habitacion().toString());
+            txtContactoPersona.setText(this.persona.getEncargado());
+            if (this.persona.getId_persona() == 1) {
+                RBEstudiante.setSelected(true);
+            } else {
+                RBProfesor.setSelected(true);
             }
         }
     }//GEN-LAST:event_formComponentShown

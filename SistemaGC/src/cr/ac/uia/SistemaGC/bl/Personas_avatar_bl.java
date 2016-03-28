@@ -19,8 +19,8 @@ import org.apache.commons.codec.binary.Hex;
 public class Personas_avatar_bl {
 
     private final Personas_avatar_db padb;
-    
-    public Personas_avatar_bl(){
+
+    public Personas_avatar_bl() {
         padb = new Personas_avatar_db();
     }
 
