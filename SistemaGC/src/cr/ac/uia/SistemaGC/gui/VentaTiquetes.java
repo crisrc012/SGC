@@ -301,10 +301,12 @@ public class VentaTiquetes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,
                         "Se han comprado con éxito " + correctos + " tiquetes",
                         "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                txtCedula.setEnabled(true);
             } else {
                 txtCantidad.setText("");
                 txtCedula.setText("");
                 txtNombre.setText("");
+                txtCedula.setEnabled(true);
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -322,6 +324,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
             if (txtCedula.getText().isEmpty()) {
                 return;
             }
+            txtCedula.setEnabled(false);
             Personas_bl pbl = new Personas_bl();
             Personas p = new Personas();
             p.setCedula(Integer.parseInt((String) txtCedula.getText().trim()));
