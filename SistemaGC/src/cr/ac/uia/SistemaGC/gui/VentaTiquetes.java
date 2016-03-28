@@ -115,8 +115,8 @@ public class VentaTiquetes extends javax.swing.JFrame {
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtCantidad.setText("1");
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCantidadKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyReleased(evt);
             }
         });
 
@@ -345,7 +345,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCosultarCedActionPerformed
 
-    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+    private void txtCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyReleased
         try {
             if (Integer.parseInt(txtCantidad.getText()) < 1) {
                 JOptionPane.showMessageDialog(this,
@@ -360,7 +360,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
             txtCantidad.setText("1");
         }
-    }//GEN-LAST:event_txtCantidadKeyTyped
+    }//GEN-LAST:event_txtCantidadKeyReleased
 
     private void calcularTotal() {
         Integer total = precioA * Integer.parseInt(txtCantidad.getText());
