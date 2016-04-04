@@ -5,11 +5,16 @@
  */
 package cr.ac.uia.SistemaGC.db;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.postgresql.largeobject.LargeObject;
+import org.postgresql.largeobject.LargeObjectManager;
 
 /**
  *
@@ -22,49 +27,46 @@ public class Personas_avatar_db {
 
     public byte[] select(int cedula) throws SQLException {
         byte[] foto = null;
-        try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            try (ResultSet rs = this.st.executeQuery(
-                    "SELECT foto FROM tbl_personas_avatar WHERE cedula=" + cedula + ";")) {
-                while (rs.next()) {
-                    foto = rs.getBytes("foto");
-                }
-                rs.close();
-            }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-        } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+        // Get the Large Object Manager to perform operations with
+        LargeObjectManager lobj = ((org.postgresql.PGConnection) conn).getLargeObjectAPI();
+        PreparedStatement ps = conn.getConnection().prepareStatement("select foto from tbl_personas_avatar where cedula = ?");
+        ps.setInt(1, cedula);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            // Open the large object for reading
+            int oid = rs.getInt(1);
+            LargeObject obj = lobj.open(oid, LargeObjectManager.READ);
+            // Read the data
+            byte buf[] = new byte[obj.size()];
+            obj.read(buf, 0, obj.size());
+            // Do something with the data read here
+            foto = obj.read(oid);
+            // Close the object
+            obj.close();
         }
+        rs.close();
+        ps.close();
         return foto;
     }
 
-    public boolean insert_update(String cedula, String foto, String dml) throws FileNotFoundException, SQLException, IOException {
+    public boolean insert_update(int cedula, File foto, String dml) throws FileNotFoundException, SQLException, IOException {
         Boolean control = false;
         try {
             conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            String query = null;
-            switch (dml) {
-                case "insert":
-                    query = "insert into tbl_personas_avatar values (" + cedula + ", '" + foto + "');";
-                    break;
-                case "update":
-                    query = "update tbl_personas_avatar set foto='" + foto + "' where cedula=" + cedula + ");";
-                    break;
-                default:
-                    break;
+            FileInputStream fis = new FileInputStream(foto);
+            PreparedStatement ps = null;
+            if (dml.equals("insert")) {
+                ps = conn.getConnection().prepareStatement("insert into tbl_personas_avatar values (?, ?)");
+                ps.setInt(1, cedula);
+                ps.setBinaryStream(2, fis, (int) foto.length());
+            } else {
+                ps = conn.getConnection().prepareStatement("update tbl_personas_avatarv set foto=? where cedula=?");
+                ps.setBinaryStream(1, fis, (int) foto.length());
+                ps.setInt(2, cedula);
             }
-            if (query != null) {
-                this.st.executeQuery(query);
-                control = true;
-            }
+            ps.executeUpdate();
+            ps.close();
+            fis.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         } finally {

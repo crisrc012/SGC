@@ -5,6 +5,8 @@
  */
 package cr.ac.uia.SistemaGC.entities;
 
+import java.io.File;
+
 /**
  *
  * @author crisrc012
@@ -12,16 +14,23 @@ package cr.ac.uia.SistemaGC.entities;
 public class Personas_avatar {
 
     private Integer cedula;
-    private byte[] foto;
+    private File fotoIN;
+    private byte[] fotoOUT;
 
     public Personas_avatar() {
         this.cedula = null;
-        this.foto = null;
+        this.fotoIN = null;
+        this.fotoOUT = null;
     }
 
+    public Personas_avatar(Integer cedula, File foto) {
+        this.cedula = cedula;
+        this.fotoIN = foto;
+    }
+    
     public Personas_avatar(Integer cedula, byte[] foto) {
         this.cedula = cedula;
-        this.foto = foto;
+        this.fotoOUT = foto;
     }
 
     public Integer getCedula() {
@@ -32,11 +41,20 @@ public class Personas_avatar {
         this.cedula = cedula;
     }
 
-    public byte[] getFoto() {
-        return foto;
+    public File getFotoIN() {
+        return fotoIN;
     }
 
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
+    public void setFotoIN(File fotoIN) {
+        this.fotoIN = fotoIN;
     }
+
+    public byte[] getFotoOUT() {
+        return fotoOUT;
+    }
+
+    public void setFotoOUT(byte[] fotoOUT) {
+        this.fotoOUT = fotoOUT;
+    }
+    
 }

@@ -10,15 +10,10 @@ import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Personas_avatar;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -271,13 +266,28 @@ public class Personas_Formulario extends javax.swing.JFrame {
             fichero = file.FchCargarFoto.getSelectedFile();
             try {
                 ImageIcon image = new ImageIcon(fichero.toString());
-                Icon icon = new ImageIcon(image.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
-                lblFoto.setIcon(icon);
+                lblFoto.setIcon(new ImageIcon(image.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT)));
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al intentar abrir la imagen " + e);
             }
         }
     }//GEN-LAST:event_btnCargarFotoActionPerformed
+
+    private void foto() throws SQLException, IOException {
+        if (lblFoto.getIcon() != null) {
+            Personas_avatar_bl pabl = new Personas_avatar_bl();
+            if (this.isUpdate) {
+                pabl.update(new Personas_avatar(
+                        Integer.parseInt(txtCedulaPersona.getText()),
+                        new File(lblFoto.toString())));
+            } else {
+                pabl.insert(
+                        new Personas_avatar(
+                                Integer.parseInt(txtCedulaPersona.getText()),
+                                new File(lblFoto.toString())));
+            }
+        }
+    }
 
     private void btnGuardarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPersonaActionPerformed
         try {
@@ -298,6 +308,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
             persona.setId_persona(id);
             if (this.isUpdate) { // Se valida si se va a actualizar o a insertar
                 if (blp.update(persona)) { // Se actualiza la persona
+                    //this.foto();
                     JOptionPane.showMessageDialog(this, "Persona actualizada correctamente",
                             "Correcto", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
@@ -306,21 +317,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
                             "Error", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else if (blp.insert(persona)) { // Se inserta una nueva persona
-                if (lblFoto.getIcon() != null) {
-                    BufferedImage image = new BufferedImage(lblFoto.getIcon().getIconWidth(),
-                            lblFoto.getIcon().getIconHeight(), BufferedImage.TYPE_INT_RGB);
-                    try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-                        try (ImageOutputStream ios = ImageIO.createImageOutputStream(baos)) {
-                            ImageIO.write(image, "jpg", ios);
-                        }
-                        byte[] bytes = baos.toByteArray();
-                        Personas_avatar pa = new Personas_avatar(persona.getCedula(), bytes);
-                        Personas_avatar_bl pabl = new Personas_avatar_bl();
-                        pabl.insert(pa);
-                    } catch (IOException | SQLException e) {
-                        System.out.println(e.toString());
-                    }
-                }
+                //this.foto();
                 JOptionPane.showMessageDialog(this, "Se ha guardado correctamente.",
                         "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -338,18 +335,24 @@ public class Personas_Formulario extends javax.swing.JFrame {
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
         if (this.isUpdate) {
-            btnGuardarPersona.setText("Modificar Persona");
-            txtCedulaPersona.setText(this.persona.getCedula().toString());
-            txtNombrePersona.setText(this.persona.getNombre());
-            txtApellidosPersona.setText(this.persona.getApellidos());
-            txtFechaPersona.setText(this.persona.getFecha_nacimiento().toString());
-            txtTelefono1.setText(this.persona.getTel_celular().toString());
-            txtTelefono2.setText(this.persona.getTel_habitacion().toString());
-            txtContactoPersona.setText(this.persona.getEncargado());
-            if (this.persona.getId_persona() == 1) {
-                RBEstudiante.setSelected(true);
-            } else {
-                RBFuncionario.setSelected(true);
+            try {
+                Personas_avatar_bl pabl = new Personas_avatar_bl();
+                lblFoto.setIcon(new ImageIcon(pabl.select(persona.getCedula())));
+                btnGuardarPersona.setText("Modificar Persona");
+                txtCedulaPersona.setText(this.persona.getCedula().toString());
+                txtNombrePersona.setText(this.persona.getNombre());
+                txtApellidosPersona.setText(this.persona.getApellidos());
+                txtFechaPersona.setText(this.persona.getFecha_nacimiento().toString());
+                txtTelefono1.setText(this.persona.getTel_celular().toString());
+                txtTelefono2.setText(this.persona.getTel_habitacion().toString());
+                txtContactoPersona.setText(this.persona.getEncargado());
+                if (this.persona.getId_persona() == 1) {
+                    RBEstudiante.setSelected(true);
+                } else {
+                    RBFuncionario.setSelected(true);
+                }
+            } catch (SQLException e) {
+                System.out.println(e.toString());
             }
         }
     }//GEN-LAST:event_formComponentShown

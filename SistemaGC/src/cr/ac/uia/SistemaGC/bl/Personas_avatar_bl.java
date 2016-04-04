@@ -10,7 +10,6 @@ import cr.ac.uia.SistemaGC.entities.Personas_avatar;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
-import org.apache.commons.codec.binary.Hex;
 
 /**
  *
@@ -29,7 +28,7 @@ public class Personas_avatar_bl {
     }
 
     private boolean insert_update(Personas_avatar personas_avatar, String dml) throws FileNotFoundException, SQLException, IOException {
-        return padb.insert_update(personas_avatar.getCedula().toString(), Hex.encodeHexString(personas_avatar.getFoto()), dml);
+        return padb.insert_update(personas_avatar.getCedula(), personas_avatar.getFotoIN(), dml);
     }
 
     public boolean insert(Personas_avatar personas_avatar) throws SQLException, IOException {
