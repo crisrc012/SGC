@@ -27,7 +27,7 @@ create table tbl_persona(
 insert into tbl_persona
 values
 	(1,'Estudiante'),
-	(2,'Docente');
+	(2,'Funcionario');
 
 create table tbl_personas(
 	cedula integer primary key,

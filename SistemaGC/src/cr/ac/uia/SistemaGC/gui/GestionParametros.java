@@ -39,10 +39,10 @@ public class GestionParametros extends javax.swing.JFrame {
         lblTituloGP = new javax.swing.JLabel();
         lblDesayuno = new javax.swing.JLabel();
         lblDesEstudiante = new javax.swing.JLabel();
-        lblDesProfesor = new javax.swing.JLabel();
+        lblDesFuncionario = new javax.swing.JLabel();
         lblAlmuerzo = new javax.swing.JLabel();
         lblAlmEstudiante = new javax.swing.JLabel();
-        lblAlmProfesor = new javax.swing.JLabel();
+        lblAlmFuncionario = new javax.swing.JLabel();
         btnGuardarParametros = new javax.swing.JButton();
         txtDesEstudiante = new javax.swing.JTextField();
         txtDesProfesor = new javax.swing.JTextField();
@@ -76,8 +76,8 @@ public class GestionParametros extends javax.swing.JFrame {
         lblDesEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblDesEstudiante.setText("Estudiantes:");
 
-        lblDesProfesor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblDesProfesor.setText("Profesores:");
+        lblDesFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblDesFuncionario.setText("Funcionario:");
 
         lblAlmuerzo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblAlmuerzo.setText("Almuerzo");
@@ -85,8 +85,8 @@ public class GestionParametros extends javax.swing.JFrame {
         lblAlmEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblAlmEstudiante.setText("Estudiantes:");
 
-        lblAlmProfesor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblAlmProfesor.setText("Profesores:");
+        lblAlmFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAlmFuncionario.setText("Funcionario:");
 
         btnGuardarParametros.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardarParametros.setText("Modificar Parámetros");
@@ -131,14 +131,14 @@ public class GestionParametros extends javax.swing.JFrame {
                 .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblAlmProfesor)
+                        .addComponent(lblAlmFuncionario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblAlmEstudiante)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblDesProfesor)
+                                .addComponent(lblDesFuncionario)
                                 .addComponent(lblDesEstudiante)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -188,7 +188,7 @@ public class GestionParametros extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDesProfesor)
+                    .addComponent(lblDesFuncionario)
                     .addComponent(txtDesProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
@@ -200,7 +200,7 @@ public class GestionParametros extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAlmProfesor)
+                    .addComponent(lblAlmFuncionario)
                     .addComponent(txtAlmProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addGap(18, 18, 18)
@@ -230,7 +230,7 @@ public class GestionParametros extends javax.swing.JFrame {
             Dest.setId_comida(1);
             Dest.setId_persona(1);
             Dest.setPrecio(Integer.parseInt(txtDesEstudiante.getText()));
-            // Docente
+            // Funcionario
             Precio Dprf = new Precio();
             Dprf.setId(2);
             Dprf.setId_comida(1);
@@ -244,7 +244,7 @@ public class GestionParametros extends javax.swing.JFrame {
             Aest.setId_comida(2);
             Aest.setId_persona(1);
             Aest.setPrecio(Integer.parseInt(txtAlmEstudiante.getText()));
-            // Docente
+            // Funcionario
             Precio Aprf = new Precio();
             Aprf.setId(4);
             Aprf.setId_comida(2);
@@ -327,10 +327,10 @@ public class GestionParametros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblAlmEstudiante;
-    private javax.swing.JLabel lblAlmProfesor;
+    private javax.swing.JLabel lblAlmFuncionario;
     private javax.swing.JLabel lblAlmuerzo;
     private javax.swing.JLabel lblDesEstudiante;
-    private javax.swing.JLabel lblDesProfesor;
+    private javax.swing.JLabel lblDesFuncionario;
     private javax.swing.JLabel lblDesayuno;
     private javax.swing.JLabel lblTituloGP;
     private javax.swing.JLabel lblTituloPrecios;

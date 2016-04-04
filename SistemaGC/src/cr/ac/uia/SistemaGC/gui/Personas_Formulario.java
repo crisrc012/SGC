@@ -59,7 +59,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
 
         TipoPersona = new javax.swing.ButtonGroup();
         RBEstudiante = new javax.swing.JRadioButton();
-        RBProfesor = new javax.swing.JRadioButton();
+        RBFuncionario = new javax.swing.JRadioButton();
         lblCedulaPersona = new javax.swing.JLabel();
         lblNombrePersona = new javax.swing.JLabel();
         lblApellidosPersona = new javax.swing.JLabel();
@@ -100,9 +100,9 @@ public class Personas_Formulario extends javax.swing.JFrame {
         RBEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         RBEstudiante.setText("Estudiante");
 
-        TipoPersona.add(RBProfesor);
-        RBProfesor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RBProfesor.setText("Profesor");
+        TipoPersona.add(RBFuncionario);
+        RBFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RBFuncionario.setText("Funcionario");
 
         lblCedulaPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCedulaPersona.setText("Cédula:");
@@ -208,7 +208,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RBEstudiante)
-                    .addComponent(RBProfesor))
+                    .addComponent(RBFuncionario))
                 .addGap(118, 118, 118))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,7 +235,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(RBEstudiante)
                         .addGap(18, 18, 18)
-                        .addComponent(RBProfesor)
+                        .addComponent(RBFuncionario)
                         .addGap(74, 74, 74)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedulaPersona)
@@ -303,7 +303,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
             if (RBEstudiante.isSelected()) {
                 //Ejemplos
                 id = 1;
-            } else if (RBProfesor.isSelected()) {
+            } else if (RBFuncionario.isSelected()) {
                 id = 2;
             }
             Personas_bl blp = new Personas_bl();
@@ -369,7 +369,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
             if (this.persona.getId_persona() == 1) {
                 RBEstudiante.setSelected(true);
             } else {
-                RBProfesor.setSelected(true);
+                RBFuncionario.setSelected(true);
             }
         }
     }//GEN-LAST:event_formComponentShown
@@ -412,7 +412,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton RBEstudiante;
-    private javax.swing.JRadioButton RBProfesor;
+    private javax.swing.JRadioButton RBFuncionario;
     private javax.swing.ButtonGroup TipoPersona;
     private javax.swing.JButton btnCargarFoto;
     private javax.swing.JButton btnGuardarPersona;
