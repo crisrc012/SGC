@@ -66,7 +66,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
         lblFechaPersona = new javax.swing.JLabel();
         lblTelefonosPersona = new javax.swing.JLabel();
         lblContactoPersona = new javax.swing.JLabel();
-        lblObservacionesPersona = new javax.swing.JLabel();
         btnGuardarPersona = new javax.swing.JButton();
         txtCedulaPersona = new javax.swing.JTextField();
         txtNombrePersona = new javax.swing.JTextField();
@@ -80,8 +79,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
         btnCargarFoto = new javax.swing.JButton();
         lblCel = new javax.swing.JLabel();
         lblTel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtObservacionesPersona = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -122,9 +119,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
         lblContactoPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblContactoPersona.setText("Persona para contacto:");
 
-        lblObservacionesPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblObservacionesPersona.setText("Observaciones:");
-
         btnGuardarPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardarPersona.setText("Guardar Persona");
         btnGuardarPersona.addActionListener(new java.awt.event.ActionListener() {
@@ -151,10 +145,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
         lblCel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Celular.png"))); // NOI18N
 
         lblTel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Telefono.png"))); // NOI18N
-
-        txtObservacionesPersona.setColumns(20);
-        txtObservacionesPersona.setRows(5);
-        jScrollPane1.setViewportView(txtObservacionesPersona);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,13 +175,9 @@ public class Personas_Formulario extends javax.swing.JFrame {
                             .addComponent(txtNombrePersona)
                             .addComponent(txtCedulaPersona)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblContactoPersona)
-                            .addComponent(lblObservacionesPersona))
+                        .addComponent(lblContactoPersona)
                         .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtContactoPersona)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
+                        .addComponent(txtContactoPersona))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnCargarFoto)
@@ -203,7 +189,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
                         .addComponent(txtTelefono1)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(88, Short.MAX_VALUE)
                 .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,11 +252,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContactoPersona)
                     .addComponent(txtContactoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblObservacionesPersona)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -301,7 +283,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
         try {
             int id = 0;
             if (RBEstudiante.isSelected()) {
-                //Ejemplos
                 id = 1;
             } else if (RBFuncionario.isSelected()) {
                 id = 2;
@@ -315,8 +296,8 @@ public class Personas_Formulario extends javax.swing.JFrame {
             persona.setTel_habitacion(Integer.parseInt(txtTelefono2.getText()));
             persona.setEncargado(txtContactoPersona.getText().trim());
             persona.setId_persona(id);
-            if (this.isUpdate) {
-                if (blp.update(persona)) {
+            if (this.isUpdate) { // Se valida si se va a actualizar o a insertar
+                if (blp.update(persona)) { // Se actualiza la persona
                     JOptionPane.showMessageDialog(this, "Persona actualizada correctamente",
                             "Correcto", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
@@ -324,7 +305,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Error al actualizar, por favor verifique los datos",
                             "Error", JOptionPane.INFORMATION_MESSAGE);
                 }
-            } else if (blp.insert(persona)) {
+            } else if (blp.insert(persona)) { // Se inserta una nueva persona
                 if (lblFoto.getIcon() != null) {
                     BufferedImage image = new BufferedImage(lblFoto.getIcon().getIconWidth(),
                             lblFoto.getIcon().getIconHeight(), BufferedImage.TYPE_INT_RGB);
@@ -339,18 +320,17 @@ public class Personas_Formulario extends javax.swing.JFrame {
                     } catch (IOException | SQLException e) {
                         System.out.println(e.toString());
                     }
-                    JOptionPane.showMessageDialog(this, "Se ha guardado correctamente.",
-                            "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar. Intente nuevamente.",
-                            "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
                 }
+                JOptionPane.showMessageDialog(this, "Se ha guardado correctamente.",
+                        "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar. Intente nuevamente.",
+                        "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
-
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -416,7 +396,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
     private javax.swing.ButtonGroup TipoPersona;
     private javax.swing.JButton btnCargarFoto;
     private javax.swing.JButton btnGuardarPersona;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblApellidosPersona;
     private javax.swing.JLabel lblCedulaPersona;
     private javax.swing.JLabel lblCel;
@@ -424,7 +403,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
     private javax.swing.JLabel lblFechaPersona;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblNombrePersona;
-    private javax.swing.JLabel lblObservacionesPersona;
     private javax.swing.JLabel lblTel;
     private javax.swing.JLabel lblTelefonosPersona;
     private javax.swing.JLabel lblTituloAgPersona;
@@ -433,7 +411,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
     private javax.swing.JTextField txtContactoPersona;
     private javax.swing.JFormattedTextField txtFechaPersona;
     private javax.swing.JTextField txtNombrePersona;
-    private javax.swing.JTextArea txtObservacionesPersona;
     private javax.swing.JTextField txtTelefono1;
     private javax.swing.JTextField txtTelefono2;
     // End of variables declaration//GEN-END:variables
