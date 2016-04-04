@@ -172,13 +172,13 @@ public class Personas_Principal extends javax.swing.JFrame {
     private void btnModificarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPersonaActionPerformed
         int i = tblPersonas.getSelectedRow();
         if (i < 0) {
-            
+
             JOptionPane.showMessageDialog(null,
                     "Por favor seleccione una celda.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
             return;
-        } 
+        }
         new Personas_Formulario(true,
                 new Personas(
                         (Integer) tblPersonas.getValueAt(i, 0),
@@ -190,31 +190,10 @@ public class Personas_Principal extends javax.swing.JFrame {
                         (String) tblPersonas.getValueAt(i, 6),
                         (Integer) tblPersonas.getValueAt(i, 7))).setVisible(true);
         this.dispose();
-        
-
     }//GEN-LAST:event_btnModificarPersonaActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        try {
-            DefaultTableModel tableModel = (DefaultTableModel) tblPersonas.getModel();
-            tableModel.setRowCount(0);
-            Personas_bl pbl = new Personas_bl();
-            ArrayList<Personas> al = pbl.select(new Personas());
-            for (int i = 0; i < al.size(); i++) {
-                Object[] ap = {al.get(i).getCedula(),
-                    al.get(i).getNombre(),
-                    al.get(i).getApellidos(),
-                    al.get(i).getFecha_nacimiento(),
-                    al.get(i).getTel_celular(),
-                    al.get(i).getTel_habitacion(),
-                    al.get(i).getEncargado(),
-                    al.get(i).getId_persona()};
-                tableModel.addRow(ap);
-            }
-            this.tblPersonas.setModel(tableModel);
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-        }
+        refreshTable();
     }//GEN-LAST:event_formWindowOpened
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -235,13 +214,13 @@ public class Personas_Principal extends javax.swing.JFrame {
         if (i > -1) {
             try {
                 Personas_bl blp = new Personas_bl();
-                if (blp.delete(Integer.parseInt((String) tblPersonas.getValueAt(i, 0)))) {
+                if (blp.delete((int) tblPersonas.getValueAt(i, 0))) {
                     JOptionPane.showMessageDialog(this, "Persona eliminada correctamente",
                             "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                    this.dispose();
+                    refreshTable();
                 }
             } catch (SQLException e) {
-            System.out.println(e.toString());
+                System.out.println(e.toString());
             }
         }
     }//GEN-LAST:event_btnEliminarPersonaActionPerformed
@@ -288,5 +267,28 @@ public class Personas_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblTituloGP;
     private javax.swing.JTable tblPersonas;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshTable() {
+        try {
+            DefaultTableModel tableModel = (DefaultTableModel) tblPersonas.getModel();
+            tableModel.setRowCount(0);
+            Personas_bl pbl = new Personas_bl();
+            ArrayList<Personas> al = pbl.select(new Personas());
+            for (int i = 0; i < al.size(); i++) {
+                Object[] ap = {al.get(i).getCedula(),
+                    al.get(i).getNombre(),
+                    al.get(i).getApellidos(),
+                    al.get(i).getFecha_nacimiento(),
+                    al.get(i).getTel_celular(),
+                    al.get(i).getTel_habitacion(),
+                    al.get(i).getEncargado(),
+                    al.get(i).getId_persona()};
+                tableModel.addRow(ap);
+            }
+            this.tblPersonas.setModel(tableModel);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+    }
 
 }
