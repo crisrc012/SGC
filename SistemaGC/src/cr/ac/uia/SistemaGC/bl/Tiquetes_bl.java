@@ -99,4 +99,12 @@ public class Tiquetes_bl {
     public boolean delete(int id) throws SQLException {
         return tdb.delete(id);
     }
+    
+    public int count(int cedula) throws SQLException {
+        return tdb.count(cedula);
+    }
+    
+    public ArrayList<Tiquetes> activos(int id_persona) throws SQLException{
+        return tdb.activos(id_persona);
+    }
 }

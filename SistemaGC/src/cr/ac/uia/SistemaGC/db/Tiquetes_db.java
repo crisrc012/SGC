@@ -105,4 +105,64 @@ public class Tiquetes_db {
         }
         return control;
     }
+
+    public int count(int id_persona) throws SQLException {
+        int cantidad = 0;
+        this.conn = new Conexion();
+        this.st = conn.getConnection().createStatement();
+        try (ResultSet rs = this.st.executeQuery(
+                "select count(*) from tbl_tiquetes where activo = true group by id_persona having id_persona="
+                + id_persona + ";")) {
+            while (rs.next()) {
+                cantidad = rs.getInt("count");
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        } finally {
+            if (this.st != null) {
+                this.st.close();
+            }
+            if (this.conn != null) {
+                this.conn.close();
+            }
+        }
+        return cantidad;
+    }
+
+    public ArrayList<Tiquetes> activos(int id_persona) throws SQLException {
+        /*select * from tbl_tiquetes where id_persona = 5
+        and activo = true;*/
+        ArrayList<Tiquetes> tiqueteslst = new ArrayList<>();
+        try {
+            this.conn = new Conexion();
+            this.st = conn.getConnection().createStatement();
+            try (ResultSet rs = this.st.executeQuery(
+                    "select * from tbl_tiquetes where id_persona = "
+                    + id_persona
+                    + " and activo = true;")) {
+                while (rs.next()) {
+                    Tiquetes p = new Tiquetes();
+                    p.setId(rs.getInt("id"));
+                    p.setId_persona(rs.getInt("id_persona"));
+                    p.setId_precio(rs.getInt("id_precio"));
+                    p.setFecha_compra(rs.getDate("fecha_compra"));
+                    p.setFecha_uso(rs.getDate("fecha_uso"));
+                    p.setActivo(rs.getBoolean("activo"));
+                    tiqueteslst.add(p);
+                }
+                rs.close();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        } finally {
+            if (this.st != null) {
+                this.st.close();
+            }
+            if (this.conn != null) {
+                this.conn.close();
+            }
+        }
+        return tiqueteslst;
+    }
 }

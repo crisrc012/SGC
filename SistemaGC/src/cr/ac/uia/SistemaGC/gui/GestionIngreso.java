@@ -5,7 +5,12 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
+import cr.ac.uia.SistemaGC.entities.Tiquetes;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,13 +36,9 @@ public class GestionIngreso extends javax.swing.JFrame {
 
         lblTituloGI = new javax.swing.JLabel();
         lblCedPersona = new javax.swing.JLabel();
-        lblNombrePersona = new javax.swing.JLabel();
-        lblCondicion = new javax.swing.JLabel();
         lblCamposReq = new javax.swing.JLabel();
         btnAplicarIngreso = new javax.swing.JButton();
         txtCedPersona = new javax.swing.JTextField();
-        txtNombrePersona = new javax.swing.JTextField();
-        txtCondicion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -58,12 +59,6 @@ public class GestionIngreso extends javax.swing.JFrame {
         lblCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCedPersona.setText("Cédula de la Persona:");
 
-        lblNombrePersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombrePersona.setText("Nombre de Persona:");
-
-        lblCondicion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblCondicion.setText("Condición de Ingreso:");
-
         lblCamposReq.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCamposReq.setText("* Campos Requeridos");
 
@@ -77,42 +72,28 @@ public class GestionIngreso extends javax.swing.JFrame {
 
         txtCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
 
-        txtNombrePersona.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-
-        txtCondicion.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCedPersona)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCondicion)
-                                    .addComponent(lblNombrePersona))
-                                .addGap(16, 16, 16)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombrePersona)
-                                    .addComponent(txtCondicion)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 296, Short.MAX_VALUE)
                                 .addComponent(btnAplicarIngreso))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTituloGI)
                                     .addComponent(lblCamposReq))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(lblCedPersona)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -120,21 +101,13 @@ public class GestionIngreso extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloGI)
-                .addGap(30, 30, 30)
+                .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedPersona)
                     .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombrePersona)
-                    .addComponent(txtNombrePersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCondicion)
-                    .addComponent(txtCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(63, 63, 63)
                 .addComponent(btnAplicarIngreso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(lblCamposReq))
         );
 
@@ -142,7 +115,37 @@ public class GestionIngreso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAplicarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarIngresoActionPerformed
-        
+        try {
+            int cedula = Integer.parseInt(txtCedPersona.getText());
+            Tiquetes_bl tbl = new Tiquetes_bl();
+            int cantidad = tbl.count(cedula);
+            if (cantidad > 1) {
+                if (JOptionPane.showConfirmDialog(this, "Usted tiene disponibles: " + cantidad + " tiquetes.\n"
+                        + "¿Desea utilizar uno?",
+                        "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    ArrayList<Tiquetes> al = tbl.activos(cedula);
+                    Tiquetes t = al.get(0);
+                    t.setActivo(false); // Desactivando tiquete
+                    if (tbl.update(t)) {
+                        JOptionPane.showMessageDialog(this,
+                                "Se ha usado correctamente el tiquete",
+                                "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this,
+                                "Ha ocurrido un error por favor intentelo de nuevo",
+                                "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Por favor compre un tiquete",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
     }//GEN-LAST:event_btnAplicarIngresoActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -177,7 +180,7 @@ public class GestionIngreso extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GestionIngreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -190,11 +193,7 @@ public class GestionIngreso extends javax.swing.JFrame {
     private javax.swing.JButton btnAplicarIngreso;
     private javax.swing.JLabel lblCamposReq;
     private javax.swing.JLabel lblCedPersona;
-    private javax.swing.JLabel lblCondicion;
-    private javax.swing.JLabel lblNombrePersona;
     private javax.swing.JLabel lblTituloGI;
     private javax.swing.JTextField txtCedPersona;
-    private javax.swing.JTextField txtCondicion;
-    private javax.swing.JTextField txtNombrePersona;
     // End of variables declaration//GEN-END:variables
 }
