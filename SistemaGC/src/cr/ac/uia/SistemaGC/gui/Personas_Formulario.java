@@ -335,24 +335,18 @@ public class Personas_Formulario extends javax.swing.JFrame {
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
         if (this.isUpdate) {
-            try {
-                Personas_avatar_bl pabl = new Personas_avatar_bl();
-                lblFoto.setIcon(new ImageIcon(pabl.select(persona.getCedula())));
-                btnGuardarPersona.setText("Modificar Persona");
-                txtCedulaPersona.setText(this.persona.getCedula().toString());
-                txtNombrePersona.setText(this.persona.getNombre());
-                txtApellidosPersona.setText(this.persona.getApellidos());
-                jDateFechaNacimiento.setDate(this.persona.getFecha_nacimiento());
-                txtTelefono1.setText(this.persona.getTel_celular().toString());
-                txtTelefono2.setText(this.persona.getTel_habitacion().toString());
-                txtContactoPersona.setText(this.persona.getEncargado());
-                if (this.persona.getId_persona() == 1) {
-                    RBEstudiante.setSelected(true);
-                } else {
-                    RBFuncionario.setSelected(true);
-                }
-            } catch (SQLException e) {
-                System.out.println(e.toString());
+            btnGuardarPersona.setText("Modificar Persona");
+            txtCedulaPersona.setText(this.persona.getCedula().toString());
+            txtNombrePersona.setText(this.persona.getNombre());
+            txtApellidosPersona.setText(this.persona.getApellidos());
+            jDateFechaNacimiento.setDate(this.persona.getFecha_nacimiento());
+            txtTelefono1.setText(this.persona.getTel_celular().toString());
+            txtTelefono2.setText(this.persona.getTel_habitacion().toString());
+            txtContactoPersona.setText(this.persona.getEncargado());
+            if (this.persona.getId_persona() == 1) {
+                RBEstudiante.setSelected(true);
+            } else {
+                RBFuncionario.setSelected(true);
             }
         }
     }//GEN-LAST:event_formComponentShown

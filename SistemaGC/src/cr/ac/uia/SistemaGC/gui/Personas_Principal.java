@@ -119,6 +119,11 @@ public class Personas_Principal extends javax.swing.JFrame {
 
         btnImprimirCodigo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnImprimirCodigo.setText("Imprimir Código de Barra");
+        btnImprimirCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirCodigoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,7 +177,6 @@ public class Personas_Principal extends javax.swing.JFrame {
     private void btnModificarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPersonaActionPerformed
         int i = tblPersonas.getSelectedRow();
         if (i < 0) {
-
             JOptionPane.showMessageDialog(this,
                     "Por favor seleccione una celda.",
                     "Error",
@@ -224,6 +228,13 @@ public class Personas_Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnEliminarPersonaActionPerformed
+
+    private void btnImprimirCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirCodigoActionPerformed
+       int i = tblPersonas.getSelectedRow();
+       BarCode bc = new BarCode();
+       bc.txtCodigo.setText(String.valueOf(tblPersonas.getValueAt(i, 0)));
+       bc.setVisible(true);
+    }//GEN-LAST:event_btnImprimirCodigoActionPerformed
 
     /**
      * @param args the command line arguments

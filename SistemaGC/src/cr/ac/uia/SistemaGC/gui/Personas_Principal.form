@@ -200,6 +200,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Imprimir C&#xf3;digo de Barra"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImprimirCodigoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

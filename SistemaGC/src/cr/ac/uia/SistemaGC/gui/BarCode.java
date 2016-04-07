@@ -42,6 +42,11 @@ public class BarCode extends javax.swing.JFrame {
         btnImprimirCodigo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         txtCodigo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -145,6 +150,13 @@ public class BarCode extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnImprimirCodigoActionPerformed
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setAutoRequestFocus(true);
+        this.setAlwaysOnTop(true);
+        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_formComponentShown
+
     /**
      * @param args the command line arguments
      */
@@ -179,6 +191,6 @@ public class BarCode extends javax.swing.JFrame {
     private javax.swing.JButton btnImprimirCodigo;
     private javax.swing.JLabel lblTituloBC;
     private javax.swing.JPanel pnlBar;
-    private javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }
