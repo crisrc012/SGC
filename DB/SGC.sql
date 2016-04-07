@@ -346,7 +346,7 @@ begin
 			where t.id = coalesce(_id, t.id) and
 			t.id_persona = coalesce(_id_persona, t.id_persona) and
 			t.id_comida = coalesce(_id_comida, t.id_comida) and
-			t.precio = coalesce(_precio, t.precio);
+			t.precio = coalesce(_precio, t.precio)
 			order by t.id;
 		when 'insert' then
 			insert into tbl_precio (id_persona, id_comida, precio)

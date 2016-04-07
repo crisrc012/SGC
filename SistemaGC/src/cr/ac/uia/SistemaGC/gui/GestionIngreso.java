@@ -5,7 +5,9 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
+import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
@@ -38,6 +40,8 @@ public class GestionIngreso extends javax.swing.JFrame {
         lblCedPersona = new javax.swing.JLabel();
         btnAplicarIngreso = new javax.swing.JButton();
         txtCedPersona = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -52,13 +56,13 @@ public class GestionIngreso extends javax.swing.JFrame {
             }
         });
 
-        lblTituloGI.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTituloGI.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTituloGI.setText("Gestión de Ingreso");
 
-        lblCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblCedPersona.setText("Cédula de la Persona:");
 
-        btnAplicarIngreso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAplicarIngreso.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         btnAplicarIngreso.setText("Aplicar Ingreso");
         btnAplicarIngreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +70,12 @@ public class GestionIngreso extends javax.swing.JFrame {
             }
         });
 
-        txtCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        txtCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Nombre de la Persona:");
+
+        lblName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,32 +85,39 @@ public class GestionIngreso extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 296, Short.MAX_VALUE)
-                                .addComponent(btnAplicarIngreso))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTituloGI)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(lblTituloGI))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(lblCedPersona)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addGap(81, 81, 81)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCedPersona)
+                                .addGap(28, 28, 28)
+                                .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblName))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addComponent(btnAplicarIngreso)))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloGI)
-                .addGap(72, 72, 72)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedPersona)
                     .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(btnAplicarIngreso)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -110,6 +126,13 @@ public class GestionIngreso extends javax.swing.JFrame {
     private void btnAplicarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarIngresoActionPerformed
         try {
             int cedula = Integer.parseInt(txtCedPersona.getText());
+            Personas p = new Personas();
+            p.setCedula(cedula);
+            Personas_bl pbl = new Personas_bl();
+            ArrayList<Personas> ap = pbl.select(p);
+            if(ap.size()>0){
+                lblName.setText(ap.get(0).getNombre()+" "+ap.get(0).getApellidos());
+            }
             Tiquetes_bl tbl = new Tiquetes_bl();
             int cantidad = tbl.count(cedula);
             if (cantidad > 1) {
@@ -181,7 +204,9 @@ public class GestionIngreso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicarIngreso;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCedPersona;
+    private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblTituloGI;
     private javax.swing.JTextField txtCedPersona;
     // End of variables declaration//GEN-END:variables

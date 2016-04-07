@@ -8,7 +8,7 @@ package cr.ac.uia.SistemaGC.gui;
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

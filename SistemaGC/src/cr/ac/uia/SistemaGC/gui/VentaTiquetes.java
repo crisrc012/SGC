@@ -5,9 +5,12 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Becados_VW_bl;
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.bl.Precio_bl;
 import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
+import cr.ac.uia.SistemaGC.entities.Becados;
+import cr.ac.uia.SistemaGC.entities.Becados_VW;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Precio;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
@@ -428,11 +431,23 @@ public class VentaTiquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaKeyReleased
 
     private void calcularTotal() {
+        try{
+        Becados_VW bvw= new Becados_VW();
+        bvw.setCedula(Integer.parseInt(txtCedula.getText()));
+        Becados_VW_bl bl = new Becados_VW_bl();
+        ArrayList<Becados_VW> al = bl.select(bvw);
+        int desc = 0;
+        if(al.size()>0){
+            desc = (al.get(0).getPorcentaje())/100;
+        }
         int cantidad = Integer.parseInt(txtCantidad.getText());
-        Integer total = precioA * cantidad;
+        Integer total = (precioA -(precioA * desc)) * cantidad;
         lblPrecioAlm.setText(total.toString());
-        total = precioD * cantidad;
+        total = (precioD -(precioD * desc)) * cantidad;
         lblPrecioDes.setText(total.toString());
+        } catch (SQLException e){
+            System.out.println(e.toString());
+        }
     }
 
     /**
