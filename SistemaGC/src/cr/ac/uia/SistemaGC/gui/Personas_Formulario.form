@@ -40,11 +40,6 @@
                       <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
                       <Component id="txtApellidosPersona" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblFechaPersona" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="txtFechaPersona" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                       <Component id="lblTel" min="-2" max="-2" attributes="0"/>
@@ -68,16 +63,22 @@
                       <Component id="txtContactoPersona" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnCargarFoto" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="lblTelefonosPersona" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                              <Component id="lblCel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="btnCargarFoto" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="lblTelefonosPersona" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                                  <Component id="lblCel" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
+                          <Component id="lblFechaPersona" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtTelefono1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtTelefono1" max="32767" attributes="0"/>
+                          <Component id="jDateFechaNacimiento" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -117,34 +118,36 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblFoto" min="-2" pref="152" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnCargarFoto" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="RBEstudiante" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="RBFuncionario" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCedulaPersona" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCedulaPersona" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblNombrePersona" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNombrePersona" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblApellidosPersona" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtApellidosPersona" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblFechaPersona" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFechaPersona" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="btnCargarFoto" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblCedulaPersona" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCedulaPersona" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblNombrePersona" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNombrePersona" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblApellidosPersona" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtApellidosPersona" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblFechaPersona" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jDateFechaNacimiento" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -164,7 +167,7 @@
                   <Component id="lblContactoPersona" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtContactoPersona" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="8" max="32767" attributes="0"/>
               <Component id="btnGuardarPersona" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -265,13 +268,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtContactoPersona">
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txtFechaPersona">
-      <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="yyyy-MM-dd" subtype="-1" type="1"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblTituloAgPersona">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -313,6 +309,8 @@
           <Image iconType="3" name="/cr/ac/uia/SistemaGC/img/Telefono.png"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateFechaNacimiento">
     </Component>
   </SubComponents>
 </Form>
