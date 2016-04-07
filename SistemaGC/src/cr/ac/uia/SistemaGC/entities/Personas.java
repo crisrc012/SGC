@@ -5,7 +5,7 @@
  */
 package cr.ac.uia.SistemaGC.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
