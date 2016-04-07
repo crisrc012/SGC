@@ -17,6 +17,7 @@ import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -126,6 +127,11 @@ public class VentaTiquetes extends javax.swing.JFrame {
         });
 
         txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyReleased(evt);
+            }
+        });
 
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombre.setEnabled(false);
@@ -297,11 +303,13 @@ public class VentaTiquetes extends javax.swing.JFrame {
                         precioA = ap.get(i).getPrecio();
                     }
                 } else // Docente
-                 if (ap.get(i).getId_comida() == 1) {
+                {
+                    if (ap.get(i).getId_comida() == 1) {
                         precioD = ap.get(i).getPrecio();
                     } else if (ap.get(i).getId_comida() == 2) {
                         precioA = ap.get(i).getPrecio();
                     }
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -358,18 +366,25 @@ public class VentaTiquetes extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         txtCantidad.setText("");
         txtCedula.setText("");
+        txtCedula.setEnabled(true);
         txtNombre.setText("");
+        lblPrecioAlm.setText("0");
+        lblPrecioDes.setText("0");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCosultarCedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCosultarCedActionPerformed
         try {
+            // Validaciones
             if (txtCedula.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Por favor digite una cédula válida",
+                        "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             txtCedula.setEnabled(false);
             Personas_bl pbl = new Personas_bl();
             Personas p = new Personas();
-            p.setCedula(Integer.parseInt((String) txtCedula.getText().trim()));
+            p.setCedula(Integer.parseInt(txtCedula.getText().trim()));
             ArrayList<Personas> al = pbl.select(p);
             if (al.size() > 0) {
                 txtNombre.setText(al.get(0).getNombre() + " " + al.get(0).getApellidos());
@@ -387,27 +402,36 @@ public class VentaTiquetes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCosultarCedActionPerformed
 
-    private void txtCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyReleased
+    private void validarEnteros(JTextField txt) {
         try {
-            if (Integer.parseInt(txtCantidad.getText()) < 1) {
+            if (Integer.parseInt(txt.getText()) < 1) {
                 JOptionPane.showMessageDialog(this,
                         "Por favor digite únicamente números positivos",
                         "Error", JOptionPane.ERROR_MESSAGE);
-                txtCantidad.setText("1");
+                txt.setText("1");
             }
             calcularTotal();
         } catch (NumberFormatException | HeadlessException e) {
             JOptionPane.showMessageDialog(this,
                     "Por favor digite únicamente números",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            txtCantidad.setText("1");
+            txt.setText("1");
         }
+    }
+    
+    private void txtCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyReleased
+        validarEnteros(txtCantidad);
     }//GEN-LAST:event_txtCantidadKeyReleased
 
+    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
+        validarEnteros(txtCedula);
+    }//GEN-LAST:event_txtCedulaKeyReleased
+
     private void calcularTotal() {
-        Integer total = precioA * Integer.parseInt(txtCantidad.getText());
+        int cantidad = Integer.parseInt(txtCantidad.getText());
+        Integer total = precioA * cantidad;
         lblPrecioAlm.setText(total.toString());
-        total = precioD * Integer.parseInt(txtCantidad.getText());
+        total = precioD * cantidad;
         lblPrecioDes.setText(total.toString());
     }
 
@@ -415,7 +439,6 @@ public class VentaTiquetes extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -430,8 +453,6 @@ public class VentaTiquetes extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentaTiquetes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
         //</editor-fold>
 
         /* Create and display the form */

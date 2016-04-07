@@ -173,7 +173,7 @@ public class Personas_Principal extends javax.swing.JFrame {
         int i = tblPersonas.getSelectedRow();
         if (i < 0) {
 
-            JOptionPane.showMessageDialog(null,
+            JOptionPane.showMessageDialog(this,
                     "Por favor seleccione una celda.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -290,5 +290,4 @@ public class Personas_Principal extends javax.swing.JFrame {
             System.out.println(e.toString());
         }
     }
-
 }
