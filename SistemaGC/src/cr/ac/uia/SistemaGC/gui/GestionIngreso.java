@@ -36,7 +36,6 @@ public class GestionIngreso extends javax.swing.JFrame {
 
         lblTituloGI = new javax.swing.JLabel();
         lblCedPersona = new javax.swing.JLabel();
-        lblCamposReq = new javax.swing.JLabel();
         btnAplicarIngreso = new javax.swing.JButton();
         txtCedPersona = new javax.swing.JTextField();
 
@@ -58,9 +57,6 @@ public class GestionIngreso extends javax.swing.JFrame {
 
         lblCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCedPersona.setText("Cédula de la Persona:");
-
-        lblCamposReq.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblCamposReq.setText("* Campos Requeridos");
 
         btnAplicarIngreso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAplicarIngreso.setText("Aplicar Ingreso");
@@ -85,9 +81,7 @@ public class GestionIngreso extends javax.swing.JFrame {
                                 .addGap(0, 296, Short.MAX_VALUE)
                                 .addComponent(btnAplicarIngreso))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTituloGI)
-                                    .addComponent(lblCamposReq))
+                                .addComponent(lblTituloGI)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
@@ -107,8 +101,7 @@ public class GestionIngreso extends javax.swing.JFrame {
                     .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
                 .addComponent(btnAplicarIngreso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(lblCamposReq))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -188,7 +181,6 @@ public class GestionIngreso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicarIngreso;
-    private javax.swing.JLabel lblCamposReq;
     private javax.swing.JLabel lblCedPersona;
     private javax.swing.JLabel lblTituloGI;
     private javax.swing.JTextField txtCedPersona;
