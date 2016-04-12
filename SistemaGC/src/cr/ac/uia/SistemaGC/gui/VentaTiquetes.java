@@ -6,11 +6,14 @@
 package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Becados_VW_bl;
+import cr.ac.uia.SistemaGC.bl.Becados_bl;
+import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.bl.Precio_bl;
 import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
 import cr.ac.uia.SistemaGC.entities.Becados;
 import cr.ac.uia.SistemaGC.entities.Becados_VW;
+import cr.ac.uia.SistemaGC.entities.Becas;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Precio;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
@@ -295,28 +298,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
-        Precio_bl pbl = new Precio_bl();
-        try {
-            ArrayList<Precio> ap = pbl.select(new Precio());
-            for (int i = 0; i < ap.size(); i++) {
-                if (ap.get(i).getId_persona() == 1) { // Estudiante
-                    if (ap.get(i).getId_comida() == 1) {
-                        precioD = ap.get(i).getPrecio();
-                    } else if (ap.get(i).getId_comida() == 2) {
-                        precioA = ap.get(i).getPrecio();
-                    }
-                } else // Docente
-                {
-                    if (ap.get(i).getId_comida() == 1) {
-                        precioD = ap.get(i).getPrecio();
-                    } else if (ap.get(i).getId_comida() == 2) {
-                        precioA = ap.get(i).getPrecio();
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-        }
+
     }//GEN-LAST:event_formComponentShown
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -392,8 +374,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
             if (al.size() > 0) {
                 txtNombre.setText(al.get(0).getNombre() + " " + al.get(0).getApellidos());
                 id_persona = al.get(0).getId_persona();
-                lblPrecioDes.setText(precioD.toString());
-                lblPrecioAlm.setText(precioA.toString());
+                Precios(al.get(0).getId_persona());
                 calcularTotal();
             } else {
                 JOptionPane.showMessageDialog(this,
@@ -411,17 +392,48 @@ public class VentaTiquetes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,
                         "Por favor digite únicamente números positivos",
                         "Error", JOptionPane.ERROR_MESSAGE);
-                txt.setText("1");
+                txt.setText("");
             }
-            calcularTotal();
         } catch (NumberFormatException | HeadlessException e) {
             JOptionPane.showMessageDialog(this,
                     "Por favor digite únicamente números",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            txt.setText("1");
+            txt.setText("");
+        }
+
+    }
+
+    private void Precios(int id_persona) {
+        Precio_bl pbl = new Precio_bl();
+        try {
+            ArrayList<Precio> ap = pbl.select(new Precio());
+            for (int i = 0; i < ap.size(); i++) {
+                if (id_persona == 1) {
+                    if (ap.get(i).getId_persona() == 1) { // Estudiante
+                        if (ap.get(i).getId_comida() == 1) {
+                            precioD = ap.get(i).getPrecio();
+                        } else if (ap.get(i).getId_comida() == 2) {
+                            precioA = ap.get(i).getPrecio();
+                        }
+                    } else // Docente
+                    {
+                        if (id_persona == 2) {
+                            if (ap.get(i).getId_comida() == 1) {
+                                precioD = ap.get(i).getPrecio();
+                            } else if (ap.get(i).getId_comida() == 2) {
+                                precioA = ap.get(i).getPrecio();
+                            }
+                        }
+                    }
+                }//id=1
+            }
+            lblPrecioDes.setText(precioD.toString());
+            lblPrecioAlm.setText(precioA.toString());
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
     }
-    
+
     private void txtCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyReleased
         validarEnteros(txtCantidad);
     }//GEN-LAST:event_txtCantidadKeyReleased
@@ -431,21 +443,31 @@ public class VentaTiquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaKeyReleased
 
     private void calcularTotal() {
-        try{
-        Becados_VW bvw= new Becados_VW();
-        bvw.setCedula(Integer.parseInt(txtCedula.getText()));
-        Becados_VW_bl bl = new Becados_VW_bl();
-        ArrayList<Becados_VW> al = bl.select(bvw);
-        int desc = 0;
-        if(al.size()>0){
-            desc = (al.get(0).getPorcentaje())/100;
-        }
-        int cantidad = Integer.parseInt(txtCantidad.getText());
-        Integer total = (precioA -(precioA * desc)) * cantidad;
-        lblPrecioAlm.setText(total.toString());
-        total = (precioD -(precioD * desc)) * cantidad;
-        lblPrecioDes.setText(total.toString());
-        } catch (SQLException e){
+        try {
+            Becados b = new Becados();
+            Becados_bl bbl = new Becados_bl();
+            b.setId_persona(Integer.parseInt(txtCedula.getText()));
+            ArrayList<Becados> al = bbl.select(b);
+            int beca = 0;
+            if (al.size() > 0) {
+                beca = al.get(0).getId_beca();
+
+            }
+            Becas bc = new Becas();
+            bc.setId(beca);
+            Becas_bl bcbl = new Becas_bl();
+            ArrayList<Becas> ab = bcbl.select(bc);
+            double desc = 0;
+            if (ab.size() > 0) {
+                desc = (ab.get(0).getPorcentaje());
+                desc = desc / 100;
+            }
+            int cantidad = Integer.parseInt(txtCantidad.getText());
+            Double total = (precioA - (precioA * desc)) * cantidad;
+            lblPrecioAlm.setText(total.toString());
+            total = (precioD - (precioD * desc)) * cantidad;
+            lblPrecioDes.setText(total.toString());
+        } catch (SQLException e) {
             System.out.println(e.toString());
         }
     }
