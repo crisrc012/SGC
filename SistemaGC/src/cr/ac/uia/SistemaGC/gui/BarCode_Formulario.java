@@ -17,14 +17,23 @@ import net.sourceforge.barbecue.BarcodeFactory;
  *
  * @author Pao
  */
-public class BarCode extends javax.swing.JFrame {
+public class BarCode_Formulario extends javax.swing.JFrame {
+    private final int cedula;
 
     /**
      * Creates new form BarCode
      */
-    public BarCode() {
+    public BarCode_Formulario() {
         initComponents();
+        this.cedula = 0;
     }
+
+    public BarCode_Formulario(int cedula) {
+        initComponents();
+        this.cedula = cedula;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,6 +164,9 @@ public class BarCode extends javax.swing.JFrame {
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
+        if(this.cedula!=0){
+            txtCodigo.setText(String.valueOf(cedula));
+        }
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -174,15 +186,16 @@ public class BarCode extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BarCode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BarCode_Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new BarCode().setVisible(true);
+            new BarCode_Formulario().setVisible(true);
         });
     }
 
@@ -191,6 +204,6 @@ public class BarCode extends javax.swing.JFrame {
     private javax.swing.JButton btnImprimirCodigo;
     private javax.swing.JLabel lblTituloBC;
     private javax.swing.JPanel pnlBar;
-    public javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }

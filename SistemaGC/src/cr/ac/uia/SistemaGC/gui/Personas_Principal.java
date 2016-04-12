@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import cr.ac.uia.SistemaGC.gui.BarCode_Formulario;
 
 /**
  *
@@ -90,7 +91,7 @@ public class Personas_Principal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPersonas);
 
-        lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTituloGP.setText("Gestión de Personas");
 
         btnAgregarPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -131,31 +132,30 @@ public class Personas_Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(btnModificarPersona)
-                        .addGap(56, 56, 56)
-                        .addComponent(btnEliminarPersona)
-                        .addGap(317, 317, 317)
-                        .addComponent(btnImprimirCodigo)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAgregarPersona, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblTituloGP)
-                                .addGap(367, 367, 367)))))
+                .addGap(36, 36, 36)
+                .addComponent(btnModificarPersona)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEliminarPersona)
+                .addGap(166, 166, 166)
+                .addComponent(btnImprimirCodigo)
+                .addGap(34, 34, 34))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(367, 367, 367)
+                .addComponent(lblTituloGP)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addComponent(btnAgregarPersona)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTituloGP)
-                .addGap(2, 2, 2)
-                .addComponent(btnAgregarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblTituloGP))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(btnAgregarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
@@ -230,10 +230,18 @@ public class Personas_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarPersonaActionPerformed
 
     private void btnImprimirCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirCodigoActionPerformed
-       int i = tblPersonas.getSelectedRow();
-       BarCode bc = new BarCode();
-       bc.txtCodigo.setText(String.valueOf(tblPersonas.getValueAt(i, 0)));
-       bc.setVisible(true);
+        int i = tblPersonas.getSelectedRow();
+        if (i < 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor seleccione una celda.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }else{
+            new BarCode_Formulario ((Integer) tblPersonas.getValueAt(i, 0)).setVisible(true);
+        }
+            
+        
     }//GEN-LAST:event_btnImprimirCodigoActionPerformed
 
     /**
