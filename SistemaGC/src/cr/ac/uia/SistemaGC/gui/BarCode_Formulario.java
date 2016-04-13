@@ -6,7 +6,6 @@
 package cr.ac.uia.SistemaGC.gui;
 
 import java.awt.HeadlessException;
-import java.awt.Image;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import javax.swing.JOptionPane;
