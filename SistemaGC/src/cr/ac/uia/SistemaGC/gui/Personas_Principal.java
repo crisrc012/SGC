@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import cr.ac.uia.SistemaGC.gui.BarCode_Formulario;
 
 /**
  *

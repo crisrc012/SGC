@@ -13,8 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.postgresql.largeobject.LargeObject;
-import org.postgresql.largeobject.LargeObjectManager;
 
 /**
  *
@@ -27,25 +25,19 @@ public class Personas_avatar_db {
 
     public byte[] select(int cedula) throws SQLException {
         byte[] foto = null;
-        // Get the Large Object Manager to perform operations with
-        LargeObjectManager lobj = ((org.postgresql.PGConnection) conn).getLargeObjectAPI();
-        PreparedStatement ps = conn.getConnection().prepareStatement("select foto from tbl_personas_avatar where cedula = ?");
-        ps.setInt(1, cedula);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            // Open the large object for reading
-            int oid = rs.getInt(1);
-            LargeObject obj = lobj.open(oid, LargeObjectManager.READ);
-            // Read the data
-            byte buf[] = new byte[obj.size()];
-            obj.read(buf, 0, obj.size());
-            // Do something with the data read here
-            foto = obj.read(oid);
-            // Close the object
-            obj.close();
+        conn = new Conexion();
+        try (PreparedStatement ps
+                = conn.getConnection().prepareStatement(
+                        "select foto from tbl_personas_avatar where cedula = ?")) {
+            ps.setInt(1, cedula);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    foto = rs.getBytes("foto");
+                }
+                rs.close();
+                ps.close();
+            }
         }
-        rs.close();
-        ps.close();
         return foto;
     }
 
@@ -53,20 +45,28 @@ public class Personas_avatar_db {
         Boolean control = false;
         try {
             conn = new Conexion();
-            FileInputStream fis = new FileInputStream(foto);
-            PreparedStatement ps = null;
-            if (dml.equals("insert")) {
-                ps = conn.getConnection().prepareStatement("insert into tbl_personas_avatar values (?, ?)");
+            PreparedStatement ps;
+            if (foto != null) {
+                FileInputStream fis = new FileInputStream(foto);
+                if (dml.equals("insert")) {
+                    ps = conn.getConnection().prepareStatement("insert into tbl_personas_avatar values (?, ?)");
+                    ps.setInt(1, cedula);
+                    ps.setBinaryStream(2, fis, (int) foto.length());
+                } else {
+                    ps = conn.getConnection().prepareStatement("update tbl_personas_avatar set foto=? where cedula=?");
+                    ps.setBinaryStream(1, fis, (int) foto.length());
+                    ps.setInt(2, cedula);
+                }
+            } else if (dml.equals("insert")) {
+                ps = conn.getConnection().prepareStatement("insert into tbl_personas_avatar values (?, null)");
                 ps.setInt(1, cedula);
-                ps.setBinaryStream(2, fis, (int) foto.length());
             } else {
-                ps = conn.getConnection().prepareStatement("update tbl_personas_avatarv set foto=? where cedula=?");
-                ps.setBinaryStream(1, fis, (int) foto.length());
+                ps = conn.getConnection().prepareStatement("update tbl_personas_avatar set foto=null where cedula=?");
                 ps.setInt(2, cedula);
             }
             ps.executeUpdate();
             ps.close();
-            fis.close();
+
         } catch (SQLException e) {
             System.out.println(e.toString());
         } finally {

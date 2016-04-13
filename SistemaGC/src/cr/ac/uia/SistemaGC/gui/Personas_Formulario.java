@@ -27,6 +27,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
 
     private final boolean isUpdate;
     private final Personas persona;
+    private File foto;
 
     /**
      * Creates new form AgregarPersona
@@ -35,12 +36,14 @@ public class Personas_Formulario extends javax.swing.JFrame {
         initComponents();
         isUpdate = false;
         this.persona = new Personas();
+        this.foto = null;
     }
 
     public Personas_Formulario(boolean Update, Personas persona) {
         initComponents();
         this.isUpdate = Update;
         this.persona = persona;
+        this.foto = null;
     }
 
     /**
@@ -255,17 +258,21 @@ public class Personas_Formulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
-        int resultado;
-        File fichero;
         Personas_Agregar_SubirFoto file = new Personas_Agregar_SubirFoto();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
         file.FchCargarFoto.setFileFilter(filtro);
-        resultado = file.FchCargarFoto.showOpenDialog(this);
+        int resultado = file.FchCargarFoto.showOpenDialog(this);
         if (JFileChooser.APPROVE_OPTION == resultado) {
-            fichero = file.FchCargarFoto.getSelectedFile();
+            File fichero = file.FchCargarFoto.getSelectedFile();
+            this.foto = fichero;
             try {
                 ImageIcon image = new ImageIcon(fichero.toString());
-                lblFoto.setIcon(new ImageIcon(image.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT)));
+                lblFoto.setIcon(
+                        new ImageIcon(
+                                image.getImage().getScaledInstance(
+                                        lblFoto.getWidth(),
+                                        lblFoto.getHeight(),
+                                        Image.SCALE_DEFAULT)));
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al intentar abrir la imagen " + e);
             }
@@ -273,18 +280,14 @@ public class Personas_Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCargarFotoActionPerformed
 
     private void foto() throws SQLException, IOException {
-        if (lblFoto.getIcon() != null) {
-            Personas_avatar_bl pabl = new Personas_avatar_bl();
-            if (this.isUpdate) {
-                pabl.update(new Personas_avatar(
-                        Integer.parseInt(txtCedulaPersona.getText()),
-                        new File(lblFoto.toString())));
-            } else {
-                pabl.insert(
-                        new Personas_avatar(
-                                Integer.parseInt(txtCedulaPersona.getText()),
-                                new File(lblFoto.toString())));
-            }
+        Personas_avatar_bl pabl = new Personas_avatar_bl();
+        if (this.isUpdate) {
+            pabl.update(new Personas_avatar(
+                    Integer.parseInt(txtCedulaPersona.getText()), foto));
+        } else {
+            pabl.insert(
+                    new Personas_avatar(
+                            Integer.parseInt(txtCedulaPersona.getText()), foto));
         }
     }
 
@@ -307,7 +310,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
             persona.setId_persona(id);
             if (this.isUpdate) { // Se valida si se va a actualizar o a insertar
                 if (blp.update(persona)) { // Se actualiza la persona
-                    //this.foto();
+                    this.foto();
                     JOptionPane.showMessageDialog(this, "Persona actualizada correctamente",
                             "Correcto", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
@@ -316,7 +319,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
                             "Error", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else if (blp.insert(persona)) { // Se inserta una nueva persona
-                //this.foto();
+                this.foto();
                 JOptionPane.showMessageDialog(this, "Se ha guardado correctamente.",
                         "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
@@ -324,7 +327,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar. Intente nuevamente.",
                         "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
@@ -335,18 +338,33 @@ public class Personas_Formulario extends javax.swing.JFrame {
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
         if (this.isUpdate) {
-            btnGuardarPersona.setText("Modificar Persona");
-            txtCedulaPersona.setText(this.persona.getCedula().toString());
-            txtNombrePersona.setText(this.persona.getNombre());
-            txtApellidosPersona.setText(this.persona.getApellidos());
-            jDateFechaNacimiento.setDate(this.persona.getFecha_nacimiento());
-            txtTelefono1.setText(this.persona.getTel_celular().toString());
-            txtTelefono2.setText(this.persona.getTel_habitacion().toString());
-            txtContactoPersona.setText(this.persona.getEncargado());
-            if (this.persona.getId_persona() == 1) {
-                RBEstudiante.setSelected(true);
-            } else {
-                RBFuncionario.setSelected(true);
+            try {
+                btnGuardarPersona.setText("Modificar Persona");
+                txtCedulaPersona.setText(this.persona.getCedula().toString());
+                txtNombrePersona.setText(this.persona.getNombre());
+                txtApellidosPersona.setText(this.persona.getApellidos());
+                jDateFechaNacimiento.setDate(this.persona.getFecha_nacimiento());
+                txtTelefono1.setText(this.persona.getTel_celular().toString());
+                txtTelefono2.setText(this.persona.getTel_habitacion().toString());
+                txtContactoPersona.setText(this.persona.getEncargado());
+                if (this.persona.getId_persona() == 1) {
+                    RBEstudiante.setSelected(true);
+                } else {
+                    RBFuncionario.setSelected(true);
+                }
+                Personas_avatar_bl pabl = new Personas_avatar_bl();
+                byte[] avatar = pabl.select(this.persona.getCedula());
+                if (avatar != null) {
+                    ImageIcon image = new ImageIcon(avatar);
+                    lblFoto.setIcon(
+                            new ImageIcon(
+                                    image.getImage().getScaledInstance(
+                                            lblFoto.getWidth(),
+                                            lblFoto.getHeight(),
+                                            Image.SCALE_DEFAULT)));
+                }
+            } catch (SQLException e) {
+                System.out.println(e.toString());
             }
         }
     }//GEN-LAST:event_formComponentShown
@@ -359,7 +377,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -374,11 +391,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Personas_Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         //</editor-fold>
 
         /* Create and display the form */
