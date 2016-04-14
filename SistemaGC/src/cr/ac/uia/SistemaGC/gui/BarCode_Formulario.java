@@ -32,8 +32,6 @@ public class BarCode_Formulario extends javax.swing.JFrame {
         initComponents();
         this.cedula = cedula;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

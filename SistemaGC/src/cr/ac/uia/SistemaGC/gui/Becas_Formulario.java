@@ -9,6 +9,7 @@ import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.entities.Becas;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -224,6 +225,9 @@ public class Becas_Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPorcentajeBecaKeyReleased
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setIconImage(
+                new ImageIcon(
+                        getClass().getResource("../img/Icono.png")).getImage());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);

@@ -10,6 +10,7 @@ import cr.ac.uia.SistemaGC.entities.Usuarios;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -220,6 +221,9 @@ public class Usuarios_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setIconImage(
+                new ImageIcon(
+                        getClass().getResource("../img/Icono.png")).getImage());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);

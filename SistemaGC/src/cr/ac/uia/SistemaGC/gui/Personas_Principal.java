@@ -11,6 +11,7 @@ import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +29,9 @@ public class Personas_Principal extends javax.swing.JFrame {
      */
     public Personas_Principal() {
         initComponents();
+        this.setIconImage(
+                new ImageIcon(
+                        getClass().getResource("../img/Icono.png")).getImage());
     }
 
     /**

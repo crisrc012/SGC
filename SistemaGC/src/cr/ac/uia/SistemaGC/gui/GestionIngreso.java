@@ -12,6 +12,7 @@ import cr.ac.uia.SistemaGC.entities.Tiquetes;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,9 @@ public class GestionIngreso extends javax.swing.JFrame {
      */
     public GestionIngreso() {
         initComponents();
+        this.setIconImage(
+                new ImageIcon(
+                        getClass().getResource("../img/Icono.png")).getImage());
     }
 
     /**

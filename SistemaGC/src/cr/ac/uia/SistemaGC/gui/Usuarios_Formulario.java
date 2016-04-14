@@ -9,6 +9,7 @@ import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
 import java.sql.SQLException;
 import java.util.Arrays;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -276,6 +277,9 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setIconImage(
+                new ImageIcon(
+                        getClass().getResource("../img/Icono.png")).getImage());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);

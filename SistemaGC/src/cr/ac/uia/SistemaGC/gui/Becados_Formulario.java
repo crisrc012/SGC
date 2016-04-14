@@ -14,6 +14,7 @@ import cr.ac.uia.SistemaGC.entities.Personas;
 import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -238,6 +239,9 @@ public class Becados_Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarAsignacionActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.setIconImage(
+                new ImageIcon(
+                        getClass().getResource("../img/Icono.png")).getImage());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setAutoRequestFocus(true);
         this.setAlwaysOnTop(true);

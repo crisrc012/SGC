@@ -10,6 +10,7 @@ import cr.ac.uia.SistemaGC.entities.Becas;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -27,6 +28,9 @@ public class Becas_Principal extends javax.swing.JFrame {
      */
     public Becas_Principal() {
         initComponents();
+        this.setIconImage(
+                new ImageIcon(
+                        getClass().getResource("../img/Icono.png")).getImage());
     }
 
     /**

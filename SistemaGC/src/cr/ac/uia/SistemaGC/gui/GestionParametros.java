@@ -10,6 +10,7 @@ import cr.ac.uia.SistemaGC.entities.Precio;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,9 @@ public class GestionParametros extends javax.swing.JFrame {
      */
     public GestionParametros() {
         initComponents();
+        this.setIconImage(
+                new ImageIcon(
+                        getClass().getResource("../img/Icono.png")).getImage());
     }
 
     /**

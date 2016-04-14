@@ -5,14 +5,12 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
-import cr.ac.uia.SistemaGC.bl.Becados_VW_bl;
 import cr.ac.uia.SistemaGC.bl.Becados_bl;
 import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.bl.Precio_bl;
 import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
 import cr.ac.uia.SistemaGC.entities.Becados;
-import cr.ac.uia.SistemaGC.entities.Becados_VW;
 import cr.ac.uia.SistemaGC.entities.Becas;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Precio;
@@ -22,6 +20,7 @@ import java.awt.HeadlessException;
 import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -40,6 +39,9 @@ public class VentaTiquetes extends javax.swing.JFrame {
      */
     public VentaTiquetes() {
         initComponents();
+        this.setIconImage(
+                new ImageIcon(
+                        getClass().getResource("../img/Icono.png")).getImage());
     }
 
     /**
