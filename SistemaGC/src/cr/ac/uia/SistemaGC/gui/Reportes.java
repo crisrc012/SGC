@@ -233,8 +233,6 @@ public class Reportes extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setAutoRequestFocus(true);
-        this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
     }//GEN-LAST:event_formComponentShown
 
@@ -263,9 +261,6 @@ public class Reportes extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Reportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Reportes().setVisible(true);
