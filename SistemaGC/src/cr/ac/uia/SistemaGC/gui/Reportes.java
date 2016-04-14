@@ -5,8 +5,18 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.db.Conexion;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -202,7 +212,23 @@ public class Reportes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
-        // TODO add your handling code here:
+        try {
+            Conexion conn = new Conexion();
+            String parameterName = "A";
+            String reportSource = "src/cr/ac/uia/SistemaGC/reports/newReport.jrxml";
+            // Parametros
+            Map map = new HashMap();
+            map.put("param", parameterName);
+            // Compilando reporte
+            JasperReport jasperReport = (JasperReport) JasperCompileManager.compileReport(reportSource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn.getConnection());
+            // Cerrando conexión
+            conn.close();
+            // Mostrando reporte
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (SQLException | JRException e) {
+            System.out.println(e.toString());
+        }
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
