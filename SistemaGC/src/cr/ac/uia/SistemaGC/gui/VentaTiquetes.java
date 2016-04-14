@@ -340,7 +340,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
                         "Correcto", JOptionPane.INFORMATION_MESSAGE);
                 txtCedula.setEnabled(true);
             } else {
-                txtCantidad.setText("");
+                txtCantidad.setText("1");
                 txtCedula.setText("");
                 txtNombre.setText("");
                 txtCedula.setEnabled(true);
@@ -351,7 +351,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        txtCantidad.setText("");
+        txtCantidad.setText("1");
         txtCedula.setText("");
         txtCedula.setEnabled(true);
         txtNombre.setText("");
@@ -453,7 +453,6 @@ public class VentaTiquetes extends javax.swing.JFrame {
             int beca = 0;
             if (al.size() > 0) {
                 beca = al.get(0).getId_beca();
-
             }
             Becas bc = new Becas();
             bc.setId(beca);
