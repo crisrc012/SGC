@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -202,6 +204,8 @@ public class Becados_Principal extends javax.swing.JFrame {
         try {
             DefaultTableModel tableModel = (DefaultTableModel) tblAdmBecas.getModel();
             tableModel.setRowCount(0); // Limpiando tabla
+            TableRowSorter<TableModel> order = new TableRowSorter<TableModel>(tableModel);
+            tblAdmBecas.setRowSorter(order);
             Becados_VW_bl bbl = new Becados_VW_bl();
             ArrayList<Becados_VW> al = bbl.select(new Becados_VW());
             for (int i = 0; i < al.size(); i++) {

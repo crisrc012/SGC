@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -185,6 +187,8 @@ public class Becas_Principal extends javax.swing.JFrame {
         try {
             DefaultTableModel tableModel = (DefaultTableModel) tblTiposBecas.getModel();
             tableModel.setRowCount(0); // Limpiando tabla
+            TableRowSorter<TableModel> order = new TableRowSorter<TableModel>(tableModel);
+            tblTiposBecas.setRowSorter(order);
             Becas_bl bbl = new Becas_bl();
             ArrayList<Becas> al = bbl.select(new Becas());
             for (int i = 0; i < al.size(); i++) {

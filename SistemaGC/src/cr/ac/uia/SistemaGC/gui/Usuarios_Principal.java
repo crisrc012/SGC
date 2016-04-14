@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -163,6 +165,8 @@ public class Usuarios_Principal extends javax.swing.JFrame {
         try {
             DefaultTableModel tableModel = (DefaultTableModel) tblUsuarios.getModel();
             tableModel.setRowCount(0);
+            TableRowSorter<TableModel> order = new TableRowSorter<TableModel>(tableModel);
+            tblUsuarios.setRowSorter(order);
             Usuarios_bl ubl = new Usuarios_bl();
             ArrayList<Usuarios> u = ubl.select(new Usuarios());
             for (int i = 0; i < u.size(); i++) {

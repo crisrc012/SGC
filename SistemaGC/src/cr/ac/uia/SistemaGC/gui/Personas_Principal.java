@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -290,6 +292,8 @@ public class Personas_Principal extends javax.swing.JFrame {
         try {
             DefaultTableModel tableModel = (DefaultTableModel) tblPersonas.getModel();
             tableModel.setRowCount(0);
+            TableRowSorter<TableModel> order = new TableRowSorter<TableModel>(tableModel);
+            tblPersonas.setRowSorter(order);
             Personas_bl pbl = new Personas_bl();
             ArrayList<Personas> al = pbl.select(new Personas());
             for (int i = 0; i < al.size(); i++) {
