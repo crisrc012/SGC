@@ -5,7 +5,17 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.db.Conexion;
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -70,7 +80,7 @@ public class Reportes extends javax.swing.JFrame {
         lblSelectTipo.setText("2. Seleccione el tipo de reporte");
 
         lblSelectDate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSelectDate.setText("3. Seleccione la fecha");
+        lblSelectDate.setText("3. Seleccione intervalo de fecha");
 
         btnGPeriodo.add(RBSemanal);
         RBSemanal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -90,7 +100,7 @@ public class Reportes extends javax.swing.JFrame {
 
         btnGTipos.add(RBProfesores);
         RBProfesores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RBProfesores.setText("Cantidad de profesores que utilizan este servicio");
+        RBProfesores.setText("Cantidad de funcionarios que utilizan este servicio");
 
         btnGTipos.add(RBCierresCaja);
         RBCierresCaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -128,7 +138,7 @@ public class Reportes extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(RBBecados)
                             .addComponent(lblSelectTipo)
@@ -198,13 +208,27 @@ public class Reportes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
-        // TODO add your handling code here:
+        try {
+            Conexion conn = new Conexion();
+            String parameterName = "A";
+            String reportSource = "src/cr/ac/uia/SistemaGC/reports/newReport.jrxml";
+            // Parametros
+            Map map = new HashMap();
+            map.put("param", parameterName);
+            // Compilando reporte
+            JasperReport jasperReport = (JasperReport) JasperCompileManager.compileReport(reportSource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn.getConnection());
+            // Cerrando conexión
+            conn.close();
+            // Mostrando reporte
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (SQLException | JRException e) {
+            System.out.println(e.toString());
+        }
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setAutoRequestFocus(true);
-        this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
     }//GEN-LAST:event_formComponentShown
 
@@ -217,7 +241,6 @@ public class Reportes extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -233,9 +256,6 @@ public class Reportes extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Reportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Reportes().setVisible(true);
