@@ -374,7 +374,8 @@ public class VentaTiquetes extends javax.swing.JFrame {
             p.setCedula(Integer.parseInt(txtCedula.getText().trim()));
             ArrayList<Personas> al = pbl.select(p);
             if (al.size() > 0) {
-                txtNombre.setText(al.get(0).getNombre() + " " + al.get(0).getApellidos());
+                txtNombre.setText(
+                        al.get(0).getNombre() + " " + al.get(0).getApellidos());
                 id_persona = al.get(0).getId_persona();
                 Precios(al.get(0).getId_persona());
                 calcularTotal();
@@ -402,11 +403,12 @@ public class VentaTiquetes extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
             txt.setText("");
         }
-
     }
 
     private void Precios(int id_persona) {
         Precio_bl pbl = new Precio_bl();
+        precioD = 0;
+        precioA = 0;
         try {
             ArrayList<Precio> ap = pbl.select(new Precio());
             for (int i = 0; i < ap.size(); i++) {

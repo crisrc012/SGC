@@ -44,7 +44,7 @@ public class GestionIngreso extends javax.swing.JFrame {
         lblCedPersona = new javax.swing.JLabel();
         btnAplicarIngreso = new javax.swing.JButton();
         txtCedPersona = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jlbNombre = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -76,8 +76,8 @@ public class GestionIngreso extends javax.swing.JFrame {
 
         txtCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Nombre de la Persona:");
+        jlbNombre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jlbNombre.setText("Nombre de la Persona:");
 
         lblName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
@@ -98,7 +98,7 @@ public class GestionIngreso extends javax.swing.JFrame {
                                 .addGap(28, 28, 28)
                                 .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(jlbNombre)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblName))))
                     .addGroup(layout.createSequentialGroup()
@@ -117,7 +117,7 @@ public class GestionIngreso extends javax.swing.JFrame {
                     .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jlbNombre)
                     .addComponent(lblName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(btnAplicarIngreso)
@@ -127,15 +127,24 @@ public class GestionIngreso extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void limpiar(){
+        txtCedPersona.setText("");
+        lblName.setText("");
+    }
+    
     private void btnAplicarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarIngresoActionPerformed
+        if (txtCedPersona.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor digite una cédula válida", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         try {
             int cedula = Integer.parseInt(txtCedPersona.getText());
             Personas p = new Personas();
             p.setCedula(cedula);
             Personas_bl pbl = new Personas_bl();
             ArrayList<Personas> ap = pbl.select(p);
-            if(ap.size()>0){
-                lblName.setText(ap.get(0).getNombre()+" "+ap.get(0).getApellidos());
+            if (ap.size() > 0) {
+                lblName.setText(ap.get(0).getNombre() + " " + ap.get(0).getApellidos());
             }
             Tiquetes_bl tbl = new Tiquetes_bl();
             int cantidad = tbl.count(cedula);
@@ -150,18 +159,21 @@ public class GestionIngreso extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this,
                                 "Se ha usado correctamente el tiquete",
                                 "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                        this.dispose();
+                        this.limpiar();
                     } else {
                         JOptionPane.showMessageDialog(this,
                                 "Ha ocurrido un error por favor intentelo de nuevo",
                                 "Correcto", JOptionPane.INFORMATION_MESSAGE);
                         this.dispose();
                     }
+                } else {
+                    this.limpiar();
                 }
             } else {
                 JOptionPane.showMessageDialog(this,
                         "Por favor compre un tiquete",
                         "Error", JOptionPane.ERROR_MESSAGE);
+                this.limpiar();
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -208,7 +220,7 @@ public class GestionIngreso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicarIngreso;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jlbNombre;
     private javax.swing.JLabel lblCedPersona;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblTituloGI;
