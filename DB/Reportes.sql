@@ -17,3 +17,4 @@ from tbl_tiquetes t inner join tbl_personas p
 on t.id_persona = p.cedula
 where p.id_persona = 2 -- Funcionario
 group by "Mes"
+
