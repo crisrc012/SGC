@@ -9,6 +9,7 @@ import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
 import java.sql.SQLException;
 import java.util.Arrays;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +27,9 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
      */
     public Iniciar_Sesion() {
         initComponents();
+        this.setIconImage(
+                new ImageIcon(
+                        getClass().getResource("../img/Icono.png")).getImage());
     }
 
     /**
@@ -158,7 +162,6 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         // Mostrar centrado
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setTitle("Sistema de Gestión de Comedor - Iniciar");
         usuario = new Usuarios();
         ubl = new Usuarios_bl();
     }//GEN-LAST:event_formComponentShown
