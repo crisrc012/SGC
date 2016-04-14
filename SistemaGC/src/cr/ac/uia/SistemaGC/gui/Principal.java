@@ -5,7 +5,9 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,7 +20,9 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
