@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -23,6 +24,12 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Pao
  */
 public class Reportes extends javax.swing.JFrame {
+
+    private String Titulo;
+    private String Periodo; // Mensual o semanal
+    private JasperReport jasperReport;
+    private JasperPrint jasperPrint;
+    private Conexion conn;
 
     /**
      * Creates new form Reportes
@@ -58,8 +65,8 @@ public class Reportes extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnGenerarReporte = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateInicio = new com.toedter.calendar.JDateChooser();
+        jDateFin = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -84,7 +91,7 @@ public class Reportes extends javax.swing.JFrame {
         lblSelectTipo.setText("2. Seleccione el tipo de reporte");
 
         lblSelectDate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSelectDate.setText("3. Seleccione la fecha");
+        lblSelectDate.setText("3. Seleccione intervalo de fecha");
 
         btnGPeriodo.add(RBSemanal);
         RBSemanal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -104,7 +111,7 @@ public class Reportes extends javax.swing.JFrame {
 
         btnGTipos.add(RBProfesores);
         RBProfesores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RBProfesores.setText("Cantidad de profesores que utilizan este servicio");
+        RBProfesores.setText("Cantidad de funcionarios que utilizan este servicio");
 
         btnGTipos.add(RBCierresCaja);
         RBCierresCaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -141,8 +148,8 @@ public class Reportes extends javax.swing.JFrame {
                                 .addGap(68, 68, 68)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                                .addComponent(jDateInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(RBBecados)
                             .addComponent(lblSelectTipo)
@@ -152,7 +159,7 @@ public class Reportes extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(82, 82, 82))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,8 +208,8 @@ public class Reportes extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
                         .addComponent(jLabel6))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnGenerarReporte)
                 .addContainerGap())
@@ -212,20 +219,70 @@ public class Reportes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
+        // Validaciones
+        // Periodo
+        if (!RBSemanal.isSelected() && !RBMensual.isSelected()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Por favor seleccione un periodo",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Reporte
+        if (!RBBecados.isSelected() && !RBNoBecados.isSelected()
+                && !RBProfesores.isSelected() && !RBCierresCaja.isSelected()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Por favor seleccione un tipo de reporte",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Fechas
+        if (jDateInicio.getDateFormatString().isEmpty() || jDateFin.getDateFormatString().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Por favor seleccione un intervalo de fecha",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int id_persona = 0;
+        String reportSource = "";
+        if (RBBecados.isSelected()) {
+            this.Titulo = "Cantidad de personas becadas que utilizan el servicio";
+            reportSource = "src/cr/ac/uia/SistemaGC/reports/Becados.jrxml";
+            id_persona = 1;
+        }
+        if (RBNoBecados.isSelected()) {
+            this.Titulo = "Cantidad de personas no becadas que utilizan el servicio";
+            reportSource = "src/cr/ac/uia/SistemaGC/reports/NoBecados.jrxml";
+            id_persona = 1;
+        }
+        if (RBProfesores.isSelected()) {
+            this.Titulo = "Cantidad de funcionarios que utilizan el servicio";
+            reportSource = "src/cr/ac/uia/SistemaGC/reports/Funcionarios.jrxml";
+            id_persona = 2;
+        }
+        if (RBCierresCaja.isSelected()) {
+            this.Titulo = "Cierre de caja";
+        }
         try {
-            Conexion conn = new Conexion();
-            String parameterName = "A";
-            String reportSource = "src/cr/ac/uia/SistemaGC/reports/newReport.jrxml";
+            conn = new Conexion();
             // Parametros
             Map map = new HashMap();
-            map.put("param", parameterName);
+            map.put("titulo", this.Titulo);
+            map.put("id_persona", id_persona);
+            map.put("fechaInicio", jDateInicio.getDate());
+            map.put("fechaFin", jDateFin.getDate());
             // Compilando reporte
-            JasperReport jasperReport = (JasperReport) JasperCompileManager.compileReport(reportSource);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn.getConnection());
+            this.jasperReport = (JasperReport) JasperCompileManager.compileReport(reportSource);
+            this.jasperPrint = JasperFillManager.fillReport(this.jasperReport, map, this.conn.getConnection());
             // Cerrando conexión
-            conn.close();
+            this.conn.close();
             // Mostrando reporte
-            JasperViewer.viewReport(jasperPrint, false);
+            JasperViewer.viewReport(this.jasperPrint, false);
         } catch (SQLException | JRException e) {
             System.out.println(e.toString());
         }
@@ -277,8 +334,8 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGPeriodo;
     private javax.swing.ButtonGroup btnGTipos;
     private javax.swing.JButton btnGenerarReporte;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateFin;
+    private com.toedter.calendar.JDateChooser jDateInicio;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblSelectDate;
