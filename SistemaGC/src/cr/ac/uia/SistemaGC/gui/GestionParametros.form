@@ -10,8 +10,8 @@
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <Events>
-    <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="formComponentShown"/>
     <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
+    <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="formComponentShown"/>
   </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -28,51 +28,16 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblAlmFuncionario" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel12" min="-2" pref="9" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblAlmEstudiante" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblDesFuncionario" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblDesEstudiante" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel9" pref="23" max="32767" attributes="0"/>
-                          <Component id="jLabel10" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtDesProfesor" max="32767" attributes="0"/>
-                  <Component id="txtDesEstudiante" max="32767" attributes="0"/>
-                  <Component id="txtAlmEstudiante" alignment="1" max="32767" attributes="0"/>
-                  <Component id="txtAlmProfesor" alignment="1" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnGuardarParametros" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblTituloGP" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblTituloGP" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTituloPrecios" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
@@ -81,12 +46,47 @@
                           <Component id="lblDesayuno" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+              </Group>
+              <EmptySpace min="299" pref="167" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
-                      <Component id="lblTituloPrecios" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDesEstudiante" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <Component id="jLabel9" min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblAlmEstudiante" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDesFuncionario" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAlmFuncionario" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel10" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel12" min="-2" pref="9" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace min="82" pref="162" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="btnGuardarParametros" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtDesProfesor" max="32767" attributes="0"/>
+                          <Component id="txtDesEstudiante" max="32767" attributes="0"/>
+                          <Component id="txtAlmEstudiante" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtAlmProfesor" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,40 +94,45 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblTituloGP" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-              <Component id="lblTituloPrecios" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="lblTituloGP" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblTituloPrecios" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="lblDesayuno" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblDesEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDesEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDesEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblDesFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDesProfesor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDesProfesor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lblAlmuerzo" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblAlmEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAlmEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblAlmFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAlmProfesor" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtAlmEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblAlmFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtAlmProfesor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="btnGuardarParametros" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -136,7 +141,7 @@
     <Component class="javax.swing.JLabel" name="lblTituloGP">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
+          <Font name="Segoe UI" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Gestionar Par&#xe1;metros"/>
       </Properties>
@@ -235,7 +240,7 @@
     <Component class="javax.swing.JLabel" name="lblTituloPrecios">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
+          <Font name="Segoe UI" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Precios"/>
       </Properties>
@@ -270,6 +275,13 @@
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&#x20a1;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/cr/ac/uia/SistemaGC/img/bag.png"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

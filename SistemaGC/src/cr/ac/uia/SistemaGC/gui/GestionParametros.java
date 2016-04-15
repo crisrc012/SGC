@@ -57,21 +57,22 @@ public class GestionParametros extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
-        lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTituloGP.setText("Gestionar Parámetros");
 
         lblDesayuno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -112,7 +113,7 @@ public class GestionParametros extends javax.swing.JFrame {
         txtAlmProfesor.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         txtAlmProfesor.setEnabled(false);
 
-        lblTituloPrecios.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTituloPrecios.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTituloPrecios.setText("Precios");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -127,89 +128,94 @@ public class GestionParametros extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setText("₡");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/bag.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblAlmFuncionario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblAlmEstudiante)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblDesFuncionario)
-                                .addComponent(lblDesEstudiante)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDesProfesor)
-                    .addComponent(txtDesEstudiante)
-                    .addComponent(txtAlmEstudiante, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtAlmProfesor, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(40, 40, 40))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardarParametros)
-                .addGap(86, 86, 86))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lblTituloGP))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTituloGP)
+                            .addComponent(lblTituloPrecios))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblAlmuerzo)
-                            .addComponent(lblDesayuno)))
+                            .addComponent(lblDesayuno))))
+                .addGap(167, 167, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(lblTituloPrecios)))
-                .addGap(82, 162, Short.MAX_VALUE))
+                        .addComponent(lblDesEstudiante)
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblAlmEstudiante)
+                            .addComponent(lblDesFuncionario)
+                            .addComponent(lblAlmFuncionario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGuardarParametros)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDesProfesor)
+                            .addComponent(txtDesEstudiante)
+                            .addComponent(txtAlmEstudiante, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtAlmProfesor, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(40, 40, 40))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTituloGP)
-                .addGap(16, 16, 16)
-                .addComponent(lblTituloPrecios)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTituloGP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblTituloPrecios))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblDesayuno)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDesEstudiante)
-                    .addComponent(txtDesEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(27, 27, 27)
+                    .addComponent(jLabel9)
+                    .addComponent(txtDesEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDesFuncionario)
-                    .addComponent(txtDesProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(txtDesProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lblAlmuerzo)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAlmEstudiante)
-                    .addComponent(txtAlmEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addGap(27, 27, 27)
+                    .addComponent(jLabel11)
+                    .addComponent(txtAlmEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAlmFuncionario)
-                    .addComponent(txtAlmProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel12)
+                    .addComponent(txtAlmProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(btnGuardarParametros, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -326,6 +332,7 @@ public class GestionParametros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarParametros;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

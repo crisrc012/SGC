@@ -48,6 +48,7 @@ public class Becas_Principal extends javax.swing.JFrame {
         btnAgregarBeca = new javax.swing.JButton();
         btnModificarBeca = new javax.swing.JButton();
         btnDesHabilitarBeca = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -65,7 +66,7 @@ public class Becas_Principal extends javax.swing.JFrame {
             }
         });
 
-        lblTituloBecas.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTituloBecas.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTituloBecas.setText("Tipos de Becas");
 
         tblTiposBecas.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -121,43 +122,44 @@ public class Becas_Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pao\\Downloads\\becas.png")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(btnModificarBeca)
-                        .addGap(80, 80, 80)
-                        .addComponent(btnDesHabilitarBeca)
-                        .addGap(0, 143, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(lblTituloBecas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAgregarBeca)))
-                .addContainerGap())
+                .addGap(109, 109, 109)
+                .addComponent(btnModificarBeca)
+                .addGap(80, 80, 80)
+                .addComponent(btnDesHabilitarBeca)
+                .addContainerGap(153, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(lblTituloBecas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgregarBeca)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(btnAgregarBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(lblTituloBecas)))
+                        .addComponent(lblTituloBecas))
+                    .addComponent(jLabel1)
+                    .addComponent(btnAgregarBeca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnDesHabilitarBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(btnModificarBeca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -294,6 +296,7 @@ public class Becas_Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarBeca;
     private javax.swing.JButton btnDesHabilitarBeca;
     private javax.swing.JButton btnModificarBeca;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTituloBecas;
     private javax.swing.JTable tblTiposBecas;

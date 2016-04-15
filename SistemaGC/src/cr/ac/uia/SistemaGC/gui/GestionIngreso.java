@@ -46,6 +46,7 @@ public class GestionIngreso extends javax.swing.JFrame {
         txtCedPersona = new javax.swing.JTextField();
         jlbNombre = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -81,6 +82,8 @@ public class GestionIngreso extends javax.swing.JFrame {
 
         lblName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pao\\Downloads\\puerta.png")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,8 +91,10 @@ public class GestionIngreso extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(lblTituloGI))
+                        .addGap(59, 59, 59)
+                        .addComponent(lblTituloGI)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,14 +109,17 @@ public class GestionIngreso extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(230, 230, 230)
                         .addComponent(btnAplicarIngreso)))
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTituloGI)
-                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(lblTituloGI)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedPersona)
                     .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -119,7 +127,7 @@ public class GestionIngreso extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbNombre)
                     .addComponent(lblName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(btnAplicarIngreso)
                 .addGap(23, 23, 23))
         );
@@ -220,6 +228,7 @@ public class GestionIngreso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicarIngreso;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jlbNombre;
     private javax.swing.JLabel lblCedPersona;
     private javax.swing.JLabel lblName;

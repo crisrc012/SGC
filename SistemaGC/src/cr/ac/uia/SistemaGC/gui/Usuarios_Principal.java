@@ -49,6 +49,7 @@ public class Usuarios_Principal extends javax.swing.JFrame {
         btnAgregarUsuario = new javax.swing.JButton();
         btnModificarUsuario = new javax.swing.JButton();
         btnDesHabilitarUsuario = new javax.swing.JButton();
+        lblUsuarios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -66,7 +67,7 @@ public class Usuarios_Principal extends javax.swing.JFrame {
             }
         });
 
-        lblTituloUsuarios.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTituloUsuarios.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTituloUsuarios.setText("Gestión de Usuarios");
 
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
@@ -121,42 +122,50 @@ public class Usuarios_Principal extends javax.swing.JFrame {
             }
         });
 
+        lblUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/user.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(btnModificarUsuario)
-                        .addGap(108, 108, 108)
-                        .addComponent(btnDesHabilitarUsuario)
-                        .addGap(0, 100, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnAgregarUsuario)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(14, 14, 14)
+                .addComponent(lblUsuarios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTituloUsuarios)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(btnAgregarUsuario)
+                .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(btnModificarUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDesHabilitarUsuario)
+                .addGap(109, 109, 109))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(lblTituloUsuarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgregarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(btnAgregarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(lblTituloUsuarios)))
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblUsuarios)
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDesHabilitarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -311,6 +320,7 @@ public class Usuarios_Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnModificarUsuario;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTituloUsuarios;
+    private javax.swing.JLabel lblUsuarios;
     private javax.swing.JTable tblUsuarios;
     // End of variables declaration//GEN-END:variables
 }
