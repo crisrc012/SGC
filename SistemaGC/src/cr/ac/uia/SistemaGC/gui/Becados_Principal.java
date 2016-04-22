@@ -182,7 +182,7 @@ public class Becados_Principal extends javax.swing.JFrame {
         int i = tblAdmBecas.getSelectedRow();
         if (i < 0) {
             JOptionPane.showMessageDialog(this,
-                    "Por favor seleccione una celda.",
+                    "Por favor seleccione una persona en la tabla.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
             return;
@@ -256,7 +256,7 @@ public class Becados_Principal extends javax.swing.JFrame {
         int i = tblAdmBecas.getSelectedRow();
         if (i < 0) {
             JOptionPane.showMessageDialog(this,
-                    "Por favor seleccione una celda.",
+                    "Por favor seleccione una persona en la tabla.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
             return;
