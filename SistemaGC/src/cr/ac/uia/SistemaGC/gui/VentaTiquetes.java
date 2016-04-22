@@ -7,11 +7,13 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Becados_bl;
 import cr.ac.uia.SistemaGC.bl.Becas_bl;
+import cr.ac.uia.SistemaGC.bl.Persona_bl;
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.bl.Precio_bl;
 import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
 import cr.ac.uia.SistemaGC.entities.Becados;
 import cr.ac.uia.SistemaGC.entities.Becas;
+import cr.ac.uia.SistemaGC.entities.Persona;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Precio;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
@@ -76,6 +78,8 @@ public class VentaTiquetes extends javax.swing.JFrame {
         lblLunch = new javax.swing.JLabel();
         lblBuy = new javax.swing.JLabel();
         lblCancel = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
+        txtDescripcion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -153,7 +157,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
         });
 
         btnComprar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnComprar.setText("COMPRAR TIQUETE");
+        btnComprar.setText("VENDER TIQUETE");
         btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnComprarActionPerformed(evt);
@@ -161,7 +165,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
         });
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnCancelar.setText("CANCELAR COMPRA");
+        btnCancelar.setText("CANCELAR VENTA");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -177,6 +181,11 @@ public class VentaTiquetes extends javax.swing.JFrame {
         lblBuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/shop1.png"))); // NOI18N
 
         lblCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/shop2.png"))); // NOI18N
+
+        lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblDescripcion.setText("Descripción:");
+
+        txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,17 +218,6 @@ public class VentaTiquetes extends javax.swing.JFrame {
                                 .addComponent(lblPrecioAlm))
                             .addComponent(lblAlmuerzo)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCedPersona)
-                            .addComponent(lblNombre))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCosultarCed))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblBuy)
@@ -235,7 +233,21 @@ public class VentaTiquetes extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboTiposComida, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cboTiposComida, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCedPersona)
+                            .addComponent(lblNombre)
+                            .addComponent(lblDescripcion))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCosultarCed))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)))))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -282,6 +294,10 @@ public class VentaTiquetes extends javax.swing.JFrame {
                     .addComponent(lblNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDescripcion)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblBuy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnComprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -289,7 +305,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -383,6 +399,13 @@ public class VentaTiquetes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,
                         "No existe ninguna persona relacionada a la cédula ingresada",
                         "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            Persona ps = new Persona();
+            ps.setId(id_persona);
+            Persona_bl psbl = new Persona_bl();
+            ArrayList<Persona> ap = psbl.select(ps);
+            if(ap.size()>0){
+                txtDescripcion.setText(ap.get(0).getDescripcion());
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -513,6 +536,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
     private javax.swing.JLabel lblCantTique;
     private javax.swing.JLabel lblCedPersona;
     private javax.swing.JLabel lblDesayuno;
+    private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblLunch;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrecioAlm;
@@ -524,6 +548,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
     private javax.swing.JLabel lblTituloVT;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
