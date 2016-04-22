@@ -344,6 +344,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
             try {
                 btnGuardarPersona.setText("Modificar Persona");
                 txtCedulaPersona.setText(this.persona.getCedula().toString());
+                txtCedulaPersona.setEditable(false);
                 txtNombrePersona.setText(this.persona.getNombre());
                 txtApellidosPersona.setText(this.persona.getApellidos());
                 jDateFechaNacimiento.setDate(this.persona.getFecha_nacimiento());
