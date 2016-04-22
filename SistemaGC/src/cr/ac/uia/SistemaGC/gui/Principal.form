@@ -68,6 +68,11 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MReportesMousePressed"/>
           </Events>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="MAcerca">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Acerca de"/>
+          </Properties>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>

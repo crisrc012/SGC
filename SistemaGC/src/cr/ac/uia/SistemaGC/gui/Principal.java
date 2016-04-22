@@ -45,6 +45,7 @@ public class Principal extends javax.swing.JFrame {
         MGestionIngreso = new javax.swing.JMenu();
         MGestionParam = new javax.swing.JMenu();
         MReportes = new javax.swing.JMenu();
+        MAcerca = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
@@ -129,6 +130,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         MenuBar.add(MReportes);
+
+        MAcerca.setText("Acerca de");
+        MenuBar.add(MAcerca);
 
         setJMenuBar(MenuBar);
 
@@ -248,6 +252,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu MAcerca;
     private javax.swing.JMenu MAdmBeca;
     private javax.swing.JMenu MGestionIngreso;
     private javax.swing.JMenu MGestionParam;
