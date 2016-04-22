@@ -57,10 +57,10 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
             }
         });
 
-        lblUserName.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        lblUserName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblUserName.setText("Nombre de Usuario:");
 
-        lblPassword.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        lblPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblPassword.setText("Contraseña:");
 
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -71,10 +71,10 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
             }
         });
 
-        lblIndicacion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        lblIndicacion.setText("Por favor, digite su nobre de usuario y contraseña para comenzar.");
+        lblIndicacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblIndicacion.setText("Por favor, digite su nombre de usuario y contraseña para comenzar.");
 
-        lblTituloSGC.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblTituloSGC.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloSGC.setText("Sistema Gestor de Comedores");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -101,7 +101,7 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +120,7 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
