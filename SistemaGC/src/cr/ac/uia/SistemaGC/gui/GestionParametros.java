@@ -52,12 +52,10 @@ public class GestionParametros extends javax.swing.JFrame {
         txtDesProfesor = new javax.swing.JTextField();
         txtAlmEstudiante = new javax.swing.JTextField();
         txtAlmProfesor = new javax.swing.JTextField();
-        lblTituloPrecios = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -72,8 +70,8 @@ public class GestionParametros extends javax.swing.JFrame {
             }
         });
 
-        lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblTituloGP.setText("Gestionar Parámetros");
+        lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblTituloGP.setText("Precios");
 
         lblDesayuno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblDesayuno.setText("Desayuno");
@@ -113,9 +111,6 @@ public class GestionParametros extends javax.swing.JFrame {
         txtAlmProfesor.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         txtAlmProfesor.setEnabled(false);
 
-        lblTituloPrecios.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblTituloPrecios.setText("Precios");
-
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("₡");
 
@@ -128,27 +123,16 @@ public class GestionParametros extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setText("₡");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/bag.png"))); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTituloGP)
-                            .addComponent(lblTituloPrecios))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAlmuerzo)
-                            .addComponent(lblDesayuno))))
-                .addGap(167, 167, Short.MAX_VALUE))
+                    .addComponent(lblAlmuerzo)
+                    .addComponent(lblDesayuno))
+                .addGap(369, 381, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,6 +153,9 @@ public class GestionParametros extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTituloGP)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGuardarParametros)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -182,14 +169,9 @@ public class GestionParametros extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTituloGP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblTituloPrecios))
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(lblTituloGP)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(lblDesayuno)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -332,7 +314,6 @@ public class GestionParametros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarParametros;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -344,7 +325,6 @@ public class GestionParametros extends javax.swing.JFrame {
     private javax.swing.JLabel lblDesFuncionario;
     private javax.swing.JLabel lblDesayuno;
     private javax.swing.JLabel lblTituloGP;
-    private javax.swing.JLabel lblTituloPrecios;
     private javax.swing.JTextField txtAlmEstudiante;
     private javax.swing.JTextField txtAlmProfesor;
     private javax.swing.JTextField txtDesEstudiante;
