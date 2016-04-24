@@ -115,7 +115,7 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuBar.add(MGestionIngreso);
 
-        MGestionParam.setText("Gestionar Precio");
+        MGestionParam.setText("Precios");
         MGestionParam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MGestionParamMousePressed(evt);

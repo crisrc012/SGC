@@ -54,7 +54,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="MGestionParam">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gestionar Precio"/>
+            <Property name="text" type="java.lang.String" value="Precios"/>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MGestionParamMousePressed"/>
