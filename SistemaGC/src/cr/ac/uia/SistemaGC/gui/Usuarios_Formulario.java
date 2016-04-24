@@ -29,6 +29,7 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
         initComponents();
         isUpdate = false;
         this.usuarios = new Usuarios();
+        chckCambioContrasena.setVisible(false);
     }
 
     public Usuarios_Formulario(boolean update, Usuarios usuarios) {
@@ -65,6 +66,7 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
         txtApellidos = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObsUsuario = new javax.swing.JTextPane();
+        chckCambioContrasena = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -128,6 +130,12 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(txtObsUsuario);
 
+        chckCambioContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chckCambioContrasenaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,23 +163,23 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
                                     .addComponent(lblNombre)
                                     .addComponent(lblApellidos))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(43, 43, 43)
+                                        .addComponent(chckCambioContrasena)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                                            .addComponent(txtApellidos)
-                                            .addComponent(txtCedula)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(66, 66, 66)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtUsuario)
-                                            .addComponent(txtContraseña)
-                                            .addComponent(txtRepetirCont)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(CBActivo)
-                                                .addGap(0, 259, Short.MAX_VALUE)))))
-                                .addGap(76, 76, 76)))))
+                                            .addComponent(CBActivo)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                                                    .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(txtRepetirCont, javax.swing.GroupLayout.Alignment.TRAILING))
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -180,12 +188,15 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTituloGU)
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombreUsuario)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblContraseña)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNombreUsuario)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblContraseña)
+                            .addComponent(chckCambioContrasena)))
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -214,7 +225,7 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
                             .addComponent(lblObservacionesUsuario))))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -247,7 +258,7 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
             usuarios.setObservaciones(txtObsUsuario.getText().trim());
             usuarios.setId_rol(1);
             if (this.isUpdate) {
-                if (p_bl.update(usuarios)) {
+                if (p_bl.update(usuarios, chckCambioContrasena.isSelected())) {
                     JOptionPane.showMessageDialog(this,
                             "Se ha actualizado correctamente el usuario.",
                             "Correcto",
@@ -303,6 +314,11 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
         new Usuarios_Principal().setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
+    private void chckCambioContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chckCambioContrasenaActionPerformed
+        txtContraseña.setEnabled(chckCambioContrasena.isSelected());
+        txtRepetirCont.setEnabled(chckCambioContrasena.isSelected());
+    }//GEN-LAST:event_chckCambioContrasenaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -333,6 +349,7 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox CBActivo;
     private javax.swing.JButton btnGuardarUsuario;
+    private javax.swing.JCheckBox chckCambioContrasena;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblActivo;
     private javax.swing.JLabel lblApellidos;

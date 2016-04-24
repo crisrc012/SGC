@@ -482,7 +482,15 @@ begin
 			values (_cedula, lower(_usuario), _contrasena, upper(_nombre), upper(_apellidos), _activo, upper(_observaciones), _id_rol);
 		when 'update' then
 			update tbl_usuarios t
-			set usuario = lower(_usuario),
+			set nombre = upper(_nombre),
+			apellidos = upper(_apellidos),
+			activo = _activo,
+			observaciones = upper(_observaciones),
+			id_rol = _id_rol
+			where t.cedula = _cedula;
+		when 'update_contrasena' then
+			update tbl_usuarios t
+			set contrasena = _contrasena,
 			nombre = upper(_nombre),
 			apellidos = upper(_apellidos),
 			activo = _activo,

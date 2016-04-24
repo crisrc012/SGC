@@ -264,7 +264,7 @@ public class Usuarios_Principal extends javax.swing.JFrame {
                     (String) tblUsuarios.getValueAt(i, 3),
                     !(Boolean) tblUsuarios.getValueAt(i, 4),
                     (String) tblUsuarios.getValueAt(i, 5),
-                    1))) {
+                    1), false)) {
                 refreshJTable();
                 JOptionPane.showMessageDialog(this,
                         "Se ha actualizado correctamente el usuario.",

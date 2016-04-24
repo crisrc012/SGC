@@ -116,8 +116,12 @@ public class Usuarios_bl {
         return insert_update(usuarios, "insert");
     }
 
-    public boolean update(Usuarios usuarios) throws SQLException {
-        return insert_update(usuarios, "update");
+    public boolean update(Usuarios usuarios, boolean updatePass) throws SQLException {
+        if(updatePass){
+            return insert_update(usuarios, "update_contrasena");
+        } else {
+            return insert_update(usuarios, "update");
+        }
     }
 
     public boolean delete(int cedula) throws SQLException {
