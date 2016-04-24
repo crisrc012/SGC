@@ -6,6 +6,7 @@
 package cr.ac.uia.SistemaGC.gui;
 
 import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -93,6 +94,9 @@ public class Acercade extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         this.setLocationRelativeTo(null);
+        this.setIconImage(
+                new ImageIcon(
+                        getClass().getResource("../img/Icono.png")).getImage());
     }//GEN-LAST:event_formComponentShown
 
     /**
