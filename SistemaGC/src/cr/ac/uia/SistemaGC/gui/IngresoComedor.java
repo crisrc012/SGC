@@ -19,12 +19,12 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class GestionIngreso extends javax.swing.JFrame {
+public class IngresoComedor extends javax.swing.JFrame {
 
     /**
      * Creates new form GestionIngreso
      */
-    public GestionIngreso() {
+    public IngresoComedor() {
         initComponents();
         this.setIconImage(
                 new ImageIcon(
@@ -169,15 +169,21 @@ public class GestionIngreso extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void limpiar(){
+    private void limpiar() {
         txtCedPersona.setText("");
         lblName.setText("");
     }
-    
+
     private void btnAplicarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarIngresoActionPerformed
-        
         if (txtCedPersona.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor digite una cédula válida", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showOptionDialog(this,
+                    "Por favor digite una cédula válida",
+                    "Error",
+                    JOptionPane.OK_OPTION,
+                    JOptionPane.ERROR_MESSAGE,
+                    null,
+                    new Object[]{"Entendido"},
+                    "Entendido");
             return;
         }
         try {
@@ -192,9 +198,15 @@ public class GestionIngreso extends javax.swing.JFrame {
             Tiquetes_bl tbl = new Tiquetes_bl();
             int cantidad = tbl.count(cedula);
             if (cantidad > 1) {
-                if (JOptionPane.showConfirmDialog(this, "Usted tiene disponibles: " + cantidad + " tiquetes.\n"
+                if (JOptionPane.showOptionDialog(this,
+                        "Usted tiene disponibles: " + cantidad + " tiquetes.\n"
                         + "¿Desea utilizar uno?",
-                        "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                        "Confirmar",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE,
+                        null,
+                        new Object[] {"Sí, usar", "No, no usar"},
+                        "No, no usar") == JOptionPane.YES_OPTION) {
                     ArrayList<Tiquetes> al = tbl.activos(cedula);
                     Tiquetes t = al.get(0);
                     t.setActivo(false); // Desactivando tiquete
@@ -251,13 +263,14 @@ public class GestionIngreso extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestionIngreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IngresoComedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new GestionIngreso().setVisible(true);
+            new IngresoComedor().setVisible(true);
         });
     }
 

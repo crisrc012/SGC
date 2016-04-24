@@ -17,14 +17,14 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class GestionParametros extends javax.swing.JFrame {
+public class GestionPrecio extends javax.swing.JFrame {
 
     private Precio_bl bl;
 
     /**
      * Creates new form GestionParametros
      */
-    public GestionParametros() {
+    public GestionPrecio() {
         initComponents();
         this.setIconImage(
                 new ImageIcon(
@@ -300,15 +300,18 @@ public class GestionParametros extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestionParametros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionPrecio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new GestionParametros().setVisible(true);
+            new GestionPrecio().setVisible(true);
         });
     }
 

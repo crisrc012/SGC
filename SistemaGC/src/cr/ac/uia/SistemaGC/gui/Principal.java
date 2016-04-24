@@ -107,7 +107,7 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuBar.add(MVentaTiq);
 
-        MGestionIngreso.setText("Gestión de Ingreso");
+        MGestionIngreso.setText("Ingreso al comedor");
         MGestionIngreso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MGestionIngresoMousePressed(evt);
@@ -115,7 +115,7 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuBar.add(MGestionIngreso);
 
-        MGestionParam.setText("Gestión de Parametros");
+        MGestionParam.setText("Gestionar Precio");
         MGestionParam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MGestionParamMousePressed(evt);
@@ -204,12 +204,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_MVentaTiqMousePressed
 
     private void MGestionIngresoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MGestionIngresoMousePressed
-        new GestionIngreso().setVisible(true);
+        new IngresoComedor().setVisible(true);
         this.setEnabled(false);
     }//GEN-LAST:event_MGestionIngresoMousePressed
 
     private void MGestionParamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MGestionParamMousePressed
-        new GestionParametros().setVisible(true);
+        new GestionPrecio().setVisible(true);
         this.setEnabled(false);
     }//GEN-LAST:event_MGestionParamMousePressed
 
