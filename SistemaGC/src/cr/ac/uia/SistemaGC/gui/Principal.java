@@ -96,7 +96,7 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuBar.add(MAdmBeca);
 
-        MVentaTiq.setText("Venta de Tiquetes");
+        MVentaTiq.setText("Tiquetes");
         MVentaTiq.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MVentaTiqMousePressed(evt);
@@ -132,6 +132,11 @@ public class Principal extends javax.swing.JFrame {
         MenuBar.add(MRespaldo);
 
         MAcerca.setText("Acerca de");
+        MAcerca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MAcercaMousePressed(evt);
+            }
+        });
         MenuBar.add(MAcerca);
 
         setJMenuBar(MenuBar);
@@ -173,44 +178,49 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void MUsurioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MUsurioMousePressed
-        new Usuarios_Principal().setVisible(true);
         this.setEnabled(false);
+        new Usuarios_Principal().setVisible(true);
     }//GEN-LAST:event_MUsurioMousePressed
 
     private void MPersonasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MPersonasMousePressed
-        new Personas_Principal().setVisible(true);
         this.setEnabled(false);
+        new Personas_Principal().setVisible(true);
     }//GEN-LAST:event_MPersonasMousePressed
 
     private void MTipoBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MTipoBecaMousePressed
-        new Becas_Principal().setVisible(true);
         this.setEnabled(false);
+        new Becas_Principal().setVisible(true);
     }//GEN-LAST:event_MTipoBecaMousePressed
 
     private void MAdmBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MAdmBecaMousePressed
-        new Becados_Principal().setVisible(true);
         this.setEnabled(false);
+        new Becados_Principal().setVisible(true);
     }//GEN-LAST:event_MAdmBecaMousePressed
 
     private void MVentaTiqMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MVentaTiqMousePressed
-        new VentaTiquetes().setVisible(true);
         this.setEnabled(false);
+        new VentaTiquetes().setVisible(true);
     }//GEN-LAST:event_MVentaTiqMousePressed
 
     private void MGestionIngresoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MGestionIngresoMousePressed
-        new IngresoComedor().setVisible(true);
         this.setEnabled(false);
+        new IngresoComedor().setVisible(true);
     }//GEN-LAST:event_MGestionIngresoMousePressed
 
     private void MGestionParamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MGestionParamMousePressed
-        new GestionPrecio().setVisible(true);
         this.setEnabled(false);
+        new GestionPrecio().setVisible(true);
     }//GEN-LAST:event_MGestionParamMousePressed
 
     private void MReportesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MReportesMousePressed
-        new Reportes().setVisible(true);
         this.setEnabled(false);
+        new Reportes().setVisible(true);
     }//GEN-LAST:event_MReportesMousePressed
+
+    private void MAcercaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MAcercaMousePressed
+        this.setEnabled(false);
+        new Acercade().setVisible(true);
+    }//GEN-LAST:event_MAcercaMousePressed
 
     /**
      * @param args the command line arguments

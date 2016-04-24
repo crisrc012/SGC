@@ -38,7 +38,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="MVentaTiq">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Venta de Tiquetes"/>
+            <Property name="text" type="java.lang.String" value="Tiquetes"/>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MVentaTiqMousePressed"/>
@@ -77,6 +77,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Acerca de"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MAcercaMousePressed"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
