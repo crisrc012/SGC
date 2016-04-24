@@ -33,8 +33,10 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblLogoUIA = new javax.swing.JLabel();
+        lblLogoEscuela = new javax.swing.JLabel();
         lblSGC = new javax.swing.JLabel();
+        lblLogoInstitucion = new javax.swing.JLabel();
+        lblNombreInstitucion = new javax.swing.JLabel();
         MenuBar = new javax.swing.JMenuBar();
         MUsurio = new javax.swing.JMenu();
         MPersonas = new javax.swing.JMenu();
@@ -44,6 +46,8 @@ public class Principal extends javax.swing.JFrame {
         MGestionIngreso = new javax.swing.JMenu();
         MGestionParam = new javax.swing.JMenu();
         MReportes = new javax.swing.JMenu();
+        MHerramientas = new javax.swing.JMenu();
+        MInstitucion = new javax.swing.JMenu();
         MRespaldo = new javax.swing.JMenu();
         MAcerca = new javax.swing.JMenu();
 
@@ -59,10 +63,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        lblLogoUIA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/LogoUIA.png"))); // NOI18N
+        lblLogoEscuela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/SplashSmall.png"))); // NOI18N
 
         lblSGC.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblSGC.setText("Sistema de Gestión de Comedores");
+
+        lblNombreInstitucion.setText("Mi institución");
 
         MUsurio.setText("Usuario");
         MUsurio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,8 +134,20 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuBar.add(MReportes);
 
+        MHerramientas.setText("Herramientas");
+
+        MInstitucion.setText("Institución");
+        MInstitucion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MInstitucionMousePressed(evt);
+            }
+        });
+        MHerramientas.add(MInstitucion);
+
         MRespaldo.setText("Respaldo");
-        MenuBar.add(MRespaldo);
+        MHerramientas.add(MRespaldo);
+
+        MenuBar.add(MHerramientas);
 
         MAcerca.setText("Acerca de");
         MAcerca.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -146,20 +164,31 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLogoUIA, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblSGC, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblLogoInstitucion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblLogoEscuela))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSGC)
+                            .addComponent(lblNombreInstitucion))
+                        .addGap(0, 399, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblSGC)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblLogoUIA)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNombreInstitucion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLogoEscuela, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblLogoInstitucion, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
         pack();
@@ -222,6 +251,11 @@ public class Principal extends javax.swing.JFrame {
         new Acercade().setVisible(true);
     }//GEN-LAST:event_MAcercaMousePressed
 
+    private void MInstitucionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MInstitucionMousePressed
+        // Se encargará de cargar el label de logo institucional y el nombre del colegio
+        
+    }//GEN-LAST:event_MInstitucionMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -254,6 +288,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu MAdmBeca;
     private javax.swing.JMenu MGestionIngreso;
     private javax.swing.JMenu MGestionParam;
+    private javax.swing.JMenu MHerramientas;
+    private javax.swing.JMenu MInstitucion;
     private javax.swing.JMenu MPersonas;
     private javax.swing.JMenu MReportes;
     private javax.swing.JMenu MRespaldo;
@@ -261,7 +297,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu MUsurio;
     private javax.swing.JMenu MVentaTiq;
     private javax.swing.JMenuBar MenuBar;
-    private javax.swing.JLabel lblLogoUIA;
+    private javax.swing.JLabel lblLogoEscuela;
+    private javax.swing.JLabel lblLogoInstitucion;
+    private javax.swing.JLabel lblNombreInstitucion;
     private javax.swing.JLabel lblSGC;
     // End of variables declaration//GEN-END:variables
 }

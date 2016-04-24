@@ -107,6 +107,15 @@ insert into tbl_usuarios
 values
 	(0,'root','Jj8OpRmCIuqBLvN+35WZJw==','root','root',true,'Superusuario',1);
 
+-- Tabla de Datos de la institución
+create table tbl_institucion(
+	id int not null,
+	nombre text,
+	logo bytea
+);
+
+insert into tbl_institucion values(0,null,null);
+	
 -- Vistas
 create view vw_becados as
 	select tps.cedula, tps.nombre, tps.apellidos, tp.descripcion, tb.nombre as beca, tb.porcentaje, tbs.activo

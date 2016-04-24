@@ -68,10 +68,25 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MReportesMousePressed"/>
           </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="MRespaldo">
+        <Menu class="javax.swing.JMenu" name="MHerramientas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Respaldo"/>
+            <Property name="text" type="java.lang.String" value="Herramientas"/>
           </Properties>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="MInstitucion">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Instituci&#xf3;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MInstitucionMousePressed"/>
+              </Events>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="MRespaldo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Respaldo"/>
+              </Properties>
+            </Menu>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="MAcerca">
           <Properties>
@@ -118,32 +133,47 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblLogoUIA" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblSGC" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblLogoInstitucion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lblLogoEscuela" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblSGC" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNombreInstitucion" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="399" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="lblSGC" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="32767" attributes="0"/>
-              <Component id="lblLogoUIA" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblNombreInstitucion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="196" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblLogoEscuela" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLogoInstitucion" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblLogoUIA">
+    <Component class="javax.swing.JLabel" name="lblLogoEscuela">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/cr/ac/uia/SistemaGC/img/LogoUIA.png"/>
+          <Image iconType="3" name="/cr/ac/uia/SistemaGC/img/SplashSmall.png"/>
         </Property>
       </Properties>
     </Component>
@@ -153,6 +183,13 @@
           <Font name="Segoe UI" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Sistema de Gesti&#xf3;n de Comedores"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLogoInstitucion">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNombreInstitucion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mi instituci&#xf3;n"/>
       </Properties>
     </Component>
   </SubComponents>
