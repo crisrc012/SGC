@@ -35,7 +35,6 @@ public class Principal extends javax.swing.JFrame {
 
         lblLogoUIA = new javax.swing.JLabel();
         lblSGC = new javax.swing.JLabel();
-        lblIndicacionInicial = new javax.swing.JLabel();
         MenuBar = new javax.swing.JMenuBar();
         MUsurio = new javax.swing.JMenu();
         MPersonas = new javax.swing.JMenu();
@@ -45,6 +44,7 @@ public class Principal extends javax.swing.JFrame {
         MGestionIngreso = new javax.swing.JMenu();
         MGestionParam = new javax.swing.JMenu();
         MReportes = new javax.swing.JMenu();
+        MRespaldo = new javax.swing.JMenu();
         MAcerca = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,9 +63,6 @@ public class Principal extends javax.swing.JFrame {
 
         lblSGC.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblSGC.setText("Sistema de Gestión de Comedores");
-
-        lblIndicacionInicial.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblIndicacionInicial.setText("Para poder comenzar a utilizar las diferentes opciones que presenta el sistema, por favor inicie sesión. Gracias");
 
         MUsurio.setText("Usuario");
         MUsurio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,6 +128,9 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuBar.add(MReportes);
 
+        MRespaldo.setText("Respaldo");
+        MenuBar.add(MRespaldo);
+
         MAcerca.setText("Acerca de");
         MenuBar.add(MAcerca);
 
@@ -140,10 +140,6 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(lblIndicacionInicial)
-                .addGap(0, 39, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,9 +154,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lblSGC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblLogoUIA)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblIndicacionInicial)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -238,12 +232,6 @@ public class Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
@@ -258,11 +246,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu MGestionParam;
     private javax.swing.JMenu MPersonas;
     private javax.swing.JMenu MReportes;
+    private javax.swing.JMenu MRespaldo;
     private javax.swing.JMenu MTipoBeca;
     private javax.swing.JMenu MUsurio;
     private javax.swing.JMenu MVentaTiq;
     private javax.swing.JMenuBar MenuBar;
-    private javax.swing.JLabel lblIndicacionInicial;
     private javax.swing.JLabel lblLogoUIA;
     private javax.swing.JLabel lblSGC;
     // End of variables declaration//GEN-END:variables

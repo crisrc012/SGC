@@ -186,12 +186,14 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Iniciar_Sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                // Nada que hacer
+            }
             new Iniciar_Sesion().setVisible(true);
         });
     }

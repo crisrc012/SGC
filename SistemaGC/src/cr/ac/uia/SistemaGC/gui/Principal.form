@@ -68,6 +68,11 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MReportesMousePressed"/>
           </Events>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="MRespaldo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Respaldo"/>
+          </Properties>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="MAcerca">
           <Properties>
             <Property name="text" type="java.lang.String" value="Acerca de"/>
@@ -109,11 +114,6 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="24" max="32767" attributes="0"/>
-              <Component id="lblIndicacionInicial" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="39" max="32767" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -132,8 +132,6 @@
               <EmptySpace type="unrelated" max="32767" attributes="0"/>
               <Component id="lblLogoUIA" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="lblIndicacionInicial" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -152,14 +150,6 @@
           <Font name="Segoe UI" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Sistema de Gesti&#xf3;n de Comedores"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblIndicacionInicial">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Para poder comenzar a utilizar las diferentes opciones que presenta el sistema, por favor inicie sesi&#xf3;n. Gracias"/>
       </Properties>
     </Component>
   </SubComponents>
