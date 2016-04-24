@@ -115,7 +115,7 @@ public class Reportes extends javax.swing.JFrame {
 
         btnGTipos.add(RBCierresCaja);
         RBCierresCaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RBCierresCaja.setText("Cierres de caja");
+        RBCierresCaja.setText("Informe de ventas");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Desde:");
