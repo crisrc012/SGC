@@ -72,10 +72,7 @@ public class Usuarios_Principal extends javax.swing.JFrame {
 
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Cédula", "Usuario", "Nombre", "Apellidos", "Activo", "Observaciones"
@@ -96,6 +93,8 @@ public class Usuarios_Principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblUsuarios.setShowHorizontalLines(false);
+        tblUsuarios.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblUsuarios);
 
         btnAgregarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N

@@ -71,10 +71,7 @@ public class Personas_Principal extends javax.swing.JFrame {
         tblPersonas.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Cédula", "Nombre", "Apellidos", "Fecha de Nacimiento", "Celular", "Teléfono", "Encargado", "Descripción"
@@ -95,6 +92,8 @@ public class Personas_Principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblPersonas.setShowHorizontalLines(false);
+        tblPersonas.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblPersonas);
 
         lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N

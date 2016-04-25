@@ -104,11 +104,15 @@ public class Becados_Formulario extends javax.swing.JFrame {
             }
         });
 
+        txtCedEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtNombreEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombreEstudiante.setEnabled(false);
 
+        txtPorcentaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtPorcentaje.setEnabled(false);
 
-        btnConsultarCed.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        btnConsultarCed.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnConsultarCed.setText("Consultar");
         btnConsultarCed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +120,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
             }
         });
 
+        cboBecas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cboBecas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboBecasItemStateChanged(evt);
@@ -152,12 +157,12 @@ public class Becados_Formulario extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCamposReq)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-                                .addComponent(btnGuardarAsignacion))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblTituloAB)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCamposReq)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnGuardarAsignacion)))))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(btnConsultarCed)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -189,12 +194,12 @@ public class Becados_Formulario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblObsBeca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGuardarAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
                         .addComponent(lblCamposReq))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 81, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnGuardarAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 5, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 

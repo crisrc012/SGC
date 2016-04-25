@@ -69,13 +69,10 @@ public class Becas_Principal extends javax.swing.JFrame {
         lblTituloBecas.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTituloBecas.setText("Tipos de Becas");
 
-        tblTiposBecas.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        tblTiposBecas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblTiposBecas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nombre", "Porcentaje", "Activo", "Observaciones"
@@ -96,6 +93,8 @@ public class Becas_Principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblTiposBecas.setShowHorizontalLines(false);
+        tblTiposBecas.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblTiposBecas);
 
         btnAgregarBeca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -121,8 +120,6 @@ public class Becas_Principal extends javax.swing.JFrame {
                 btnDesHabilitarBecaActionPerformed(evt);
             }
         });
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pao\\Downloads\\becas.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

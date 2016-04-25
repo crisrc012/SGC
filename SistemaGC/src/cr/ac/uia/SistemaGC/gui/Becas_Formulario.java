@@ -80,6 +80,9 @@ public class Becas_Formulario extends javax.swing.JFrame {
         lblObservacionesBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblObservacionesBeca.setText("Observaciones:");
 
+        txtNombreBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtPorcentajeBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtPorcentajeBeca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPorcentajeBecaKeyReleased(evt);
@@ -102,7 +105,6 @@ public class Becas_Formulario extends javax.swing.JFrame {
 
         txtObservacionesBeca.setColumns(20);
         txtObservacionesBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtObservacionesBeca.setRows(5);
         jScrollPane1.setViewportView(txtObservacionesBeca);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

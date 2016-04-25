@@ -73,7 +73,7 @@ public class GestionPrecio extends javax.swing.JFrame {
         lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTituloGP.setText("Precios");
 
-        lblDesayuno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblDesayuno.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDesayuno.setText("Desayuno");
 
         lblDesEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -82,7 +82,7 @@ public class GestionPrecio extends javax.swing.JFrame {
         lblDesFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblDesFuncionario.setText("Funcionario:");
 
-        lblAlmuerzo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAlmuerzo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblAlmuerzo.setText("Almuerzo");
 
         lblAlmEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -99,16 +99,16 @@ public class GestionPrecio extends javax.swing.JFrame {
             }
         });
 
-        txtDesEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        txtDesEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDesEstudiante.setEnabled(false);
 
-        txtDesProfesor.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        txtDesProfesor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDesProfesor.setEnabled(false);
 
-        txtAlmEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        txtAlmEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtAlmEstudiante.setEnabled(false);
 
-        txtAlmProfesor.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        txtAlmProfesor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtAlmProfesor.setEnabled(false);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -132,7 +132,7 @@ public class GestionPrecio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAlmuerzo)
                     .addComponent(lblDesayuno))
-                .addGap(369, 381, Short.MAX_VALUE))
+                .addGap(369, 377, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,15 +155,15 @@ public class GestionPrecio extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTituloGP)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardarParametros)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDesProfesor)
-                            .addComponent(txtDesEstudiante)
-                            .addComponent(txtAlmEstudiante, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtAlmProfesor, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnGuardarParametros))
+                            .addComponent(txtDesProfesor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDesEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAlmEstudiante)
+                            .addComponent(txtAlmProfesor))
                         .addGap(40, 40, 40))))
         );
         layout.setVerticalGroup(

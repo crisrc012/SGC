@@ -70,12 +70,10 @@ public class Becados_Principal extends javax.swing.JFrame {
             }
         });
 
+        tblAdmBecas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblAdmBecas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Cédula", "Nombre", "Apellidos", "Descripción", "Beca", "Porcentaje", "Activo"
@@ -96,6 +94,9 @@ public class Becados_Principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblAdmBecas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblAdmBecas.setShowHorizontalLines(false);
+        tblAdmBecas.setShowVerticalLines(false);
         tblAdmBecas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblAdmBecas);
 
@@ -125,8 +126,6 @@ public class Becados_Principal extends javax.swing.JFrame {
                 btnDesasignarBecaActionPerformed(evt);
             }
         });
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pao\\Downloads\\BecaAsig.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
