@@ -100,11 +100,11 @@ public class Tiquetes_bl {
         return tdb.delete(id);
     }
     
-    public int count(int cedula) throws SQLException {
-        return tdb.count(cedula);
+    public int count(int cedula, int comida) throws SQLException {
+        return tdb.count(cedula, comida);
     }
     
-    public ArrayList<Tiquetes> activos(int id_persona) throws SQLException{
-        return tdb.activos(id_persona);
+    public ArrayList<Tiquetes> activos(int id_persona, int id_comida) throws SQLException{
+        return tdb.activos(id_persona, id_comida);
     }
 }

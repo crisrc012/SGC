@@ -106,13 +106,14 @@ public class Tiquetes_db {
         return control;
     }
 
-    public int count(int id_persona) throws SQLException {
+    public int count(int id_persona, int id_comida) throws SQLException {
         int cantidad = 0;
         this.conn = new Conexion();
         this.st = conn.getConnection().createStatement();
         try (ResultSet rs = this.st.executeQuery(
-                "select count(*) from tbl_tiquetes where activo = true group by id_persona having id_persona="
-                + id_persona + ";")) {
+                "select count(*) from tbl_tiquetes t inner join tbl_precio p on t.id_precio = p.id and t.activo = true and p.id_comida =  "
+                        + id_comida +"group by t.id_persona having t.id_persona = "
+                        + id_persona + ";")) {
             while (rs.next()) {
                 cantidad = rs.getInt("count");
             }
@@ -130,7 +131,7 @@ public class Tiquetes_db {
         return cantidad;
     }
 
-    public ArrayList<Tiquetes> activos(int id_persona) throws SQLException {
+    public ArrayList<Tiquetes> activos(int id_persona, int id_comida) throws SQLException {
         /*select * from tbl_tiquetes where id_persona = 5
         and activo = true;*/
         ArrayList<Tiquetes> tiqueteslst = new ArrayList<>();
@@ -138,9 +139,11 @@ public class Tiquetes_db {
             this.conn = new Conexion();
             this.st = conn.getConnection().createStatement();
             try (ResultSet rs = this.st.executeQuery(
-                    "select * from tbl_tiquetes where id_persona = "
+                    "select * from tbl_tiquetes t inner join tbl_precio p on t.id_persona = "
                     + id_persona
-                    + " and activo = true;")) {
+                    + "and t.id_precio = p.id and p.id_comida = "
+                    + id_comida
+                    + " and t.activo = true;")) {
                 while (rs.next()) {
                     Tiquetes p = new Tiquetes();
                     p.setId(rs.getInt("id"));

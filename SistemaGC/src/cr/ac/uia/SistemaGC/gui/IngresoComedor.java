@@ -5,8 +5,14 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Becados_bl;
+import cr.ac.uia.SistemaGC.bl.Becas_bl;
+import cr.ac.uia.SistemaGC.bl.Persona_bl;
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
+import cr.ac.uia.SistemaGC.entities.Becados;
+import cr.ac.uia.SistemaGC.entities.Becas;
+import cr.ac.uia.SistemaGC.entities.Persona;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
 import java.sql.SQLException;
@@ -166,6 +172,7 @@ public class IngresoComedor extends javax.swing.JFrame {
     private void limpiar() {
         txtCedPersona.setText("");
         lblName.setText("");
+        lblDescripcion.setText("");
     }
 
     private void btnAplicarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarIngresoActionPerformed
@@ -182,52 +189,102 @@ public class IngresoComedor extends javax.swing.JFrame {
         }
         try {
             int cedula = Integer.parseInt(txtCedPersona.getText());
-            Personas p = new Personas();
-            p.setCedula(cedula);
-            Personas_bl pbl = new Personas_bl();
-            ArrayList<Personas> ap = pbl.select(p);
-            if (ap.size() > 0) {
-                lblName.setText(ap.get(0).getNombre() + " " + ap.get(0).getApellidos());
-            }
-            Tiquetes_bl tbl = new Tiquetes_bl();
-            int cantidad = tbl.count(cedula);
-            if (cantidad > 1) {
-                if (JOptionPane.showOptionDialog(this,
-                        "Usted tiene disponibles: " + cantidad + " tiquetes.\n"
-                        + "¿Desea utilizar uno?",
-                        "Confirmar",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.WARNING_MESSAGE,
-                        null,
-                        new Object[] {"Sí, usar", "No, no usar"},
-                        "No, no usar") == JOptionPane.YES_OPTION) {
-                    ArrayList<Tiquetes> al = tbl.activos(cedula);
-                    Tiquetes t = al.get(0);
-                    t.setActivo(false); // Desactivando tiquete
-                    if (tbl.update(t)) {
-                        JOptionPane.showMessageDialog(this,
-                                "Se ha usado correctamente el tiquete",
-                                "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                        this.limpiar();
+            Boolean becado = ConfirmarBeca(cedula);
+            if (becado == true) {
+                int comida = 0;
+                String tipo = "";
+                if (rbtnDesayuno.isSelected()) {
+                    comida = 1;
+                    tipo = "desayuno";
+                } else {
+                    if (rbtnAlmuerzo.isSelected()) {
+                        comida = 2;
+                        tipo = "almuerzo";
+                    }
+                }
+                Tiquetes_bl tbl = new Tiquetes_bl();
+                int cantidad = tbl.count(cedula, comida);
+                if (cantidad > 1) {
+                    if (JOptionPane.showOptionDialog(this,
+                            "Usted tiene disponibles: " + cantidad + " tiquetes de " + tipo + ".\n"
+                            + "¿Desea utilizar uno?",
+                            "Confirmar",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE,
+                            null,
+                            new Object[]{"Sí, usar", "No, no usar"},
+                            "No, no usar") == JOptionPane.YES_OPTION) {
+                        ArrayList<Tiquetes> al = tbl.activos(cedula, comida);
+                        Tiquetes t = al.get(0);
+                        t.setActivo(false); // Desactivando tiquete
+                        if (tbl.update(t)) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Se ha usado correctamente el tiquete",
+                                    "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                            this.limpiar();
+                        } else {
+                            JOptionPane.showMessageDialog(this,
+                                    "Ha ocurrido un error por favor intentelo de nuevo",
+                                    "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                            this.dispose();
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(this,
-                                "Ha ocurrido un error por favor intentelo de nuevo",
-                                "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                        this.dispose();
+                        this.limpiar();
                     }
                 } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Por favor compre un tiquete",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                     this.limpiar();
                 }
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Por favor compre un tiquete",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                this.limpiar();
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnAplicarIngresoActionPerformed
+    private Boolean ConfirmarBeca(int cedula) {
+        try {
+            Becados b = new Becados();
+            b.setId_persona(cedula);
+            Becados_bl bbl = new Becados_bl();
+            Personas p = new Personas();
+            p.setCedula(cedula);
+            Personas_bl pbl = new Personas_bl();
+            Becas bc = new Becas();
+            Becas_bl bl = new Becas_bl();
+            Persona ps = new Persona();
+            Persona_bl psbl = new Persona_bl();
+            ArrayList<Becados> ab = bbl.select(b);
+            int beca = 0;
+            if (ab.size() > 0) {
+                beca = ab.get(0).getId_beca();
+            }
+            bc.setId(beca);
+            ArrayList<Becas> abc = bl.select(bc);
+            ArrayList<Personas> ap = pbl.select(p);
+            if (abc.size() > 0) {
+                if (abc.get(0).getPorcentaje() == 100) {
+                    JOptionPane.showMessageDialog(this,
+                            "Esta persona posee una beca del 100%. Puede ingresar al comedor.",
+                            "Información de Beca", JOptionPane.INFORMATION_MESSAGE);
+                    this.limpiar();
+                    return false;
+                }
+            }
+            if (ap.size() > 0) {
+                lblName.setText(ap.get(0).getNombre() + " " + ap.get(0).getApellidos());
+                ps.setId(ap.get(0).getId_persona());
+            }
+            ArrayList<Persona> aps = psbl.select(ps);
+            if (aps.size() > 0) {
+                lblDescripcion.setText(aps.get(0).getDescripcion());
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return true;
+    }
+
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Iniciar_Sesion.activarPrincipal();
