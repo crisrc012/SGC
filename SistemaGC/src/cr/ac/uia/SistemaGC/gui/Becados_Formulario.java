@@ -68,6 +68,8 @@ public class Becados_Formulario extends javax.swing.JFrame {
         txtObsBeca = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -204,6 +206,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAsignacionActionPerformed
@@ -244,13 +247,6 @@ public class Becados_Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarAsignacionActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.setIconImage(
-                new ImageIcon(
-                        getClass().getResource("../img/Icono.png")).getImage());
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setAutoRequestFocus(true);
-        this.setAlwaysOnTop(true);
-        this.setLocationRelativeTo(null);
         try {
             Becas beca = new Becas();
             Becas_bl Bbl = new Becas_bl();

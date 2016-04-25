@@ -18,18 +18,22 @@ import javax.swing.JOptionPane;
  */
 public class Iniciar_Sesion extends javax.swing.JFrame {
 
-    public static Principal PUI;
-    private Usuarios usuario;
-    private Usuarios_bl ubl;
+    private static Principal PUI;
+    private final Usuarios usuario;
+    private final Usuarios_bl ubl;
 
     /**
      * Creates new form Login
      */
     public Iniciar_Sesion() {
         initComponents();
-        this.setIconImage(
-                new ImageIcon(
-                        getClass().getResource("../img/Icono.png")).getImage());
+        usuario = new Usuarios();
+        ubl = new Usuarios_bl();
+    }
+    
+    public static void activarPrincipal(){
+        PUI.setEnabled(true);
+        PUI.toFront();
     }
 
     /**
@@ -50,12 +54,8 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         lblTituloSGC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setResizable(false);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
 
         lblUserName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblUserName.setText("Nombre de Usuario:");
@@ -128,6 +128,7 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -162,14 +163,6 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // Mostrar centrado
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        usuario = new Usuarios();
-        ubl = new Usuarios_bl();
-    }//GEN-LAST:event_formComponentShown
-
     /**
      * @param args the command line arguments
      */
@@ -195,9 +188,7 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             try {
                 Thread.sleep(2000);
-            } catch (Exception e) {
-                // Nada que hacer
-            }
+            } catch (Exception e) { }
             new Iniciar_Sesion().setVisible(true);
         });
     }

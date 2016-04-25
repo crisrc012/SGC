@@ -79,6 +79,8 @@ public class Personas_Formulario extends javax.swing.JFrame {
         jDateFechaNacimiento = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -270,6 +272,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
@@ -348,13 +351,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.setIconImage(
-                new ImageIcon(
-                        getClass().getResource("../img/Icono.png")).getImage());
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setAutoRequestFocus(true);
-        this.setAlwaysOnTop(true);
-        this.setLocationRelativeTo(null);
         if (this.isUpdate) {
             try {
                 btnGuardarPersona.setText("Modificar Persona");

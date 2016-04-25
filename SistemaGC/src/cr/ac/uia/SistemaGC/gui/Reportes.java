@@ -6,7 +6,6 @@
 package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.db.Conexion;
-import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,9 +35,6 @@ public class Reportes extends javax.swing.JFrame {
      */
     public Reportes() {
         initComponents();
-        this.setIconImage(
-                new ImageIcon(
-                        getClass().getResource("../img/Icono.png")).getImage());
     }
 
     /**
@@ -69,12 +65,9 @@ public class Reportes extends javax.swing.JFrame {
         jDateFin = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setResizable(false);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -216,6 +209,7 @@ public class Reportes extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
@@ -288,14 +282,8 @@ public class Reportes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-    }//GEN-LAST:event_formComponentShown
-
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        PUI.setEnabled(true);
-        PUI.toFront();
+        Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
 
     /**

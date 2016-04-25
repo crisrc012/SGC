@@ -5,7 +5,6 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
-import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import javax.swing.ImageIcon;
 
 /**
@@ -33,15 +32,11 @@ public class Acercade extends javax.swing.JFrame {
         logoUIA = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
+        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setName("Acercade"); // NOI18N
         setResizable(false);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -50,6 +45,7 @@ public class Acercade extends javax.swing.JFrame {
 
         logoUIA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/LogoUIA.png"))); // NOI18N
 
+        btnCerrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,7 +69,7 @@ public class Acercade extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addComponent(logoUIA)
                 .addGap(14, 14, 14)
                 .addComponent(btnCerrar)
@@ -81,23 +77,16 @@ public class Acercade extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        PUI.setEnabled(true);
-        PUI.toFront();
+        Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
-
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.setLocationRelativeTo(null);
-        this.setIconImage(
-                new ImageIcon(
-                        getClass().getResource("../img/Icono.png")).getImage());
-    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments

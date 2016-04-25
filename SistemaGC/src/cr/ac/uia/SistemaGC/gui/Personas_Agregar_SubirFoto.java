@@ -19,9 +19,6 @@ public class Personas_Agregar_SubirFoto extends javax.swing.JFrame {
      */
     public Personas_Agregar_SubirFoto() {
         initComponents();
-        this.setIconImage(
-                new ImageIcon(
-                        getClass().getResource("../img/Icono.png")).getImage());
     }
 
     /**
@@ -36,6 +33,8 @@ public class Personas_Agregar_SubirFoto extends javax.swing.JFrame {
         FchCargarFoto = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -54,6 +53,7 @@ public class Personas_Agregar_SubirFoto extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -75,9 +75,6 @@ public class Personas_Agregar_SubirFoto extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Personas_Agregar_SubirFoto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        
         //</editor-fold>
 
         /* Create and display the form */

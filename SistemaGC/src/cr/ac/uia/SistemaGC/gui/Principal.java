@@ -5,7 +5,6 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
-import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
@@ -20,7 +19,6 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
     }
     
 
@@ -52,14 +50,19 @@ public class Principal extends javax.swing.JFrame {
         MAcerca = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(getIconImage());
+        setAlwaysOnTop(true);
+        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setIconImages(null);
+        setResizable(false);
+        setSize(new java.awt.Dimension(0, 0));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentMoved(java.awt.event.ComponentEvent evt) {
                 formComponentMoved(evt);
             }
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -69,6 +72,9 @@ public class Principal extends javax.swing.JFrame {
         lblSGC.setText("Sistema de Gestión de Comedores");
 
         lblNombreInstitucion.setText("Mi institución");
+
+        MenuBar.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 1, true), "Menú", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+        MenuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         MUsurio.setText("Usuario");
         MUsurio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,7 +190,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lblSGC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombreInstitucion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogoEscuela, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblLogoInstitucion, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -199,55 +205,53 @@ public class Principal extends javax.swing.JFrame {
         this.setLocation(0, 0);
     }//GEN-LAST:event_formComponentMoved
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // Obteniendo resolución de pantalla para que se vea a pantalla completa
-        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        // Definiendo propiedades de la ventana
-        this.setResizable(false);
-    }//GEN-LAST:event_formComponentShown
-
-    private void MUsurioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MUsurioMousePressed
+    private void desactivar(){
         this.setEnabled(false);
+        this.setAutoRequestFocus(false);
+    }
+    
+    private void MUsurioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MUsurioMousePressed
+        desactivar();
         new Usuarios_Principal().setVisible(true);
     }//GEN-LAST:event_MUsurioMousePressed
 
     private void MPersonasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MPersonasMousePressed
-        this.setEnabled(false);
+        desactivar();
         new Personas_Principal().setVisible(true);
     }//GEN-LAST:event_MPersonasMousePressed
 
     private void MTipoBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MTipoBecaMousePressed
-        this.setEnabled(false);
+        desactivar();
         new Becas_Principal().setVisible(true);
     }//GEN-LAST:event_MTipoBecaMousePressed
 
     private void MAdmBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MAdmBecaMousePressed
-        this.setEnabled(false);
+        desactivar();
         new Becados_Principal().setVisible(true);
     }//GEN-LAST:event_MAdmBecaMousePressed
 
     private void MVentaTiqMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MVentaTiqMousePressed
-        this.setEnabled(false);
+        desactivar();
         new VentaTiquetes().setVisible(true);
     }//GEN-LAST:event_MVentaTiqMousePressed
 
     private void MGestionIngresoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MGestionIngresoMousePressed
-        this.setEnabled(false);
+        desactivar();
         new IngresoComedor().setVisible(true);
     }//GEN-LAST:event_MGestionIngresoMousePressed
 
     private void MGestionParamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MGestionParamMousePressed
-        this.setEnabled(false);
+        desactivar();
         new GestionPrecio().setVisible(true);
     }//GEN-LAST:event_MGestionParamMousePressed
 
     private void MReportesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MReportesMousePressed
-        this.setEnabled(false);
+        desactivar();
         new Reportes().setVisible(true);
     }//GEN-LAST:event_MReportesMousePressed
 
     private void MAcercaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MAcercaMousePressed
-        this.setEnabled(false);
+        desactivar();
         new Acercade().setVisible(true);
     }//GEN-LAST:event_MAcercaMousePressed
 
@@ -255,6 +259,10 @@ public class Principal extends javax.swing.JFrame {
         // Se encargará de cargar el label de logo institucional y el nombre del colegio
         
     }//GEN-LAST:event_MInstitucionMousePressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

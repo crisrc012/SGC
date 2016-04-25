@@ -9,7 +9,6 @@ import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
-import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -26,9 +25,6 @@ public class IngresoComedor extends javax.swing.JFrame {
      */
     public IngresoComedor() {
         initComponents();
-        this.setIconImage(
-                new ImageIcon(
-                        getClass().getResource("../img/Icono.png")).getImage());
     }
 
     /**
@@ -54,12 +50,9 @@ public class IngresoComedor extends javax.swing.JFrame {
         rbtnAlmuerzo = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setResizable(false);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -167,6 +160,7 @@ public class IngresoComedor extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void limpiar() {
@@ -235,16 +229,8 @@ public class IngresoComedor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAplicarIngresoActionPerformed
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setAutoRequestFocus(true);
-        this.setAlwaysOnTop(true);
-        this.setLocationRelativeTo(null);
-    }//GEN-LAST:event_formComponentShown
-
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        PUI.setEnabled(true);
-        PUI.toFront();
+        Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
 
     /**
@@ -265,7 +251,6 @@ public class IngresoComedor extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(IngresoComedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

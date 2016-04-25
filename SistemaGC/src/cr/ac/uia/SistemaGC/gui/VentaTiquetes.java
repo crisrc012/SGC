@@ -17,7 +17,6 @@ import cr.ac.uia.SistemaGC.entities.Persona;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Precio;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
-import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.awt.HeadlessException;
 import java.util.Date;
 import java.sql.SQLException;
@@ -41,9 +40,6 @@ public class VentaTiquetes extends javax.swing.JFrame {
      */
     public VentaTiquetes() {
         initComponents();
-        this.setIconImage(
-                new ImageIcon(
-                        getClass().getResource("../img/Icono.png")).getImage());
     }
 
     /**
@@ -82,15 +78,12 @@ public class VentaTiquetes extends javax.swing.JFrame {
         txtDescripcion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
-            }
-        });
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
             }
         });
 
@@ -309,19 +302,11 @@ public class VentaTiquetes extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setAutoRequestFocus(true);
-        this.setAlwaysOnTop(true);
-        this.setLocationRelativeTo(null);
-
-    }//GEN-LAST:event_formComponentShown
-
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        PUI.setEnabled(true);
-        PUI.toFront();
+        Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed

@@ -7,10 +7,8 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.entities.Becas;
-import static cr.ac.uia.SistemaGC.gui.Iniciar_Sesion.PUI;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -28,9 +26,7 @@ public class Becas_Principal extends javax.swing.JFrame {
      */
     public Becas_Principal() {
         initComponents();
-        this.setIconImage(
-                new ImageIcon(
-                        getClass().getResource("../img/Icono.png")).getImage());
+        refreshJTable();
     }
 
     /**
@@ -51,18 +47,11 @@ public class Becas_Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
         setResizable(false);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
-            }
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
             }
         });
 
@@ -160,10 +149,11 @@ public class Becas_Principal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecaActionPerformed
-        this.dispose();
+        this.setVisible(false);
         new Becas_Formulario().setVisible(true);
     }//GEN-LAST:event_btnAgregarBecaActionPerformed
 
@@ -183,7 +173,7 @@ public class Becas_Principal extends javax.swing.JFrame {
                         (Integer) tblTiposBecas.getValueAt(i, 2),
                         (Boolean) tblTiposBecas.getValueAt(i, 3),
                         (String) tblTiposBecas.getValueAt(i, 4))).setVisible(true);
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnModificarBecaActionPerformed
 
     private void refreshJTable() {
@@ -213,10 +203,6 @@ public class Becas_Principal extends javax.swing.JFrame {
             System.out.println(e.toString());
         }
     }
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        refreshJTable();
-    }//GEN-LAST:event_formWindowOpened
 
     private void btnDesHabilitarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesHabilitarBecaActionPerformed
         int i = tblTiposBecas.getSelectedRow();
@@ -251,16 +237,8 @@ public class Becas_Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDesHabilitarBecaActionPerformed
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setAutoRequestFocus(true);
-        this.setAlwaysOnTop(true);
-        this.setLocationRelativeTo(null);
-    }//GEN-LAST:event_formComponentShown
-
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        PUI.setEnabled(true);
-        PUI.toFront();
+        Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
 
     /**
