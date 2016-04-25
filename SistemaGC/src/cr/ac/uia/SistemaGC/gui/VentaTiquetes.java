@@ -309,6 +309,15 @@ public class VentaTiquetes extends javax.swing.JFrame {
         Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
 
+    private void limpiar(){
+        txtCedula.setEnabled(true);
+        txtCantidad.setText("1");
+        txtCedula.setText("");
+        txtNombre.setText("");
+        lblPrecioAlm.setText("0");
+        lblPrecioDes.setText("0");
+        txtCantidad.setText("1");
+    }
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         try {
             int answ = JOptionPane.showConfirmDialog(this, "¿Está seguro de realizar la compra?", "Confirmación", JOptionPane.YES_NO_OPTION);
@@ -339,12 +348,9 @@ public class VentaTiquetes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,
                         "Se han comprado con éxito " + correctos + " tiquetes",
                         "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                txtCedula.setEnabled(true);
+                limpiar();
             } else {
-                txtCantidad.setText("1");
-                txtCedula.setText("");
-                txtNombre.setText("");
-                txtCedula.setEnabled(true);
+                limpiar();
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -352,12 +358,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        txtCantidad.setText("1");
-        txtCedula.setText("");
-        txtCedula.setEnabled(true);
-        txtNombre.setText("");
-        lblPrecioAlm.setText("0");
-        lblPrecioDes.setText("0");
+        limpiar();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCosultarCedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCosultarCedActionPerformed
