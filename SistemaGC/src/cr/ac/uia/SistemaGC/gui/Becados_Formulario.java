@@ -71,6 +71,11 @@ public class Becados_Formulario extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -252,7 +257,9 @@ public class Becados_Formulario extends javax.swing.JFrame {
             Becas_bl Bbl = new Becas_bl();
             ArrayList<Becas> abl = Bbl.select(beca);
             for (int i = 0; i < abl.size(); i++) {
-                cboBecas.addItem(abl.get(i).getNombre());
+                if(abl.get(i).getActivo() == true){
+                    cboBecas.addItem(abl.get(i).getNombre());
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -306,6 +313,10 @@ public class Becados_Formulario extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_cboBecasItemStateChanged
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        new Becas_Principal().setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
