@@ -203,60 +203,67 @@ public class GestionPrecio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarParametrosActionPerformed
-        try {
-            if (!txtAlmEstudiante.isEnabled() || !txtAlmProfesor.isEnabled()
-                    || !txtDesEstudiante.isEnabled() || !txtDesProfesor.isEnabled()) {
-                txtAlmEstudiante.setEnabled(true);
-                txtAlmProfesor.setEnabled(true);
-                txtDesEstudiante.setEnabled(true);
-                txtDesProfesor.setEnabled(true);
-                btnGuardarParametros.setText("Guardar Parámetros");
-                return;
+        if (txtAlmEstudiante.getText().isEmpty() || txtAlmProfesor.getText().isEmpty()
+                || txtDesEstudiante.getText().isEmpty() || txtDesProfesor.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Existen campos requeridos sin llenar, por favor ingrese la información solicitada",
+                    "Error", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            try {
+                if (!txtAlmEstudiante.isEnabled() || !txtAlmProfesor.isEnabled()
+                        || !txtDesEstudiante.isEnabled() || !txtDesProfesor.isEnabled()) {
+                    txtAlmEstudiante.setEnabled(true);
+                    txtAlmProfesor.setEnabled(true);
+                    txtDesEstudiante.setEnabled(true);
+                    txtDesProfesor.setEnabled(true);
+                    btnGuardarParametros.setText("Guardar Parámetros");
+                    return;
+                }
+                // UPDATE
+                // Desayuno
+                // Estudiante
+                Precio Dest = new Precio();
+                Dest.setId(1);
+                Dest.setId_comida(1);
+                Dest.setId_persona(1);
+                Dest.setPrecio(Integer.parseInt(txtDesEstudiante.getText()));
+                // Funcionario
+                Precio Dprf = new Precio();
+                Dprf.setId(2);
+                Dprf.setId_comida(1);
+                Dprf.setId_persona(2);
+                Dprf.setPrecio(Integer.parseInt(txtDesProfesor.getText()));
+                // Fin Desayuno
+                // Almuerzo
+                // Estudiante
+                Precio Aest = new Precio();
+                Aest.setId(3);
+                Aest.setId_comida(2);
+                Aest.setId_persona(1);
+                Aest.setPrecio(Integer.parseInt(txtAlmEstudiante.getText()));
+                // Funcionario
+                Precio Aprf = new Precio();
+                Aprf.setId(4);
+                Aprf.setId_comida(2);
+                Aprf.setId_persona(2);
+                Aprf.setPrecio(Integer.parseInt(txtAlmProfesor.getText()));
+                // Fin almuerzo
+                bl = new Precio_bl();
+                if (bl.update(Dprf) && bl.update(Aprf) && bl.update(Dest) && bl.update(Aest)) {
+                    JOptionPane.showMessageDialog(this,
+                            "Parámetros modificados correctamente",
+                            "Gestión de Parámetros",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Se produjo un error, ingrese los datos nuevamente.",
+                            "Gestión de Parámetros",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (SQLException e) {
+                System.out.println(e.toString());
             }
-            // UPDATE
-            // Desayuno
-            // Estudiante
-            Precio Dest = new Precio();
-            Dest.setId(1);
-            Dest.setId_comida(1);
-            Dest.setId_persona(1);
-            Dest.setPrecio(Integer.parseInt(txtDesEstudiante.getText()));
-            // Funcionario
-            Precio Dprf = new Precio();
-            Dprf.setId(2);
-            Dprf.setId_comida(1);
-            Dprf.setId_persona(2);
-            Dprf.setPrecio(Integer.parseInt(txtDesProfesor.getText()));
-            // Fin Desayuno
-            // Almuerzo
-            // Estudiante
-            Precio Aest = new Precio();
-            Aest.setId(3);
-            Aest.setId_comida(2);
-            Aest.setId_persona(1);
-            Aest.setPrecio(Integer.parseInt(txtAlmEstudiante.getText()));
-            // Funcionario
-            Precio Aprf = new Precio();
-            Aprf.setId(4);
-            Aprf.setId_comida(2);
-            Aprf.setId_persona(2);
-            Aprf.setPrecio(Integer.parseInt(txtAlmProfesor.getText()));
-            // Fin almuerzo
-            bl = new Precio_bl();
-            if (bl.update(Dprf) && bl.update(Aprf) && bl.update(Dest) && bl.update(Aest)) {
-                JOptionPane.showMessageDialog(this,
-                        "Parámetros modificados correctamente",
-                        "Gestión de Parámetros",
-                        JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Se produjo un error, ingrese los datos nuevamente.",
-                        "Gestión de Parámetros",
-                        JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGuardarParametrosActionPerformed
 

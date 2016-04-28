@@ -173,16 +173,34 @@ public class Becas_Formulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarBecaActionPerformed
-        try {
-            Becas_bl bbl = new Becas_bl();
-            becas.setNombre(txtNombreBeca.getText());
-            becas.setPorcentaje(Integer.parseInt(txtPorcentajeBeca.getText().trim()));
-            becas.setActivo(ChckBoxActivo.isSelected());
-            becas.setObservaciones(txtObservacionesBeca.getText());
-            if (this.isUpdate) {
-                if (bbl.update(becas)) {
+        if (txtNombreBeca.getText().isEmpty() || txtPorcentajeBeca.getText().isEmpty()
+                || txtObservacionesBeca.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Existen campos requeridos sin llenar, por favor ingrese la información solicitada",
+                    "Error", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            try {
+                Becas_bl bbl = new Becas_bl();
+                becas.setNombre(txtNombreBeca.getText());
+                becas.setPorcentaje(Integer.parseInt(txtPorcentajeBeca.getText().trim()));
+                becas.setActivo(ChckBoxActivo.isSelected());
+                becas.setObservaciones(txtObservacionesBeca.getText());
+                if (this.isUpdate) {
+                    if (bbl.update(becas)) {
+                        JOptionPane.showMessageDialog(this,
+                                "Se ha actualizado correctamente la beca.",
+                                "Correcto",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this,
+                                "Ha ocurrido un error, revise los datos ingresados.",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } else if (bbl.insert(becas)) {
                     JOptionPane.showMessageDialog(this,
-                            "Se ha actualizado correctamente la beca.",
+                            "Se ha insertado correctamente la nueva beca.",
                             "Correcto",
                             JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
@@ -192,20 +210,9 @@ public class Becas_Formulario extends javax.swing.JFrame {
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
-            } else if (bbl.insert(becas)) {
-                JOptionPane.showMessageDialog(this,
-                        "Se ha insertado correctamente la nueva beca.",
-                        "Correcto",
-                        JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Ha ocurrido un error, revise los datos ingresados.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException e) {
+                System.out.println(e.toString());
             }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGuardarBecaActionPerformed
 

@@ -64,7 +64,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
         txtPorcentaje = new javax.swing.JTextField();
         btnConsultarCed = new javax.swing.JButton();
         cboBecas = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        ScrollPane = new javax.swing.JScrollPane();
         txtObsBeca = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -137,7 +137,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
         txtObsBeca.setColumns(20);
         txtObsBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtObsBeca.setRows(5);
-        jScrollPane1.setViewportView(txtObsBeca);
+        ScrollPane.setViewportView(txtObsBeca);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,7 +159,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
                             .addComponent(txtCedEstudiante)
                             .addComponent(txtPorcentaje)
                             .addComponent(cboBecas, 0, 250, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1)))
+                            .addComponent(ScrollPane)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +203,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblCamposReq))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnGuardarAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 5, Short.MAX_VALUE)))
@@ -215,16 +215,33 @@ public class Becados_Formulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAsignacionActionPerformed
-        try {
-            Becados_bl bbl = new Becados_bl();
-            becado.setId_persona(Integer.parseInt((String) txtCedEstudiante.getText().trim()));
-            becado.setId_beca(id_beca);
-            becado.setObservaciones(txtObsBeca.getText().trim());
-            becado.setActivo(true);
-            if (this.isUpdate) {
-                if (bbl.update(becado)) {
+        if (txtCedEstudiante.getText().isEmpty() || txtObsBeca.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Existen campos requeridos sin llenar, por favor ingrese la información solicitada",
+                    "Error", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            try {
+                Becados_bl bbl = new Becados_bl();
+                becado.setId_persona(Integer.parseInt((String) txtCedEstudiante.getText().trim()));
+                becado.setId_beca(id_beca);
+                becado.setObservaciones(txtObsBeca.getText().trim());
+                becado.setActivo(true);
+                if (this.isUpdate) {
+                    if (bbl.update(becado)) {
+                        JOptionPane.showMessageDialog(this,
+                                "Beca actualizada correctamente", "Correcto",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this,
+                                "Ha ocurrido un error, revise los datos ingresados.",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } else if (bbl.insert(becado)) {
                     JOptionPane.showMessageDialog(this,
-                            "Beca actualizada correctamente", "Correcto",
+                            "Beca asignada correctamente.",
+                            "Correcto",
                             JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                 } else {
@@ -233,21 +250,10 @@ public class Becados_Formulario extends javax.swing.JFrame {
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
-            } else if (bbl.insert(becado)) {
-                JOptionPane.showMessageDialog(this,
-                        "Beca asignada correctamente.",
-                        "Correcto",
-                        JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Ha ocurrido un error, revise los datos ingresados.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                txtCedEstudiante.setEnabled(true);
+            } catch (SQLException e) {
+                System.out.println(e.toString());
             }
-            txtCedEstudiante.setEnabled(true);
-        } catch (SQLException e) {
-            System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGuardarAsignacionActionPerformed
 
@@ -257,7 +263,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
             Becas_bl Bbl = new Becas_bl();
             ArrayList<Becas> abl = Bbl.select(beca);
             for (int i = 0; i < abl.size(); i++) {
-                if(abl.get(i).getActivo() == true){
+                if (abl.get(i).getActivo() == true) {
                     cboBecas.addItem(abl.get(i).getNombre());
                 }
             }
@@ -345,10 +351,10 @@ public class Becados_Formulario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JButton btnConsultarCed;
     private javax.swing.JButton btnGuardarAsignacion;
     private javax.swing.JComboBox cboBecas;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCamposReq;
     private javax.swing.JLabel lblCedEstudiante;
     private javax.swing.JLabel lblNombreBeca;

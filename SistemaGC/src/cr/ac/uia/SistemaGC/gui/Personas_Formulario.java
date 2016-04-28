@@ -34,6 +34,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
      */
     public Personas_Formulario() {
         initComponents();
+        RBEstudiante.setSelected(true);
         isUpdate = false;
         this.persona = new Personas();
         this.foto = null;
@@ -41,6 +42,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
 
     public Personas_Formulario(boolean Update, Personas persona) {
         initComponents();
+        RBEstudiante.setSelected(true);
         this.isUpdate = Update;
         this.persona = persona;
         this.foto = null;
@@ -77,6 +79,12 @@ public class Personas_Formulario extends javax.swing.JFrame {
         lblCel = new javax.swing.JLabel();
         lblTel = new javax.swing.JLabel();
         jDateFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        lblCamposRequeridos = new javax.swing.JLabel();
+        lblAsterisco1 = new javax.swing.JLabel();
+        lblAsterisco2 = new javax.swing.JLabel();
+        lblAsterisco3 = new javax.swing.JLabel();
+        lblAsterisco4 = new javax.swing.JLabel();
+        lblAsterisco5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -158,22 +166,35 @@ public class Personas_Formulario extends javax.swing.JFrame {
 
         jDateFechaNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        lblCamposRequeridos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCamposRequeridos.setText("* Campos Requeridos");
+
+        lblAsterisco1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAsterisco1.setText("*");
+
+        lblAsterisco2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAsterisco2.setText("*");
+
+        lblAsterisco3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAsterisco3.setText("*");
+
+        lblAsterisco4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAsterisco4.setText("*");
+
+        lblAsterisco5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAsterisco5.setText("*");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblApellidosPersona)
                         .addGap(123, 123, 123)
                         .addComponent(txtApellidosPersona))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(lblTel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTelefono2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombrePersona)
@@ -194,11 +215,22 @@ public class Personas_Formulario extends javax.swing.JFrame {
                                     .addComponent(lblTelefonosPersona)
                                     .addGap(84, 84, 84)
                                     .addComponent(lblCel)))
-                            .addComponent(lblFechaPersona))
+                            .addComponent(lblFechaPersona)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(143, 143, 143)
+                                .addComponent(lblTel)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTelefono2)
                             .addComponent(txtTelefono1)
                             .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAsterisco1)
+                    .addComponent(lblAsterisco2)
+                    .addComponent(lblAsterisco3)
+                    .addComponent(lblAsterisco4)
+                    .addComponent(lblAsterisco5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(88, Short.MAX_VALUE)
@@ -215,7 +247,10 @@ public class Personas_Formulario extends javax.swing.JFrame {
                         .addComponent(lblTituloAgPersona))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
-                        .addComponent(btnGuardarPersona)))
+                        .addComponent(btnGuardarPersona))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblCamposRequeridos)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -241,17 +276,22 @@ public class Personas_Formulario extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblCedulaPersona)
-                                    .addComponent(txtCedulaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtCedulaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAsterisco1))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblNombrePersona)
-                                    .addComponent(txtNombrePersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtNombrePersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAsterisco2))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblApellidosPersona)
-                                    .addComponent(txtApellidosPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtApellidosPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAsterisco3))
                                 .addGap(18, 18, 18)
-                                .addComponent(lblFechaPersona))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblFechaPersona)
+                                    .addComponent(lblAsterisco4, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,9 +305,12 @@ public class Personas_Formulario extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContactoPersona)
-                    .addComponent(txtContactoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContactoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAsterisco5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(lblCamposRequeridos)
                 .addContainerGap())
         );
 
@@ -310,43 +353,51 @@ public class Personas_Formulario extends javax.swing.JFrame {
     }
 
     private void btnGuardarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPersonaActionPerformed
-        try {
-            int id = 0;
-            if (RBEstudiante.isSelected()) {
-                id = 1;
-            } else if (RBFuncionario.isSelected()) {
-                id = 2;
-            }
-            Personas_bl blp = new Personas_bl();
-            persona.setCedula(Integer.parseInt(txtCedulaPersona.getText().trim()));
-            persona.setNombre(txtNombrePersona.getText().trim());
-            persona.setApellidos(txtApellidosPersona.getText().trim());
-            persona.setFecha_nacimiento((Date) jDateFechaNacimiento.getDate());
-            persona.setTel_celular(Integer.parseInt(txtTelefono1.getText()));
-            persona.setTel_habitacion(Integer.parseInt(txtTelefono2.getText()));
-            persona.setEncargado(txtContactoPersona.getText().trim());
-            persona.setId_persona(id);
-            if (this.isUpdate) { // Se valida si se va a actualizar o a insertar
-                if (blp.update(persona)) { // Se actualiza la persona
+        if (txtCedulaPersona.getText().isEmpty() || txtNombrePersona.getText().isEmpty()
+                || txtApellidosPersona.getText().isEmpty() || txtContactoPersona.getText().isEmpty()
+                || jDateFechaNacimiento.getDate() == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Existen campos requeridos sin llenar, por favor ingrese la información solicitada",
+                    "Error", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            try {
+                int id = 0;
+                if (RBEstudiante.isSelected()) {
+                    id = 1;
+                } else if (RBFuncionario.isSelected()) {
+                    id = 2;
+                }
+                Personas_bl blp = new Personas_bl();
+                persona.setCedula(Integer.parseInt(txtCedulaPersona.getText().trim()));
+                persona.setNombre(txtNombrePersona.getText().trim());
+                persona.setApellidos(txtApellidosPersona.getText().trim());
+                persona.setFecha_nacimiento((Date) jDateFechaNacimiento.getDate());
+                persona.setTel_celular(Integer.parseInt(txtTelefono1.getText()));
+                persona.setTel_habitacion(Integer.parseInt(txtTelefono2.getText()));
+                persona.setEncargado(txtContactoPersona.getText().trim());
+                persona.setId_persona(id);
+                if (this.isUpdate) { // Se valida si se va a actualizar o a insertar
+                    if (blp.update(persona)) { // Se actualiza la persona
+                        this.foto();
+                        JOptionPane.showMessageDialog(this, "Persona actualizada correctamente",
+                                "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Error al actualizar, por favor verifique los datos",
+                                "Error", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else if (blp.insert(persona)) { // Se inserta una nueva persona
                     this.foto();
-                    JOptionPane.showMessageDialog(this, "Persona actualizada correctamente",
-                            "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Se ha guardado correctamente.",
+                            "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Error al actualizar, por favor verifique los datos",
-                            "Error", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar. Intente nuevamente.",
+                            "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
                 }
-            } else if (blp.insert(persona)) { // Se inserta una nueva persona
-                this.foto();
-                JOptionPane.showMessageDialog(this, "Se ha guardado correctamente.",
-                        "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar. Intente nuevamente.",
-                        "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException | IOException e) {
+                System.out.println(e.toString());
             }
-        } catch (SQLException | IOException e) {
-            System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
 
@@ -422,6 +473,12 @@ public class Personas_Formulario extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarPersona;
     private com.toedter.calendar.JDateChooser jDateFechaNacimiento;
     private javax.swing.JLabel lblApellidosPersona;
+    private javax.swing.JLabel lblAsterisco1;
+    private javax.swing.JLabel lblAsterisco2;
+    private javax.swing.JLabel lblAsterisco3;
+    private javax.swing.JLabel lblAsterisco4;
+    private javax.swing.JLabel lblAsterisco5;
+    private javax.swing.JLabel lblCamposRequeridos;
     private javax.swing.JLabel lblCedulaPersona;
     private javax.swing.JLabel lblCel;
     private javax.swing.JLabel lblContactoPersona;
