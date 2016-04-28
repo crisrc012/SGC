@@ -257,7 +257,9 @@ public class IngresoComedor extends javax.swing.JFrame {
             ArrayList<Becados> ab = bbl.select(b);
             int beca = 0;
             if (ab.size() > 0) {
-                beca = ab.get(0).getId_beca();
+                if(ab.get(0).getActivo()){
+                    beca = ab.get(0).getId_beca();
+                }
             }
             bc.setId(beca);
             ArrayList<Becas> abc = bl.select(bc);

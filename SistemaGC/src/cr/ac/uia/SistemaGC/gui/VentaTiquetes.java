@@ -463,7 +463,9 @@ public class VentaTiquetes extends javax.swing.JFrame {
             ArrayList<Becados> al = bbl.select(b);
             int beca = 0;
             if (al.size() > 0) {
-                beca = al.get(0).getId_beca();
+                if(al.get(0).getActivo()){
+                    beca = al.get(0).getId_beca();
+                }
             }
             Becas bc = new Becas();
             bc.setId(beca);
