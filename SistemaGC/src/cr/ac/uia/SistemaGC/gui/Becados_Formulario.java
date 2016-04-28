@@ -287,6 +287,20 @@ public class Becados_Formulario extends javax.swing.JFrame {
                 return;
             }
             txtCedEstudiante.setEnabled(false);
+            Becados b = new Becados();
+            Becados_bl bbl = new Becados_bl();
+            b.setId_persona(Integer.parseInt((String) txtCedEstudiante.getText().trim()));
+            ArrayList<Becados> ab = bbl.select(b);
+            if(isUpdate == false){
+                if (ab.size() > 0) {
+                    JOptionPane.showMessageDialog(this,
+                            "Esta persona, ya posee una beca.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    txtCedEstudiante.setText("");
+                    txtCedEstudiante.setEnabled(true);
+                    return;
+                }
+            }
             Personas_bl pbl = new Personas_bl();
             Personas p = new Personas();
             p.setCedula(Integer.parseInt((String) txtCedEstudiante.getText().trim()));
@@ -298,6 +312,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
                         "No existe ninguna persona relacionada a la cédula ingresada",
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
+            
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
@@ -321,7 +336,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_cboBecasItemStateChanged
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        new Becas_Principal().setVisible(true);
+        new Becados_Principal().setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
     /**
