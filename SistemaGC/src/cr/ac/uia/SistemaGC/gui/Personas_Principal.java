@@ -44,7 +44,7 @@ public class Personas_Principal extends javax.swing.JFrame {
         lblTituloGP = new javax.swing.JLabel();
         btnAgregarPersona = new javax.swing.JButton();
         btnModificarPersona = new javax.swing.JButton();
-        btnEliminarPersona = new javax.swing.JButton();
+        btnDesactivarPersona = new javax.swing.JButton();
         btnImprimirCodigo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -105,13 +105,8 @@ public class Personas_Principal extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnEliminarPersona.setText("Eliminar Persona");
-        btnEliminarPersona.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarPersonaActionPerformed(evt);
-            }
-        });
+        btnDesactivarPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnDesactivarPersona.setText("Desactivar Persona");
 
         btnImprimirCodigo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnImprimirCodigo.setText("Imprimir Código de Barra");
@@ -133,8 +128,8 @@ public class Personas_Principal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btnModificarPersona)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
-                        .addComponent(btnEliminarPersona)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                        .addComponent(btnDesactivarPersona)
                         .addGap(166, 166, 166)
                         .addComponent(btnImprimirCodigo))
                     .addGroup(layout.createSequentialGroup()
@@ -165,7 +160,7 @@ public class Personas_Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnImprimirCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDesactivarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
@@ -203,22 +198,6 @@ public class Personas_Principal extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
-
-    private void btnEliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPersonaActionPerformed
-        int i = tblPersonas.getSelectedRow();
-        if (i > -1) {
-            try {
-                Personas_bl blp = new Personas_bl();
-                if (blp.delete((int) tblPersonas.getValueAt(i, 0))) {
-                    JOptionPane.showMessageDialog(this, "Persona eliminada correctamente",
-                            "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                    refreshTable();
-                }
-            } catch (SQLException e) {
-                System.out.println(e.toString());
-            }
-        }
-    }//GEN-LAST:event_btnEliminarPersonaActionPerformed
 
     private void btnImprimirCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirCodigoActionPerformed
         int i = tblPersonas.getSelectedRow();
@@ -270,7 +249,7 @@ public class Personas_Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPersona;
-    private javax.swing.JButton btnEliminarPersona;
+    private javax.swing.JButton btnDesactivarPersona;
     private javax.swing.JButton btnImprimirCodigo;
     private javax.swing.JButton btnModificarPersona;
     private javax.swing.JLabel jLabel1;

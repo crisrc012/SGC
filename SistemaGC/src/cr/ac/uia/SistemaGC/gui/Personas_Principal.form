@@ -37,8 +37,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="btnModificarPersona" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="183" max="32767" attributes="0"/>
-                      <Component id="btnEliminarPersona" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="163" max="32767" attributes="0"/>
+                      <Component id="btnDesactivarPersona" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
                       <Component id="btnImprimirCodigo" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -79,7 +79,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnModificarPersona" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="btnImprimirCodigo" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="btnEliminarPersona" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="btnDesactivarPersona" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="98" max="32767" attributes="0"/>
           </Group>
@@ -194,16 +194,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarPersonaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnEliminarPersona">
+    <Component class="javax.swing.JButton" name="btnDesactivarPersona">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Eliminar Persona"/>
+        <Property name="text" type="java.lang.String" value="Desactivar Persona"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarPersonaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnImprimirCodigo">
       <Properties>
