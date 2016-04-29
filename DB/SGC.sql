@@ -125,6 +125,13 @@ create view vw_becados as
 	tps.id_persona = tp.id and
 	tbs.id_beca = tb.id
 	order by tps.apellidos;
+	
+create view vw_semanales as
+	select f_semanales(fecha_compra) as Semana, count(*) as Cantidad
+	from tbl_tiquetes t inner join tbl_personas p
+	on t.id_persona = p.cedula inner join tbl_becados b
+	on t.id_persona = b.id_persona
+	group by f_semanales(fecha_compra)
 
 -- Funciones
 create or replace function f_becados(
