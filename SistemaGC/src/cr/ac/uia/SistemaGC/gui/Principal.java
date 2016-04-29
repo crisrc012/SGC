@@ -7,7 +7,6 @@ package cr.ac.uia.SistemaGC.gui;
 
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 /**
  *
