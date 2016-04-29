@@ -4,7 +4,6 @@
     <property name="ireport.x" value="0"/>
     <property name="ireport.y" value="0"/>
     <parameter name="titulo" class="java.lang.String"/>
-    <parameter name="id_persona" class="java.lang.Integer"/>
     <parameter name="fechaInicio" class="java.util.Date"/>
     <parameter name="fechaFin" class="java.util.Date"/>
     <queryString>
@@ -24,11 +23,9 @@ select date_part('year', fecha_compra) || ' ' || case date_part('month', fecha_c
 		when 12 then 'Diciembre'
 	end as "Mes", count(*) as "Cantidad"
 from tbl_tiquetes t inner join tbl_personas p
-on t.id_persona = p.cedula left join tbl_becados b
-on t.id_persona = b.id_persona
-where p.id_persona = $P{id_persona} and
-t.fecha_compra between $P{fechaInicio} and $P{fechaFin} and
-b.id is null
+on t.id_persona = p.cedula
+where p.id_persona = 2 and
+t.fecha_compra between $P{fechaInicio} and $P{fechaFin}
 group by "Mes"]]>
     </queryString>
     <field name="Mes" class="java.lang.String"/>

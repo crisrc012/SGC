@@ -4,32 +4,19 @@
     <property name="ireport.x" value="0"/>
     <property name="ireport.y" value="0"/>
     <parameter name="titulo" class="java.lang.String"/>
-    <parameter name="id_persona" class="java.lang.Integer"/>
     <parameter name="fechaInicio" class="java.util.Date"/>
     <parameter name="fechaFin" class="java.util.Date"/>
     <queryString>
 		<![CDATA[
-select date_part('year', fecha_compra) || ' ' || case date_part('month', fecha_compra)
-		when 1 then 'Enero'
-		when 2 then 'Febrero'
-		when 3 then 'Marzo'
-		when 4 then 'Abril'
-		when 5 then 'Mayo'
-		when 6 then 'Junio'
-		when 7 then 'Julio'
-		when 8 then 'Agosto'
-		when 9 then 'Setiembre'
-		when 10 then 'Octubre'
-		when 11 then 'Noviembre'
-		when 12 then 'Diciembre'
-	end as "Mes", count(*) as "Cantidad"
+select f_semanales(fecha_compra) as "Semana", count(*) as "Cantidad"
 from tbl_tiquetes t inner join tbl_personas p
-on t.id_persona = p.cedula
-where p.id_persona = $P{id_persona} and
-t.fecha_compra between $P{fechaInicio} and $P{fechaFin}
-group by "Mes"]]>
+on t.id_persona = p.cedula left join tbl_becados b
+on t.id_persona = b.id_persona
+where fecha_compra between $P{fechaInicio} and $P{fechaFin}
+and p.id_persona = 1 and b.id is null
+group by f_semanales(fecha_compra)]]>
     </queryString>
-    <field name="Mes" class="java.lang.String"/>
+    <field name="Semana" class="java.lang.String"/>
     <field name="Cantidad" class="java.lang.Integer"/>
     <background>
         <band splitType="Stretch"/>
@@ -67,7 +54,7 @@ group by "Mes"]]>
                 <textElement textAlignment="Center">
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Mes]]></text>
+                <text><![CDATA[Semana]]></text>
             </staticText>
             <staticText>
                 <reportElement x="261" y="0" width="294" height="20" uuid="e51ad002-6e0f-4842-8720-3a8f4a900acf"/>
@@ -83,7 +70,7 @@ group by "Mes"]]>
             <textField>
                 <reportElement x="0" y="0" width="261" height="20" uuid="c4d9af6c-d64f-43d2-bbfb-d7a28e0ff8f8"/>
                 <textElement textAlignment="Center"/>
-                <textFieldExpression><![CDATA[$F{Mes}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{Semana}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="261" y="0" width="294" height="20" uuid="7dfa8674-2a8a-447f-a9bc-f0b74b03725f"/>

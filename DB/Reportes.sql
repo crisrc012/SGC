@@ -63,3 +63,27 @@ on t.id_persona = p.cedula
 where p.id_persona = 2 and -- Tipo de persona
 t.fecha_compra between '2000-01-01' and (select current_date)
 group by "Mes"
+
+-- Reporte semanal
+create or replace function f_semanales(
+	in fecha date)
+returns text as
+$body$
+begin
+	case date_part('month',fecha)
+		when 1 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Enero de ' || date_part('year',fecha);
+		when 2 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Febrero de ' || date_part('year',fecha);
+		when 3 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Marzo de ' || date_part('year',fecha);
+		when 4 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Abril de ' || date_part('year',fecha);
+		when 5 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Mayo de ' || date_part('year',fecha);
+		when 6 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Junio de ' || date_part('year',fecha);
+		when 7 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Julio de ' || date_part('year',fecha);
+		when 8 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Agosto de ' || date_part('year',fecha);
+		when 9 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Setiembre de ' || date_part('year',fecha);
+		when 10 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Octubre de ' || date_part('year',fecha);
+		when 11 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Noviembre de ' || date_part('year',fecha);
+		when 12 then return 'Semana ' || mod(date_part('week',fecha)::integer,4)+1 || ' de Diciembre de ' || date_part('year',fecha);
+	end case;
+end;
+$body$
+language plpgsql;

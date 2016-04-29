@@ -242,32 +242,45 @@ public class Reportes extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        int id_persona = 0;
         String reportSource = "";
-        if (RBBecados.isSelected()) {
-            this.Titulo = "Cantidad de personas becadas que utilizan el servicio";
-            reportSource = "src/cr/ac/uia/SistemaGC/reports/Becados.jrxml";
-            id_persona = 1;
-        }
-        if (RBNoBecados.isSelected()) {
-            this.Titulo = "Cantidad de personas no becadas que utilizan el servicio";
-            reportSource = "src/cr/ac/uia/SistemaGC/reports/NoBecados.jrxml";
-            id_persona = 1;
-        }
-        if (RBProfesores.isSelected()) {
-            this.Titulo = "Cantidad de funcionarios que utilizan el servicio";
-            reportSource = "src/cr/ac/uia/SistemaGC/reports/Funcionarios.jrxml";
-            id_persona = 2;
-        }
-        if (RBCierresCaja.isSelected()) {
-            this.Titulo = "Cierre de caja";
+        if (RBMensual.isSelected()) {
+            if (RBBecados.isSelected()) {
+                this.Titulo = "Cantidad de personas becadas que utilizan el servicio";
+                reportSource = "src/cr/ac/uia/SistemaGC/reports/BecadosM.jrxml";
+            }
+            if (RBNoBecados.isSelected()) {
+                this.Titulo = "Cantidad de personas no becadas que utilizan el servicio";
+                reportSource = "src/cr/ac/uia/SistemaGC/reports/NoBecadosM.jrxml";
+            }
+            if (RBProfesores.isSelected()) {
+                this.Titulo = "Cantidad de funcionarios que utilizan el servicio";
+                reportSource = "src/cr/ac/uia/SistemaGC/reports/FuncionariosM.jrxml";
+            }
+            if (RBCierresCaja.isSelected()) {
+                this.Titulo = "Cierre de caja";
+            }
+        } else if (RBSemanal.isSelected()) {
+            if (RBBecados.isSelected()) {
+                this.Titulo = "Cantidad de personas becadas que utilizan el servicio";
+                reportSource = "src/cr/ac/uia/SistemaGC/reports/BecadosS.jrxml";
+            }
+            if (RBNoBecados.isSelected()) {
+                this.Titulo = "Cantidad de personas no becadas que utilizan el servicio";
+                reportSource = "src/cr/ac/uia/SistemaGC/reports/NoBecadosS.jrxml";
+            }
+            if (RBProfesores.isSelected()) {
+                this.Titulo = "Cantidad de funcionarios que utilizan el servicio";
+                reportSource = "src/cr/ac/uia/SistemaGC/reports/FuncionariosS.jrxml";
+            }
+            if (RBCierresCaja.isSelected()) {
+                this.Titulo = "Cierre de caja";
+            }
         }
         try {
             conn = new Conexion();
             // Parametros
             Map map = new HashMap();
             map.put("titulo", this.Titulo);
-            map.put("id_persona", id_persona);
             map.put("fechaInicio", jDateInicio.getDate());
             map.put("fechaFin", jDateFin.getDate());
             // Compilando reporte
