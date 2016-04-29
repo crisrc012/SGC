@@ -7,6 +7,7 @@ package cr.ac.uia.SistemaGC.gui;
 
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -261,7 +262,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_MInstitucionMousePressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
+                Toolkit.getDefaultToolkit().getScreenSize().height - 37);
     }//GEN-LAST:event_formWindowOpened
 
     /**
