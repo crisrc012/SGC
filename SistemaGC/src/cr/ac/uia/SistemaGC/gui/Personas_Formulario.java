@@ -458,7 +458,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Personas_Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Personas_Formulario().setVisible(true);

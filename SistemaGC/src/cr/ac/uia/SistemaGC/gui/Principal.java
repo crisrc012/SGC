@@ -73,7 +73,6 @@ public class Principal extends javax.swing.JFrame {
 
         lblNombreInstitucion.setText("Mi institución");
 
-        MenuBar.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 1, true), "Menú", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
         MenuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         MUsurio.setText("Usuario");
@@ -190,7 +189,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lblSGC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombreInstitucion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogoEscuela, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblLogoInstitucion, javax.swing.GroupLayout.Alignment.TRAILING))
