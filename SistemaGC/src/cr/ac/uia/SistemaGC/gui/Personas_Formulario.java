@@ -11,13 +11,18 @@ import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Personas_avatar;
 import java.awt.Image;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import net.coobird.thumbnailator.Thumbnails;
 
 /**
  *
@@ -150,7 +155,15 @@ public class Personas_Formulario extends javax.swing.JFrame {
         lblTituloAgPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloAgPersona.setText("Gestión de Personas");
 
-        lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblFoto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFoto.setText("Agregar foto");
+        lblFoto.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 153, 204), new java.awt.Color(0, 0, 0)), null));
+        lblFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblFotoMousePressed(evt);
+            }
+        });
 
         btnCargarFoto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCargarFoto.setText("Cargar Foto");
@@ -209,21 +222,22 @@ public class Personas_Formulario extends javax.swing.JFrame {
                         .addComponent(txtContactoPersona))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnCargarFoto)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblTelefonosPersona)
-                                    .addGap(84, 84, 84)
-                                    .addComponent(lblCel)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTelefonosPersona)
+                                .addGap(84, 84, 84)
+                                .addComponent(lblCel))
                             .addComponent(lblFechaPersona)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(143, 143, 143)
-                                .addComponent(lblTel)))
+                                .addComponent(lblTel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(btnCargarFoto)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTelefono2)
                             .addComponent(txtTelefono1)
-                            .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAsterisco1)
@@ -233,9 +247,9 @@ public class Personas_Formulario extends javax.swing.JFrame {
                     .addComponent(lblAsterisco5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(88, Short.MAX_VALUE)
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RBEstudiante)
                     .addComponent(RBFuncionario))
@@ -261,15 +275,15 @@ public class Personas_Formulario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTituloAgPersona)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCargarFoto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(RBEstudiante)
                         .addGap(18, 18, 18)
                         .addComponent(RBFuncionario)
-                        .addGap(39, 39, 39)))
-                .addComponent(btnCargarFoto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(74, 74, 74)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -319,37 +333,40 @@ public class Personas_Formulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
-        Personas_Agregar_SubirFoto file = new Personas_Agregar_SubirFoto();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
-        file.FchCargarFoto.setFileFilter(filtro);
-        int resultado = file.FchCargarFoto.showOpenDialog(this);
-        if (JFileChooser.APPROVE_OPTION == resultado) {
-            File fichero = file.FchCargarFoto.getSelectedFile();
-            this.foto = fichero;
-            try {
-                ImageIcon image = new ImageIcon(fichero.toString());
-                lblFoto.setIcon(
-                        new ImageIcon(
-                                image.getImage().getScaledInstance(
-                                        lblFoto.getWidth(),
-                                        lblFoto.getHeight(),
-                                        Image.SCALE_DEFAULT)));
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error al intentar abrir la imagen " + e);
-            }
-        }
+
     }//GEN-LAST:event_btnCargarFotoActionPerformed
 
     private void foto() throws SQLException, IOException {
         Personas_avatar_bl pabl = new Personas_avatar_bl();
+        File thumbnail = null;
+        // Copiando foto
+        try {
+            thumbnail = new File(foto.toString() + ".thumbnail.jpg");
+            OutputStream outStream;
+            try (InputStream inStream = new FileInputStream(foto)) {
+                outStream = new FileOutputStream(thumbnail);
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = inStream.read(buffer)) > 0) {
+                    outStream.write(buffer, 0, length);
+                }
+                inStream.close();
+            }
+            outStream.close();
+        } catch (IOException e) {
+            e.toString();
+        }
+        // Redimensionando foto
+        Thumbnails.of(thumbnail).size(150, 150).toFile(thumbnail);
         if (this.isUpdate) {
             pabl.update(new Personas_avatar(
-                    Integer.parseInt(txtCedulaPersona.getText()), foto));
+                    Integer.parseInt(txtCedulaPersona.getText()), thumbnail));
         } else {
             pabl.insert(
                     new Personas_avatar(
-                            Integer.parseInt(txtCedulaPersona.getText()), foto));
+                            Integer.parseInt(txtCedulaPersona.getText()), thumbnail));
         }
+        thumbnail.delete();
     }
 
     private void btnGuardarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPersonaActionPerformed
@@ -428,6 +445,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
                                             lblFoto.getWidth(),
                                             lblFoto.getHeight(),
                                             Image.SCALE_DEFAULT)));
+                    lblFoto.setText("");
                 }
             } catch (SQLException e) {
                 System.out.println(e.toString());
@@ -438,6 +456,33 @@ public class Personas_Formulario extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         new Personas_Principal().setVisible(true);
     }//GEN-LAST:event_formWindowClosed
+
+    private void cargarFoto(){
+        Personas_Agregar_SubirFoto file = new Personas_Agregar_SubirFoto();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
+        file.FchCargarFoto.setFileFilter(filtro);
+        int resultado = file.FchCargarFoto.showOpenDialog(this);
+        if (JFileChooser.APPROVE_OPTION == resultado) {
+            File fichero = file.FchCargarFoto.getSelectedFile();
+            this.foto = fichero;
+            try {
+                ImageIcon image = new ImageIcon(fichero.toString());
+                lblFoto.setIcon(
+                        new ImageIcon(
+                                image.getImage().getScaledInstance(
+                                        lblFoto.getWidth(),
+                                        lblFoto.getHeight(),
+                                        Image.SCALE_DEFAULT)));
+                lblFoto.setText("");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al intentar abrir la imagen " + e);
+            }
+        }
+    }
+    
+    private void lblFotoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoMousePressed
+        cargarFoto();
+    }//GEN-LAST:event_lblFotoMousePressed
 
     /**
      * @param args the command line arguments
@@ -458,7 +503,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Personas_Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Personas_Formulario().setVisible(true);
