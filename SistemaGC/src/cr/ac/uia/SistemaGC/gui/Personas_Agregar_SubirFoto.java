@@ -37,6 +37,8 @@ public class Personas_Agregar_SubirFoto extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setResizable(false);
 
+        FchCargarFoto.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

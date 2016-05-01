@@ -73,10 +73,12 @@ public class Principal extends javax.swing.JFrame {
 
         lblNombreInstitucion.setText("Mi institución");
 
-        MenuBar.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)), "Menú", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        MenuBar.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)), "Menú", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         MenuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuBar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         MUsurio.setText("Usuario");
+        MUsurio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MUsurio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MUsurioMousePressed(evt);
@@ -85,6 +87,7 @@ public class Principal extends javax.swing.JFrame {
         MenuBar.add(MUsurio);
 
         MPersonas.setText("Personas");
+        MPersonas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MPersonasMousePressed(evt);
@@ -93,6 +96,7 @@ public class Principal extends javax.swing.JFrame {
         MenuBar.add(MPersonas);
 
         MTipoBeca.setText("Tipos de Becas");
+        MTipoBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MTipoBeca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MTipoBecaMousePressed(evt);
@@ -101,6 +105,7 @@ public class Principal extends javax.swing.JFrame {
         MenuBar.add(MTipoBeca);
 
         MAdmBeca.setText("Administrar Becas");
+        MAdmBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MAdmBeca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MAdmBecaMousePressed(evt);
@@ -109,6 +114,7 @@ public class Principal extends javax.swing.JFrame {
         MenuBar.add(MAdmBeca);
 
         MVentaTiq.setText("Tiquetes");
+        MVentaTiq.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MVentaTiq.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MVentaTiqMousePressed(evt);
@@ -117,6 +123,7 @@ public class Principal extends javax.swing.JFrame {
         MenuBar.add(MVentaTiq);
 
         MGestionIngreso.setText("Ingreso al comedor");
+        MGestionIngreso.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MGestionIngreso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MGestionIngresoMousePressed(evt);
@@ -125,6 +132,7 @@ public class Principal extends javax.swing.JFrame {
         MenuBar.add(MGestionIngreso);
 
         MGestionParam.setText("Precios");
+        MGestionParam.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MGestionParam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MGestionParamMousePressed(evt);
@@ -133,6 +141,7 @@ public class Principal extends javax.swing.JFrame {
         MenuBar.add(MGestionParam);
 
         MReportes.setText("Reportes");
+        MReportes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MReportes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MReportesMousePressed(evt);
@@ -141,8 +150,10 @@ public class Principal extends javax.swing.JFrame {
         MenuBar.add(MReportes);
 
         MHerramientas.setText("Herramientas");
+        MHerramientas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         MInstitucion.setText("Institución");
+        MInstitucion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MInstitucion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MInstitucionMousePressed(evt);
@@ -151,11 +162,13 @@ public class Principal extends javax.swing.JFrame {
         MHerramientas.add(MInstitucion);
 
         MRespaldo.setText("Respaldo");
+        MRespaldo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MHerramientas.add(MRespaldo);
 
         MenuBar.add(MHerramientas);
 
         MAcerca.setText("Acerca de");
+        MAcerca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MAcerca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MAcercaMousePressed(evt);
@@ -190,7 +203,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lblSGC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombreInstitucion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogoEscuela, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblLogoInstitucion, javax.swing.GroupLayout.Alignment.TRAILING))

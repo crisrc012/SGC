@@ -86,6 +86,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
         lblAsterisco4 = new javax.swing.JLabel();
         lblAsterisco5 = new javax.swing.JLabel();
         btnQuitarFoto = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -236,7 +237,8 @@ public class Personas_Formulario extends javax.swing.JFrame {
                                 .addGap(128, 128, 128)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtCedulaPersona, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                                    .addComponent(txtNombrePersona))))))
+                                    .addComponent(txtNombrePersona)))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAsterisco1)
@@ -245,25 +247,28 @@ public class Personas_Formulario extends javax.swing.JFrame {
                     .addComponent(lblAsterisco2)
                     .addComponent(lblAsterisco5))
                 .addGap(22, 22, 22))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RBEstudiante)
-                    .addComponent(RBFuncionario))
-                .addGap(118, 118, 118))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(149, 149, 149)
                         .addComponent(btnGuardarPersona))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblTituloAgPersona)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnQuitarFoto)
-                            .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblTituloAgPersona)
                     .addComponent(lblCamposRequeridos))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnQuitarFoto)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RBEstudiante)
+                            .addComponent(RBFuncionario))
+                        .addGap(118, 118, 118))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,11 +277,13 @@ public class Personas_Formulario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTituloAgPersona)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnQuitarFoto)
-                        .addGap(6, 6, 6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(RBEstudiante)
                         .addGap(18, 18, 18)
@@ -316,7 +323,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(lblAsterisco5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -344,7 +351,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
         File thumbnail = null;
         if (this.foto != null) {
             // Redimensionando foto
-            Thumbnails.of(foto).size(200, 200).toFile(thumbnail
+            Thumbnails.of(foto).size(256, 256).toFile(thumbnail
                     = new File(
                             System.getProperty("java.io.tmpdir") + "//thumbnail.jpg"));
             System.out.println("Foto nula");
@@ -453,7 +460,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
 
     private void cargarFoto() {
         Personas_Agregar_SubirFoto file = new Personas_Agregar_SubirFoto();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imágenes", "png", "jpeg", "jpg", "bmp");
         file.FchCargarFoto.setFileFilter(filtro);
         int resultado = file.FchCargarFoto.showOpenDialog(this);
         if (JFileChooser.APPROVE_OPTION == resultado) {
@@ -517,6 +524,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarPersona;
     private javax.swing.JButton btnQuitarFoto;
     private com.toedter.calendar.JDateChooser jDateFechaNacimiento;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblApellidosPersona;
     private javax.swing.JLabel lblAsterisco1;
     private javax.swing.JLabel lblAsterisco2;

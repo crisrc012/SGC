@@ -63,7 +63,6 @@ public class VentaTiquetes extends javax.swing.JFrame {
         lblCedPersona = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         cboTiposComida = new javax.swing.JComboBox();
-        txtCantidad = new javax.swing.JTextField();
         txtCedula = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         btnCosultarCed = new javax.swing.JButton();
@@ -76,6 +75,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
         lblCancel = new javax.swing.JLabel();
         lblDescripcion = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -122,14 +122,6 @@ public class VentaTiquetes extends javax.swing.JFrame {
 
         cboTiposComida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cboTiposComida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Desayuno", "Almuerzo" }));
-
-        txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCantidad.setText("1");
-        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCantidadKeyReleased(evt);
-            }
-        });
 
         txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -180,6 +172,8 @@ public class VentaTiquetes extends javax.swing.JFrame {
 
         txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
+        txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,8 +219,8 @@ public class VentaTiquetes extends javax.swing.JFrame {
                             .addComponent(lblCantTique))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboTiposComida, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cboTiposComida, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCedPersona)
@@ -273,11 +267,11 @@ public class VentaTiquetes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipoComida)
                     .addComponent(cboTiposComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCantTique)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedPersona)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -309,20 +303,19 @@ public class VentaTiquetes extends javax.swing.JFrame {
         Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
 
-    private void limpiar(){
+    private void limpiar() {
         txtCedula.setEnabled(true);
-        txtCantidad.setText("1");
+        txtCantidad.setValue(1);
         txtCedula.setText("");
         txtNombre.setText("");
         lblPrecioAlm.setText("0");
         lblPrecioDes.setText("0");
-        txtCantidad.setText("1");
     }
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         try {
             int answ = JOptionPane.showConfirmDialog(this, "¿Está seguro de realizar la compra?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (answ == JOptionPane.YES_OPTION) {
-                int cant = Integer.parseInt(txtCantidad.getText().trim());
+                int cant = Integer.parseInt(txtCantidad.getValue().toString());
                 int id_comida = 0;
                 Date fecha = new Date();
                 java.sql.Date fechaActual = new java.sql.Date(fecha.getTime());
@@ -390,7 +383,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
             ps.setId(id_persona);
             Persona_bl psbl = new Persona_bl();
             ArrayList<Persona> ap = psbl.select(ps);
-            if(ap.size()>0){
+            if (ap.size() > 0) {
                 txtDescripcion.setText(ap.get(0).getDescripcion());
             }
         } catch (SQLException e) {
@@ -429,15 +422,13 @@ public class VentaTiquetes extends javax.swing.JFrame {
                             precioA = ap.get(i).getPrecio();
                         }
                     } else // Docente
-                    {
-                        if (id_persona == 2) {
+                     if (id_persona == 2) {
                             if (ap.get(i).getId_comida() == 1) {
                                 precioD = ap.get(i).getPrecio();
                             } else if (ap.get(i).getId_comida() == 2) {
                                 precioA = ap.get(i).getPrecio();
                             }
                         }
-                    }
                 }//id=1
             }
             lblPrecioDes.setText(precioD.toString());
@@ -446,10 +437,6 @@ public class VentaTiquetes extends javax.swing.JFrame {
             System.out.println(e.toString());
         }
     }
-
-    private void txtCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyReleased
-        validarEnteros(txtCantidad);
-    }//GEN-LAST:event_txtCantidadKeyReleased
 
     private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
         validarEnteros(txtCedula);
@@ -463,7 +450,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
             ArrayList<Becados> al = bbl.select(b);
             int beca = 0;
             if (al.size() > 0) {
-                if(al.get(0).getActivo()){
+                if (al.get(0).getActivo()) {
                     beca = al.get(0).getId_beca();
                 }
             }
@@ -476,7 +463,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
                 desc = (ab.get(0).getPorcentaje());
                 desc = desc / 100;
             }
-            int cantidad = Integer.parseInt(txtCantidad.getText());
+            int cantidad = Integer.parseInt(txtCantidad.getValue().toString());
             Double total = (precioA - (precioA * desc)) * cantidad;
             lblPrecioAlm.setText(total.toString());
             total = (precioD - (precioD * desc)) * cantidad;
@@ -534,7 +521,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
     private javax.swing.JLabel lblTickets;
     private javax.swing.JLabel lblTipoComida;
     private javax.swing.JLabel lblTituloVT;
-    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JSpinner txtCantidad;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombre;

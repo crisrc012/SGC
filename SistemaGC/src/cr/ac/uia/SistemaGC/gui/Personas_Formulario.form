@@ -83,6 +83,7 @@
                                   <Component id="txtNombrePersona" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="jSeparator1" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -96,14 +97,6 @@
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="RBEstudiante" min="-2" max="-2" attributes="0"/>
-                  <Component id="RBFuncionario" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -111,16 +104,28 @@
                       <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
                       <Component id="btnGuardarPersona" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="lblTituloAgPersona" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Component id="btnQuitarFoto" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblFoto" min="-2" pref="150" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="lblTituloAgPersona" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblCamposRequeridos" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="btnQuitarFoto" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="lblFoto" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="RBEstudiante" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBFuncionario" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -131,11 +136,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblTituloAgPersona" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
-                      <Component id="lblFoto" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblFoto" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnQuitarFoto" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="RBEstudiante" min="-2" max="-2" attributes="0"/>
@@ -186,7 +193,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="lblAsterisco5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="10" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -445,6 +452,8 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnQuitarFoto.setVisible(false);"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
   </SubComponents>
 </Form>

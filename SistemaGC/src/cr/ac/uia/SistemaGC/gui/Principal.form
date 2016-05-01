@@ -12,18 +12,24 @@
                   <Color PropertyName="color" blue="cc" green="99" red="0" type="rgb"/>
                 </LineBorder>
               </Border>
-              <Font PropertyName="font" name="Segoe UI" size="14" style="1"/>
+              <Font PropertyName="font" name="Segoe UI" size="18" style="1"/>
             </TitledBorder>
           </Border>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
         </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
       </Properties>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="MUsurio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Usuario"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MUsurioMousePressed"/>
@@ -32,6 +38,9 @@
         <Menu class="javax.swing.JMenu" name="MPersonas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Personas"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MPersonasMousePressed"/>
@@ -40,6 +49,9 @@
         <Menu class="javax.swing.JMenu" name="MTipoBeca">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tipos de Becas"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MTipoBecaMousePressed"/>
@@ -48,6 +60,9 @@
         <Menu class="javax.swing.JMenu" name="MAdmBeca">
           <Properties>
             <Property name="text" type="java.lang.String" value="Administrar Becas"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MAdmBecaMousePressed"/>
@@ -56,6 +71,9 @@
         <Menu class="javax.swing.JMenu" name="MVentaTiq">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tiquetes"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MVentaTiqMousePressed"/>
@@ -64,6 +82,9 @@
         <Menu class="javax.swing.JMenu" name="MGestionIngreso">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingreso al comedor"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MGestionIngresoMousePressed"/>
@@ -72,6 +93,9 @@
         <Menu class="javax.swing.JMenu" name="MGestionParam">
           <Properties>
             <Property name="text" type="java.lang.String" value="Precios"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MGestionParamMousePressed"/>
@@ -80,6 +104,9 @@
         <Menu class="javax.swing.JMenu" name="MReportes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Reportes"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MReportesMousePressed"/>
@@ -88,11 +115,17 @@
         <Menu class="javax.swing.JMenu" name="MHerramientas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Herramientas"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="MInstitucion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Instituci&#xf3;n"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MInstitucionMousePressed"/>
@@ -101,6 +134,9 @@
             <Menu class="javax.swing.JMenu" name="MRespaldo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Respaldo"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
               </Properties>
             </Menu>
           </SubComponents>
@@ -108,6 +144,9 @@
         <Menu class="javax.swing.JMenu" name="MAcerca">
           <Properties>
             <Property name="text" type="java.lang.String" value="Acerca de"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MAcercaMousePressed"/>
@@ -181,7 +220,7 @@
               <Component id="lblSGC" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblNombreInstitucion" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="171" max="32767" attributes="0"/>
+              <EmptySpace pref="165" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblLogoEscuela" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLogoInstitucion" alignment="1" min="-2" max="-2" attributes="0"/>

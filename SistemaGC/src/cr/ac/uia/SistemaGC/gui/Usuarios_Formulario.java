@@ -130,6 +130,9 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
         lblApellidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblApellidos.setText("Apellidos:");
 
+        txtApellidos.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+
+        txtObsUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(txtObsUsuario);
 
         chckCambioContrasena.addActionListener(new java.awt.event.ActionListener() {
