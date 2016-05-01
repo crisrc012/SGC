@@ -72,6 +72,7 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         });
 
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUserName.setName(""); // NOI18N
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 

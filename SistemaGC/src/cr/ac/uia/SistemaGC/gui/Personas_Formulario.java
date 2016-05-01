@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.Date;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
@@ -80,7 +81,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
         txtContactoPersona = new javax.swing.JTextField();
         lblTituloAgPersona = new javax.swing.JLabel();
         lblFoto = new javax.swing.JLabel();
-        btnCargarFoto = new javax.swing.JButton();
         lblCel = new javax.swing.JLabel();
         lblTel = new javax.swing.JLabel();
         jDateFechaNacimiento = new com.toedter.calendar.JDateChooser();
@@ -90,6 +90,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
         lblAsterisco3 = new javax.swing.JLabel();
         lblAsterisco4 = new javax.swing.JLabel();
         lblAsterisco5 = new javax.swing.JLabel();
+        btnQuitarFoto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -158,6 +159,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
         lblFoto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFoto.setText("Agregar foto");
+        lblFoto.setToolTipText("Clic para agregar una foto");
         lblFoto.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 153, 204), new java.awt.Color(0, 0, 0)), null));
         lblFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -165,18 +167,11 @@ public class Personas_Formulario extends javax.swing.JFrame {
             }
         });
 
-        btnCargarFoto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCargarFoto.setText("Cargar Foto");
-        btnCargarFoto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargarFotoActionPerformed(evt);
-            }
-        });
-
         lblCel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Celular.png"))); // NOI18N
 
         lblTel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Telefono.png"))); // NOI18N
 
+        jDateFechaNacimiento.setDateFormatString("d MMM yyyy");
         jDateFechaNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         lblCamposRequeridos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -197,6 +192,15 @@ public class Personas_Formulario extends javax.swing.JFrame {
         lblAsterisco5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblAsterisco5.setText("*");
 
+        btnQuitarFoto.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        btnQuitarFoto.setText("Quitar Foto");
+        btnQuitarFoto.setVisible(false);
+        btnQuitarFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarFotoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,18 +208,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblApellidosPersona)
-                        .addGap(123, 123, 123)
-                        .addComponent(txtApellidosPersona))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombrePersona)
-                            .addComponent(lblCedulaPersona))
-                        .addGap(128, 128, 128)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombrePersona)
-                            .addComponent(txtCedulaPersona)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblContactoPersona)
                         .addGap(41, 41, 41)
@@ -229,42 +221,53 @@ public class Personas_Formulario extends javax.swing.JFrame {
                             .addComponent(lblFechaPersona)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(143, 143, 143)
-                                .addComponent(lblTel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(btnCargarFoto)))
+                                .addComponent(lblTel)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTelefono2)
                             .addComponent(txtTelefono1)
-                            .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))))
+                            .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblApellidosPersona)
+                                .addGap(123, 123, 123)
+                                .addComponent(txtApellidosPersona, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNombrePersona)
+                                    .addComponent(lblCedulaPersona))
+                                .addGap(128, 128, 128)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCedulaPersona, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                                    .addComponent(txtNombrePersona))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAsterisco1)
-                    .addComponent(lblAsterisco2)
-                    .addComponent(lblAsterisco3)
                     .addComponent(lblAsterisco4)
-                    .addComponent(lblAsterisco5, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                    .addComponent(lblAsterisco3)
+                    .addComponent(lblAsterisco2)
+                    .addComponent(lblAsterisco5))
+                .addGap(22, 22, 22))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RBEstudiante)
                     .addComponent(RBFuncionario))
                 .addGap(118, 118, 118))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblTituloAgPersona))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
+                        .addGap(149, 149, 149)
                         .addComponent(btnGuardarPersona))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblCamposRequeridos)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblTituloAgPersona)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnQuitarFoto)
+                            .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblCamposRequeridos))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -274,11 +277,11 @@ public class Personas_Formulario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTituloAgPersona)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                         .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCargarFoto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addComponent(btnQuitarFoto)
+                        .addGap(6, 6, 6))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(RBEstudiante)
                         .addGap(18, 18, 18)
@@ -286,27 +289,25 @@ public class Personas_Formulario extends javax.swing.JFrame {
                         .addGap(74, 74, 74)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblCedulaPersona)
-                                    .addComponent(txtCedulaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAsterisco1))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblNombrePersona)
-                                    .addComponent(txtNombrePersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAsterisco2))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblApellidosPersona)
-                                    .addComponent(txtApellidosPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAsterisco3))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFechaPersona)
-                                    .addComponent(lblAsterisco4, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCedulaPersona)
+                            .addComponent(txtCedulaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAsterisco1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNombrePersona)
+                            .addComponent(txtNombrePersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAsterisco2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblApellidosPersona)
+                            .addComponent(txtApellidosPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAsterisco3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblFechaPersona, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                            .addComponent(lblAsterisco4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTelefonosPersona)
@@ -316,12 +317,17 @@ public class Personas_Formulario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtTelefono2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTel, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblContactoPersona)
-                    .addComponent(txtContactoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterisco5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(lblAsterisco5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtContactoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblContactoPersona))
+                        .addGap(18, 18, 18)))
                 .addComponent(btnGuardarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(lblCamposRequeridos)
@@ -332,32 +338,24 @@ public class Personas_Formulario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
-
-    }//GEN-LAST:event_btnCargarFotoActionPerformed
+    private void quitarFoto() {
+        this.foto = null;
+        lblFoto.setIcon(null);
+        lblFoto.setText("Agregar foto");
+        lblFoto.setToolTipText("Clic para agregar una foto");
+    }
 
     private void foto() throws SQLException, IOException {
-        Personas_avatar_bl pabl = new Personas_avatar_bl();
         File thumbnail = null;
-        // Copiando foto
-        try {
-            thumbnail = new File(foto.toString() + ".thumbnail.jpg");
-            OutputStream outStream;
-            try (InputStream inStream = new FileInputStream(foto)) {
-                outStream = new FileOutputStream(thumbnail);
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = inStream.read(buffer)) > 0) {
-                    outStream.write(buffer, 0, length);
-                }
-                inStream.close();
-            }
-            outStream.close();
-        } catch (IOException e) {
-            e.toString();
+        if (this.foto != null) {
+            // Redimensionando foto
+            Thumbnails.of(foto).size(200, 200).toFile(thumbnail
+                    = new File(
+                            System.getProperty("java.io.tmpdir") + "//thumbnail.jpg"));
+            System.out.println("Foto nula");
         }
-        // Redimensionando foto
-        Thumbnails.of(thumbnail).size(150, 150).toFile(thumbnail);
+        // Guardando en base de datos
+        Personas_avatar_bl pabl = new Personas_avatar_bl();
         if (this.isUpdate) {
             pabl.update(new Personas_avatar(
                     Integer.parseInt(txtCedulaPersona.getText()), thumbnail));
@@ -366,7 +364,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
                     new Personas_avatar(
                             Integer.parseInt(txtCedulaPersona.getText()), thumbnail));
         }
-        thumbnail.delete();
     }
 
     private void btnGuardarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPersonaActionPerformed
@@ -446,6 +443,8 @@ public class Personas_Formulario extends javax.swing.JFrame {
                                             lblFoto.getHeight(),
                                             Image.SCALE_DEFAULT)));
                     lblFoto.setText("");
+                    lblFoto.setToolTipText("Clic para cambiar la foto");
+                    btnQuitarFoto.setVisible(true);
                 }
             } catch (SQLException e) {
                 System.out.println(e.toString());
@@ -457,7 +456,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
         new Personas_Principal().setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
-    private void cargarFoto(){
+    private void cargarFoto() {
         Personas_Agregar_SubirFoto file = new Personas_Agregar_SubirFoto();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
         file.FchCargarFoto.setFileFilter(filtro);
@@ -474,15 +473,21 @@ public class Personas_Formulario extends javax.swing.JFrame {
                                         lblFoto.getHeight(),
                                         Image.SCALE_DEFAULT)));
                 lblFoto.setText("");
+                btnQuitarFoto.setVisible(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al intentar abrir la imagen " + e);
             }
         }
     }
-    
+
     private void lblFotoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoMousePressed
         cargarFoto();
     }//GEN-LAST:event_lblFotoMousePressed
+
+    private void btnQuitarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarFotoActionPerformed
+        quitarFoto();
+        btnQuitarFoto.setVisible(false);
+    }//GEN-LAST:event_btnQuitarFotoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -514,8 +519,8 @@ public class Personas_Formulario extends javax.swing.JFrame {
     private javax.swing.JRadioButton RBEstudiante;
     private javax.swing.JRadioButton RBFuncionario;
     private javax.swing.ButtonGroup TipoPersona;
-    private javax.swing.JButton btnCargarFoto;
     private javax.swing.JButton btnGuardarPersona;
+    private javax.swing.JButton btnQuitarFoto;
     private com.toedter.calendar.JDateChooser jDateFechaNacimiento;
     private javax.swing.JLabel lblApellidosPersona;
     private javax.swing.JLabel lblAsterisco1;

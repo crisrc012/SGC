@@ -46,23 +46,29 @@ public class Personas_avatar_db {
         try {
             conn = new Conexion();
             PreparedStatement ps;
-            if (foto != null) {
-                FileInputStream fis = new FileInputStream(foto);
-                if (dml.equals("insert")) {
-                    ps = conn.getConnection().prepareStatement("insert into tbl_personas_avatar values (?, ?)");
-                    ps.setInt(1, cedula);
-                    ps.setBinaryStream(2, fis, (int) foto.length());
+            if (dml.equals("insert")) {
+                ps = conn.getConnection()
+                        .prepareStatement("insert into tbl_personas_avatar values (?, ?)");
+                if (foto == null) {
+                    ps = conn.getConnection()
+                            .prepareStatement("insert into tbl_personas_avatar values (?, null)");
                 } else {
-                    ps = conn.getConnection().prepareStatement("update tbl_personas_avatar set foto=? where cedula=?");
+                    FileInputStream fis = new FileInputStream(foto);
+                    ps.setBinaryStream(2, fis, (int) foto.length());
+                }
+                ps.setInt(1, cedula);
+            } else { // update
+                ps = conn.getConnection()
+                        .prepareStatement("update tbl_personas_avatar set foto=? where cedula=?");
+                if (foto == null) {
+                    ps = conn.getConnection()
+                            .prepareStatement("update tbl_personas_avatar set foto=null where cedula=?");
+                    ps.setInt(1, cedula);
+                } else {
+                    FileInputStream fis = new FileInputStream(foto);
                     ps.setBinaryStream(1, fis, (int) foto.length());
                     ps.setInt(2, cedula);
                 }
-            } else if (dml.equals("insert")) {
-                ps = conn.getConnection().prepareStatement("insert into tbl_personas_avatar values (?, null)");
-                ps.setInt(1, cedula);
-            } else {
-                ps = conn.getConnection().prepareStatement("update tbl_personas_avatar set foto=null where cedula=?");
-                ps.setInt(2, cedula);
             }
             ps.executeUpdate();
             ps.close();
