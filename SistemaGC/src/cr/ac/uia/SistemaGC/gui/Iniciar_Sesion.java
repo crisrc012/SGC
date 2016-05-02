@@ -30,8 +30,8 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         usuario = new Usuarios();
         ubl = new Usuarios_bl();
     }
-    
-    public static void activarPrincipal(){
+
+    public static void activarPrincipal() {
         PUI.setEnabled(true);
         PUI.toFront();
     }
@@ -52,10 +52,16 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         lblIndicacion = new javax.swing.JLabel();
         lblTituloSGC = new javax.swing.JLabel();
+        lblConexion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         lblUserName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblUserName.setText("Nombre de Usuario:");
@@ -65,6 +71,7 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
 
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnLogin.setText("Iniciar Sesión");
+        btnLogin.setEnabled(false);
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -73,8 +80,10 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
 
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUserName.setName(""); // NOI18N
+        txtUserName.setEnabled(false);
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPassword.setEnabled(false);
 
         lblIndicacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblIndicacion.setText("Por favor, digite su nombre de usuario y contraseña para comenzar.");
@@ -82,12 +91,22 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         lblTituloSGC.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloSGC.setText("Sistema Gestor de Comedores");
 
+        lblConexion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        lblConexion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/cancelar.png"))); // NOI18N
+        lblConexion.setText("Estado de la conexión");
+        lblConexion.setToolTipText("Clic para comprobar la conexión");
+        lblConexion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblConexionMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblTituloSGC))
@@ -96,16 +115,18 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
                         .addComponent(lblIndicacion))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblConexion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -123,9 +144,15 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPassword))
-                .addGap(28, 28, 28)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(16, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblConexion)
+                        .addContainerGap())))
         );
 
         pack();
@@ -164,6 +191,33 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        probarConexion();
+    }//GEN-LAST:event_formComponentShown
+
+    private void lblConexionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConexionMousePressed
+        String label = lblConexion.getText();
+        lblConexion.setText("Comprobando conexión...");
+        probarConexion();
+        lblConexion.setText(label);
+    }//GEN-LAST:event_lblConexionMousePressed
+
+    private void probarConexion() {
+        try {
+            java.sql.Connection con
+                    = new cr.ac.uia.SistemaGC.db.Conexion().getConnection();
+            lblConexion.setIcon(new ImageIcon("src/cr/ac/uia/SistemaGC/img/aceptar.png"));
+            btnLogin.setEnabled(true);
+            txtPassword.setEnabled(true);
+            txtUserName.setEnabled(true);
+        } catch (SQLException e) {
+            lblConexion.setIcon(new ImageIcon("src/cr/ac/uia/SistemaGC/img/cancelar.png"));
+            btnLogin.setEnabled(false);
+            txtPassword.setEnabled(false);
+            txtUserName.setEnabled(false);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -193,6 +247,7 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
+    private javax.swing.JLabel lblConexion;
     private javax.swing.JLabel lblIndicacion;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTituloSGC;
