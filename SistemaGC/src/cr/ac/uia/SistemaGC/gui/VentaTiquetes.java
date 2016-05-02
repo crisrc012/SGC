@@ -79,7 +79,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
-        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
+        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {

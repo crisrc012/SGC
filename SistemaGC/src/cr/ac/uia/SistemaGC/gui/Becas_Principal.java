@@ -9,6 +9,7 @@ import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.entities.Becas;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -48,6 +49,7 @@ public class Becas_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
+        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {

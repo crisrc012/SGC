@@ -52,7 +52,7 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
-        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
+        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
         setIconImages(null);
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));

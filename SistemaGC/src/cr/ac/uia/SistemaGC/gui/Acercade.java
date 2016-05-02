@@ -34,7 +34,7 @@ public class Acercade extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
-        setIconImage(new ImageIcon(getClass().getResource("../img/Icono.png")).getImage());
+        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
         setName("Acercade"); // NOI18N
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
