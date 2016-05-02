@@ -15,8 +15,11 @@ import cr.ac.uia.SistemaGC.entities.Becas;
 import cr.ac.uia.SistemaGC.entities.Persona;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -240,6 +243,8 @@ public class IngresoComedor extends javax.swing.JFrame {
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
+        } catch (IOException ex) {
+            Logger.getLogger(IngresoComedor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAplicarIngresoActionPerformed
     private Boolean ConfirmarBeca(int cedula) {

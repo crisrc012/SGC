@@ -23,25 +23,30 @@ public class Personas_avatar_db {
     private Conexion conn;
     private Statement st;
 
-    public byte[] select(int cedula) throws SQLException {
-        byte[] foto = null;
-        conn = new Conexion();
-        try (PreparedStatement ps
-                = conn.getConnection().prepareStatement(
-                        "select foto from tbl_personas_avatar where cedula = ?")) {
-            ps.setInt(1, cedula);
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    foto = rs.getBytes("foto");
+    public byte[] select(int cedula) {
+        try {
+            byte[] foto = null;
+            conn = new Conexion();
+            try (PreparedStatement ps
+                    = conn.getConnection().prepareStatement(
+                            "select foto from tbl_personas_avatar where cedula = ?")) {
+                ps.setInt(1, cedula);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        foto = rs.getBytes("foto");
+                    }
+                    rs.close();
+                    ps.close();
                 }
-                rs.close();
-                ps.close();
             }
+            return foto;
+        } catch (IOException | SQLException e) {
+            System.out.println(e.toString());
+            return null;
         }
-        return foto;
     }
 
-    public boolean insert_update(int cedula, File foto, String dml) throws FileNotFoundException, SQLException, IOException {
+    public boolean insert_update(int cedula, File foto, String dml) throws SQLException {
         Boolean control = false;
         try {
             conn = new Conexion();
@@ -73,7 +78,7 @@ public class Personas_avatar_db {
             ps.executeUpdate();
             ps.close();
 
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {
@@ -93,7 +98,7 @@ public class Personas_avatar_db {
             this.st = conn.getConnection().createStatement();
             this.st.executeQuery("delete from tbl_personas_avatar where id=" + cedula);
             control = true;
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {

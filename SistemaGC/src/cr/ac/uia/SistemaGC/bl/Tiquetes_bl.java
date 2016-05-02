@@ -7,6 +7,7 @@ package cr.ac.uia.SistemaGC.bl;
 
 import cr.ac.uia.SistemaGC.db.Tiquetes_db;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -100,11 +101,11 @@ public class Tiquetes_bl {
         return tdb.delete(id);
     }
     
-    public int count(int cedula, int comida) throws SQLException {
+    public int count(int cedula, int comida) throws SQLException, IOException {
         return tdb.count(cedula, comida);
     }
     
-    public ArrayList<Tiquetes> activos(int id_persona, int id_comida) throws SQLException{
+    public ArrayList<Tiquetes> activos(int id_persona, int id_comida) throws SQLException, IOException{
         return tdb.activos(id_persona, id_comida);
     }
 }

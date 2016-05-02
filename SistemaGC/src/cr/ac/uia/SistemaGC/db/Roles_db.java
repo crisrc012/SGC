@@ -6,6 +6,7 @@
 package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Roles;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,7 +38,7 @@ public class Roles_db {
                 }
                 rs.close();
             }
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {
@@ -60,7 +61,7 @@ public class Roles_db {
                     + id + ", "
                     + descripcion + ");");
             control = true;
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {
@@ -81,7 +82,7 @@ public class Roles_db {
             this.st.executeQuery("SELECT f_roles('delete', "
                     + id + ", NULL);");
             control = true;
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {

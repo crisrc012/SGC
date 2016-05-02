@@ -6,6 +6,7 @@
 package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.db.Conexion;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -290,7 +291,7 @@ public class Reportes extends javax.swing.JFrame {
             this.conn.close();
             // Mostrando reporte
             JasperViewer.viewReport(this.jasperPrint, false);
-        } catch (SQLException | JRException e) {
+        } catch (IOException | SQLException | JRException e) {
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGenerarReporteActionPerformed

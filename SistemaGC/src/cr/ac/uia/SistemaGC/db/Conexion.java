@@ -29,6 +29,7 @@ public class Conexion {
                         + prop.getProperty("BD"),
                         prop.getProperty("Usuario"),
                         prop.getProperty("Clave"));
+
     }
 
     public java.sql.Connection getConnection() throws SQLException {

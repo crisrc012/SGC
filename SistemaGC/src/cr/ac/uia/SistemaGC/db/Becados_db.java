@@ -6,6 +6,7 @@
 package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Becados;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -43,7 +44,7 @@ public class Becados_db {
                 }
                 rs.close();
             }
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {
@@ -69,7 +70,7 @@ public class Becados_db {
                     + activo + ", '"
                     + observaciones + "');");
             control = true;
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {
@@ -90,7 +91,7 @@ public class Becados_db {
             this.st.executeQuery("SELECT f_becados('delete',"
                     + id + ", NULL, NULL, NULL, NULL);");
             control = true;
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {

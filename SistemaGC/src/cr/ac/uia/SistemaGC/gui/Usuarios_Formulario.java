@@ -7,6 +7,7 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import javax.swing.ImageIcon;
@@ -288,7 +289,7 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
@@ -310,7 +311,11 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        new Usuarios_Principal().setVisible(true);
+        try {
+            new Usuarios_Principal().setVisible(true);
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
     }//GEN-LAST:event_formWindowClosed
 
     private void chckCambioContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chckCambioContrasenaActionPerformed

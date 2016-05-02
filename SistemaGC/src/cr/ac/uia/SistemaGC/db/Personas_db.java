@@ -6,6 +6,7 @@
 package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Personas;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,7 +50,7 @@ public class Personas_db {
                 }
                 rs.close();
             }
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {
@@ -78,7 +79,7 @@ public class Personas_db {
                     + encargado + ", "
                     + id_persona + ");");
             control = true;
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {
@@ -99,7 +100,7 @@ public class Personas_db {
             this.st.executeQuery("SELECT f_personas('delete', "
                     + cedula + ", NULL, NULL, NULL, NULL, NULL, NULL, NULL);");
             control = true;
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {

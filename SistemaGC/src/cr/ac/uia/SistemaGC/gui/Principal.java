@@ -6,6 +6,7 @@
 package cr.ac.uia.SistemaGC.gui;
 
 import java.awt.Toolkit;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 
 /**
@@ -225,7 +226,11 @@ public class Principal extends javax.swing.JFrame {
     
     private void MUsurioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MUsurioMousePressed
         desactivar();
-        new Usuarios_Principal().setVisible(true);
+        try {
+            new Usuarios_Principal().setVisible(true);
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
     }//GEN-LAST:event_MUsurioMousePressed
 
     private void MPersonasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MPersonasMousePressed

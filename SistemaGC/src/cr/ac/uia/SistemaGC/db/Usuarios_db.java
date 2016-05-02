@@ -6,6 +6,7 @@
 package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Usuarios;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,7 +21,7 @@ public class Usuarios_db {
     private Conexion conn;
     private Statement st;
 
-    public ArrayList<Usuarios> select(String cedula, String usuario, String contrasena, String nombre, String apellidos, String activo, String observaciones, String id_rol) throws SQLException {
+    public ArrayList<Usuarios> select(String cedula, String usuario, String contrasena, String nombre, String apellidos, String activo, String observaciones, String id_rol) throws SQLException, IOException {
         ArrayList<Usuarios> usuarioslst = new ArrayList<>();
         try {
             this.conn = new Conexion();
@@ -61,7 +62,7 @@ public class Usuarios_db {
         return usuarioslst;
     }
 
-    public boolean insert_update(String cedula, String usuario, String contrasena, String nombre, String apellidos, String activo, String observaciones, String id_rol, String dml) throws SQLException {
+    public boolean insert_update(String cedula, String usuario, String contrasena, String nombre, String apellidos, String activo, String observaciones, String id_rol, String dml) throws SQLException, IOException {
         Boolean control = false;
         try {
             this.conn = new Conexion();
@@ -90,7 +91,7 @@ public class Usuarios_db {
         return control;
     }
 
-    public boolean delete(int cedula) throws SQLException {
+    public boolean delete(int cedula) throws SQLException, IOException {
         Boolean control = false;
         try {
             this.conn = new Conexion();
@@ -111,7 +112,7 @@ public class Usuarios_db {
         return control;
     }
 
-    public Boolean login(String usuario, String contrasena) throws SQLException {
+    public Boolean login(String usuario, String contrasena) throws SQLException, IOException {
         Boolean control = false;
         try {
             this.conn = new Conexion();

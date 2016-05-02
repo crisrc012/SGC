@@ -6,17 +6,18 @@
 package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Becados_VW;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
+    
  *
  * @author crisrc012
  */
 public class Becados_VW_db {
-    
     private Conexion conn;
     private Statement st;
     
@@ -40,7 +41,7 @@ public class Becados_VW_db {
                 }
                 rs.close();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {

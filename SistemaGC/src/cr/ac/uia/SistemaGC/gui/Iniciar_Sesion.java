@@ -7,8 +7,11 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -188,6 +191,8 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
+        } catch (IOException ex) {
+            Logger.getLogger(Iniciar_Sesion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -210,7 +215,7 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
             btnLogin.setEnabled(true);
             txtPassword.setEnabled(true);
             txtUserName.setEnabled(true);
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             lblConexion.setIcon(new ImageIcon("src/cr/ac/uia/SistemaGC/img/cancelar.png"));
             btnLogin.setEnabled(false);
             txtPassword.setEnabled(false);

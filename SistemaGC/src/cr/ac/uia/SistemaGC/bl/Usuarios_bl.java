@@ -8,6 +8,7 @@ package cr.ac.uia.SistemaGC.bl;
 import cr.ac.uia.SistemaGC.db.Usuarios_db;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
 import cr.ac.uia.SistemaGC.utils.AES;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class Usuarios_bl {
         udb = new Usuarios_db();
     }
 
-    public ArrayList<Usuarios> select(Usuarios usuarios) throws SQLException {
+    public ArrayList<Usuarios> select(Usuarios usuarios) throws SQLException, IOException {
         String cedula = "NULL";
         String usuario = "NULL";
         String contrasena = "NULL";
@@ -59,7 +60,7 @@ public class Usuarios_bl {
         return udb.select(cedula, usuario, contrasena, nombre, apellidos, activo, observaciones, id_rol);
     }
 
-    private boolean insert_update(Usuarios usuarios, String dml) throws SQLException {
+    private boolean insert_update(Usuarios usuarios, String dml) throws SQLException, IOException {
         String cedula;
         String usuario;
         String contrasena = "NULL";
@@ -112,11 +113,11 @@ public class Usuarios_bl {
         return udb.insert_update(cedula, usuario, contrasena, nombre, apellidos, activo, observaciones, id_rol, dml);
     }
 
-    public boolean insert(Usuarios usuarios) throws SQLException {
+    public boolean insert(Usuarios usuarios) throws SQLException, IOException {
         return insert_update(usuarios, "insert");
     }
 
-    public boolean update(Usuarios usuarios, boolean updatePass) throws SQLException {
+    public boolean update(Usuarios usuarios, boolean updatePass) throws SQLException, IOException {
         if(updatePass){
             return insert_update(usuarios, "update_contrasena");
         } else {
@@ -124,11 +125,11 @@ public class Usuarios_bl {
         }
     }
 
-    public boolean delete(int cedula) throws SQLException {
+    public boolean delete(int cedula) throws SQLException, IOException {
         return udb.delete(cedula);
     }
 
-    public Boolean login(Usuarios usuarios) throws SQLException {
+    public Boolean login(Usuarios usuarios) throws SQLException, IOException {
         Boolean control = null;
         String contrasena = usuarios.getContrasena();
         ArrayList<Usuarios> al = this.select(usuarios);

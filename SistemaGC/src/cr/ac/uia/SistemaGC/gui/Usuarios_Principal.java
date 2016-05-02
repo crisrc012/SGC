@@ -7,6 +7,7 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -25,7 +26,7 @@ public class Usuarios_Principal extends javax.swing.JFrame {
     /**
      * Creates new form Usuarios
      */
-    public Usuarios_Principal() {
+    public Usuarios_Principal() throws IOException {
         initComponents();
         refreshJTable();
     }
@@ -162,7 +163,7 @@ public class Usuarios_Principal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refreshJTable() {
+    private void refreshJTable() throws IOException {
         try {
             DefaultTableModel tableModel = (DefaultTableModel) tblUsuarios.getModel();
             tableModel.setRowCount(0);
@@ -251,7 +252,7 @@ public class Usuarios_Principal extends javax.swing.JFrame {
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnDesHabilitarUsuarioActionPerformed
@@ -279,7 +280,11 @@ public class Usuarios_Principal extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Usuarios_Principal().setVisible(true);
+            try {
+                new Usuarios_Principal().setVisible(true);
+            } catch (IOException e) {
+                System.out.println(e.toString());
+            }
         });
     }
 

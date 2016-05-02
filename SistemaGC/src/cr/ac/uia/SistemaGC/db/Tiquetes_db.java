@@ -6,6 +6,7 @@
 package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,7 +46,7 @@ public class Tiquetes_db {
                 }
                 rs.close();
             }
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {
@@ -72,7 +73,7 @@ public class Tiquetes_db {
                     + fecha_uso + ", "
                     + activo + ");");
             control = true;
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {
@@ -93,7 +94,7 @@ public class Tiquetes_db {
             this.st.executeQuery("SELECT f_tiquetes('delete',"
                     + id + ", NULL, NULL, NULL, NULL, NULL);");
             control = true;
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
             if (this.st != null) {
@@ -106,7 +107,7 @@ public class Tiquetes_db {
         return control;
     }
 
-    public int count(int id_persona, int id_comida) throws SQLException {
+    public int count(int id_persona, int id_comida) throws SQLException, IOException {
         int cantidad = 0;
         this.conn = new Conexion();
         this.st = conn.getConnection().createStatement();
@@ -131,9 +132,7 @@ public class Tiquetes_db {
         return cantidad;
     }
 
-    public ArrayList<Tiquetes> activos(int id_persona, int id_comida) throws SQLException {
-        /*select * from tbl_tiquetes where id_persona = 5
-        and activo = true;*/
+    public ArrayList<Tiquetes> activos(int id_persona, int id_comida) throws SQLException, IOException {
         ArrayList<Tiquetes> tiqueteslst = new ArrayList<>();
         try {
             this.conn = new Conexion();
