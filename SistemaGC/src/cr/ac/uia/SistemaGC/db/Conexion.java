@@ -5,8 +5,11 @@
  */
 package cr.ac.uia.SistemaGC.db;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  *
@@ -16,12 +19,16 @@ public class Conexion {
 
     private final java.sql.Connection Connection;
 
-    public Conexion() throws SQLException {
+    public Conexion() throws SQLException, IOException {
+        Properties prop = new Properties();
+        prop.load(new FileInputStream("src/cr/ac/uia/SistemaGC/conf/db.properties"));
         this.Connection
                 = DriverManager.getConnection(
-                        "jdbc:postgresql://127.0.0.1:5432/dbSGC",
-                        "postgres",
-                        "postgres");
+                        "jdbc:postgresql://"
+                        + prop.getProperty("Servidor") + "/"
+                        + prop.getProperty("BD"),
+                        prop.getProperty("Usuario"),
+                        prop.getProperty("Clave"));
     }
 
     public java.sql.Connection getConnection() throws SQLException {
