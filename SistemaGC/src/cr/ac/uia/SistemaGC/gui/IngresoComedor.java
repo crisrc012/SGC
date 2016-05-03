@@ -20,20 +20,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Pao
  */
-public class IngresoComedor extends javax.swing.JFrame {
+public class IngresoComedor extends SGCFormulario {
 
     /**
      * Creates new form GestionIngreso
      */
     public IngresoComedor() {
         initComponents();
+        SGCconfig();
     }
 
     /**
@@ -58,10 +58,6 @@ public class IngresoComedor extends javax.swing.JFrame {
         rbtnDesayuno = new javax.swing.JRadioButton();
         rbtnAlmuerzo = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -169,7 +165,6 @@ public class IngresoComedor extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void limpiar() {

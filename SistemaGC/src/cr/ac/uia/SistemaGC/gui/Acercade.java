@@ -5,19 +5,18 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author crobles
  */
-public class Acercade extends javax.swing.JFrame {
+public class Acercade extends SGCFormulario {
 
     /**
      * Creates new form Acercade
      */
     public Acercade() {
         initComponents();
+        SGCconfig();
     }
 
     /**
@@ -33,10 +32,7 @@ public class Acercade extends javax.swing.JFrame {
         btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
         setName("Acercade"); // NOI18N
-        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -77,7 +73,6 @@ public class Acercade extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

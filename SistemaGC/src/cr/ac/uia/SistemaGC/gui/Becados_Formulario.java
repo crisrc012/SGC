@@ -14,14 +14,13 @@ import cr.ac.uia.SistemaGC.entities.Personas;
 import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Pao
  */
-public class Becados_Formulario extends javax.swing.JFrame {
+public class Becados_Formulario extends SGCFormulario {
 
     private int id_beca;
     private final boolean isUpdate;
@@ -32,6 +31,7 @@ public class Becados_Formulario extends javax.swing.JFrame {
      */
     public Becados_Formulario() {
         initComponents();
+        SGCconfig();
         isUpdate = false;
         this.becado = new Becados();
     }
@@ -68,9 +68,6 @@ public class Becados_Formulario extends javax.swing.JFrame {
         txtObsBeca = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -211,7 +208,6 @@ public class Becados_Formulario extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAsignacionActionPerformed

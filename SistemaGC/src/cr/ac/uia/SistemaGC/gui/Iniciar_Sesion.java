@@ -10,8 +10,6 @@ import cr.ac.uia.SistemaGC.entities.Usuarios;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -19,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class Iniciar_Sesion extends javax.swing.JFrame {
+public class Iniciar_Sesion extends SGCFormulario {
 
     private static Principal PUI;
     private final Usuarios usuario;
@@ -30,6 +28,7 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
      */
     public Iniciar_Sesion() {
         initComponents();
+        SGCconfig();
         usuario = new Usuarios();
         ubl = new Usuarios_bl();
     }
@@ -58,8 +57,6 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         lblConexion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -159,7 +156,6 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -189,14 +185,13 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
                         "Inicio de sesión incorreto",
                         JOptionPane.ERROR_MESSAGE);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             System.out.println(e.toString());
-        } catch (IOException ex) {
-            Logger.getLogger(Iniciar_Sesion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         probarConexion();
     }//GEN-LAST:event_formComponentShown
 

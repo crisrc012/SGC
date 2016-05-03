@@ -1,7 +1,5 @@
 package cr.ac.uia.SistemaGC.gui;
 
-import javax.swing.ImageIcon;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,13 +10,14 @@ import javax.swing.ImageIcon;
  *
  * @author Pao
  */
-public class Personas_Agregar_SubirFoto extends javax.swing.JFrame {
+public class Personas_Agregar_SubirFoto extends SGCFormulario {
 
     /**
      * Creates new form SubirFoto
      */
     public Personas_Agregar_SubirFoto() {
         initComponents();
+        SGCconfig();
     }
 
     /**
@@ -31,11 +30,6 @@ public class Personas_Agregar_SubirFoto extends javax.swing.JFrame {
     private void initComponents() {
 
         FchCargarFoto = new javax.swing.JFileChooser();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setResizable(false);
 
         FchCargarFoto.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
@@ -55,7 +49,6 @@ public class Personas_Agregar_SubirFoto extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

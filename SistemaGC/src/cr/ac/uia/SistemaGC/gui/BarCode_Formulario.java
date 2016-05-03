@@ -8,7 +8,6 @@ package cr.ac.uia.SistemaGC.gui;
 import java.awt.HeadlessException;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import net.sourceforge.barbecue.Barcode;
 import net.sourceforge.barbecue.BarcodeException;
@@ -18,7 +17,7 @@ import net.sourceforge.barbecue.BarcodeFactory;
  *
  * @author Pao
  */
-public class BarCode_Formulario extends javax.swing.JFrame {
+public class BarCode_Formulario extends SGCFormulario {
     private final int cedula;
 
     /**
@@ -26,6 +25,7 @@ public class BarCode_Formulario extends javax.swing.JFrame {
      */
     public BarCode_Formulario() {
         initComponents();
+        SGCconfig();
         this.cedula = 0;
     }
 
@@ -50,9 +50,6 @@ public class BarCode_Formulario extends javax.swing.JFrame {
         btnImprimirCodigo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setIconImages(null);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -127,7 +124,6 @@ public class BarCode_Formulario extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private Barcode b = null;
     private void btnGenerarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarCodigoActionPerformed

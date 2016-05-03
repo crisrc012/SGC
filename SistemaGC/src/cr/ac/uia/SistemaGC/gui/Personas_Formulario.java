@@ -24,7 +24,7 @@ import net.coobird.thumbnailator.Thumbnails;
  *
  * @author Pao
  */
-public class Personas_Formulario extends javax.swing.JFrame {
+public class Personas_Formulario extends SGCFormulario {
 
     private final boolean isUpdate;
     private final Personas persona;
@@ -35,6 +35,7 @@ public class Personas_Formulario extends javax.swing.JFrame {
      */
     public Personas_Formulario() {
         initComponents();
+        SGCconfig();
         RBEstudiante.setSelected(true);
         isUpdate = false;
         this.persona = new Personas();
@@ -88,10 +89,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
         btnQuitarFoto = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -337,7 +334,6 @@ public class Personas_Formulario extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void quitarFoto() {

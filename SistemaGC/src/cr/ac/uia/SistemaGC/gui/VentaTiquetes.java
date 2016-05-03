@@ -21,7 +21,6 @@ import java.awt.HeadlessException;
 import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -29,7 +28,7 @@ import javax.swing.JTextField;
  *
  * @author Pao
  */
-public class VentaTiquetes extends javax.swing.JFrame {
+public class VentaTiquetes extends SGCFormulario {
 
     private int id_persona;
     private Integer precioD;
@@ -40,6 +39,7 @@ public class VentaTiquetes extends javax.swing.JFrame {
      */
     public VentaTiquetes() {
         initComponents();
+        SGCconfig();
     }
 
     /**
@@ -77,10 +77,6 @@ public class VentaTiquetes extends javax.swing.JFrame {
         txtDescripcion = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JSpinner();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -296,7 +292,6 @@ public class VentaTiquetes extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

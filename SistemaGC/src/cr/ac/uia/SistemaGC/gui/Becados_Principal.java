@@ -13,7 +13,6 @@ import cr.ac.uia.SistemaGC.entities.Becados_VW;
 import cr.ac.uia.SistemaGC.entities.Becas;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -24,13 +23,14 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Pao
  */
-public class Becados_Principal extends javax.swing.JFrame {
+public class Becados_Principal extends SGCFormulario {
 
     /**
      * Creates new form AdministrarBecas
      */
     public Becados_Principal() {
         initComponents();
+        SGCconfig();
         refreshJTable();
     }
 
@@ -51,10 +51,6 @@ public class Becados_Principal extends javax.swing.JFrame {
         btnDesasignarBeca = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -161,7 +157,6 @@ public class Becados_Principal extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAsignarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarBecaActionPerformed

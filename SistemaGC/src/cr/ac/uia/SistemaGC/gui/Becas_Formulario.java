@@ -9,14 +9,13 @@ import cr.ac.uia.SistemaGC.bl.Becas_bl;
 import cr.ac.uia.SistemaGC.entities.Becas;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Pao
  */
-public class Becas_Formulario extends javax.swing.JFrame {
+public class Becas_Formulario extends SGCFormulario {
 
     // Propiedad que determina si la ventana se ejecuta para insertar o actualizar
     private final boolean isUpdate;
@@ -27,6 +26,7 @@ public class Becas_Formulario extends javax.swing.JFrame {
      */
     public Becas_Formulario() {
         initComponents();
+        SGCconfig();
         isUpdate = false;
         this.becas = new Becas();
     }
@@ -58,10 +58,6 @@ public class Becas_Formulario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObservacionesBeca = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -169,7 +165,6 @@ public class Becas_Formulario extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarBecaActionPerformed

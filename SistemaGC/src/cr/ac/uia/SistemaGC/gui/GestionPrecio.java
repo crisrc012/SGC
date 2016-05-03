@@ -9,14 +9,13 @@ import cr.ac.uia.SistemaGC.bl.Precio_bl;
 import cr.ac.uia.SistemaGC.entities.Precio;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Pao
  */
-public class GestionPrecio extends javax.swing.JFrame {
+public class GestionPrecio extends SGCFormulario {
 
     private Precio_bl bl;
 
@@ -25,6 +24,7 @@ public class GestionPrecio extends javax.swing.JFrame {
      */
     public GestionPrecio() {
         initComponents();
+        SGCconfig();
     }
 
     /**
@@ -53,10 +53,6 @@ public class GestionPrecio extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -199,7 +195,6 @@ public class GestionPrecio extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarParametrosActionPerformed

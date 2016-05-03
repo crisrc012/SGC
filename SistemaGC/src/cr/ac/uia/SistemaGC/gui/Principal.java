@@ -7,19 +7,19 @@ package cr.ac.uia.SistemaGC.gui;
 
 import java.awt.Toolkit;
 import java.io.IOException;
-import javax.swing.ImageIcon;
 
 /**
  *
  * @author Pao
  */
-public class Principal extends javax.swing.JFrame {
+public class Principal extends SGCFormulario {
 
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        SGCconfig();
     }
     
 
@@ -51,10 +51,6 @@ public class Principal extends javax.swing.JFrame {
         MAcerca = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setIconImages(null);
-        setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentMoved(java.awt.event.ComponentEvent evt) {
@@ -279,6 +275,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_MInstitucionMousePressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocation(0, 0);
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height - 37);
     }//GEN-LAST:event_formWindowOpened
@@ -287,7 +285,6 @@ public class Principal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 

@@ -10,14 +10,13 @@ import cr.ac.uia.SistemaGC.entities.Usuarios;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Pao
  */
-public class Usuarios_Formulario extends javax.swing.JFrame {
+public class Usuarios_Formulario extends SGCFormulario {
 
     // Propiedad que determina si la ventana se ejecuta para insertar o actualizar
     private final boolean isUpdate;
@@ -28,6 +27,7 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
      */
     public Usuarios_Formulario() {
         initComponents();
+        SGCconfig();
         isUpdate = false;
         this.usuarios = new Usuarios();
         chckCambioContrasena.setVisible(false);
@@ -69,10 +69,6 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
         txtObsUsuario = new javax.swing.JTextPane();
         chckCambioContrasena = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setIconImage(new ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
-        setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -235,7 +231,6 @@ public class Usuarios_Formulario extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
