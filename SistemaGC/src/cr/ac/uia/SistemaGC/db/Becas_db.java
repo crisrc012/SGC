@@ -7,9 +7,9 @@ package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Becas;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -19,20 +19,40 @@ import java.util.ArrayList;
 public class Becas_db {
 
     private Conexion conn;
-    private Statement st;
 
-    public ArrayList<Becas> select(String id, String nombre, String porcentaje, String activo, String observaciones) throws SQLException {
+    public ArrayList<Becas> select(Becas becas) throws SQLException {
         ArrayList<Becas> becaslst = new ArrayList<>();
         try {
             this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_becas('select',"
-                    + id + ", "
-                    + nombre + ", "
-                    + porcentaje + ","
-                    + activo + ", "
-                    + observaciones + ");")) {
+            PreparedStatement ps
+                    = conn.getConnection()
+                    .prepareStatement("select * from f_becas('select',?,?,?,?,?);");
+            if (becas.getId() != null) {
+                ps.setInt(1, becas.getId());
+            } else {
+                ps.setNull(1, java.sql.Types.INTEGER);
+            }
+            if (becas.getNombre() != null) {
+                ps.setString(2, becas.getNombre());
+            } else {
+                ps.setNull(2, java.sql.Types.VARCHAR);
+            }
+            if (becas.getPorcentaje() != null) {
+                ps.setInt(3, becas.getPorcentaje());
+            } else {
+                ps.setNull(3, java.sql.Types.INTEGER);
+            }
+            if (becas.getActivo() != null) {
+                ps.setBoolean(4, becas.getActivo());
+            } else {
+                ps.setNull(4, java.sql.Types.BOOLEAN);
+            }
+            if (becas.getObservaciones() != null) {
+                ps.setString(5, becas.getObservaciones());
+            } else {
+                ps.setNull(5, java.sql.Types.VARCHAR);
+            }
+            try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Becas b = new Becas();
                     b.setId(rs.getInt("id"));
@@ -43,13 +63,11 @@ public class Becas_db {
                     becaslst.add(b);
                 }
                 rs.close();
+                ps.close();
             }
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
             if (this.conn != null) {
                 this.conn.close();
             }
@@ -57,25 +75,25 @@ public class Becas_db {
         return becaslst;
     }
 
-    public boolean insert_update(String id, String nombre, String porcentaje, String activo, String observaciones, String dml) throws SQLException {
+    public boolean insert_update(Becas becas, String dml) throws SQLException {
         Boolean control = false;
         try {
             this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_becas('"
-                    + dml + "',"
-                    + id + ", "
-                    + nombre + ", "
-                    + porcentaje + ", "
-                    + activo + ", "
-                    + observaciones + ");");
-            control = true;
+            try (PreparedStatement ps
+                    = conn.getConnection()
+                    .prepareStatement("select f_becas(?,?,?,?,?,?);")) {
+                ps.setString(1, dml);
+                ps.setInt(2, becas.getId());
+                ps.setString(3, becas.getNombre());
+                ps.setInt(4, becas.getPorcentaje());
+                ps.setBoolean(5, becas.getActivo());
+                ps.setString(6, becas.getObservaciones());
+                control = ps.execute();
+                ps.close();
+            }
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
             if (this.conn != null) {
                 this.conn.close();
             }
@@ -87,16 +105,15 @@ public class Becas_db {
         Boolean control = false;
         try {
             this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_becas('delete', "
-                    + id + ", NULL, NULL, NULL, NULL, NULL);");
-            control = true;
+            try (PreparedStatement ps = conn.getConnection()
+                    .prepareStatement("SELECT f_becas('delete',?,NULL,NULL,NULL,NULL);")) {
+                ps.setInt(1, id);
+                control = ps.execute();
+                ps.close();
+            }
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
             if (this.conn != null) {
                 this.conn.close();
             }

@@ -25,5 +25,4 @@ public class Becados_VW_bl {
     public ArrayList<Becados_VW> select(Becados_VW becados) throws SQLException {
         return bdb.select();
     }
-
 }

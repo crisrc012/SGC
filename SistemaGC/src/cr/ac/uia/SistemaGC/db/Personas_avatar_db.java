@@ -7,7 +7,6 @@ package cr.ac.uia.SistemaGC.db;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -77,7 +76,6 @@ public class Personas_avatar_db {
             }
             ps.executeUpdate();
             ps.close();
-
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {

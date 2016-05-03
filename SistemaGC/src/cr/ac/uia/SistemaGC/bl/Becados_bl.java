@@ -23,59 +23,11 @@ public class Becados_bl {
     }
     
     public ArrayList<Becados> select(Becados becados) throws SQLException {
-        String id = "NULL";
-        String id_persona = "NULL";
-        String id_beca = "NULL";
-        String activo = "NULL";
-        String observaciones = "NULL";
-        if (null != becados.getId()) {
-            id = String.valueOf(becados.getId());
-        }
-        if (becados.getId_persona() != null) {
-            id_persona = String.valueOf(becados.getId_persona());
-        }
-        if (null != becados.getId_beca()) {
-            id = String.valueOf(becados.getId_beca());
-        }
-        if (becados.getActivo() != null) {
-            activo = String.valueOf(becados.getActivo());
-        }
-        if (becados.getObservaciones() != null) {
-            observaciones = "'" + becados.getObservaciones() + "'";
-        }
-        return bdb.select(id, id_persona, id_beca, activo, observaciones);
+        return bdb.select(becados);
     }
     
     private boolean insert_update(Becados becados, String dml) throws SQLException {
-        String id = "NULL";
-        String id_persona;
-        String id_beca;
-        String activo;
-        String observaciones;
-        if (dml.equals("update")) {
-            id = String.valueOf(becados.getId());
-        }
-        if (becados.getId_persona() == null) {
-            return false;
-        } else {
-            id_persona = String.valueOf(becados.getId_persona());
-        }
-        if (becados.getId_beca() == null) {
-            return false;
-        } else {
-            id_beca = String.valueOf(becados.getId_beca());
-        }
-        if (becados.getActivo() == null) {
-            return false;
-        } else {
-            activo = String.valueOf(becados.getActivo());
-        }
-        if (becados.getObservaciones() == null) {
-            return false;
-        } else {
-            observaciones = becados.getObservaciones();
-        }
-        return bdb.insert_update(id, id_persona, id_beca, activo, observaciones, dml);
+        return bdb.insert_update(becados, dml);
     }
     
     public boolean insert(Becados becados) throws SQLException {
