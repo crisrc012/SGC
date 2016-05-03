@@ -7,6 +7,7 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Usuarios_bl;
 import cr.ac.uia.SistemaGC.entities.Usuarios;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -81,9 +82,19 @@ public class Iniciar_Sesion extends SGCFormulario {
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUserName.setName(""); // NOI18N
         txtUserName.setEnabled(false);
+        txtUserName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUserNameKeyPressed(evt);
+            }
+        });
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtPassword.setEnabled(false);
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
 
         lblIndicacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblIndicacion.setText("Por favor, digite su nombre de usuario y contraseña para comenzar.");
@@ -158,7 +169,7 @@ public class Iniciar_Sesion extends SGCFormulario {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+    private void iniciarSesion() {
         try {
             if (txtUserName.getText().trim().isEmpty() || txtPassword.getPassword().length == 0) {
                 JOptionPane.showMessageDialog(this,
@@ -188,6 +199,10 @@ public class Iniciar_Sesion extends SGCFormulario {
         } catch (SQLException | IOException e) {
             System.out.println(e.toString());
         }
+    }
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        iniciarSesion();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -202,6 +217,18 @@ public class Iniciar_Sesion extends SGCFormulario {
         lblConexion.setText(label);
     }//GEN-LAST:event_lblConexionMousePressed
 
+    private void txtUserNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtPassword.requestFocus();
+        }
+    }//GEN-LAST:event_txtUserNameKeyPressed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            iniciarSesion();
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
+
     private void probarConexion() {
         try {
             java.sql.Connection con
@@ -210,6 +237,7 @@ public class Iniciar_Sesion extends SGCFormulario {
             btnLogin.setEnabled(true);
             txtPassword.setEnabled(true);
             txtUserName.setEnabled(true);
+            txtUserName.requestFocus();
         } catch (SQLException | IOException e) {
             lblConexion.setIcon(new ImageIcon("src/cr/ac/uia/SistemaGC/img/cancelar.png"));
             btnLogin.setEnabled(false);
