@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportTemplate" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="87d0e033-e989-489b-b579-e6cf2bfbe302">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteSGC" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="87d0e033-e989-489b-b579-e6cf2bfbe302">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="titulo" class="java.lang.String"/>
+	<parameter name="periodo" class="java.lang.String"/>
 	<parameter name="fechaInicio" class="java.util.Date"/>
 	<parameter name="fechaFin" class="java.util.Date"/>
+	<parameter name="id_persona" class="java.lang.Integer"/>
+	<parameter name="beca" class="java.lang.Boolean"/>
 	<queryString>
-		<![CDATA[select f_semanales(fecha_compra) as "Semana", count(*) as "Cantidad"
-from tbl_tiquetes t inner join tbl_personas p
-on t.id_persona = p.cedula
-where fecha_compra between $P{fechaInicio} and $P{fechaFin}
-and p.id_persona = 2
-group by f_semanales(fecha_compra);]]>
+		<![CDATA[select * from f_reportes($P{periodo},$P{fechaInicio},$P{fechaFin},$P{id_persona},$P{beca});]]>
 	</queryString>
-	<field name="Semana" class="java.lang.String"/>
+	<field name="Periodo" class="java.lang.String"/>
 	<field name="Cantidad" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -28,10 +26,6 @@ group by f_semanales(fecha_compra);]]>
 				</textElement>
 				<text><![CDATA[Reporte]]></text>
 			</staticText>
-			<image>
-				<reportElement x="0" y="0" width="50" height="56" uuid="8da9aae2-dc6c-466c-a4b5-a242b216cd1a"/>
-				<imageExpression><![CDATA["C:\\Users\\crobles\\Documents\\GitHub\\SGC\\SistemaGC\\src\\cr\\ac\\uia\\SistemaGC\\img\\LogoUIA.png"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -52,7 +46,7 @@ group by f_semanales(fecha_compra);]]>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Semana]]></text>
+				<text><![CDATA[Periodo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="261" y="0" width="294" height="20" uuid="e51ad002-6e0f-4842-8720-3a8f4a900acf"/>
@@ -68,7 +62,7 @@ group by f_semanales(fecha_compra);]]>
 			<textField>
 				<reportElement x="0" y="0" width="261" height="20" uuid="c4d9af6c-d64f-43d2-bbfb-d7a28e0ff8f8"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{Semana}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Periodo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="261" y="0" width="294" height="20" uuid="7dfa8674-2a8a-447f-a9bc-f0b74b03725f"/>

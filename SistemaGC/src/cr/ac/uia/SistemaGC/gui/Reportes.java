@@ -24,11 +24,14 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class Reportes extends SGCFormulario {
 
-    private String Titulo;
-    private String Periodo; // Mensual o semanal
+    private String titulo;
     private JasperReport jasperReport;
     private JasperPrint jasperPrint;
     private Conexion conn;
+    private int id_persona;
+    private String periodo;
+    private boolean beca;
+    String reportSource;
 
     /**
      * Creates new form Reportes
@@ -36,6 +39,7 @@ public class Reportes extends SGCFormulario {
     public Reportes() {
         initComponents();
         SGCconfig();
+        reportSource = "src/cr/ac/uia/SistemaGC/reports/Reporte.jrxml";
     }
 
     /**
@@ -57,8 +61,8 @@ public class Reportes extends SGCFormulario {
         RBMensual = new javax.swing.JRadioButton();
         RBBecados = new javax.swing.JRadioButton();
         RBNoBecados = new javax.swing.JRadioButton();
-        RBProfesores = new javax.swing.JRadioButton();
-        RBCierresCaja = new javax.swing.JRadioButton();
+        RBFuncionarios = new javax.swing.JRadioButton();
+        RBVentas = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnGenerarReporte = new javax.swing.JButton();
@@ -86,26 +90,51 @@ public class Reportes extends SGCFormulario {
         btnGPeriodo.add(RBSemanal);
         RBSemanal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         RBSemanal.setText("Información Semanal");
+        RBSemanal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RBSemanalActionPerformed(evt);
+            }
+        });
 
         btnGPeriodo.add(RBMensual);
         RBMensual.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         RBMensual.setText("Información Mensual");
+        RBMensual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RBMensualActionPerformed(evt);
+            }
+        });
 
         btnGTipos.add(RBBecados);
         RBBecados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RBBecados.setText("Cantidad de personas becadas que asisten");
+        RBBecados.setText("Cantidad de estudiantes becados que utilizan el comedor");
+        RBBecados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RBBecadosActionPerformed(evt);
+            }
+        });
 
         btnGTipos.add(RBNoBecados);
         RBNoBecados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RBNoBecados.setText("Cantidad de personas no becadas que asisten");
+        RBNoBecados.setText("Cantidad de estudiantes no becados que utilizan el comedor");
+        RBNoBecados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RBNoBecadosActionPerformed(evt);
+            }
+        });
 
-        btnGTipos.add(RBProfesores);
-        RBProfesores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RBProfesores.setText("Cantidad de funcionarios que utilizan este servicio");
+        btnGTipos.add(RBFuncionarios);
+        RBFuncionarios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RBFuncionarios.setText("Cantidad de funcionarios que utilizan el comedor");
+        RBFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RBFuncionariosActionPerformed(evt);
+            }
+        });
 
-        btnGTipos.add(RBCierresCaja);
-        RBCierresCaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RBCierresCaja.setText("Informe de ventas");
+        btnGTipos.add(RBVentas);
+        RBVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RBVentas.setText("Ventas");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Desde:");
@@ -139,13 +168,13 @@ public class Reportes extends SGCFormulario {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jDateInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(RBBecados)
                             .addComponent(lblSelectTipo)
                             .addComponent(RBNoBecados)
-                            .addComponent(RBProfesores)
-                            .addComponent(RBCierresCaja)
+                            .addComponent(RBFuncionarios)
+                            .addComponent(RBVentas)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -188,9 +217,9 @@ public class Reportes extends SGCFormulario {
                         .addComponent(RBMensual))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(RBProfesores)))
+                        .addComponent(RBFuncionarios)))
                 .addGap(41, 41, 41)
-                .addComponent(RBCierresCaja)
+                .addComponent(RBVentas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(lblSelectDate)
                 .addGap(33, 33, 33)
@@ -221,7 +250,7 @@ public class Reportes extends SGCFormulario {
         }
         // Reporte
         if (!RBBecados.isSelected() && !RBNoBecados.isSelected()
-                && !RBProfesores.isSelected() && !RBCierresCaja.isSelected()) {
+                && !RBFuncionarios.isSelected() && !RBVentas.isSelected()) {
             JOptionPane.showMessageDialog(
                     this,
                     "Por favor seleccione un tipo de reporte",
@@ -238,47 +267,16 @@ public class Reportes extends SGCFormulario {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String reportSource = "";
-        if (RBMensual.isSelected()) {
-            if (RBBecados.isSelected()) {
-                this.Titulo = "Cantidad de personas becadas que utilizan el servicio";
-                reportSource = "src/cr/ac/uia/SistemaGC/reports/BecadosM.jrxml";
-            }
-            if (RBNoBecados.isSelected()) {
-                this.Titulo = "Cantidad de personas no becadas que utilizan el servicio";
-                reportSource = "src/cr/ac/uia/SistemaGC/reports/NoBecadosM.jrxml";
-            }
-            if (RBProfesores.isSelected()) {
-                this.Titulo = "Cantidad de funcionarios que utilizan el servicio";
-                reportSource = "src/cr/ac/uia/SistemaGC/reports/FuncionariosM.jrxml";
-            }
-            if (RBCierresCaja.isSelected()) {
-                this.Titulo = "Cierre de caja";
-            }
-        } else if (RBSemanal.isSelected()) {
-            if (RBBecados.isSelected()) {
-                this.Titulo = "Cantidad de personas becadas que utilizan el servicio";
-                reportSource = "src/cr/ac/uia/SistemaGC/reports/BecadosS.jrxml";
-            }
-            if (RBNoBecados.isSelected()) {
-                this.Titulo = "Cantidad de personas no becadas que utilizan el servicio";
-                reportSource = "src/cr/ac/uia/SistemaGC/reports/NoBecadosS.jrxml";
-            }
-            if (RBProfesores.isSelected()) {
-                this.Titulo = "Cantidad de funcionarios que utilizan el servicio";
-                reportSource = "src/cr/ac/uia/SistemaGC/reports/FuncionariosS.jrxml";
-            }
-            if (RBCierresCaja.isSelected()) {
-                this.Titulo = "Cierre de caja";
-            }
-        }
         try {
             conn = new Conexion();
             // Parametros
             Map map = new HashMap();
-            map.put("titulo", this.Titulo);
+            map.put("titulo", titulo);
+            map.put("periodo", periodo);
             map.put("fechaInicio", jDateInicio.getDate());
             map.put("fechaFin", jDateFin.getDate());
+            map.put("id_persona", id_persona);
+            map.put("beca", beca);
             // Compilando reporte
             this.jasperReport = (JasperReport) JasperCompileManager.compileReport(reportSource);
             this.jasperPrint = JasperFillManager.fillReport(this.jasperReport, map, this.conn.getConnection());
@@ -295,11 +293,36 @@ public class Reportes extends SGCFormulario {
         Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
 
+    private void RBBecadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBBecadosActionPerformed
+        id_persona = 1;
+        beca = true;
+        titulo = RBBecados.getText();
+    }//GEN-LAST:event_RBBecadosActionPerformed
+
+    private void RBSemanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBSemanalActionPerformed
+        periodo = "Semanal";
+    }//GEN-LAST:event_RBSemanalActionPerformed
+
+    private void RBMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBMensualActionPerformed
+        periodo = "Mensual";
+    }//GEN-LAST:event_RBMensualActionPerformed
+
+    private void RBNoBecadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBNoBecadosActionPerformed
+        id_persona = 1;
+        beca = false;
+        titulo = RBNoBecados.getText();
+    }//GEN-LAST:event_RBNoBecadosActionPerformed
+
+    private void RBFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBFuncionariosActionPerformed
+        id_persona = 2;
+        beca = false;
+        titulo = RBFuncionarios.getText();
+    }//GEN-LAST:event_RBFuncionariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -323,11 +346,11 @@ public class Reportes extends SGCFormulario {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton RBBecados;
-    private javax.swing.JRadioButton RBCierresCaja;
+    private javax.swing.JRadioButton RBFuncionarios;
     private javax.swing.JRadioButton RBMensual;
     private javax.swing.JRadioButton RBNoBecados;
-    private javax.swing.JRadioButton RBProfesores;
     private javax.swing.JRadioButton RBSemanal;
+    private javax.swing.JRadioButton RBVentas;
     private javax.swing.ButtonGroup btnGPeriodo;
     private javax.swing.ButtonGroup btnGTipos;
     private javax.swing.JButton btnGenerarReporte;

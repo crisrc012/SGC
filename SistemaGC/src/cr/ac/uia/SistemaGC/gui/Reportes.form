@@ -46,13 +46,13 @@
                               <Component id="jDateInicio" min="-2" pref="130" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="101" max="32767" attributes="0"/>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="RBBecados" min="-2" max="-2" attributes="0"/>
                           <Component id="lblSelectTipo" min="-2" max="-2" attributes="0"/>
                           <Component id="RBNoBecados" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="RBProfesores" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="RBCierresCaja" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBFuncionarios" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBVentas" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -109,11 +109,11 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="RBProfesores" min="-2" max="-2" attributes="0"/>
+                      <Component id="RBFuncionarios" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-              <Component id="RBCierresCaja" min="-2" max="-2" attributes="0"/>
+              <Component id="RBVentas" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="9" max="32767" attributes="0"/>
               <Component id="lblSelectDate" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -175,6 +175,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Informaci&#xf3;n Semanal"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RBSemanalActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="RBMensual">
       <Properties>
@@ -186,6 +189,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Informaci&#xf3;n Mensual"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RBMensualActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="RBBecados">
       <Properties>
@@ -195,8 +201,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Cantidad de personas becadas que asisten"/>
+        <Property name="text" type="java.lang.String" value="Cantidad de estudiantes becados que utilizan el comedor"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RBBecadosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="RBNoBecados">
       <Properties>
@@ -206,10 +215,13 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Cantidad de personas no becadas que asisten"/>
+        <Property name="text" type="java.lang.String" value="Cantidad de estudiantes no becados que utilizan el comedor"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RBNoBecadosActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="RBProfesores">
+    <Component class="javax.swing.JRadioButton" name="RBFuncionarios">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btnGTipos"/>
@@ -217,10 +229,13 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Cantidad de funcionarios que utilizan este servicio"/>
+        <Property name="text" type="java.lang.String" value="Cantidad de funcionarios que utilizan el comedor"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RBFuncionariosActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="RBCierresCaja">
+    <Component class="javax.swing.JRadioButton" name="RBVentas">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btnGTipos"/>
@@ -228,7 +243,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Informe de ventas"/>
+        <Property name="text" type="java.lang.String" value="Ventas"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
