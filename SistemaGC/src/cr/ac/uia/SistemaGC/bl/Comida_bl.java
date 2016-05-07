@@ -17,35 +17,17 @@ import java.util.ArrayList;
 public class Comida_bl {
 
     private final Comida_db cdb;
-    
-    public Comida_bl(){
+
+    public Comida_bl() {
         cdb = new Comida_db();
     }
 
     public ArrayList<Comida> select(Comida comida) throws SQLException {
-            String id = "NULL";
-            String descripcion = "NULL";
-            if (null != comida.getId()) {
-                id = String.valueOf(comida.getId());
-            }
-            if (comida.getDescripcion() != null) {
-                descripcion = "'" + comida.getDescripcion() + "'";
-            }
-        return cdb.select(id, descripcion);
+        return cdb.select(comida);
     }
 
     private boolean insert_update(Comida comida, String dml) throws SQLException {
-            String id = "NULL";
-            String descripcion;
-            if (dml.equals("update")) {
-                id = String.valueOf(comida.getId());
-            }
-            if (comida.getDescripcion() == null) {
-                return false;
-            } else {
-                descripcion = "'" + comida.getDescripcion() + "'";
-            }
-        return cdb.insert_update(id, descripcion, dml);
+        return cdb.insert_update(comida, dml);
     }
 
     public boolean insert(Comida comida) throws SQLException {

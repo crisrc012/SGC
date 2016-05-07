@@ -5,13 +5,12 @@
  */
 package cr.ac.uia.SistemaGC.db;
 
-import java.io.File;
+import cr.ac.uia.SistemaGC.entities.Personas_avatar;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -20,91 +19,48 @@ import java.sql.Statement;
 public class Personas_avatar_db {
 
     private Conexion conn;
-    private Statement st;
+    private PreparedStatement ps;
 
     public byte[] select(int cedula) {
+        byte[] foto = null;
         try {
-            byte[] foto = null;
             conn = new Conexion();
-            try (PreparedStatement ps
-                    = conn.getConnection().prepareStatement(
-                            "select foto from tbl_personas_avatar where cedula = ?")) {
-                ps.setInt(1, cedula);
-                try (ResultSet rs = ps.executeQuery()) {
-                    while (rs.next()) {
-                        foto = rs.getBytes("foto");
-                    }
-                    rs.close();
-                    ps.close();
+            ps = conn.getConnection()
+                    .prepareStatement("select * f_personas_avatar('select',?,null);");
+            ps.setInt(1, cedula);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    foto = rs.getBytes("foto");
                 }
+                rs.close();
+                ps.close();
             }
-            return foto;
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
-            return null;
         }
+        return foto;
     }
 
-    public boolean insert_update(int cedula, File foto, String dml) throws SQLException {
+    public boolean insert_update(Personas_avatar pa, String dml) throws SQLException {
         Boolean control = false;
         try {
             conn = new Conexion();
-            PreparedStatement ps;
-            if (dml.equals("insert")) {
-                ps = conn.getConnection()
-                        .prepareStatement("insert into tbl_personas_avatar values (?, ?)");
-                if (foto == null) {
-                    ps = conn.getConnection()
-                            .prepareStatement("insert into tbl_personas_avatar values (?, null)");
-                } else {
-                    FileInputStream fis = new FileInputStream(foto);
-                    ps.setBinaryStream(2, fis, (int) foto.length());
-                }
-                ps.setInt(1, cedula);
-            } else { // update
-                ps = conn.getConnection()
-                        .prepareStatement("update tbl_personas_avatar set foto=? where cedula=?");
-                if (foto == null) {
-                    ps = conn.getConnection()
-                            .prepareStatement("update tbl_personas_avatar set foto=null where cedula=?");
-                    ps.setInt(1, cedula);
-                } else {
-                    FileInputStream fis = new FileInputStream(foto);
-                    ps.setBinaryStream(1, fis, (int) foto.length());
-                    ps.setInt(2, cedula);
-                }
+            ps = conn.getConnection()
+                    .prepareStatement("select f_personas_avatar(?,?,?);");
+            ps.setString(1, dml);
+            ps.setInt(2, pa.getCedula());
+            if (pa.getFotoIN() != null) {
+                FileInputStream fis = new FileInputStream(pa.getFotoIN());
+                ps.setBinaryStream(2, fis, (int) pa.getFotoIN().length());
+            } else {
+                ps.setNull(2, java.sql.Types.BLOB);
             }
-            ps.executeUpdate();
+            control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
-        }
-        return control;
-    }
-
-    public boolean delete(int cedula) throws SQLException {
-        Boolean control = false;
-        try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("delete from tbl_personas_avatar where id=" + cedula);
-            control = true;
-        } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
-        } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            conn.close();
         }
         return control;
     }

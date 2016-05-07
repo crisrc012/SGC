@@ -37,6 +37,8 @@ public class Conexion {
     }
 
     public void close() throws SQLException {
-        this.Connection.close();
+        if (this.Connection != null) {
+            this.Connection.close();
+        }
     }
 }

@@ -7,9 +7,9 @@ package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Persona;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -19,17 +19,25 @@ import java.util.ArrayList;
 public class Persona_db {
 
     private Conexion conn;
-    private Statement st;
+    private PreparedStatement ps;
 
-    public ArrayList<Persona> select(String id, String descripcion) throws SQLException {
+    public ArrayList<Persona> select(Persona persona) throws SQLException {
         ArrayList<Persona> personalst = new ArrayList<>();
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_persona('select', "
-                    + id + ", "
-                    + descripcion + ");")) {
+            conn = new Conexion();
+            ps = conn.getConnection()
+                    .prepareStatement("select * from f_persona('select',?,?);");
+            if (persona.getId() != null) {
+                ps.setInt(1, persona.getId());
+            } else {
+                ps.setNull(1, java.sql.Types.INTEGER);
+            }
+            if (persona.getDescripcion() != null) {
+                ps.setString(2, persona.getDescripcion());
+            } else {
+                ps.setNull(2, java.sql.Types.VARCHAR);
+            }
+            try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Persona p = new Persona();
                     p.setId(rs.getInt("id"));
@@ -37,39 +45,30 @@ public class Persona_db {
                     personalst.add(p);
                 }
                 rs.close();
+                ps.close();
             }
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            conn.close();
         }
         return personalst;
     }
 
-    public boolean insert_update(String id, String descripcion, String dml) throws SQLException {
+    public boolean insert_update(Persona persona, String dml) throws SQLException {
         Boolean control = false;
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_persona('"
-                    + dml + "', "
-                    + id + ", '"
-                    + descripcion + "');");
-            control = true;
+            conn = new Conexion();
+            ps = conn.getConnection()
+                    .prepareStatement("SELECT f_persona(?,?,?);");
+            ps.setString(1, dml);
+            ps.setInt(2, persona.getId());
+            ps.setString(2, persona.getDescripcion());
+            control = ps.execute();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            conn.close();
         }
         return control;
     }
@@ -77,20 +76,15 @@ public class Persona_db {
     public boolean delete(int id) throws SQLException {
         Boolean control = false;
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_persona('delete', "
-                    + id + ", NULL);");
-            control = true;
+            conn = new Conexion();
+            ps = conn.getConnection()
+                    .prepareStatement("SELECT f_persona('delete',?,null);");
+            ps.setInt(1, id);
+            control = ps.execute();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            conn.close();
         }
         return control;
     }

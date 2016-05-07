@@ -19,13 +19,13 @@ import java.util.ArrayList;
 public class Becados_db {
 
     private Conexion conn;
+    private PreparedStatement ps;
 
     public ArrayList<Becados> select(Becados becados) throws SQLException {
         ArrayList<Becados> becadoslst = new ArrayList<>();
         try {
-            this.conn = new Conexion();
-            PreparedStatement ps
-                    = conn.getConnection()
+            conn = new Conexion();
+            ps = conn.getConnection()
                     .prepareStatement("SELECT * FROM f_becados('select',?,?,?,?,?");
             if (becados.getId() != null) {
                 ps.setInt(1, becados.getId());
@@ -68,9 +68,7 @@ public class Becados_db {
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            conn.close();
         }
         return becadoslst;
     }
@@ -78,9 +76,8 @@ public class Becados_db {
     public boolean insert_update(Becados becados, String dml) throws SQLException {
         Boolean control = false;
         try {
-            this.conn = new Conexion();
-            PreparedStatement ps
-                    = conn.getConnection()
+            conn = new Conexion();
+            ps = conn.getConnection()
                     .prepareStatement("SELECT f_becados(?,?,?,?,?,?);");
             ps.setString(1, dml);
             ps.setInt(2, becados.getId());
@@ -92,9 +89,7 @@ public class Becados_db {
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            conn.close();
         }
         return control;
     }
@@ -103,17 +98,14 @@ public class Becados_db {
         Boolean control = false;
         try {
             this.conn = new Conexion();
-            try (PreparedStatement ps = conn.getConnection()
-                    .prepareStatement("SELECT f_becados('delete',?, NULL, NULL, NULL, NULL);")) {
-                control = ps.execute();
-                ps.close();
-            }
+            ps = conn.getConnection()
+                    .prepareStatement("SELECT f_becados('delete',?, NULL, NULL, NULL, NULL);");
+            control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            conn.close();
         }
         return control;
     }

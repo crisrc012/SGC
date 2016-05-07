@@ -28,7 +28,7 @@ public class Personas_avatar_bl {
     }
 
     private boolean insert_update(Personas_avatar personas_avatar, String dml) throws FileNotFoundException, SQLException, IOException {
-        return padb.insert_update(personas_avatar.getCedula(), personas_avatar.getFotoIN(), dml);
+        return padb.insert_update(personas_avatar, dml);
     }
 
     public boolean insert(Personas_avatar personas_avatar) throws SQLException, IOException {
@@ -37,9 +37,5 @@ public class Personas_avatar_bl {
 
     public boolean update(Personas_avatar personas_avatar) throws SQLException, IOException {
         return insert_update(personas_avatar, "update");
-    }
-
-    public boolean delete(int cedula) throws SQLException {
-        return padb.delete(cedula);
     }
 }

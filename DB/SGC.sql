@@ -540,3 +540,29 @@ begin
 end;
 $body$
 language plpgsql;
+
+create or replace function f_personas_avatar(
+	in dml text,
+	in _cedula integer,
+	in _foto bytea)
+returns table(
+	foto bytea) as
+$body$
+begin
+	case dml
+		when 'select' then
+			return query
+			select t.foto
+			from tbl_personas_avatar t
+			where t.cedula = _cedula;
+		when 'insert' then
+			insert into tbl_personas_avatar
+			values (_cedula, _foto);
+		when 'update' then
+			update tbl_personas_avatar t
+			set foto = _foto
+			where t.cedula = _cedula;
+	end case;
+end;
+$body$
+language plpgsql;

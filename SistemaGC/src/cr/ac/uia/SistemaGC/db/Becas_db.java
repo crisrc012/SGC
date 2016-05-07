@@ -19,13 +19,13 @@ import java.util.ArrayList;
 public class Becas_db {
 
     private Conexion conn;
+    private PreparedStatement ps;
 
     public ArrayList<Becas> select(Becas becas) throws SQLException {
         ArrayList<Becas> becaslst = new ArrayList<>();
         try {
-            this.conn = new Conexion();
-            PreparedStatement ps
-                    = conn.getConnection()
+            conn = new Conexion();
+            ps = conn.getConnection()
                     .prepareStatement("select * from f_becas('select',?,?,?,?,?);");
             if (becas.getId() != null) {
                 ps.setInt(1, becas.getId());
@@ -68,9 +68,7 @@ public class Becas_db {
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            conn.close();
         }
         return becaslst;
     }
@@ -78,25 +76,21 @@ public class Becas_db {
     public boolean insert_update(Becas becas, String dml) throws SQLException {
         Boolean control = false;
         try {
-            this.conn = new Conexion();
-            try (PreparedStatement ps
-                    = conn.getConnection()
-                    .prepareStatement("select f_becas(?,?,?,?,?,?);")) {
-                ps.setString(1, dml);
-                ps.setInt(2, becas.getId());
-                ps.setString(3, becas.getNombre());
-                ps.setInt(4, becas.getPorcentaje());
-                ps.setBoolean(5, becas.getActivo());
-                ps.setString(6, becas.getObservaciones());
-                control = ps.execute();
-                ps.close();
-            }
+            conn = new Conexion();
+            ps = conn.getConnection()
+                    .prepareStatement("select f_becas(?,?,?,?,?,?);");
+            ps.setString(1, dml);
+            ps.setInt(2, becas.getId());
+            ps.setString(3, becas.getNombre());
+            ps.setInt(4, becas.getPorcentaje());
+            ps.setBoolean(5, becas.getActivo());
+            ps.setString(6, becas.getObservaciones());
+            control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            conn.close();
         }
         return control;
     }
@@ -104,19 +98,16 @@ public class Becas_db {
     public boolean delete(int id) throws SQLException {
         Boolean control = false;
         try {
-            this.conn = new Conexion();
-            try (PreparedStatement ps = conn.getConnection()
-                    .prepareStatement("SELECT f_becas('delete',?,NULL,NULL,NULL,NULL);")) {
-                ps.setInt(1, id);
-                control = ps.execute();
-                ps.close();
-            }
+            conn = new Conexion();
+            ps = conn.getConnection()
+                    .prepareStatement("SELECT f_becas('delete',?,NULL,NULL,NULL,NULL);");
+            ps.setInt(1, id);
+            control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            conn.close();
         }
         return control;
     }

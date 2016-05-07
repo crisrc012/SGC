@@ -7,27 +7,28 @@ package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Becados_VW;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
-    
+ *
  *
  * @author crisrc012
  */
 public class Becados_VW_db {
+
     private Conexion conn;
-    private Statement st;
-    
+    private PreparedStatement ps;
+
     public ArrayList<Becados_VW> select() throws SQLException {
         ArrayList<Becados_VW> becadoslst = new ArrayList<>();
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM vw_becados;")) {
+            conn = new Conexion();
+            ps = conn.getConnection()
+                    .prepareStatement("SELECT * FROM vw_becados;");
+            try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Becados_VW b = new Becados_VW();
                     b.setCedula(rs.getInt("cedula"));
@@ -40,16 +41,12 @@ public class Becados_VW_db {
                     becadoslst.add(b);
                 }
                 rs.close();
+                ps.close();
             }
         } catch (SQLException | IOException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            conn.close();
         }
         return becadoslst;
     }
