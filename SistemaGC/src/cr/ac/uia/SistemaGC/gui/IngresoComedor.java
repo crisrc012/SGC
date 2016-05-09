@@ -15,11 +15,10 @@ import cr.ac.uia.SistemaGC.entities.Becas;
 import cr.ac.uia.SistemaGC.entities.Persona;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -79,6 +78,11 @@ public class IngresoComedor extends SGCFormulario {
         });
 
         txtCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtCedPersona.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCedPersonaKeyPressed(evt);
+            }
+        });
 
         jlbNombre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jlbNombre.setText("Nombre de la Persona:");
@@ -173,7 +177,7 @@ public class IngresoComedor extends SGCFormulario {
         lblDescripcion.setText("");
     }
 
-    private void btnAplicarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarIngresoActionPerformed
+    private void aplicarIngreso() {
         if (txtCedPersona.getText().isEmpty()) {
             JOptionPane.showOptionDialog(this,
                     "Por favor digite una cédula válida",
@@ -194,11 +198,9 @@ public class IngresoComedor extends SGCFormulario {
                 if (rbtnDesayuno.isSelected()) {
                     comida = 1;
                     tipo = "desayuno";
-                } else {
-                    if (rbtnAlmuerzo.isSelected()) {
-                        comida = 2;
-                        tipo = "almuerzo";
-                    }
+                } else if (rbtnAlmuerzo.isSelected()) {
+                    comida = 2;
+                    tipo = "almuerzo";
                 }
                 Tiquetes_bl tbl = new Tiquetes_bl();
                 int cantidad = tbl.count(cedula, comida);
@@ -236,12 +238,15 @@ public class IngresoComedor extends SGCFormulario {
                     this.limpiar();
                 }
             }
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
-        } catch (IOException ex) {
-            Logger.getLogger(IngresoComedor.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void btnAplicarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarIngresoActionPerformed
+        aplicarIngreso();
     }//GEN-LAST:event_btnAplicarIngresoActionPerformed
+
     private Boolean ConfirmarBeca(int cedula) {
         try {
             Becados b = new Becados();
@@ -257,7 +262,7 @@ public class IngresoComedor extends SGCFormulario {
             ArrayList<Becados> ab = bbl.select(b);
             int beca = 0;
             if (ab.size() > 0) {
-                if(ab.get(0).getActivo()){
+                if (ab.get(0).getActivo()) {
                     beca = ab.get(0).getId_beca();
                 }
             }
@@ -291,6 +296,12 @@ public class IngresoComedor extends SGCFormulario {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
+
+    private void txtCedPersonaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedPersonaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            aplicarIngreso();
+        }
+    }//GEN-LAST:event_txtCedPersonaKeyPressed
 
     /**
      * @param args the command line arguments
