@@ -7,9 +7,9 @@ package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -18,22 +18,46 @@ import java.util.ArrayList;
  */
 public class Tiquetes_db {
 
-    private Conexion conn;
-    private Statement st;
+    private Conexion con;
+    private PreparedStatement ps;
 
-    public ArrayList<Tiquetes> select(String id, String id_persona, String id_precio, String fecha_compra, String fecha_uso, String activo) throws SQLException {
+    public ArrayList<Tiquetes> select(Tiquetes tiquete) throws SQLException {
         ArrayList<Tiquetes> tiqueteslst = new ArrayList<>();
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_tiquetes('select',"
-                    + id + ", "
-                    + id_persona + ", "
-                    + id_precio + ", "
-                    + fecha_compra + ", "
-                    + fecha_uso + ", "
-                    + activo + ");")) {
+            this.con = new Conexion();
+            ps = con.getConnection()
+                    .prepareStatement("SELECT * FROM f_tiquetes('select',?,?,?,?,?,?);");
+            if (tiquete.getId() != null) {
+                ps.setInt(1, tiquete.getId());
+            } else {
+                ps.setNull(1, java.sql.Types.INTEGER);
+            }
+            if (tiquete.getId_persona() != null) {
+                ps.setInt(2, tiquete.getId_persona());
+            } else {
+                ps.setNull(2, java.sql.Types.INTEGER);
+            }
+            if (tiquete.getId_precio() != null) {
+                ps.setInt(3, tiquete.getId_precio());
+            } else {
+                ps.setNull(3, java.sql.Types.INTEGER);
+            }
+            if (tiquete.getFecha_compra() != null) {
+                ps.setDate(4, tiquete.getFecha_compra());
+            } else {
+                ps.setNull(4, java.sql.Types.DATE);
+            }
+            if (tiquete.getFecha_uso() != null) {
+                ps.setDate(5, tiquete.getFecha_uso());
+            } else {
+                ps.setNull(5, java.sql.Types.DATE);
+            }
+            if (tiquete.getActivo() != null) {
+                ps.setBoolean(6, tiquete.getActivo());
+            } else {
+                ps.setNull(6, java.sql.Types.BOOLEAN);
+            }
+            try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Tiquetes p = new Tiquetes();
                     p.setId(rs.getInt("id"));
@@ -46,42 +70,36 @@ public class Tiquetes_db {
                 }
                 rs.close();
             }
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            con.close();
         }
         return tiqueteslst;
     }
 
-    public boolean insert_update(String id, String id_persona, String id_precio, String fecha_compra, String fecha_uso, String activo, String dml) throws SQLException {
+    public boolean insert_update(Tiquetes tiquete, String dml) throws SQLException {
         Boolean control = false;
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_tiquetes('"
-                    + dml + "', "
-                    + id + ", "
-                    + id_persona + ", "
-                    + id_precio + ", "
-                    + fecha_compra + ", "
-                    + fecha_uso + ", "
-                    + activo + ");");
-            control = true;
+            con = new Conexion();
+            ps = con.getConnection().prepareStatement("SELECT f_tiquetes(?,?,?,?,?,?,?);");
+            ps.setString(1, dml);
+            ps.setInt(2, tiquete.getId());
+            ps.setInt(3, tiquete.getId_precio());
+            ps.setDate(4, tiquete.getFecha_compra());
+            if (tiquete.getFecha_uso() != null) {
+                ps.setDate(5, tiquete.getFecha_uso());
+            } else {
+                ps.setNull(5, java.sql.Types.DATE);
+            }
+            ps.setBoolean(6, tiquete.getActivo());
+            control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            con.close();
         }
         return control;
     }
@@ -89,45 +107,37 @@ public class Tiquetes_db {
     public boolean delete(int id) throws SQLException {
         Boolean control = false;
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_tiquetes('delete',"
-                    + id + ", NULL, NULL, NULL, NULL, NULL);");
-            control = true;
+            con = new Conexion();
+            ps = con.getConnection()
+                    .prepareStatement("select f_tiquetes('delete',?,null,null,null,null,null);");
+            ps.setInt(1, id);
+            control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            con.close();
         }
         return control;
     }
 
     public int count(int id_persona, int id_comida) throws SQLException, IOException {
         int cantidad = 0;
-        this.conn = new Conexion();
-        this.st = conn.getConnection().createStatement();
-        try (ResultSet rs = this.st.executeQuery(
-                "select count(*) from tbl_tiquetes t inner join tbl_precio p on t.id_precio = p.id and t.activo = true and p.id_comida =  "
-                        + id_comida +"group by t.id_persona having t.id_persona = "
-                        + id_persona + ";")) {
+        con = new Conexion();
+        ps = con.getConnection()
+                .prepareStatement("select count(*) from tbl_tiquetes t inner join tbl_precio p on t.id_precio = p.id and t.activo = true and p.id_comida = ? group by t.id_persona having t.id_persona = ?;");
+        ps.setInt(1, id_comida);
+        ps.setInt(2, id_persona);
+        try (ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 cantidad = rs.getInt("count");
             }
             rs.close();
+            ps.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            con.close();
         }
         return cantidad;
     }
@@ -135,14 +145,11 @@ public class Tiquetes_db {
     public ArrayList<Tiquetes> activos(int id_persona, int id_comida) throws SQLException, IOException {
         ArrayList<Tiquetes> tiqueteslst = new ArrayList<>();
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            try (ResultSet rs = this.st.executeQuery(
-                    "select * from tbl_tiquetes t inner join tbl_precio p on t.id_persona = "
-                    + id_persona
-                    + "and t.id_precio = p.id and p.id_comida = "
-                    + id_comida
-                    + " and t.activo = true;")) {
+            con = new Conexion();
+            ps = con.getConnection().prepareStatement("select * from tbl_tiquetes t inner join tbl_precio p on t.id_persona = ? and t.id_precio = p.id and p.id_comida = ? and t.activo = true;");
+            ps.setInt(1, id_persona);
+            ps.setInt(2, id_comida);
+            try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Tiquetes p = new Tiquetes();
                     p.setId(rs.getInt("id"));
@@ -155,15 +162,11 @@ public class Tiquetes_db {
                 }
                 rs.close();
             }
+            ps.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            con.close();
         }
         return tiqueteslst;
     }

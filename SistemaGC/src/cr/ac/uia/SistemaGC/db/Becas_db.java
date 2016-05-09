@@ -18,14 +18,14 @@ import java.util.ArrayList;
  */
 public class Becas_db {
 
-    private Conexion conn;
+    private Conexion con;
     private PreparedStatement ps;
 
     public ArrayList<Becas> select(Becas becas) throws SQLException {
         ArrayList<Becas> becaslst = new ArrayList<>();
         try {
-            conn = new Conexion();
-            ps = conn.getConnection()
+            con = new Conexion();
+            ps = con.getConnection()
                     .prepareStatement("select * from f_becas('select',?,?,?,?,?);");
             if (becas.getId() != null) {
                 ps.setInt(1, becas.getId());
@@ -63,12 +63,12 @@ public class Becas_db {
                     becaslst.add(b);
                 }
                 rs.close();
-                ps.close();
             }
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            conn.close();
+            con.close();
         }
         return becaslst;
     }
@@ -76,8 +76,8 @@ public class Becas_db {
     public boolean insert_update(Becas becas, String dml) throws SQLException {
         Boolean control = false;
         try {
-            conn = new Conexion();
-            ps = conn.getConnection()
+            con = new Conexion();
+            ps = con.getConnection()
                     .prepareStatement("select f_becas(?,?,?,?,?,?);");
             ps.setString(1, dml);
             ps.setInt(2, becas.getId());
@@ -90,7 +90,7 @@ public class Becas_db {
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            conn.close();
+            con.close();
         }
         return control;
     }
@@ -98,8 +98,8 @@ public class Becas_db {
     public boolean delete(int id) throws SQLException {
         Boolean control = false;
         try {
-            conn = new Conexion();
-            ps = conn.getConnection()
+            con = new Conexion();
+            ps = con.getConnection()
                     .prepareStatement("SELECT f_becas('delete',?,NULL,NULL,NULL,NULL);");
             ps.setInt(1, id);
             control = ps.execute();
@@ -107,7 +107,7 @@ public class Becas_db {
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            conn.close();
+            con.close();
         }
         return control;
     }

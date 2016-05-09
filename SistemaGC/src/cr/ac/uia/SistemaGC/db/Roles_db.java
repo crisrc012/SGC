@@ -7,9 +7,9 @@ package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Roles;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -18,18 +18,26 @@ import java.util.ArrayList;
  */
 public class Roles_db {
 
-    private Conexion conn;
-    private Statement st;
+    private Conexion con;
+    private PreparedStatement ps;
 
-    public ArrayList<Roles> select(String id, String descripcion) throws SQLException {
+    public ArrayList<Roles> select(Roles rol) throws SQLException {
         ArrayList<Roles> roleslst = new ArrayList<>();
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_roles('select', "
-                    + id + ", "
-                    + descripcion + ");")) {
+            con = new Conexion();
+            ps = con.getConnection()
+                    .prepareStatement("SELECT * FROM f_roles('select',?,?);");
+            if (rol.getId() != null) {
+                ps.setInt(1, rol.getId());
+            } else {
+                ps.setNull(1, java.sql.Types.INTEGER);
+            }
+            if (rol.getDescripcion() != null) {
+                ps.setString(2, rol.getDescripcion());
+            } else {
+                ps.setNull(2, java.sql.Types.VARCHAR);
+            }
+            try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Roles r = new Roles();
                     r.setId(rs.getInt("id"));
@@ -38,59 +46,47 @@ public class Roles_db {
                 }
                 rs.close();
             }
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            con.close();
         }
         return roleslst;
     }
 
-    public boolean insert_update(String id, String descripcion, String dml) throws SQLException {
+    public boolean insert_update(Roles rol, String dml) throws SQLException {
         Boolean control = false;
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_roles('"
-                    + dml + "', "
-                    + id + ", "
-                    + descripcion + ");");
-            control = true;
+            con = new Conexion();
+            ps = con.getConnection()
+                    .prepareStatement("SELECT f_roles(?,?,?);");
+            ps.setString(1, dml);
+            ps.setInt(2, rol.getId());
+            ps.setString(3, rol.getDescripcion());
+            control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            con.close();
         }
         return control;
     }
-    
+
     public boolean delete(int id) throws SQLException {
         Boolean control = false;
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_roles('delete', "
-                    + id + ", NULL);");
-            control = true;
+            con = new Conexion();
+            ps = con.getConnection()
+                    .prepareStatement("SELECT f_roles('delete',?,null);");
+            ps.setInt(1, id);
+            control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            con.close();
         }
         return control;
     }

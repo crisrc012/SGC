@@ -18,14 +18,14 @@ import java.sql.SQLException;
  */
 public class Personas_avatar_db {
 
-    private Conexion conn;
+    private Conexion con;
     private PreparedStatement ps;
 
-    public byte[] select(int cedula) {
+    public byte[] select(int cedula) throws SQLException {
         byte[] foto = null;
         try {
-            conn = new Conexion();
-            ps = conn.getConnection()
+            con = new Conexion();
+            ps = con.getConnection()
                     .prepareStatement("select * f_personas_avatar('select',?,null);");
             ps.setInt(1, cedula);
             try (ResultSet rs = ps.executeQuery()) {
@@ -33,10 +33,12 @@ public class Personas_avatar_db {
                     foto = rs.getBytes("foto");
                 }
                 rs.close();
-                ps.close();
             }
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
+        } finally {
+            con.close();
         }
         return foto;
     }
@@ -44,14 +46,14 @@ public class Personas_avatar_db {
     public boolean insert_update(Personas_avatar pa, String dml) throws SQLException {
         Boolean control = false;
         try {
-            conn = new Conexion();
-            ps = conn.getConnection()
+            con = new Conexion();
+            ps = con.getConnection()
                     .prepareStatement("select f_personas_avatar(?,?,?);");
             ps.setString(1, dml);
             ps.setInt(2, pa.getCedula());
-            if (pa.getFotoIN() != null) {
-                FileInputStream fis = new FileInputStream(pa.getFotoIN());
-                ps.setBinaryStream(2, fis, (int) pa.getFotoIN().length());
+            if (pa.getFoto() != null) {
+                FileInputStream fis = new FileInputStream(pa.getFoto());
+                ps.setBinaryStream(2, fis, (int) pa.getFoto().length());
             } else {
                 ps.setNull(2, java.sql.Types.BLOB);
             }
@@ -60,7 +62,7 @@ public class Personas_avatar_db {
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            conn.close();
+            con.close();
         }
         return control;
     }

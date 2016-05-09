@@ -23,70 +23,12 @@ public class Tiquetes_bl {
         tdb = new Tiquetes_db();
     }
     
-    public ArrayList<Tiquetes> select(Tiquetes tiquetes) throws SQLException {
-        String id = "NULL";
-        String id_persona = "NULL";
-        String id_precio = "NULL";
-        String fecha_compra = "NULL";
-        String fecha_uso = "NULL";
-        String activo = "NULL";
-        if (tiquetes.getId() != null) {
-            id = String.valueOf(tiquetes.getId());
-        }
-        if (tiquetes.getId_persona() != null) {
-            id_persona = String.valueOf(tiquetes.getId_persona());
-        }
-        if (tiquetes.getId_precio() != null) {
-            id_precio = String.valueOf(tiquetes.getId_precio());
-        }
-        if (tiquetes.getFecha_compra() != null) {
-            fecha_compra = String.valueOf(tiquetes.getFecha_compra());
-        }
-        if (tiquetes.getFecha_uso() != null) {
-            fecha_uso = String.valueOf(tiquetes.getFecha_uso());
-        }
-        if (tiquetes.getActivo() != null) {
-            activo = String.valueOf(tiquetes.getActivo());
-        }
-        return tdb.select(id, id_persona, id_precio, fecha_compra, fecha_uso, activo);
+    public ArrayList<Tiquetes> select(Tiquetes tiquete) throws SQLException {
+        return tdb.select(tiquete);
     }
     
-    private boolean insert_update(Tiquetes tiquetes, String dml) throws SQLException {
-        String id = "NULL";
-        String id_persona;
-        String id_precio;
-        String fecha_compra;
-        String fecha_uso;
-        String activo;
-        if (dml.equals("update")) {
-            id = String.valueOf(tiquetes.getId());
-        }
-        if (tiquetes.getId_persona() == null) {
-            return false;
-        } else {
-            id_persona = String.valueOf(tiquetes.getId_persona());
-        }
-        if (tiquetes.getId_precio() == null) {
-            return false;
-        } else {
-            id_precio = String.valueOf(tiquetes.getId_precio());
-        }
-        if (tiquetes.getFecha_compra() == null) {
-            return false;
-        } else {
-            fecha_compra = "'" + String.valueOf(tiquetes.getFecha_compra()) + "'";
-        }
-        if (tiquetes.getFecha_uso() == null) {
-            fecha_uso = String.valueOf(tiquetes.getFecha_uso());
-        } else {
-            fecha_uso = "'" + String.valueOf(tiquetes.getFecha_uso() + "'");
-        }
-        if (tiquetes.getActivo() == null) {
-            return false;
-        } else {
-            activo = String.valueOf(tiquetes.getActivo());
-        }
-        return tdb.insert_update(id, id_persona, id_precio, fecha_compra, fecha_uso, activo, dml);
+    private boolean insert_update(Tiquetes tiquete, String dml) throws SQLException {
+        return tdb.insert_update(tiquete, dml);
     }
     
     public boolean insert(Tiquetes tiquetes) throws SQLException {

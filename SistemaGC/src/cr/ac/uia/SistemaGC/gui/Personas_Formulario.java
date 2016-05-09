@@ -350,7 +350,6 @@ public class Personas_Formulario extends SGCFormulario {
             Thumbnails.of(foto).size(256, 256).toFile(thumbnail
                     = new File(
                             System.getProperty("java.io.tmpdir") + "//thumbnail.jpg"));
-            System.out.println("Foto nula");
         }
         // Guardando en base de datos
         Personas_avatar_bl pabl = new Personas_avatar_bl();

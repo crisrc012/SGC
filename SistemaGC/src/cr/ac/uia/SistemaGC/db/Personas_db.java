@@ -7,9 +7,9 @@ package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Personas;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -18,24 +18,56 @@ import java.util.ArrayList;
  */
 public class Personas_db {
 
-    private Conexion conn;
-    private Statement st;
+    private Conexion con;
+    private PreparedStatement ps;
 
-    public ArrayList<Personas> select(String cedula, String nombre, String apellidos, String fecha_nacimiento, String tel_celular, String tel_habitacion, String encargado, String id_persona) throws SQLException {
+    public ArrayList<Personas> select(Personas persona) throws SQLException {
         ArrayList<Personas> personaslst = new ArrayList<>();
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            try (ResultSet rs = this.st.executeQuery(
-                    "SELECT * FROM f_personas('select', "
-                    + cedula + ", "
-                    + nombre + ", "
-                    + apellidos + ", "
-                    + fecha_nacimiento + ", "
-                    + tel_celular + ", "
-                    + tel_habitacion + ", "
-                    + encargado + ", "
-                    + id_persona + ");")) {
+            con = new Conexion();
+            ps = con.getConnection()
+                    .prepareStatement("SELECT * FROM f_personas('select',?,?,?,?,?,?,?,?);");
+            if (persona.getCedula() != null) {
+                ps.setInt(1, persona.getCedula());
+            } else {
+                ps.setNull(1, java.sql.Types.INTEGER);
+            }
+            if (persona.getNombre() != null) {
+                ps.setString(2, persona.getNombre());
+            } else {
+                ps.setNull(2, java.sql.Types.VARCHAR);
+            }
+            if (persona.getApellidos() != null) {
+                ps.setString(3, persona.getApellidos());
+            } else {
+                ps.setNull(3, java.sql.Types.VARCHAR);
+            }
+            if (persona.getFecha_nacimiento() != null) {
+                ps.setDate(4, (java.sql.Date) persona.getFecha_nacimiento());
+            } else {
+                ps.setNull(4, java.sql.Types.DATE);
+            }
+            if (persona.getTel_celular() != null) {
+                ps.setInt(5, persona.getTel_celular());
+            } else {
+                ps.setNull(5, java.sql.Types.INTEGER);
+            }
+            if (persona.getTel_habitacion() != null) {
+                ps.setInt(6, persona.getTel_habitacion());
+            } else {
+                ps.setNull(6, java.sql.Types.INTEGER);
+            }
+            if (persona.getEncargado() != null) {
+                ps.setString(7, persona.getEncargado());
+            } else {
+                ps.setNull(7, java.sql.Types.VARCHAR);
+            }
+            if (persona.getId_persona() != null) {
+                ps.setInt(8, persona.getId_persona());
+            } else {
+                ps.setNull(8, java.sql.Types.INTEGER);
+            }
+            try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Personas p = new Personas();
                     p.setCedula(rs.getInt("cedula"));
@@ -50,44 +82,44 @@ public class Personas_db {
                 }
                 rs.close();
             }
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            con.close();
         }
         return personaslst;
     }
 
-    public boolean insert_update(String cedula, String nombre, String apellidos, String fecha_nacimiento, String tel_celular, String tel_habitacion, String encargado, String id_persona, String dml) throws SQLException {
+    public boolean insert_update(Personas persona, String dml) throws SQLException {
         Boolean control = false;
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT * FROM f_personas('"
-                    + dml + "', "
-                    + cedula + ", "
-                    + nombre + ", "
-                    + apellidos + ", "
-                    + fecha_nacimiento + ", "
-                    + tel_celular + ", "
-                    + tel_habitacion + ", "
-                    + encargado + ", "
-                    + id_persona + ");");
-            control = true;
+            con = new Conexion();
+            ps = con.getConnection()
+                    .prepareStatement("select * from f_personas(?,?,?,?,?,?,?);");
+            ps.setString(1, dml);
+            ps.setInt(2, persona.getCedula());
+            ps.setString(3, persona.getNombre());
+            ps.setString(4, persona.getApellidos());
+            ps.setDate(5, (java.sql.Date) persona.getFecha_nacimiento());
+            if (persona.getTel_celular() != null) {
+                ps.setInt(6, persona.getTel_celular());
+            } else {
+                ps.setNull(6, java.sql.Types.INTEGER);
+            }
+            if (persona.getTel_habitacion() != null) {
+                ps.setInt(7, persona.getTel_habitacion());
+            } else {
+                ps.setNull(7, java.sql.Types.INTEGER);
+            }
+            ps.setString(8, persona.getEncargado());
+            ps.setInt(9, persona.getId_persona());
+            control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            con.close();
         }
         return control;
     }
@@ -95,20 +127,15 @@ public class Personas_db {
     public boolean delete(int cedula) throws SQLException {
         Boolean control = false;
         try {
-            this.conn = new Conexion();
-            this.st = conn.getConnection().createStatement();
-            this.st.executeQuery("SELECT f_personas('delete', "
-                    + cedula + ", NULL, NULL, NULL, NULL, NULL, NULL, NULL);");
-            control = true;
+            con = new Conexion();
+            ps = con.getConnection()
+                    .prepareStatement("select f_personas('delete',?,null,null,null,null,null,null,null);");
+            control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (this.st != null) {
-                this.st.close();
-            }
-            if (this.conn != null) {
-                this.conn.close();
-            }
+            con.close();
         }
         return control;
     }

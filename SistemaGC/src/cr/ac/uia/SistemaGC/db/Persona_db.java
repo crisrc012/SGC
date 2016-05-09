@@ -18,14 +18,14 @@ import java.util.ArrayList;
  */
 public class Persona_db {
 
-    private Conexion conn;
+    private Conexion con;
     private PreparedStatement ps;
 
     public ArrayList<Persona> select(Persona persona) throws SQLException {
         ArrayList<Persona> personalst = new ArrayList<>();
         try {
-            conn = new Conexion();
-            ps = conn.getConnection()
+            con = new Conexion();
+            ps = con.getConnection()
                     .prepareStatement("select * from f_persona('select',?,?);");
             if (persona.getId() != null) {
                 ps.setInt(1, persona.getId());
@@ -45,12 +45,12 @@ public class Persona_db {
                     personalst.add(p);
                 }
                 rs.close();
-                ps.close();
             }
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            conn.close();
+            con.close();
         }
         return personalst;
     }
@@ -58,17 +58,18 @@ public class Persona_db {
     public boolean insert_update(Persona persona, String dml) throws SQLException {
         Boolean control = false;
         try {
-            conn = new Conexion();
-            ps = conn.getConnection()
+            con = new Conexion();
+            ps = con.getConnection()
                     .prepareStatement("SELECT f_persona(?,?,?);");
             ps.setString(1, dml);
             ps.setInt(2, persona.getId());
             ps.setString(2, persona.getDescripcion());
             control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            conn.close();
+            con.close();
         }
         return control;
     }
@@ -76,15 +77,16 @@ public class Persona_db {
     public boolean delete(int id) throws SQLException {
         Boolean control = false;
         try {
-            conn = new Conexion();
-            ps = conn.getConnection()
+            con = new Conexion();
+            ps = con.getConnection()
                     .prepareStatement("SELECT f_persona('delete',?,null);");
             ps.setInt(1, id);
             control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            conn.close();
+            con.close();
         }
         return control;
     }

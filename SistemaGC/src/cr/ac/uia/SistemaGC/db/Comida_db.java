@@ -18,14 +18,14 @@ import java.util.ArrayList;
  */
 public class Comida_db {
 
-    private Conexion conn;
+    private Conexion con;
     private PreparedStatement ps;
 
     public ArrayList<Comida> select(Comida comida) throws SQLException {
         ArrayList<Comida> comidalst = new ArrayList<>();
         try {
-            this.conn = new Conexion();
-            ps = conn.getConnection()
+            con = new Conexion();
+            ps = con.getConnection()
                     .prepareStatement("SELECT * FROM f_comida('select',?,?);");
             if (comida.getId() != null) {
                 ps.setInt(1, comida.getId());
@@ -45,12 +45,12 @@ public class Comida_db {
                     comidalst.add(c);
                 }
                 rs.close();
-                ps.close();
             }
+            ps.close();
         } catch (IOException e) {
             System.out.println(e.toString());
         } finally {
-            conn.close();
+            con.close();
         }
         return comidalst;
     }
@@ -58,18 +58,17 @@ public class Comida_db {
     public boolean insert_update(Comida comida, String dml) throws SQLException {
         Boolean control = false;
         try {
-            ps = conn.getConnection()
+            ps = con.getConnection()
                     .prepareStatement("SELECT f_comida(?,?,?);");
             ps.setString(1, dml);
             ps.setInt(2, comida.getId());
             ps.setString(3, comida.getDescripcion());
             control = ps.execute();
+            ps.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         } finally {
-            if (conn != null) {
-                conn.close();
-            }
+            con.close();
         }
         return control;
     }
@@ -77,15 +76,16 @@ public class Comida_db {
     public boolean delete(int id) throws SQLException {
         Boolean control = false;
         try {
-            conn = new Conexion();
-            ps = conn.getConnection()
+            con = new Conexion();
+            ps = con.getConnection()
                     .prepareStatement("SELECT f_comida('delete',?,null);");
             ps.setInt(1, id);
             control = ps.execute();
+            ps.close();
         } catch (IOException | SQLException e) {
             System.out.println(e.toString());
         } finally {
-            conn.close();
+            con.close();
         }
         return control;
     }

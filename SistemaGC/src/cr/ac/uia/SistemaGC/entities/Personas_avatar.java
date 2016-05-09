@@ -14,23 +14,16 @@ import java.io.File;
 public class Personas_avatar {
 
     private Integer cedula;
-    private File fotoIN;
-    private byte[] fotoOUT;
+    private File foto;
 
     public Personas_avatar() {
         this.cedula = null;
-        this.fotoIN = null;
-        this.fotoOUT = null;
+        this.foto = null;
     }
 
     public Personas_avatar(Integer cedula, File foto) {
         this.cedula = cedula;
-        this.fotoIN = foto;
-    }
-    
-    public Personas_avatar(Integer cedula, byte[] foto) {
-        this.cedula = cedula;
-        this.fotoOUT = foto;
+        this.foto = foto;
     }
 
     public Integer getCedula() {
@@ -41,20 +34,11 @@ public class Personas_avatar {
         this.cedula = cedula;
     }
 
-    public File getFotoIN() {
-        return fotoIN;
+    public File getFoto() {
+        return foto;
     }
 
-    public void setFotoIN(File fotoIN) {
-        this.fotoIN = fotoIN;
+    public void setFoto(File foto) {
+        this.foto = foto;
     }
-
-    public byte[] getFotoOUT() {
-        return fotoOUT;
-    }
-
-    public void setFotoOUT(byte[] fotoOUT) {
-        this.fotoOUT = fotoOUT;
-    }
-    
 }
