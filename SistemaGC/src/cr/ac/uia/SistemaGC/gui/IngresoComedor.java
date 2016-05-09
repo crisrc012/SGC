@@ -189,6 +189,17 @@ public class IngresoComedor extends SGCFormulario {
                     "Entendido");
             return;
         }
+        if (!rbtnAlmuerzo.isSelected() && !rbtnDesayuno.isSelected()) {
+            JOptionPane.showOptionDialog(this,
+                    "Por favor elija una comida",
+                    "Error",
+                    JOptionPane.OK_OPTION,
+                    JOptionPane.ERROR_MESSAGE,
+                    null,
+                    new Object[]{"Entendido"},
+                    "Entendido");
+            return;
+        }
         try {
             int cedula = Integer.parseInt(txtCedPersona.getText());
             Boolean becado = ConfirmarBeca(cedula);
