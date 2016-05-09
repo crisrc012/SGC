@@ -9,9 +9,9 @@ package cr.ac.uia.SistemaGC.gui;
  *
  * @author crobles
  */
-public class SGCFormulario extends javax.swing.JFrame {
+public class SGCForm extends javax.swing.JFrame {
 
-    public final void SGCconfig() {
+    public final void SGCconf() {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
         setResizable(false);

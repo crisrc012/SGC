@@ -28,7 +28,7 @@ import javax.swing.JTextField;
  *
  * @author Pao
  */
-public class VentaTiquetes extends SGCFormulario {
+public class VentaTiquetes extends SGCForm {
 
     private int id_persona;
     private Integer precioD;
@@ -39,7 +39,7 @@ public class VentaTiquetes extends SGCFormulario {
      */
     public VentaTiquetes() {
         initComponents();
-        SGCconfig();
+        SGCconf();
     }
 
     /**

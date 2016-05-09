@@ -22,7 +22,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Pao
  */
-public class Reportes extends SGCFormulario {
+public class Reportes extends SGCForm {
 
     private String titulo;
     private JasperReport jasperReport;
@@ -38,7 +38,7 @@ public class Reportes extends SGCFormulario {
      */
     public Reportes() {
         initComponents();
-        SGCconfig();
+        SGCconf();
         reportSource = "src/cr/ac/uia/SistemaGC/reports/Reporte.jrxml";
     }
 

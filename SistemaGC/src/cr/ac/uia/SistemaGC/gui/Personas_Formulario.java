@@ -24,7 +24,7 @@ import net.coobird.thumbnailator.Thumbnails;
  *
  * @author Pao
  */
-public class Personas_Formulario extends SGCFormulario {
+public class Personas_Formulario extends SGCForm {
 
     private final boolean isUpdate;
     private final Personas persona;
@@ -35,7 +35,7 @@ public class Personas_Formulario extends SGCFormulario {
      */
     public Personas_Formulario() {
         initComponents();
-        SGCconfig();
+        SGCconf();
         RBEstudiante.setSelected(true);
         isUpdate = false;
         this.persona = new Personas();

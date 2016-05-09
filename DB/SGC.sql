@@ -115,7 +115,7 @@ create table tbl_institucion(
 );
 
 insert into tbl_institucion values(0,null,null);
-	
+
 -- Vistas
 create view vw_becados as
 	select tps.cedula, tps.nombre, tps.apellidos, tp.descripcion, tb.nombre as beca, tb.porcentaje, tbs.activo

@@ -19,14 +19,14 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Pao
  */
-public class Becas_Principal extends SGCFormulario {
+public class Becas_Principal extends SGCForm {
 
     /**
      * Creates new form TipoBeca
      */
     public Becas_Principal() {
         initComponents();
-        SGCconfig();
+        SGCconf();
         refreshJTable();
     }
 

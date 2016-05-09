@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class Usuarios_Formulario extends SGCFormulario {
+public class Usuarios_Formulario extends SGCForm {
 
     // Propiedad que determina si la ventana se ejecuta para insertar o actualizar
     private final boolean isUpdate;
@@ -27,7 +27,7 @@ public class Usuarios_Formulario extends SGCFormulario {
      */
     public Usuarios_Formulario() {
         initComponents();
-        SGCconfig();
+        SGCconf();
         isUpdate = false;
         this.usuarios = new Usuarios();
         chckCambioContrasena.setVisible(false);

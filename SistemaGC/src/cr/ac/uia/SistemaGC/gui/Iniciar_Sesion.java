@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class Iniciar_Sesion extends SGCFormulario {
+public class Iniciar_Sesion extends SGCForm {
 
     private static Principal PUI;
     private final Usuarios usuario;
@@ -29,7 +29,7 @@ public class Iniciar_Sesion extends SGCFormulario {
      */
     public Iniciar_Sesion() {
         initComponents();
-        SGCconfig();
+        SGCconf();
         usuario = new Usuarios();
         ubl = new Usuarios_bl();
     }
@@ -50,8 +50,8 @@ public class Iniciar_Sesion extends SGCFormulario {
 
         lblUserName = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
-        btnLogin = new javax.swing.JButton();
-        txtUserName = new javax.swing.JTextField();
+        btnLogin = new cr.ac.uia.SistemaGC.gui.SGCButton();
+        txtUserName = new SGCTextField();
         txtPassword = new javax.swing.JPasswordField();
         lblIndicacion = new javax.swing.JLabel();
         lblTituloSGC = new javax.swing.JLabel();
@@ -70,7 +70,6 @@ public class Iniciar_Sesion extends SGCFormulario {
         lblPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblPassword.setText("Contraseña:");
 
-        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnLogin.setText("Iniciar Sesión");
         btnLogin.setEnabled(false);
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +78,6 @@ public class Iniciar_Sesion extends SGCFormulario {
             }
         });
 
-        txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUserName.setName(""); // NOI18N
         txtUserName.setEnabled(false);
         txtUserName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -159,7 +157,7 @@ public class Iniciar_Sesion extends SGCFormulario {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(16, Short.MAX_VALUE))
+                        .addContainerGap(25, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblConexion)

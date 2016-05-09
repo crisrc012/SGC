@@ -25,14 +25,14 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class IngresoComedor extends SGCFormulario {
+public class IngresoComedor extends SGCForm {
 
     /**
      * Creates new form GestionIngreso
      */
     public IngresoComedor() {
         initComponents();
-        SGCconfig();
+        SGCconf();
     }
 
     /**
@@ -45,17 +45,14 @@ public class IngresoComedor extends SGCFormulario {
     private void initComponents() {
 
         btngComida = new javax.swing.ButtonGroup();
-        lblTituloGI = new javax.swing.JLabel();
-        lblCedPersona = new javax.swing.JLabel();
-        btnAplicarIngreso = new javax.swing.JButton();
-        txtCedPersona = new javax.swing.JTextField();
-        jlbNombre = new javax.swing.JLabel();
-        lblName = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        lblDescripcion = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnAplicarIngreso = new SGCButton();
+        rbtnAlmuerzo = new javax.swing.JRadioButton();
         lblComida = new javax.swing.JLabel();
         rbtnDesayuno = new javax.swing.JRadioButton();
-        rbtnAlmuerzo = new javax.swing.JRadioButton();
+        lblCedPersona = new javax.swing.JLabel();
+        txtCedPersona = new javax.swing.JTextField();
+        lblTituloGI = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -63,13 +60,6 @@ public class IngresoComedor extends SGCFormulario {
             }
         });
 
-        lblTituloGI.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblTituloGI.setText("Ingreso al Comedor");
-
-        lblCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblCedPersona.setText("Cédula de la Persona:");
-
-        btnAplicarIngreso.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         btnAplicarIngreso.setText("Aplicar Ingreso");
         btnAplicarIngreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,22 +67,9 @@ public class IngresoComedor extends SGCFormulario {
             }
         });
 
-        txtCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtCedPersona.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCedPersonaKeyPressed(evt);
-            }
-        });
-
-        jlbNombre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jlbNombre.setText("Nombre de la Persona:");
-
-        lblName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText("Descripción:");
-
-        lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btngComida.add(rbtnAlmuerzo);
+        rbtnAlmuerzo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        rbtnAlmuerzo.setText("Almuerzo");
 
         lblComida.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblComida.setText("Hora de comida:");
@@ -101,71 +78,74 @@ public class IngresoComedor extends SGCFormulario {
         rbtnDesayuno.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         rbtnDesayuno.setText("Desayuno");
 
-        btngComida.add(rbtnAlmuerzo);
-        rbtnAlmuerzo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        rbtnAlmuerzo.setText("Almuerzo");
+        lblCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblCedPersona.setText("Cédula de la Persona:");
+
+        txtCedPersona.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCedPersonaKeyPressed(evt);
+            }
+        });
+
+        lblTituloGI.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblTituloGI.setText("Ingreso al Comedor");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTituloGI)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnAplicarIngreso)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblCedPersona)
+                                .addComponent(lblComida))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rbtnDesayuno)
+                                .addComponent(rbtnAlmuerzo)
+                                .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTituloGI)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblComida)
+                    .addComponent(rbtnDesayuno))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbtnAlmuerzo)
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCedPersona)
+                    .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAplicarIngreso)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(lblTituloGI))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(149, 149, 149)
-                                .addComponent(btnAplicarIngreso))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jlbNombre)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblName))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(133, 133, 133)
-                                .addComponent(lblDescripcion))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCedPersona)
-                                    .addComponent(lblComida))
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rbtnDesayuno)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rbtnAlmuerzo))
-                                    .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(lblTituloGI)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblComida)
-                    .addComponent(rbtnDesayuno)
-                    .addComponent(rbtnAlmuerzo))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCedPersona)
-                    .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlbNombre)
-                    .addComponent(lblName))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lblDescripcion))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(btnAplicarIngreso)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,8 +153,6 @@ public class IngresoComedor extends SGCFormulario {
 
     private void limpiar() {
         txtCedPersona.setText("");
-        lblName.setText("");
-        lblDescripcion.setText("");
     }
 
     private void aplicarIngreso() {
@@ -203,7 +181,7 @@ public class IngresoComedor extends SGCFormulario {
         try {
             int cedula = Integer.parseInt(txtCedPersona.getText());
             Boolean becado = ConfirmarBeca(cedula);
-            if (becado == true) {
+            if (becado) {
                 int comida = 0;
                 String tipo = "";
                 if (rbtnDesayuno.isSelected()) {
@@ -217,7 +195,7 @@ public class IngresoComedor extends SGCFormulario {
                 int cantidad = tbl.count(cedula, comida);
                 if (cantidad > 1) {
                     if (JOptionPane.showOptionDialog(this,
-                            "Usted tiene disponibles: " + cantidad + " tiquetes de " + tipo + ".\n"
+                            "Usted tiene disponibles: " + cantidad + " tiquetes de " + tipo + ".\n\n"
                             + "¿Desea utilizar uno?",
                             "Confirmar",
                             JOptionPane.YES_NO_OPTION,
@@ -232,21 +210,21 @@ public class IngresoComedor extends SGCFormulario {
                             JOptionPane.showMessageDialog(this,
                                     "Se ha usado correctamente el tiquete",
                                     "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                            this.limpiar();
+                            limpiar();
                         } else {
                             JOptionPane.showMessageDialog(this,
                                     "Ha ocurrido un error por favor intentelo de nuevo",
                                     "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                            this.dispose();
+                            dispose();
                         }
                     } else {
-                        this.limpiar();
+                        limpiar();
                     }
                 } else {
                     JOptionPane.showMessageDialog(this,
                             "Por favor compre un tiquete",
                             "Error", JOptionPane.ERROR_MESSAGE);
-                    this.limpiar();
+                    limpiar();
                 }
             }
         } catch (IOException | SQLException e) {
@@ -285,17 +263,17 @@ public class IngresoComedor extends SGCFormulario {
                     JOptionPane.showMessageDialog(this,
                             "Esta persona posee una beca del 100%. Puede ingresar al comedor.",
                             "Información de Beca", JOptionPane.INFORMATION_MESSAGE);
-                    this.limpiar();
+                    limpiar();
                     return false;
                 }
             }
             if (ap.size() > 0) {
-                lblName.setText(ap.get(0).getNombre() + " " + ap.get(0).getApellidos());
+                //lblName.setText(ap.get(0).getNombre() + " " + ap.get(0).getApellidos());
                 ps.setId(ap.get(0).getId_persona());
             }
             ArrayList<Persona> aps = psbl.select(ps);
             if (aps.size() > 0) {
-                lblDescripcion.setText(aps.get(0).getDescripcion());
+                //lblDescripcion.setText(aps.get(0).getDescripcion());
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -343,12 +321,9 @@ public class IngresoComedor extends SGCFormulario {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicarIngreso;
     private javax.swing.ButtonGroup btngComida;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jlbNombre;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCedPersona;
     private javax.swing.JLabel lblComida;
-    private javax.swing.JLabel lblDescripcion;
-    private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblTituloGI;
     private javax.swing.JRadioButton rbtnAlmuerzo;
     private javax.swing.JRadioButton rbtnDesayuno;

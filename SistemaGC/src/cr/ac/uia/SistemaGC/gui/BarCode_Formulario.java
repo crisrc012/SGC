@@ -17,20 +17,23 @@ import net.sourceforge.barbecue.BarcodeFactory;
  *
  * @author Pao
  */
-public class BarCode_Formulario extends SGCFormulario {
+public class BarCode_Formulario extends SGCForm {
+
     private final int cedula;
+    private Barcode b = null;
 
     /**
      * Creates new form BarCode
      */
     public BarCode_Formulario() {
         initComponents();
-        SGCconfig();
+        SGCconf();
         this.cedula = 0;
     }
 
     public BarCode_Formulario(int cedula) {
         initComponents();
+        SGCconf();
         this.cedula = cedula;
     }
 
@@ -43,25 +46,22 @@ public class BarCode_Formulario extends SGCFormulario {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCodigo = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        txtCodigo = new SGCTextField();
         lblTituloBC = new javax.swing.JLabel();
-        btnGenerarCodigo = new javax.swing.JButton();
+        btnGenerarCodigo = new SGCButton();
         pnlBar = new javax.swing.JPanel();
-        btnImprimirCodigo = new javax.swing.JButton();
+        btnImprimirCodigo = new SGCButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
             }
         });
 
-        txtCodigo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         lblTituloBC.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloBC.setText("Código de Barras");
 
-        btnGenerarCodigo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnGenerarCodigo.setText("Generar Código");
         btnGenerarCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +80,6 @@ public class BarCode_Formulario extends SGCFormulario {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        btnImprimirCodigo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnImprimirCodigo.setText("Imprimir Código");
         btnImprimirCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,54 +87,69 @@ public class BarCode_Formulario extends SGCFormulario {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblTituloBC))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(pnlBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtCodigo)
+                    .addComponent(pnlBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblTituloBC, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnGenerarCodigo)
                             .addComponent(btnImprimirCodigo))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblTituloBC)
                 .addGap(18, 18, 18)
                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGenerarCodigo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnImprimirCodigo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private Barcode b = null;
+
     private void btnGenerarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarCodigoActionPerformed
         if (txtCodigo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No se puede generar un código vacío", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se puede generar un código vacío", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         b = null;
         try {
             b = BarcodeFactory.createCode128B(txtCodigo.getText());
         } catch (BarcodeException e) {
-            JOptionPane.showMessageDialog(null, "No ha sido posible hacer el código: " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No ha sido posible hacer el código: " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         pnlBar.removeAll();
         pnlBar.add(b);
@@ -145,7 +159,7 @@ public class BarCode_Formulario extends SGCFormulario {
     private void btnImprimirCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirCodigoActionPerformed
         try {
             if (b == null) {
-                JOptionPane.showMessageDialog(null, "Debe generar un código primero", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Debe generar un código primero", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             PrinterJob job = PrinterJob.getPrinterJob();
@@ -154,12 +168,12 @@ public class BarCode_Formulario extends SGCFormulario {
                 job.print();
             }
         } catch (HeadlessException | PrinterException e) {
-            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnImprimirCodigoActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        if(this.cedula!=0){
+        if (this.cedula != 0) {
             txtCodigo.setText(String.valueOf(cedula));
         }
     }//GEN-LAST:event_formComponentShown
@@ -183,7 +197,7 @@ public class BarCode_Formulario extends SGCFormulario {
             java.util.logging.Logger.getLogger(BarCode_Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new BarCode_Formulario().setVisible(true);
@@ -193,6 +207,7 @@ public class BarCode_Formulario extends SGCFormulario {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerarCodigo;
     private javax.swing.JButton btnImprimirCodigo;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTituloBC;
     private javax.swing.JPanel pnlBar;
     private javax.swing.JTextField txtCodigo;

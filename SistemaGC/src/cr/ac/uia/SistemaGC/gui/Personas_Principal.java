@@ -19,14 +19,14 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Pao
  */
-public class Personas_Principal extends SGCFormulario {
+public class Personas_Principal extends SGCForm {
 
     /**
      * Creates new form Personas
      */
     public Personas_Principal() {
         initComponents();
-        SGCconfig();
+        SGCconf();
         refreshTable();
     }
 

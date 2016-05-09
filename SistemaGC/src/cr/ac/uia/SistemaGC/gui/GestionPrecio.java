@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class GestionPrecio extends SGCFormulario {
+public class GestionPrecio extends SGCForm {
 
     private Precio_bl bl;
 
@@ -24,7 +24,7 @@ public class GestionPrecio extends SGCFormulario {
      */
     public GestionPrecio() {
         initComponents();
-        SGCconfig();
+        SGCconf();
     }
 
     /**
@@ -44,10 +44,10 @@ public class GestionPrecio extends SGCFormulario {
         lblAlmEstudiante = new javax.swing.JLabel();
         lblAlmFuncionario = new javax.swing.JLabel();
         btnGuardarParametros = new javax.swing.JButton();
-        txtDesEstudiante = new javax.swing.JTextField();
-        txtDesProfesor = new javax.swing.JTextField();
-        txtAlmEstudiante = new javax.swing.JTextField();
-        txtAlmProfesor = new javax.swing.JTextField();
+        txtDesEstudiante = new SGCTextField();
+        txtDesProfesor = new SGCTextField();
+        txtAlmEstudiante = new SGCTextField();
+        txtAlmProfesor = new SGCTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -93,16 +93,12 @@ public class GestionPrecio extends SGCFormulario {
             }
         });
 
-        txtDesEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDesEstudiante.setEnabled(false);
 
-        txtDesProfesor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDesProfesor.setEnabled(false);
 
-        txtAlmEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtAlmEstudiante.setEnabled(false);
 
-        txtAlmProfesor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtAlmProfesor.setEnabled(false);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

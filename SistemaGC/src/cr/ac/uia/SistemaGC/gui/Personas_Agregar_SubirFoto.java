@@ -10,14 +10,14 @@ package cr.ac.uia.SistemaGC.gui;
  *
  * @author Pao
  */
-public class Personas_Agregar_SubirFoto extends SGCFormulario {
+public class Personas_Agregar_SubirFoto extends SGCForm {
 
     /**
      * Creates new form SubirFoto
      */
     public Personas_Agregar_SubirFoto() {
         initComponents();
-        SGCconfig();
+        SGCconf();
     }
 
     /**

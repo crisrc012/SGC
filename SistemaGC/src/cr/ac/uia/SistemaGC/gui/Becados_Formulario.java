@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  *
  * @author Pao
  */
-public class Becados_Formulario extends SGCFormulario {
+public class Becados_Formulario extends SGCForm {
 
     private int id_beca;
     private final boolean isUpdate;
@@ -31,7 +31,7 @@ public class Becados_Formulario extends SGCFormulario {
      */
     public Becados_Formulario() {
         initComponents();
-        SGCconfig();
+        SGCconf();
         isUpdate = false;
         this.becado = new Becados();
     }
@@ -52,16 +52,15 @@ public class Becados_Formulario extends SGCFormulario {
     private void initComponents() {
 
         lblTituloAB = new javax.swing.JLabel();
-        lblCamposReq = new javax.swing.JLabel();
         lblCedEstudiante = new javax.swing.JLabel();
         lblNombreEstudiante = new javax.swing.JLabel();
         lblNombreBeca = new javax.swing.JLabel();
         lblPorcentaje = new javax.swing.JLabel();
         lblObsBeca = new javax.swing.JLabel();
         btnGuardarAsignacion = new javax.swing.JButton();
-        txtCedEstudiante = new javax.swing.JTextField();
-        txtNombreEstudiante = new javax.swing.JTextField();
-        txtPorcentaje = new javax.swing.JTextField();
+        txtCedEstudiante = new SGCTextField();
+        txtNombreEstudiante = new SGCTextField();
+        txtPorcentaje = new SGCTextField();
         btnConsultarCed = new javax.swing.JButton();
         cboBecas = new javax.swing.JComboBox();
         ScrollPane = new javax.swing.JScrollPane();
@@ -81,9 +80,6 @@ public class Becados_Formulario extends SGCFormulario {
 
         lblTituloAB.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloAB.setText("Administración de Becas");
-
-        lblCamposReq.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblCamposReq.setText("* Campos Requeridos");
 
         lblCedEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCedEstudiante.setText("Cédula de Estudiante:");
@@ -108,12 +104,8 @@ public class Becados_Formulario extends SGCFormulario {
             }
         });
 
-        txtCedEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtNombreEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombreEstudiante.setEnabled(false);
 
-        txtPorcentaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtPorcentaje.setEnabled(false);
 
         btnConsultarCed.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -163,9 +155,8 @@ public class Becados_Formulario extends SGCFormulario {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblTituloAB)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCamposReq)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnGuardarAsignacion)))))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(btnConsultarCed)
@@ -195,16 +186,12 @@ public class Becados_Formulario extends SGCFormulario {
                     .addComponent(txtPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblObsBeca)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblCamposReq))
+                    .addComponent(lblObsBeca)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnGuardarAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 5, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btnGuardarAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -366,7 +353,6 @@ public class Becados_Formulario extends SGCFormulario {
     private javax.swing.JButton btnConsultarCed;
     private javax.swing.JButton btnGuardarAsignacion;
     private javax.swing.JComboBox cboBecas;
-    private javax.swing.JLabel lblCamposReq;
     private javax.swing.JLabel lblCedEstudiante;
     private javax.swing.JLabel lblNombreBeca;
     private javax.swing.JLabel lblNombreEstudiante;

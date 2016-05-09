@@ -20,7 +20,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Pao
  */
-public class Usuarios_Principal extends SGCFormulario {
+public class Usuarios_Principal extends SGCForm {
 
     /**
      * Creates new form Usuarios
@@ -28,7 +28,7 @@ public class Usuarios_Principal extends SGCFormulario {
      */
     public Usuarios_Principal() throws IOException {
         initComponents();
-        SGCconfig();
+        SGCconf();
         refreshJTable();
     }
 

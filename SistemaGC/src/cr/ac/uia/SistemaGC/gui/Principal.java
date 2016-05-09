@@ -12,14 +12,14 @@ import java.io.IOException;
  *
  * @author Pao
  */
-public class Principal extends SGCFormulario {
+public class Principal extends SGCForm {
 
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
-        SGCconfig();
+        SGCconf();
     }
     
 

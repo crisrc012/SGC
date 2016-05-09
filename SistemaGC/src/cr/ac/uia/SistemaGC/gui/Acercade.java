@@ -9,14 +9,14 @@ package cr.ac.uia.SistemaGC.gui;
  *
  * @author crobles
  */
-public class Acercade extends SGCFormulario {
+public class Acercade extends SGCForm {
 
     /**
      * Creates new form Acercade
      */
     public Acercade() {
         initComponents();
-        SGCconfig();
+        SGCconf();
     }
 
     /**
