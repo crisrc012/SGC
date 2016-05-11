@@ -65,7 +65,7 @@ public class Reportes extends SGCForm {
         RBVentas = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnGenerarReporte = new javax.swing.JButton();
+        btnGenerarReporte = new SGCButton();
         jDateInicio = new com.toedter.calendar.JDateChooser();
         jDateFin = new com.toedter.calendar.JDateChooser();
 
@@ -142,7 +142,6 @@ public class Reportes extends SGCForm {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Hasta:");
 
-        btnGenerarReporte.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGenerarReporte.setText("Generar Reporte");
         btnGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +219,7 @@ public class Reportes extends SGCForm {
                         .addComponent(RBFuncionarios)))
                 .addGap(41, 41, 41)
                 .addComponent(RBVentas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(lblSelectDate)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

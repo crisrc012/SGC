@@ -29,7 +29,7 @@
               <Component id="lblUsuarios" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTituloUsuarios" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="87" max="32767" attributes="0"/>
+              <EmptySpace pref="147" max="32767" attributes="0"/>
               <Component id="btnAgregarUsuario" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
@@ -50,7 +50,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="btnAgregarUsuario" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="btnAgregarUsuario" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
@@ -67,10 +67,10 @@
               <Component id="jScrollPane1" min="-2" pref="283" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnModificarUsuario" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="btnDesHabilitarUsuario" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="btnModificarUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDesHabilitarUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="55" max="32767" attributes="0"/>
+              <EmptySpace pref="51" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -151,36 +151,36 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnAgregarUsuario">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Agregar Usuario"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarUsuarioActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SGCButton()"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnModificarUsuario">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Modificar Usuario"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarUsuarioActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SGCButton()"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnDesHabilitarUsuario">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Des/Habilitar Usuario"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDesHabilitarUsuarioActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SGCButton()"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblUsuarios">
       <Properties>

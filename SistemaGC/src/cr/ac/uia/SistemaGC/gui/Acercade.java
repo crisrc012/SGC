@@ -30,7 +30,7 @@ public class Acercade extends SGCForm {
 
         jPanel1 = new javax.swing.JPanel();
         logoUIA = new javax.swing.JLabel();
-        btnCerrar = new javax.swing.JButton();
+        btnCerrar = new SGCButton();
 
         setName("Acercade"); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -41,7 +41,6 @@ public class Acercade extends SGCForm {
 
         logoUIA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/LogoUIA.png"))); // NOI18N
 
-        btnCerrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

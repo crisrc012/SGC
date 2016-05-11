@@ -63,18 +63,18 @@ public class VentaTiquetes extends SGCForm {
         lblCedPersona = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         cboTiposComida = new javax.swing.JComboBox();
-        txtCedula = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        btnCosultarCed = new javax.swing.JButton();
-        btnComprar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        txtCedula = new SGCTextField();
+        txtNombre = new SGCTextField();
+        btnCosultarCed = new SGCButton();
+        btnComprar = new SGCButton();
+        btnCancelar = new SGCButton();
         lblTickets = new javax.swing.JLabel();
         lblBreakfast = new javax.swing.JLabel();
         lblLunch = new javax.swing.JLabel();
         lblBuy = new javax.swing.JLabel();
         lblCancel = new javax.swing.JLabel();
         lblDescripcion = new javax.swing.JLabel();
-        txtDescripcion = new javax.swing.JTextField();
+        txtDescripcion = new SGCTextField();
         txtCantidad = new javax.swing.JSpinner();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -119,17 +119,14 @@ public class VentaTiquetes extends SGCForm {
         cboTiposComida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cboTiposComida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Desayuno", "Almuerzo" }));
 
-        txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyReleased(evt);
             }
         });
 
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombre.setEnabled(false);
 
-        btnCosultarCed.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnCosultarCed.setText("Consultar");
         btnCosultarCed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +134,6 @@ public class VentaTiquetes extends SGCForm {
             }
         });
 
-        btnComprar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnComprar.setText("VENDER TIQUETE");
         btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,7 +141,6 @@ public class VentaTiquetes extends SGCForm {
             }
         });
 
-        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCancelar.setText("CANCELAR VENTA");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,8 +160,6 @@ public class VentaTiquetes extends SGCForm {
 
         lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblDescripcion.setText("Descripción:");
-
-        txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -207,8 +200,8 @@ public class VentaTiquetes extends SGCForm {
                             .addComponent(lblCancel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnComprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnCancelar)
+                            .addComponent(btnComprar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTipoComida)
@@ -283,11 +276,11 @@ public class VentaTiquetes extends SGCForm {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblBuy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnComprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnComprar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

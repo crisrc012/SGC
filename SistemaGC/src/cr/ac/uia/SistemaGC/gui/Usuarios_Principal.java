@@ -44,9 +44,9 @@ public class Usuarios_Principal extends SGCForm {
         lblTituloUsuarios = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
-        btnAgregarUsuario = new javax.swing.JButton();
-        btnModificarUsuario = new javax.swing.JButton();
-        btnDesHabilitarUsuario = new javax.swing.JButton();
+        btnAgregarUsuario = new SGCButton();
+        btnModificarUsuario = new SGCButton();
+        btnDesHabilitarUsuario = new SGCButton();
         lblUsuarios = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -86,7 +86,6 @@ public class Usuarios_Principal extends SGCForm {
         tblUsuarios.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblUsuarios);
 
-        btnAgregarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAgregarUsuario.setText("Agregar Usuario");
         btnAgregarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +93,6 @@ public class Usuarios_Principal extends SGCForm {
             }
         });
 
-        btnModificarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnModificarUsuario.setText("Modificar Usuario");
         btnModificarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +100,6 @@ public class Usuarios_Principal extends SGCForm {
             }
         });
 
-        btnDesHabilitarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDesHabilitarUsuario.setText("Des/Habilitar Usuario");
         btnDesHabilitarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +119,7 @@ public class Usuarios_Principal extends SGCForm {
                 .addComponent(lblUsuarios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTituloUsuarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addComponent(btnAgregarUsuario)
                 .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
@@ -140,7 +137,7 @@ public class Usuarios_Principal extends SGCForm {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addComponent(btnAgregarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnAgregarUsuario))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addComponent(lblTituloUsuarios)))
@@ -151,9 +148,9 @@ public class Usuarios_Principal extends SGCForm {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnModificarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDesHabilitarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(55, Short.MAX_VALUE))
+                    .addComponent(btnModificarUsuario)
+                    .addComponent(btnDesHabilitarUsuario))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();

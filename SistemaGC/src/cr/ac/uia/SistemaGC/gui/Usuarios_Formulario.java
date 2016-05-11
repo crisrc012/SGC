@@ -56,7 +56,7 @@ public class Usuarios_Formulario extends SGCForm {
         lblRepetir = new javax.swing.JLabel();
         lblActivo = new javax.swing.JLabel();
         lblObservacionesUsuario = new javax.swing.JLabel();
-        btnGuardarUsuario = new javax.swing.JButton();
+        btnGuardarUsuario = new SGCButton();
         txtNombre = new SGCTextField();
         txtUsuario = new SGCTextField();
         CBActivo = new javax.swing.JCheckBox();
@@ -102,7 +102,6 @@ public class Usuarios_Formulario extends SGCForm {
         lblObservacionesUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblObservacionesUsuario.setText("Observaciones:");
 
-        btnGuardarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardarUsuario.setText("Guardar Usuario");
         btnGuardarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,11 +170,10 @@ public class Usuarios_Formulario extends SGCForm {
                                             .addComponent(CBActivo)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                                                    .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(txtRepetirCont, javax.swing.GroupLayout.Alignment.TRAILING))
+                                                .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(txtRepetirCont, javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(txtCedula)))))))))
                 .addContainerGap())
         );
@@ -221,8 +219,8 @@ public class Usuarios_Formulario extends SGCForm {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblObservacionesUsuario))))
                 .addGap(18, 18, 18)
-                .addComponent(btnGuardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(btnGuardarUsuario)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();

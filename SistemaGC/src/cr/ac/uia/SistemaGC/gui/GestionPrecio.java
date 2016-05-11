@@ -43,7 +43,7 @@ public class GestionPrecio extends SGCForm {
         lblAlmuerzo = new javax.swing.JLabel();
         lblAlmEstudiante = new javax.swing.JLabel();
         lblAlmFuncionario = new javax.swing.JLabel();
-        btnGuardarParametros = new javax.swing.JButton();
+        btnGuardarParametros = new SGCButton();
         txtDesEstudiante = new SGCTextField();
         txtDesProfesor = new SGCTextField();
         txtAlmEstudiante = new SGCTextField();
@@ -85,7 +85,6 @@ public class GestionPrecio extends SGCForm {
         lblAlmFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblAlmFuncionario.setText("Funcionario:");
 
-        btnGuardarParametros.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardarParametros.setText("Modificar Parámetros");
         btnGuardarParametros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +185,7 @@ public class GestionPrecio extends SGCForm {
                     .addComponent(jLabel12)
                     .addComponent(txtAlmProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(btnGuardarParametros, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGuardarParametros)
                 .addGap(34, 34, 34))
         );
 

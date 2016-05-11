@@ -42,10 +42,10 @@ public class Personas_Principal extends SGCForm {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPersonas = new javax.swing.JTable();
         lblTituloGP = new javax.swing.JLabel();
-        btnAgregarPersona = new javax.swing.JButton();
+        btnAgregarPersona = new SGCButton();
         btnModificarPersona = new javax.swing.JButton();
-        btnDesactivarPersona = new javax.swing.JButton();
-        btnImprimirCodigo = new javax.swing.JButton();
+        btnDesactivarPersona = new SGCButton();
+        btnImprimirCodigo = new SGCButton();
         jLabel1 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -85,7 +85,6 @@ public class Personas_Principal extends SGCForm {
         lblTituloGP.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTituloGP.setText("Gestión de Personas");
 
-        btnAgregarPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAgregarPersona.setText("Agregar Persona");
         btnAgregarPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,10 +100,8 @@ public class Personas_Principal extends SGCForm {
             }
         });
 
-        btnDesactivarPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDesactivarPersona.setText("Desactivar Persona");
 
-        btnImprimirCodigo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnImprimirCodigo.setText("Imprimir Código de Barra");
         btnImprimirCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +121,7 @@ public class Personas_Principal extends SGCForm {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btnModificarPersona)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
                         .addComponent(btnDesactivarPersona)
                         .addGap(166, 166, 166)
                         .addComponent(btnImprimirCodigo))
@@ -149,15 +146,15 @@ public class Personas_Principal extends SGCForm {
                                 .addComponent(lblTituloGP)))
                         .addGap(13, 13, 13))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAgregarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregarPersona)
                         .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnImprimirCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDesactivarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                    .addComponent(btnImprimirCodigo)
+                    .addComponent(btnDesactivarPersona))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         pack();

@@ -49,9 +49,9 @@ public class Becas_Formulario extends SGCForm {
         lblNombreBeca = new javax.swing.JLabel();
         lblPorcentaje = new javax.swing.JLabel();
         lblObservacionesBeca = new javax.swing.JLabel();
-        txtNombreBeca = new javax.swing.JTextField();
-        txtPorcentajeBeca = new javax.swing.JTextField();
-        btnGuardarBeca = new javax.swing.JButton();
+        txtNombreBeca = new SGCTextField();
+        txtPorcentajeBeca = new SGCTextField();
+        btnGuardarBeca = new SGCButton();
         lblTituloAgBeca = new javax.swing.JLabel();
         lblHabilitada = new javax.swing.JLabel();
         ChckBoxActivo = new javax.swing.JCheckBox();
@@ -78,16 +78,12 @@ public class Becas_Formulario extends SGCForm {
         lblObservacionesBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblObservacionesBeca.setText("Observaciones:");
 
-        txtNombreBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtPorcentajeBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtPorcentajeBeca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPorcentajeBecaKeyReleased(evt);
             }
         });
 
-        btnGuardarBeca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardarBeca.setText("Guardar Beca");
         btnGuardarBeca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +108,7 @@ public class Becas_Formulario extends SGCForm {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnGuardarBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardarBeca)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +156,7 @@ public class Becas_Formulario extends SGCForm {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnGuardarBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnGuardarBeca)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

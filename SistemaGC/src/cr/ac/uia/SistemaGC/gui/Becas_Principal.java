@@ -42,9 +42,9 @@ public class Becas_Principal extends SGCForm {
         lblTituloBecas = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTiposBecas = new javax.swing.JTable();
-        btnAgregarBeca = new javax.swing.JButton();
-        btnModificarBeca = new javax.swing.JButton();
-        btnDesHabilitarBeca = new javax.swing.JButton();
+        btnAgregarBeca = new SGCButton();
+        btnModificarBeca = new SGCButton();
+        btnDesHabilitarBeca = new SGCButton();
         jLabel1 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -84,7 +84,6 @@ public class Becas_Principal extends SGCForm {
         tblTiposBecas.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblTiposBecas);
 
-        btnAgregarBeca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAgregarBeca.setText("Agregar Beca");
         btnAgregarBeca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +91,6 @@ public class Becas_Principal extends SGCForm {
             }
         });
 
-        btnModificarBeca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnModificarBeca.setText("Modificar Beca");
         btnModificarBeca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +98,6 @@ public class Becas_Principal extends SGCForm {
             }
         });
 
-        btnDesHabilitarBeca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDesHabilitarBeca.setText("Des/Habilitar Beca");
         btnDesHabilitarBeca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +115,7 @@ public class Becas_Principal extends SGCForm {
                 .addComponent(btnModificarBeca)
                 .addGap(80, 80, 80)
                 .addComponent(btnDesHabilitarBeca)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(285, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(lblTituloBecas)
@@ -136,14 +133,14 @@ public class Becas_Principal extends SGCForm {
                         .addGap(27, 27, 27)
                         .addComponent(lblTituloBecas))
                     .addComponent(jLabel1)
-                    .addComponent(btnAgregarBeca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAgregarBeca, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnDesHabilitarBeca, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(btnDesHabilitarBeca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnModificarBeca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();

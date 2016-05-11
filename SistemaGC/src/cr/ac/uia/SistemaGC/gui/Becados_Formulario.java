@@ -57,11 +57,11 @@ public class Becados_Formulario extends SGCForm {
         lblNombreBeca = new javax.swing.JLabel();
         lblPorcentaje = new javax.swing.JLabel();
         lblObsBeca = new javax.swing.JLabel();
-        btnGuardarAsignacion = new javax.swing.JButton();
+        btnGuardarAsignacion = new SGCButton();
         txtCedEstudiante = new SGCTextField();
         txtNombreEstudiante = new SGCTextField();
         txtPorcentaje = new SGCTextField();
-        btnConsultarCed = new javax.swing.JButton();
+        btnConsultarCed = new SGCButton();
         cboBecas = new javax.swing.JComboBox();
         ScrollPane = new javax.swing.JScrollPane();
         txtObsBeca = new javax.swing.JTextArea();
@@ -96,7 +96,6 @@ public class Becados_Formulario extends SGCForm {
         lblObsBeca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblObsBeca.setText("Observaciones:");
 
-        btnGuardarAsignacion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardarAsignacion.setText("Guardar Asignación");
         btnGuardarAsignacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +107,6 @@ public class Becados_Formulario extends SGCForm {
 
         txtPorcentaje.setEnabled(false);
 
-        btnConsultarCed.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnConsultarCed.setText("Consultar");
         btnConsultarCed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,8 +188,8 @@ public class Becados_Formulario extends SGCForm {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnGuardarAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(btnGuardarAsignacion)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
