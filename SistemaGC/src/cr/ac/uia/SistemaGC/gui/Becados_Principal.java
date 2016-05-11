@@ -170,22 +170,25 @@ public class Becados_Principal extends SGCForm {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String nombre = String.valueOf(tblAdmBecas.getValueAt(i, 4));
         int id = 0;
         try {
             Becas beca = new Becas();
             Becas_bl Bbl = new Becas_bl();
-            beca.setNombre(nombre);
+            beca.setNombre(String.valueOf(tblAdmBecas.getValueAt(i, 4)));
             ArrayList<Becas> abl = Bbl.select(beca);
             if (abl.size() > 0) {
                 id = abl.get(0).getId();
             }
+            Becados_bl bbl = new Becados_bl();
+            Becados b = new Becados();
+            b.setId_persona((Integer) tblAdmBecas.getValueAt(i, 0));
             new Becados_Formulario(true,
-                    new Becados(null, (Integer) tblAdmBecas.getValueAt(i, 0),
+                    new Becados(bbl.select(b).get(0).getId(),
+                            (Integer) tblAdmBecas.getValueAt(i, 0),
                             id, (Boolean) tblAdmBecas.getValueAt(i, 6),
                             (String) tblAdmBecas.getValueAt(i, 3))
             ).setVisible(true);
-            this.setVisible(false);
+            setVisible(false);
         } catch (SQLException e) {
             System.out.println(e.toString());
         }

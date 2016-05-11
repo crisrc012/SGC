@@ -11,7 +11,6 @@ import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.entities.Becados;
 import cr.ac.uia.SistemaGC.entities.Becas;
 import cr.ac.uia.SistemaGC.entities.Personas;
-import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -38,6 +37,7 @@ public class Becados_Formulario extends SGCForm {
 
     public Becados_Formulario(boolean isUpdate, Becados becado) {
         initComponents();
+        SGCconf();
         this.isUpdate = isUpdate;
         this.becado = becado;
     }
@@ -203,7 +203,8 @@ public class Becados_Formulario extends SGCForm {
         } else {
             try {
                 Becados_bl bbl = new Becados_bl();
-                becado.setId_persona(Integer.parseInt((String) txtCedEstudiante.getText().trim()));
+                becado.setId(becado.getId());
+                becado.setId_persona(Integer.parseInt(txtCedEstudiante.getText().trim()));
                 becado.setId_beca(id_beca);
                 becado.setObservaciones(txtObsBeca.getText().trim());
                 becado.setActivo(true);
@@ -241,27 +242,27 @@ public class Becados_Formulario extends SGCForm {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         try {
             Becas beca = new Becas();
+            beca.setActivo(true); // busca las becas activas
             Becas_bl Bbl = new Becas_bl();
             ArrayList<Becas> abl = Bbl.select(beca);
-            for (int i = 0; i < abl.size(); i++) {
-                if (abl.get(i).getActivo() == true) {
-                    cboBecas.addItem(abl.get(i).getNombre());
-                }
+            for (Becas b : abl) {
+                cboBecas.addItem(b.getNombre());
+            }
+            if (isUpdate) {
+                btnGuardarAsignacion.setText("Modificar Beca");
+                txtCedEstudiante.setText(String.valueOf(becado.getId_persona()));
+                ConsultarCedula();
+                txtObsBeca.setText(becado.getObservaciones());
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
-        }
-        if (this.isUpdate) {
-            btnGuardarAsignacion.setText("Modificar Beca");
-            txtCedEstudiante.setText(String.valueOf(this.becado.getId_persona()));
-            ConsultarCedula();
-            txtObsBeca.setText(this.becado.getObservaciones());
         }
     }//GEN-LAST:event_formComponentShown
 
     private void btnConsultarCedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCedActionPerformed
         ConsultarCedula();
     }//GEN-LAST:event_btnConsultarCedActionPerformed
+    
     public void ConsultarCedula() {
         try {
             if (txtCedEstudiante.getText().isEmpty()) {
@@ -270,9 +271,9 @@ public class Becados_Formulario extends SGCForm {
             txtCedEstudiante.setEnabled(false);
             Becados b = new Becados();
             Becados_bl bbl = new Becados_bl();
-            b.setId_persona(Integer.parseInt((String) txtCedEstudiante.getText().trim()));
+            b.setId_persona(Integer.parseInt(txtCedEstudiante.getText().trim()));
             ArrayList<Becados> ab = bbl.select(b);
-            if(isUpdate == false){
+            if (isUpdate == false) {
                 if (ab.size() > 0) {
                     JOptionPane.showMessageDialog(this,
                             "Esta persona, ya posee una beca.",
@@ -284,7 +285,7 @@ public class Becados_Formulario extends SGCForm {
             }
             Personas_bl pbl = new Personas_bl();
             Personas p = new Personas();
-            p.setCedula(Integer.parseInt((String) txtCedEstudiante.getText().trim()));
+            p.setCedula(Integer.parseInt(txtCedEstudiante.getText().trim()));
             ArrayList<Personas> al = pbl.select(p);
             if (al.size() > 0) {
                 txtNombreEstudiante.setText(al.get(0).getNombre() + " " + al.get(0).getApellidos());
@@ -293,26 +294,21 @@ public class Becados_Formulario extends SGCForm {
                         "No existe ninguna persona relacionada a la cédula ingresada",
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
-            
+
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
     }
     private void cboBecasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboBecasItemStateChanged
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
-            try {
-                String nombre = String.valueOf(cboBecas.getSelectedItem());
-                Becas beca = new Becas();
-                Becas_bl Bbl = new Becas_bl();
-                beca.setNombre(nombre);
-                ArrayList<Becas> abl = Bbl.select(beca);
-                if (abl.size() > 0) {
-                    id_beca = abl.get(0).getId();
-                    txtPorcentaje.setText(String.valueOf(abl.get(0).getPorcentaje()));
-                }
-            } catch (SQLException e) {
-                System.out.println(e.toString());
-            }
+        try {
+            Becas beca = new Becas();
+            Becas_bl Bbl = new Becas_bl();
+            beca.setNombre(String.valueOf(cboBecas.getSelectedItem()));
+            beca = Bbl.select(beca).get(0);
+            id_beca = beca.getId();
+            txtPorcentaje.setText(beca.getPorcentaje().toString());
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
     }//GEN-LAST:event_cboBecasItemStateChanged
 

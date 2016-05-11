@@ -80,7 +80,11 @@ public class Becas_db {
             ps = con.getConnection()
                     .prepareStatement("select f_becas(?,?,?,?,?,?);");
             ps.setString(1, dml);
-            ps.setInt(2, becas.getId());
+            if (becas.getId() != null) {
+                ps.setInt(2, becas.getId());
+            } else {
+                ps.setNull(2, java.sql.Types.INTEGER);
+            }
             ps.setString(3, becas.getNombre());
             ps.setInt(4, becas.getPorcentaje());
             ps.setBoolean(5, becas.getActivo());

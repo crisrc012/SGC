@@ -33,6 +33,7 @@ public class Becas_Formulario extends SGCForm {
 
     public Becas_Formulario(boolean update, Becas becas) {
         initComponents();
+        SGCconf();
         isUpdate = update;
         this.becas = becas;
     }

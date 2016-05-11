@@ -80,7 +80,12 @@ public class Becados_db {
             ps = con.getConnection()
                     .prepareStatement("SELECT f_becados(?,?,?,?,?,?);");
             ps.setString(1, dml);
-            ps.setInt(2, becados.getId());
+            if (becados.getId() != null) {
+                ps.setInt(2, becados.getId());
+            } else {
+                ps.setNull(2, java.sql.Types.INTEGER);
+            }
+
             ps.setInt(3, becados.getId_persona());
             ps.setInt(4, becados.getId_beca());
             ps.setBoolean(5, becados.getActivo());

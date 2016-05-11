@@ -23,6 +23,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -75,7 +76,7 @@ public class VentaTiquetes extends SGCForm {
         lblCancel = new javax.swing.JLabel();
         lblDescripcion = new javax.swing.JLabel();
         txtDescripcion = new SGCTextField();
-        txtCantidad = new javax.swing.JSpinner();
+        txtCantidad = new javax.swing.JSpinner( new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {

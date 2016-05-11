@@ -46,8 +46,8 @@ public class Principal extends SGCForm {
         MGestionParam = new javax.swing.JMenu();
         MReportes = new javax.swing.JMenu();
         MHerramientas = new javax.swing.JMenu();
-        MInstitucion = new javax.swing.JMenu();
-        MRespaldo = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         MAcerca = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -149,18 +149,16 @@ public class Principal extends SGCForm {
         MHerramientas.setText("Herramientas");
         MHerramientas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        MInstitucion.setText("Institución");
-        MInstitucion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        MInstitucion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MInstitucionMousePressed(evt);
+        jMenuItem1.setText("Institución");
+        MHerramientas.add(jMenuItem1);
+
+        jMenuItem2.setText("Respaldo");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
             }
         });
-        MHerramientas.add(MInstitucion);
-
-        MRespaldo.setText("Respaldo");
-        MRespaldo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        MHerramientas.add(MRespaldo);
+        MHerramientas.add(jMenuItem2);
 
         MenuBar.add(MHerramientas);
 
@@ -269,17 +267,16 @@ public class Principal extends SGCForm {
         new Acercade().setVisible(true);
     }//GEN-LAST:event_MAcercaMousePressed
 
-    private void MInstitucionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MInstitucionMousePressed
-        // Se encargará de cargar el label de logo institucional y el nombre del colegio
-        
-    }//GEN-LAST:event_MInstitucionMousePressed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocation(0, 0);
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height - 37);
     }//GEN-LAST:event_formWindowOpened
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,14 +310,14 @@ public class Principal extends SGCForm {
     private javax.swing.JMenu MGestionIngreso;
     private javax.swing.JMenu MGestionParam;
     private javax.swing.JMenu MHerramientas;
-    private javax.swing.JMenu MInstitucion;
     private javax.swing.JMenu MPersonas;
     private javax.swing.JMenu MReportes;
-    private javax.swing.JMenu MRespaldo;
     private javax.swing.JMenu MTipoBeca;
     private javax.swing.JMenu MUsurio;
     private javax.swing.JMenu MVentaTiq;
     private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel lblLogoEscuela;
     private javax.swing.JLabel lblLogoInstitucion;
     private javax.swing.JLabel lblNombreInstitucion;
