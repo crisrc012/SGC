@@ -44,6 +44,7 @@ public class Personas_Formulario extends SGCForm {
 
     public Personas_Formulario(boolean Update, Personas persona) {
         initComponents();
+        SGCconf();
         RBEstudiante.setSelected(true);
         this.isUpdate = Update;
         this.persona = persona;
@@ -69,12 +70,12 @@ public class Personas_Formulario extends SGCForm {
         lblTelefonosPersona = new javax.swing.JLabel();
         lblContactoPersona = new javax.swing.JLabel();
         btnGuardarPersona = new SGCButton();
-        txtCedulaPersona = new javax.swing.JTextField();
-        txtNombrePersona = new javax.swing.JTextField();
-        txtApellidosPersona = new javax.swing.JTextField();
-        txtTelefono1 = new javax.swing.JTextField();
-        txtTelefono2 = new javax.swing.JTextField();
-        txtContactoPersona = new javax.swing.JTextField();
+        txtCedulaPersona = new SGCTextField();
+        txtNombrePersona = new SGCTextField();
+        txtApellidosPersona = new SGCTextField();
+        txtTelefono1 = new SGCTextField();
+        txtTelefono2 = new SGCTextField();
+        txtContactoPersona = new SGCTextField();
         lblTituloAgPersona = new javax.swing.JLabel();
         lblFoto = new javax.swing.JLabel();
         lblCel = new javax.swing.JLabel();
@@ -87,7 +88,6 @@ public class Personas_Formulario extends SGCForm {
         lblAsterisco4 = new javax.swing.JLabel();
         lblAsterisco5 = new javax.swing.JLabel();
         btnQuitarFoto = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -132,18 +132,6 @@ public class Personas_Formulario extends SGCForm {
                 btnGuardarPersonaActionPerformed(evt);
             }
         });
-
-        txtCedulaPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtNombrePersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtApellidosPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtTelefono1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtTelefono2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtContactoPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         lblTituloAgPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTituloAgPersona.setText("Gestión de Personas");
@@ -257,8 +245,7 @@ public class Personas_Formulario extends SGCForm {
                                         .addGap(128, 128, 128)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtCedulaPersona, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                                            .addComponent(txtNombrePersona)))
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(txtNombrePersona))))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAsterisco1)
@@ -277,11 +264,9 @@ public class Personas_Formulario extends SGCForm {
                         .addComponent(lblTituloAgPersona)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addComponent(btnQuitarFoto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
+                        .addGap(34, 34, 34))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(RBEstudiante)
                         .addGap(18, 18, 18)
@@ -321,9 +306,9 @@ public class Personas_Formulario extends SGCForm {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(lblAsterisco5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtContactoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblContactoPersona))
@@ -520,7 +505,6 @@ public class Personas_Formulario extends SGCForm {
     private javax.swing.JButton btnGuardarPersona;
     private javax.swing.JButton btnQuitarFoto;
     private com.toedter.calendar.JDateChooser jDateFechaNacimiento;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblApellidosPersona;
     private javax.swing.JLabel lblAsterisco1;
     private javax.swing.JLabel lblAsterisco2;
