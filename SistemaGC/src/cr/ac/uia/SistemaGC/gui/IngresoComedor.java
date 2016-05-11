@@ -14,7 +14,6 @@ import cr.ac.uia.SistemaGC.entities.Becados;
 import cr.ac.uia.SistemaGC.entities.Becas;
 import cr.ac.uia.SistemaGC.entities.Persona;
 import cr.ac.uia.SistemaGC.entities.Personas;
-import cr.ac.uia.SistemaGC.entities.Tiquetes;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -51,8 +50,8 @@ public class IngresoComedor extends SGCForm {
         lblComida = new javax.swing.JLabel();
         rbtnDesayuno = new javax.swing.JRadioButton();
         lblCedPersona = new javax.swing.JLabel();
-        txtCedPersona = new javax.swing.JTextField();
         lblTituloGI = new javax.swing.JLabel();
+        txtCedPersona = new SGCTextField();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -81,14 +80,17 @@ public class IngresoComedor extends SGCForm {
         lblCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblCedPersona.setText("Cédula de la Persona:");
 
+        lblTituloGI.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblTituloGI.setText("Ingreso al Comedor");
+
         txtCedPersona.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCedPersonaKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedPersonaKeyReleased(evt);
+            }
         });
-
-        lblTituloGI.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblTituloGI.setText("Ingreso al Comedor");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,11 +107,14 @@ public class IngresoComedor extends SGCForm {
                                 .addComponent(lblCedPersona)
                                 .addComponent(lblComida))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(rbtnDesayuno)
-                                .addComponent(rbtnAlmuerzo)
-                                .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(rbtnDesayuno)
+                                        .addComponent(rbtnAlmuerzo))
+                                    .addGap(107, 107, 107))
+                                .addComponent(txtCedPersona)))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +131,7 @@ public class IngresoComedor extends SGCForm {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedPersona)
                     .addComponent(txtCedPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAplicarIngreso)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -135,10 +140,10 @@ public class IngresoComedor extends SGCForm {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,43 +188,15 @@ public class IngresoComedor extends SGCForm {
             Boolean becado = ConfirmarBeca(cedula);
             if (becado) {
                 int comida = 0;
-                String tipo = "";
                 if (rbtnDesayuno.isSelected()) {
                     comida = 1;
-                    tipo = "desayuno";
                 } else if (rbtnAlmuerzo.isSelected()) {
                     comida = 2;
-                    tipo = "almuerzo";
                 }
                 Tiquetes_bl tbl = new Tiquetes_bl();
                 int cantidad = tbl.count(cedula, comida);
                 if (cantidad > 1) {
-                    if (JOptionPane.showOptionDialog(this,
-                            "Usted tiene disponibles: " + cantidad + " tiquetes de " + tipo + ".\n\n"
-                            + "¿Desea utilizar uno?",
-                            "Confirmar",
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.WARNING_MESSAGE,
-                            null,
-                            new Object[]{"Sí, usar", "No, no usar"},
-                            "No, no usar") == JOptionPane.YES_OPTION) {
-                        ArrayList<Tiquetes> al = tbl.activos(cedula, comida);
-                        Tiquetes t = al.get(0);
-                        t.setActivo(false); // Desactivando tiquete
-                        if (tbl.update(t)) {
-                            JOptionPane.showMessageDialog(this,
-                                    "Se ha usado correctamente el tiquete",
-                                    "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                            limpiar();
-                        } else {
-                            JOptionPane.showMessageDialog(this,
-                                    "Ha ocurrido un error por favor intentelo de nuevo",
-                                    "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                            dispose();
-                        }
-                    } else {
-                        limpiar();
-                    }
+                    new IngresoComedor_Confirmacion(cedula, comida, cantidad).setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(this,
                             "Por favor compre un tiquete",
@@ -234,6 +211,7 @@ public class IngresoComedor extends SGCForm {
 
     private void btnAplicarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarIngresoActionPerformed
         aplicarIngreso();
+        limpiar();
     }//GEN-LAST:event_btnAplicarIngresoActionPerformed
 
     private Boolean ConfirmarBeca(int cedula) {
@@ -241,13 +219,8 @@ public class IngresoComedor extends SGCForm {
             Becados b = new Becados();
             b.setId_persona(cedula);
             Becados_bl bbl = new Becados_bl();
-            Personas p = new Personas();
-            p.setCedula(cedula);
-            Personas_bl pbl = new Personas_bl();
             Becas bc = new Becas();
             Becas_bl bl = new Becas_bl();
-            Persona ps = new Persona();
-            Persona_bl psbl = new Persona_bl();
             ArrayList<Becados> ab = bbl.select(b);
             int beca = 0;
             if (ab.size() > 0) {
@@ -257,7 +230,6 @@ public class IngresoComedor extends SGCForm {
             }
             bc.setId(beca);
             ArrayList<Becas> abc = bl.select(bc);
-            ArrayList<Personas> ap = pbl.select(p);
             if (abc.size() > 0) {
                 if (abc.get(0).getPorcentaje() == 100) {
                     JOptionPane.showMessageDialog(this,
@@ -266,14 +238,6 @@ public class IngresoComedor extends SGCForm {
                     limpiar();
                     return false;
                 }
-            }
-            if (ap.size() > 0) {
-                //lblName.setText(ap.get(0).getNombre() + " " + ap.get(0).getApellidos());
-                ps.setId(ap.get(0).getId_persona());
-            }
-            ArrayList<Persona> aps = psbl.select(ps);
-            if (aps.size() > 0) {
-                //lblDescripcion.setText(aps.get(0).getDescripcion());
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -291,6 +255,15 @@ public class IngresoComedor extends SGCForm {
             aplicarIngreso();
         }
     }//GEN-LAST:event_txtCedPersonaKeyPressed
+
+    private void txtCedPersonaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedPersonaKeyReleased
+        try {
+            Integer.parseInt(txtCedPersona.getText().trim());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Digite únicamente números", "Error", JOptionPane.ERROR_MESSAGE);
+            txtCedPersona.setText("");
+        }
+    }//GEN-LAST:event_txtCedPersonaKeyReleased
 
     /**
      * @param args the command line arguments

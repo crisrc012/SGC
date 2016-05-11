@@ -86,14 +86,15 @@ public class Tiquetes_db {
             ps = con.getConnection().prepareStatement("SELECT f_tiquetes(?,?,?,?,?,?,?);");
             ps.setString(1, dml);
             ps.setInt(2, tiquete.getId());
-            ps.setInt(3, tiquete.getId_precio());
-            ps.setDate(4, tiquete.getFecha_compra());
+            ps.setInt(3, tiquete.getId_persona());
+            ps.setInt(4, tiquete.getId_precio());
+            ps.setDate(5, tiquete.getFecha_compra());
             if (tiquete.getFecha_uso() != null) {
-                ps.setDate(5, tiquete.getFecha_uso());
+                ps.setDate(6, tiquete.getFecha_uso());
             } else {
-                ps.setNull(5, java.sql.Types.DATE);
+                ps.setNull(6, java.sql.Types.DATE);
             }
-            ps.setBoolean(6, tiquete.getActivo());
+            ps.setBoolean(7, tiquete.getActivo());
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {

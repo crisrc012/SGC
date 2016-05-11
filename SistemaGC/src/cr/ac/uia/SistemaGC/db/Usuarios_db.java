@@ -90,14 +90,15 @@ public class Usuarios_db {
         try {
             con = new Conexion();
             ps = con.getConnection().prepareStatement("select f_usuarios(?,?,?,?,?,?,?,?,?);");
-            ps.setInt(1, usuario.getCedula());
-            ps.setString(2, usuario.getUsuario());
-            ps.setString(3, usuario.getContrasena());
-            ps.setString(4, usuario.getNombre());
-            ps.setString(5, usuario.getApellidos());
-            ps.setBoolean(6, usuario.getActivo());
-            ps.setString(7, usuario.getObservaciones());
-            ps.setInt(8, usuario.getId_rol());
+            ps.setString(1, dml);
+            ps.setInt(2, usuario.getCedula());
+            ps.setString(3, usuario.getUsuario());
+            ps.setString(4, usuario.getContrasena());
+            ps.setString(5, usuario.getNombre());
+            ps.setString(6, usuario.getApellidos());
+            ps.setBoolean(7, usuario.getActivo());
+            ps.setString(8, usuario.getObservaciones());
+            ps.setInt(9, usuario.getId_rol());
             control = ps.execute();
             ps.close();
         } catch (SQLException e) {
