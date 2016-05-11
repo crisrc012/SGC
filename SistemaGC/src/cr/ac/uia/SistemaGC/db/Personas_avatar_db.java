@@ -26,7 +26,7 @@ public class Personas_avatar_db {
         try {
             con = new Conexion();
             ps = con.getConnection()
-                    .prepareStatement("select * f_personas_avatar('select',?,null);");
+                    .prepareStatement("select foto from f_personas_avatar('select',?,null);");
             ps.setInt(1, cedula);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -53,9 +53,9 @@ public class Personas_avatar_db {
             ps.setInt(2, pa.getCedula());
             if (pa.getFoto() != null) {
                 FileInputStream fis = new FileInputStream(pa.getFoto());
-                ps.setBinaryStream(2, fis, (int) pa.getFoto().length());
+                ps.setBinaryStream(3, fis, (int) pa.getFoto().length());
             } else {
-                ps.setNull(2, java.sql.Types.BLOB);
+                ps.setNull(3, java.sql.Types.ARRAY);
             }
             control = ps.execute();
             ps.close();

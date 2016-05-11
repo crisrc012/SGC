@@ -7,7 +7,6 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
-import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -179,7 +178,7 @@ public class Personas_Principal extends SGCForm {
                         (Integer) tblPersonas.getValueAt(i, 0),
                         (String) tblPersonas.getValueAt(i, 1),
                         (String) tblPersonas.getValueAt(i, 2),
-                        (Date) tblPersonas.getValueAt(i, 3),
+                        (java.util.Date) tblPersonas.getValueAt(i, 3),
                         (Integer) tblPersonas.getValueAt(i, 4),
                         (Integer) tblPersonas.getValueAt(i, 5),
                         (String) tblPersonas.getValueAt(i, 6),
@@ -198,19 +197,15 @@ public class Personas_Principal extends SGCForm {
                     "Por favor seleccione una celda.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
-            return;
-        }else{
-            new BarCode_Formulario ((Integer) tblPersonas.getValueAt(i, 0)).setVisible(true);
+        } else {
+            new BarCode_Formulario((Integer) tblPersonas.getValueAt(i, 0)).setVisible(true);
         }
-            
-        
     }//GEN-LAST:event_btnImprimirCodigoActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -225,12 +220,6 @@ public class Personas_Principal extends SGCForm {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Personas_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -254,7 +243,7 @@ public class Personas_Principal extends SGCForm {
         try {
             DefaultTableModel tableModel = (DefaultTableModel) tblPersonas.getModel();
             tableModel.setRowCount(0);
-            TableRowSorter<TableModel> order = new TableRowSorter<TableModel>(tableModel);
+            TableRowSorter<TableModel> order = new TableRowSorter<>(tableModel);
             tblPersonas.setRowSorter(order);
             Personas_bl pbl = new Personas_bl();
             ArrayList<Personas> al = pbl.select(new Personas());
