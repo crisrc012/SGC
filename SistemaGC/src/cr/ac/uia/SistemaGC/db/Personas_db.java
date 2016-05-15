@@ -7,7 +7,6 @@ package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Personas;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,7 +43,7 @@ public class Personas_db {
                 ps.setNull(3, java.sql.Types.VARCHAR);
             }
             if (persona.getFecha_nacimiento() != null) {
-                ps.setDate(4, (Date) persona.getFecha_nacimiento());
+                ps.setDate(4, (java.sql.Date) persona.getFecha_nacimiento());
             } else {
                 ps.setNull(4, java.sql.Types.DATE);
             }
@@ -102,8 +101,7 @@ public class Personas_db {
             ps.setInt(2, persona.getCedula());
             ps.setString(3, persona.getNombre());
             ps.setString(4, persona.getApellidos());
-            java.sql.Date date = new Date(persona.getFecha_nacimiento().getYear(), persona.getFecha_nacimiento().getMonth(), persona.getFecha_nacimiento().getDay());
-            ps.setDate(5, date);
+            ps.setDate(5, new java.sql.Date(persona.getFecha_nacimiento().getTime()));
             if (persona.getTel_celular() != null) {
                 ps.setInt(6, persona.getTel_celular());
             } else {
