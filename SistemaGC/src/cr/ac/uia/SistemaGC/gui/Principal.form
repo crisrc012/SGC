@@ -124,6 +124,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Instituci&#xf3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MInstitucionActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MRespaldo">
               <Properties>

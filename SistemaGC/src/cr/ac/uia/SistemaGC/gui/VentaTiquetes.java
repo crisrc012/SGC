@@ -52,17 +52,7 @@ public class VentaTiquetes extends SGCForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblTituloVT = new javax.swing.JLabel();
-        lblDesayuno = new javax.swing.JLabel();
-        lblAlmuerzo = new javax.swing.JLabel();
-        lblSigno1 = new javax.swing.JLabel();
-        lblSigno2 = new javax.swing.JLabel();
-        lblPrecioDes = new javax.swing.JLabel();
-        lblPrecioAlm = new javax.swing.JLabel();
-        lblTipoComida = new javax.swing.JLabel();
-        lblCantTique = new javax.swing.JLabel();
-        lblCedPersona = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         cboTiposComida = new javax.swing.JComboBox();
         txtCedula = new SGCTextField();
         txtNombre = new SGCTextField();
@@ -70,55 +60,44 @@ public class VentaTiquetes extends SGCForm {
         btnComprar = new SGCButton();
         btnCancelar = new SGCButton();
         lblTickets = new javax.swing.JLabel();
-        lblBreakfast = new javax.swing.JLabel();
-        lblLunch = new javax.swing.JLabel();
-        lblBuy = new javax.swing.JLabel();
-        lblCancel = new javax.swing.JLabel();
+        lblTituloVT = new javax.swing.JLabel();
+        lblTipoComida = new javax.swing.JLabel();
+        lblCantTique = new javax.swing.JLabel();
+        lblCedPersona = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         lblDescripcion = new javax.swing.JLabel();
         txtDescripcion = new SGCTextField();
         txtCantidad = new javax.swing.JSpinner( new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
+        panelAlmuerzo = new javax.swing.JPanel();
+        lblLunch = new javax.swing.JLabel();
+        lblSigno2 = new javax.swing.JLabel();
+        lblAlmuerzo = new javax.swing.JLabel();
+        lblPrecioAlm = new javax.swing.JLabel();
+        panelDesayuno = new javax.swing.JPanel();
+        lblBreakfast = new javax.swing.JLabel();
+        lblDesayuno = new javax.swing.JLabel();
+        lblSigno1 = new javax.swing.JLabel();
+        lblPrecioDes = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
 
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
 
-        lblTituloVT.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblTituloVT.setText("VENTA DE TIQUETES");
-
-        lblDesayuno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblDesayuno.setText("DESAYUNO");
-
-        lblAlmuerzo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblAlmuerzo.setText("ALMUERZO");
-
-        lblSigno1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblSigno1.setText("₡");
-
-        lblSigno2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblSigno2.setText("₡");
-
-        lblPrecioDes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblPrecioDes.setText("0");
-
-        lblPrecioAlm.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblPrecioAlm.setText("0");
-
-        lblTipoComida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTipoComida.setText("Tipo de comida:");
-
-        lblCantTique.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblCantTique.setText("Cantidad de tiquetes:");
-
-        lblCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblCedPersona.setText("Cédula de Persona:");
-
-        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombre.setText("Nombre Completo:");
-
         cboTiposComida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cboTiposComida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Desayuno", "Almuerzo" }));
+        cboTiposComida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboTiposComidaActionPerformed(evt);
+            }
+        });
 
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -135,6 +114,7 @@ public class VentaTiquetes extends SGCForm {
             }
         });
 
+        btnComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/shop1.png")));
         btnComprar.setText("VENDER TIQUETE");
         btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +122,7 @@ public class VentaTiquetes extends SGCForm {
             }
         });
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/shop2.png")));
         btnCancelar.setText("CANCELAR VENTA");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,138 +132,221 @@ public class VentaTiquetes extends SGCForm {
 
         lblTickets.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/tickets.png"))); // NOI18N
 
-        lblBreakfast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Breakfast2.png"))); // NOI18N
+        lblTituloVT.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblTituloVT.setText("VENTA DE TIQUETES");
 
-        lblLunch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/lunch2.png"))); // NOI18N
+        lblTipoComida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTipoComida.setText("Tipo de comida:");
 
-        lblBuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/shop1.png"))); // NOI18N
+        lblCantTique.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCantTique.setText("Cantidad de tiquetes:");
 
-        lblCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/shop2.png"))); // NOI18N
+        lblCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCedPersona.setText("Cédula de Persona:");
+
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombre.setText("Nombre Completo:");
 
         lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblDescripcion.setText("Descripción:");
 
+        txtDescripcion.setEnabled(false);
+
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCantidad.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                txtCantidadStateChanged(evt);
+            }
+        });
+
+        lblLunch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/lunch2.png"))); // NOI18N
+
+        lblSigno2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblSigno2.setText("₡");
+
+        lblAlmuerzo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAlmuerzo.setText("ALMUERZO");
+
+        lblPrecioAlm.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblPrecioAlm.setText("0");
+
+        javax.swing.GroupLayout panelAlmuerzoLayout = new javax.swing.GroupLayout(panelAlmuerzo);
+        panelAlmuerzo.setLayout(panelAlmuerzoLayout);
+        panelAlmuerzoLayout.setHorizontalGroup(
+            panelAlmuerzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAlmuerzoLayout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(lblLunch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelAlmuerzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAlmuerzoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblSigno2)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblPrecioAlm))
+                    .addComponent(lblAlmuerzo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelAlmuerzoLayout.setVerticalGroup(
+            panelAlmuerzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAlmuerzoLayout.createSequentialGroup()
+                .addGroup(panelAlmuerzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelAlmuerzoLayout.createSequentialGroup()
+                        .addComponent(lblAlmuerzo)
+                        .addGap(18, 18, 18)
+                        .addGroup(panelAlmuerzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSigno2)
+                            .addComponent(lblPrecioAlm))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblLunch))
+                .addGap(0, 6, Short.MAX_VALUE))
+        );
+
+        lblBreakfast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Breakfast2.png"))); // NOI18N
+
+        lblDesayuno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblDesayuno.setText("DESAYUNO");
+
+        lblSigno1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblSigno1.setText("₡");
+
+        lblPrecioDes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblPrecioDes.setText("0");
+
+        javax.swing.GroupLayout panelDesayunoLayout = new javax.swing.GroupLayout(panelDesayuno);
+        panelDesayuno.setLayout(panelDesayunoLayout);
+        panelDesayunoLayout.setHorizontalGroup(
+            panelDesayunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDesayunoLayout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(lblBreakfast)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelDesayunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDesayunoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblSigno1)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblPrecioDes))
+                    .addComponent(lblDesayuno, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelDesayunoLayout.setVerticalGroup(
+            panelDesayunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDesayunoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(panelDesayunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDesayunoLayout.createSequentialGroup()
+                        .addComponent(lblDesayuno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addGroup(panelDesayunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSigno1)
+                            .addComponent(lblPrecioDes)))
+                    .addComponent(lblBreakfast))
+                .addContainerGap())
+        );
+
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTotal.setText("Total de Venta:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelDesayuno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelAlmuerzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTipoComida)
+                            .addComponent(lblCantTique)
+                            .addComponent(lblCedPersona)
+                            .addComponent(lblNombre)
+                            .addComponent(lblDescripcion))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCosultarCed))
+                            .addComponent(cboTiposComida, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCantidad)
+                            .addComponent(txtNombre)
+                            .addComponent(txtDescripcion)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnComprar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblTickets)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblTituloVT))
+                            .addComponent(lblTotal))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTickets)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(lblTituloVT)))
+                .addGap(10, 10, 10)
+                .addComponent(lblTotal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelDesayuno, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelAlmuerzo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTipoComida)
+                    .addComponent(cboTiposComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCantTique))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCosultarCed)
+                    .addComponent(lblCedPersona))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombre))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDescripcion))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnComprar))
+                .addGap(212, 212, 212))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTickets)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblTituloVT))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(lblBreakfast)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDesayuno)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblSigno1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPrecioDes)))
-                        .addGap(80, 80, 80)
-                        .addComponent(lblLunch)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblSigno2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPrecioAlm))
-                            .addComponent(lblAlmuerzo)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblBuy)
-                            .addComponent(lblCancel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCancelar)
-                            .addComponent(btnComprar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTipoComida)
-                            .addComponent(lblCantTique))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboTiposComida, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCedPersona)
-                            .addComponent(lblNombre)
-                            .addComponent(lblDescripcion))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCosultarCed))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)))))
-                .addContainerGap(57, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblTickets))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(lblTituloVT)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDesayuno)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSigno1)
-                            .addComponent(lblPrecioDes)))
-                    .addComponent(lblBreakfast)
-                    .addComponent(lblLunch)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblAlmuerzo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSigno2)
-                            .addComponent(lblPrecioAlm))))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTipoComida)
-                    .addComponent(cboTiposComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCantTique)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCedPersona)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCosultarCed))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDescripcion)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblBuy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnComprar))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -301,6 +365,9 @@ public class VentaTiquetes extends SGCForm {
         lblPrecioDes.setText("0");
     }
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        if (txtCedula.getText().isEmpty()) {
+            return;
+        }
         try {
             int answ = JOptionPane.showConfirmDialog(this, "¿Está seguro de realizar la compra?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (answ == JOptionPane.YES_OPTION) {
@@ -431,6 +498,29 @@ public class VentaTiquetes extends SGCForm {
         validarEnteros(txtCedula);
     }//GEN-LAST:event_txtCedulaKeyReleased
 
+    private void cboTiposComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTiposComidaActionPerformed
+        switch (cboTiposComida.getSelectedItem().toString()) {
+            case "Desayuno":
+                panelAlmuerzo.setVisible(false);
+                panelDesayuno.setVisible(true);
+                break;
+            case "Almuerzo":
+                panelAlmuerzo.setVisible(true);
+                panelDesayuno.setVisible(false);
+                break;
+        }
+    }//GEN-LAST:event_cboTiposComidaActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        panelAlmuerzo.setVisible(false);
+    }//GEN-LAST:event_formComponentShown
+
+    private void txtCantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtCantidadStateChanged
+        if (!txtCedula.getText().isEmpty()) {
+            calcularTotal();
+        }
+    }//GEN-LAST:event_txtCantidadStateChanged
+
     private void calcularTotal() {
         try {
             Becados b = new Becados();
@@ -493,10 +583,9 @@ public class VentaTiquetes extends SGCForm {
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnCosultarCed;
     private javax.swing.JComboBox cboTiposComida;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAlmuerzo;
     private javax.swing.JLabel lblBreakfast;
-    private javax.swing.JLabel lblBuy;
-    private javax.swing.JLabel lblCancel;
     private javax.swing.JLabel lblCantTique;
     private javax.swing.JLabel lblCedPersona;
     private javax.swing.JLabel lblDesayuno;
@@ -510,6 +599,9 @@ public class VentaTiquetes extends SGCForm {
     private javax.swing.JLabel lblTickets;
     private javax.swing.JLabel lblTipoComida;
     private javax.swing.JLabel lblTituloVT;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JPanel panelAlmuerzo;
+    private javax.swing.JPanel panelDesayuno;
     private javax.swing.JSpinner txtCantidad;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtDescripcion;

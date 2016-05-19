@@ -16,6 +16,7 @@ public class Institucion extends SGCForm {
      */
     public Institucion() {
         initComponents();
+        SGCconf();
     }
 
     /**

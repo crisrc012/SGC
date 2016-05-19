@@ -16,6 +16,7 @@ public class Respaldo extends SGCForm {
      */
     public Respaldo() {
         initComponents();
+        SGCconf();
     }
 
     /**

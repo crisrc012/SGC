@@ -150,6 +150,11 @@ public class Principal extends SGCForm {
         MHerramientas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         MInstitucion.setText("Institución");
+        MInstitucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MInstitucionActionPerformed(evt);
+            }
+        });
         MHerramientas.add(MInstitucion);
 
         MRespaldo.setText("Respaldo");
@@ -277,6 +282,10 @@ public class Principal extends SGCForm {
     private void MRespaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MRespaldoActionPerformed
         new Respaldo().setVisible(true);
     }//GEN-LAST:event_MRespaldoActionPerformed
+
+    private void MInstitucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MInstitucionActionPerformed
+        new Institucion().setVisible(true);
+    }//GEN-LAST:event_MInstitucionActionPerformed
 
     /**
      * @param args the command line arguments
