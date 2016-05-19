@@ -46,8 +46,8 @@ public class Principal extends SGCForm {
         MGestionParam = new javax.swing.JMenu();
         MReportes = new javax.swing.JMenu();
         MHerramientas = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        MInstitucion = new javax.swing.JMenuItem();
+        MRespaldo = new javax.swing.JMenuItem();
         MAcerca = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -149,16 +149,16 @@ public class Principal extends SGCForm {
         MHerramientas.setText("Herramientas");
         MHerramientas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenuItem1.setText("Institución");
-        MHerramientas.add(jMenuItem1);
+        MInstitucion.setText("Institución");
+        MHerramientas.add(MInstitucion);
 
-        jMenuItem2.setText("Respaldo");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        MRespaldo.setText("Respaldo");
+        MRespaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                MRespaldoActionPerformed(evt);
             }
         });
-        MHerramientas.add(jMenuItem2);
+        MHerramientas.add(MRespaldo);
 
         MenuBar.add(MHerramientas);
 
@@ -274,9 +274,9 @@ public class Principal extends SGCForm {
                 Toolkit.getDefaultToolkit().getScreenSize().height - 37);
     }//GEN-LAST:event_formWindowOpened
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void MRespaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MRespaldoActionPerformed
+        new Respaldo().setVisible(true);
+    }//GEN-LAST:event_MRespaldoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -310,14 +310,14 @@ public class Principal extends SGCForm {
     private javax.swing.JMenu MGestionIngreso;
     private javax.swing.JMenu MGestionParam;
     private javax.swing.JMenu MHerramientas;
+    private javax.swing.JMenuItem MInstitucion;
     private javax.swing.JMenu MPersonas;
     private javax.swing.JMenu MReportes;
+    private javax.swing.JMenuItem MRespaldo;
     private javax.swing.JMenu MTipoBeca;
     private javax.swing.JMenu MUsurio;
     private javax.swing.JMenu MVentaTiq;
     private javax.swing.JMenuBar MenuBar;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel lblLogoEscuela;
     private javax.swing.JLabel lblLogoInstitucion;
     private javax.swing.JLabel lblNombreInstitucion;

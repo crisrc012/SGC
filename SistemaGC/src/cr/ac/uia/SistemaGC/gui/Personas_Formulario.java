@@ -12,7 +12,6 @@ import cr.ac.uia.SistemaGC.entities.Personas_avatar;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;

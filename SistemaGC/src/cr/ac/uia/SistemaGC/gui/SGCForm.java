@@ -13,7 +13,7 @@ public class SGCForm extends javax.swing.JFrame {
 
     public final void SGCconf() {
         setLocationRelativeTo(null);
-        setIconImage(new javax.swing.ImageIcon("src/cr/ac/uia/SistemaGC/img/Icono.png").getImage());
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Icono.png")).getImage());
         setResizable(false);
         setAlwaysOnTop(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

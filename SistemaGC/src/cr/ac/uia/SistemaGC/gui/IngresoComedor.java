@@ -7,13 +7,9 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Becados_bl;
 import cr.ac.uia.SistemaGC.bl.Becas_bl;
-import cr.ac.uia.SistemaGC.bl.Persona_bl;
-import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.bl.Tiquetes_bl;
 import cr.ac.uia.SistemaGC.entities.Becados;
 import cr.ac.uia.SistemaGC.entities.Becas;
-import cr.ac.uia.SistemaGC.entities.Persona;
-import cr.ac.uia.SistemaGC.entities.Personas;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -257,17 +253,19 @@ public class IngresoComedor extends SGCForm {
     }//GEN-LAST:event_txtCedPersonaKeyPressed
 
     private void txtCedPersonaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedPersonaKeyReleased
-        try {
-            Integer.parseInt(txtCedPersona.getText().trim());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Digite únicamente números", "Error", JOptionPane.ERROR_MESSAGE);
-            txtCedPersona.setText("");
+        if (!txtCedPersona.getText().isEmpty()) {
+            try {
+                Integer.parseInt(txtCedPersona.getText().trim());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Digite únicamente números", "Error", JOptionPane.ERROR_MESSAGE);
+                txtCedPersona.setText("");
+            }
         }
     }//GEN-LAST:event_txtCedPersonaKeyReleased
 
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

@@ -11,7 +11,6 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -71,7 +70,6 @@ public class Iniciar_Sesion extends SGCForm {
         lblPassword.setText("Contraseña:");
 
         btnLogin.setText("Iniciar Sesión");
-        btnLogin.setEnabled(false);
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -79,7 +77,6 @@ public class Iniciar_Sesion extends SGCForm {
         });
 
         txtUserName.setName(""); // NOI18N
-        txtUserName.setEnabled(false);
         txtUserName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtUserNameKeyPressed(evt);
@@ -87,7 +84,6 @@ public class Iniciar_Sesion extends SGCForm {
         });
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtPassword.setEnabled(false);
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPasswordKeyPressed(evt);
@@ -101,7 +97,7 @@ public class Iniciar_Sesion extends SGCForm {
         lblTituloSGC.setText("Sistema Gestor de Comedores");
 
         lblConexion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        lblConexion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/cancelar.png"))); // NOI18N
+        lblConexion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/cancelar.png")));
         lblConexion.setText("Estado de la conexión");
         lblConexion.setToolTipText("Clic para comprobar la conexión");
         lblConexion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,27 +111,27 @@ public class Iniciar_Sesion extends SGCForm {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(lblConexion)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLogin))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(lblUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lblTituloSGC))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblIndicacion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblConexion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLogin)))
+                            .addComponent(lblTituloSGC)
+                            .addComponent(lblIndicacion))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -153,11 +149,11 @@ public class Iniciar_Sesion extends SGCForm {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPassword))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLogin)
-                    .addComponent(lblConexion))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblConexion)
+                    .addComponent(btnLogin))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,7 +161,9 @@ public class Iniciar_Sesion extends SGCForm {
 
     private void iniciarSesion() {
         try {
-            if (txtUserName.getText().trim().isEmpty() || txtPassword.getPassword().length == 0) {
+            new cr.ac.uia.SistemaGC.db.Conexion().getConnection();
+            if (txtUserName.getText().trim().isEmpty()
+                    || txtPassword.getPassword().length == 0) {
                 JOptionPane.showMessageDialog(this,
                         "Por favor digite su nombre de usuario y contraseña.",
                         "Inicio de sesión incorreto",
@@ -175,23 +173,21 @@ public class Iniciar_Sesion extends SGCForm {
             usuario.setUsuario(txtUserName.getText().trim());
             usuario.setContrasena(Arrays.toString(txtPassword.getPassword()));
             Boolean conexion = ubl.login(usuario);
-            if (conexion == null) {
+            if (!conexion) {
                 JOptionPane.showMessageDialog(this,
-                        "Ha ocurrido un error al contactar el servidor de base de datos.",
+                        "Por favor verifique los datos ingresados.",
                         "Inicio de sesión incorreto",
                         JOptionPane.ERROR_MESSAGE);
             } else if (conexion) {
                 PUI = new Principal();
                 PUI.setVisible(true);
                 this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Su usuario está deshabilitado.",
-                        "Inicio de sesión incorreto",
-                        JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException | IOException e) {
-            System.out.println(e.toString());
+            JOptionPane.showMessageDialog(this,
+                    "Ha ocurrido un error al contactar el servidor de base de datos.",
+                    "Inicio de sesión incorreto",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -225,18 +221,16 @@ public class Iniciar_Sesion extends SGCForm {
 
     private void probarConexion() {
         try {
-            java.sql.Connection con
-                    = new cr.ac.uia.SistemaGC.db.Conexion().getConnection();
-            lblConexion.setIcon(new ImageIcon("src/cr/ac/uia/SistemaGC/img/aceptar.png"));
-            btnLogin.setEnabled(true);
-            txtPassword.setEnabled(true);
-            txtUserName.setEnabled(true);
-            txtUserName.requestFocus();
+            new cr.ac.uia.SistemaGC.db.Conexion().getConnection();
+            lblConexion.setIcon(
+                    new javax.swing.ImageIcon(
+                            getClass()
+                            .getResource("/cr/ac/uia/SistemaGC/img/aceptar.png")));
         } catch (SQLException | IOException e) {
-            lblConexion.setIcon(new ImageIcon("src/cr/ac/uia/SistemaGC/img/cancelar.png"));
-            btnLogin.setEnabled(false);
-            txtPassword.setEnabled(false);
-            txtUserName.setEnabled(false);
+            lblConexion.setIcon(
+                    new javax.swing.ImageIcon(
+                            getClass()
+                            .getResource("/cr/ac/uia/SistemaGC/img/cancelar.png")));
         }
     }
 
