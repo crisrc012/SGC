@@ -71,6 +71,7 @@ public class IngresoComedor extends SGCForm {
 
         btngComida.add(rbtnDesayuno);
         rbtnDesayuno.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        rbtnDesayuno.setSelected(true);
         rbtnDesayuno.setText("Desayuno");
 
         lblCedPersona.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N

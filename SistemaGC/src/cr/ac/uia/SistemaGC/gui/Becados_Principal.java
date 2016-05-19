@@ -104,7 +104,7 @@ public class Becados_Principal extends SGCForm {
             }
         });
 
-        btnDesasignarBeca.setText("Desasignar Beca");
+        btnDesasignarBeca.setText("Des/Asignar Beca");
         btnDesasignarBeca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDesasignarBecaActionPerformed(evt);
