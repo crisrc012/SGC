@@ -21,13 +21,13 @@ public class Personas_avatar_db {
     private Conexion con;
     private PreparedStatement ps;
 
-    public byte[] select(int cedula) throws SQLException {
+    public byte[] select(Long cedula) throws SQLException {
         byte[] foto = null;
         try {
             con = new Conexion();
             ps = con.getConnection()
                     .prepareStatement("select foto from f_personas_avatar('select',?,null);");
-            ps.setInt(1, cedula);
+            ps.setLong(1, cedula);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     foto = rs.getBytes("foto");

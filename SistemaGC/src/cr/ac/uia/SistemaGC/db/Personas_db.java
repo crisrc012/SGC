@@ -28,7 +28,7 @@ public class Personas_db {
             ps = con.getConnection()
                     .prepareStatement("SELECT * FROM f_personas('select',?,?,?,?,?,?,?,?);");
             if (persona.getCedula() != null) {
-                ps.setInt(1, persona.getCedula());
+                ps.setLong(1, persona.getCedula());
             } else {
                 ps.setNull(1, java.sql.Types.INTEGER);
             }
@@ -70,7 +70,7 @@ public class Personas_db {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Personas p = new Personas();
-                    p.setCedula(rs.getInt("cedula"));
+                    p.setCedula(rs.getLong("cedula"));
                     p.setNombre(rs.getString("nombre"));
                     p.setApellidos(rs.getString("apellidos"));
                     p.setFecha_nacimiento(rs.getDate("fecha_nacimiento"));
@@ -98,7 +98,7 @@ public class Personas_db {
             ps = con.getConnection()
                     .prepareStatement("select * from f_personas(?,?,?,?,?,?,?,?,?);");
             ps.setString(1, dml);
-            ps.setInt(2, persona.getCedula());
+            ps.setLong(2, persona.getCedula());
             ps.setString(3, persona.getNombre());
             ps.setString(4, persona.getApellidos());
             ps.setDate(5, new java.sql.Date(persona.getFecha_nacimiento().getTime()));

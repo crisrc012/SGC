@@ -181,7 +181,7 @@ public class IngresoComedor extends SGCForm {
             return;
         }
         try {
-            int cedula = Integer.parseInt(txtCedPersona.getText());
+            Long cedula = Long.parseLong(txtCedPersona.getText());
             Boolean becado = ConfirmarBeca(cedula);
             if (becado) {
                 int comida = 0;
@@ -211,7 +211,7 @@ public class IngresoComedor extends SGCForm {
         limpiar();
     }//GEN-LAST:event_btnAplicarIngresoActionPerformed
 
-    private Boolean ConfirmarBeca(int cedula) {
+    private Boolean ConfirmarBeca(Long cedula) {
         try {
             Becados b = new Becados();
             b.setId_persona(cedula);

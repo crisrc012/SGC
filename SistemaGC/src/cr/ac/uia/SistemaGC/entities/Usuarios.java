@@ -11,7 +11,7 @@ package cr.ac.uia.SistemaGC.entities;
  */
 public class Usuarios {
 
-    private Integer cedula;
+    private Long cedula;
     private String usuario;
     private String contrasena;
     private String nombre;
@@ -31,7 +31,7 @@ public class Usuarios {
         this.id_rol = null;
     }
 
-    public Usuarios(Integer cedula, String usuario, String contrasena, String nombre, String apellidos, Boolean activo, String observaciones, Integer id_rol) {
+    public Usuarios(Long cedula, String usuario, String contrasena, String nombre, String apellidos, Boolean activo, String observaciones, Integer id_rol) {
         this.cedula = cedula;
         this.usuario = usuario;
         this.contrasena = contrasena;
@@ -42,11 +42,11 @@ public class Usuarios {
         this.id_rol = id_rol;
     }
 
-    public Integer getCedula() {
+    public Long getCedula() {
         return cedula;
     }
 
-    public void setCedula(Integer cedula) {
+    public void setCedula(Long cedula) {
         this.cedula = cedula;
     }
 

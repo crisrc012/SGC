@@ -175,7 +175,7 @@ public class Personas_Principal extends SGCForm {
         }
         new Personas_Formulario(true,
                 new Personas(
-                        (Integer) tblPersonas.getValueAt(i, 0),
+                        (Long) tblPersonas.getValueAt(i, 0),
                         (String) tblPersonas.getValueAt(i, 1),
                         (String) tblPersonas.getValueAt(i, 2),
                         (java.util.Date) tblPersonas.getValueAt(i, 3),

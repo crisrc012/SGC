@@ -198,7 +198,7 @@ public class Usuarios_Principal extends SGCForm {
         }
         new Usuarios_Formulario(true,
                 new Usuarios(
-                        (Integer) tblUsuarios.getValueAt(i, 0),
+                        (Long) tblUsuarios.getValueAt(i, 0),
                         (String) tblUsuarios.getValueAt(i, 1),
                         null,
                         (String) tblUsuarios.getValueAt(i, 2),
@@ -226,7 +226,7 @@ public class Usuarios_Principal extends SGCForm {
         try {
             Usuarios_bl ubl = new Usuarios_bl();
             if (ubl.update(new Usuarios(
-                    (Integer) tblUsuarios.getValueAt(i, 0),
+                    (Long) tblUsuarios.getValueAt(i, 0),
                     (String) tblUsuarios.getValueAt(i, 1),
                     null,
                     (String) tblUsuarios.getValueAt(i, 2),

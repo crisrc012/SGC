@@ -122,13 +122,13 @@ public class Tiquetes_db {
         return control;
     }
 
-    public int count(int id_persona, int id_comida) throws SQLException, IOException {
+    public int count(Long id_persona, Integer id_comida) throws SQLException, IOException {
         int cantidad = 0;
         con = new Conexion();
         ps = con.getConnection()
                 .prepareStatement("select count(*) from tbl_tiquetes t inner join tbl_precio p on t.id_precio = p.id and t.activo = true and p.id_comida = ? group by t.id_persona having t.id_persona = ?;");
         ps.setInt(1, id_comida);
-        ps.setInt(2, id_persona);
+        ps.setLong(2, id_persona);
         try (ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 cantidad = rs.getInt("count");
@@ -143,12 +143,12 @@ public class Tiquetes_db {
         return cantidad;
     }
 
-    public ArrayList<Tiquetes> activos(int id_persona, int id_comida) throws SQLException, IOException {
+    public ArrayList<Tiquetes> activos(Long id_persona, Integer id_comida) throws SQLException, IOException {
         ArrayList<Tiquetes> tiqueteslst = new ArrayList<>();
         try {
             con = new Conexion();
             ps = con.getConnection().prepareStatement("select * from tbl_tiquetes t inner join tbl_precio p on t.id_persona = ? and t.id_precio = p.id and p.id_comida = ? and t.activo = true;");
-            ps.setInt(1, id_persona);
+            ps.setLong(1, id_persona);
             ps.setInt(2, id_comida);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {

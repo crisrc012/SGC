@@ -12,7 +12,7 @@ package cr.ac.uia.SistemaGC.entities;
 public class Becados {
 
     private Integer id;
-    private Integer id_persona;
+    private Long id_persona;
     private Integer id_beca;
     private Boolean activo;
     private String observaciones;
@@ -25,7 +25,7 @@ public class Becados {
         this.observaciones = null;
     }
 
-    public Becados(Integer id, Integer id_persona, Integer id_beca, Boolean activo, String observaciones) {
+    public Becados(Integer id, Long id_persona, Integer id_beca, Boolean activo, String observaciones) {
         this.id = id;
         this.id_persona = id_persona;
         this.id_beca = id_beca;
@@ -41,11 +41,11 @@ public class Becados {
         this.id = id;
     }
 
-    public Integer getId_persona() {
+    public Long getId_persona() {
         return id_persona;
     }
 
-    public void setId_persona(Integer id_persona) {
+    public void setId_persona(Long id_persona) {
         this.id_persona = id_persona;
     }
 

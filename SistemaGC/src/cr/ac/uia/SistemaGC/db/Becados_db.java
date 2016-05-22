@@ -33,7 +33,7 @@ public class Becados_db {
                 ps.setNull(1, java.sql.Types.INTEGER);
             }
             if (becados.getId_persona() != null) {
-                ps.setInt(2, becados.getId_persona());
+                ps.setLong(2, becados.getId_persona());
             } else {
                 ps.setNull(2, java.sql.Types.INTEGER);
             }
@@ -56,7 +56,7 @@ public class Becados_db {
                 while (rs.next()) {
                     Becados b = new Becados();
                     b.setId(rs.getInt("id"));
-                    b.setId_persona(rs.getInt("id_persona"));
+                    b.setId_persona(rs.getLong("id_persona"));
                     b.setId_beca(rs.getInt("id_beca"));
                     b.setActivo(rs.getBoolean("activo"));
                     b.setObservaciones(rs.getString("observaciones"));
@@ -85,8 +85,7 @@ public class Becados_db {
             } else {
                 ps.setNull(2, java.sql.Types.INTEGER);
             }
-
-            ps.setInt(3, becados.getId_persona());
+            ps.setLong(3, becados.getId_persona());
             ps.setInt(4, becados.getId_beca());
             ps.setBoolean(5, becados.getActivo());
             ps.setString(6, becados.getObservaciones());

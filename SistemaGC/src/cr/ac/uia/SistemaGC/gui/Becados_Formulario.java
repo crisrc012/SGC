@@ -204,7 +204,7 @@ public class Becados_Formulario extends SGCForm {
             try {
                 Becados_bl bbl = new Becados_bl();
                 becado.setId(becado.getId());
-                becado.setId_persona(Integer.parseInt(txtCedEstudiante.getText().trim()));
+                becado.setId_persona(Long.parseLong(txtCedEstudiante.getText().trim()));
                 becado.setId_beca(id_beca);
                 becado.setObservaciones(txtObsBeca.getText().trim());
                 becado.setActivo(true);
@@ -245,9 +245,9 @@ public class Becados_Formulario extends SGCForm {
             beca.setActivo(true); // busca las becas activas
             Becas_bl Bbl = new Becas_bl();
             ArrayList<Becas> abl = Bbl.select(beca);
-            for (Becas b : abl) {
+            abl.stream().forEach((b) -> {
                 cboBecas.addItem(b.getNombre());
-            }
+            });
             if (isUpdate) {
                 btnGuardarAsignacion.setText("Modificar Beca");
                 txtCedEstudiante.setText(String.valueOf(becado.getId_persona()));
@@ -271,7 +271,7 @@ public class Becados_Formulario extends SGCForm {
             txtCedEstudiante.setEnabled(false);
             Becados b = new Becados();
             Becados_bl bbl = new Becados_bl();
-            b.setId_persona(Integer.parseInt(txtCedEstudiante.getText().trim()));
+            b.setId_persona(Long.parseLong(txtCedEstudiante.getText().trim()));
             ArrayList<Becados> ab = bbl.select(b);
             if (isUpdate == false) {
                 if (ab.size() > 0) {
@@ -285,7 +285,7 @@ public class Becados_Formulario extends SGCForm {
             }
             Personas_bl pbl = new Personas_bl();
             Personas p = new Personas();
-            p.setCedula(Integer.parseInt(txtCedEstudiante.getText().trim()));
+            p.setCedula(Long.parseLong(txtCedEstudiante.getText().trim()));
             ArrayList<Personas> al = pbl.select(p);
             if (al.size() > 0) {
                 txtNombreEstudiante.setText(al.get(0).getNombre() + " " + al.get(0).getApellidos());

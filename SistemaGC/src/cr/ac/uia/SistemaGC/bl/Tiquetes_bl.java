@@ -39,15 +39,15 @@ public class Tiquetes_bl {
         return insert_update(tiquetes, "update");
     }
     
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(Integer id) throws SQLException {
         return tdb.delete(id);
     }
     
-    public int count(int cedula, int comida) throws SQLException, IOException {
+    public int count(Long cedula, Integer comida) throws SQLException, IOException {
         return tdb.count(cedula, comida);
     }
     
-    public ArrayList<Tiquetes> activos(int id_persona, int id_comida) throws SQLException, IOException{
+    public ArrayList<Tiquetes> activos(Long id_persona, Integer id_comida) throws SQLException, IOException{
         return tdb.activos(id_persona, id_comida);
     }
 }

@@ -33,7 +33,7 @@ public class AES {
         }
     }
 
-    public static String encrypt(String cedula, String usuario, String contrasena) {
+    public static String encrypt(Long cedula, String usuario, String contrasena) {
         //<editor-fold defaultstate="collapsed" desc="Método para cifrar contraseñas">
         /*
         * Inspirado en:
@@ -41,7 +41,7 @@ public class AES {
          */
         try {
             IvParameterSpec iv = new IvParameterSpec(fitString(usuario, 16).getBytes("UTF-8"));
-            SecretKeySpec skeySpec = new SecretKeySpec(fitString(cedula, 16).getBytes("UTF-8"), "AES");
+            SecretKeySpec skeySpec = new SecretKeySpec(fitString(cedula.toString(), 16).getBytes("UTF-8"), "AES");
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
             byte[] encrypted = cipher.doFinal(contrasena.getBytes());

@@ -332,7 +332,7 @@ public class Personas_Formulario extends SGCForm {
                     id = 2;
                 }
                 Personas_bl blp = new Personas_bl();
-                persona.setCedula(Integer.parseInt(txtCedulaPersona.getText().trim()));
+                persona.setCedula(Long.parseLong(txtCedulaPersona.getText().trim()));
                 persona.setNombre(txtNombrePersona.getText().trim());
                 persona.setApellidos(txtApellidosPersona.getText().trim());
                 persona.setFecha_nacimiento(jDateFechaNacimiento.getDate());
@@ -366,8 +366,8 @@ public class Personas_Formulario extends SGCForm {
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        if (this.isUpdate) {
-            try {
+        try {
+            if (this.isUpdate) {
                 btnGuardarPersona.setText("Modificar Persona");
                 txtCedulaPersona.setText(persona.getCedula().toString());
                 txtCedulaPersona.setEditable(false);
@@ -383,7 +383,7 @@ public class Personas_Formulario extends SGCForm {
                     RBFuncionario.setSelected(true);
                 }
                 Personas_avatar_bl pabl = new Personas_avatar_bl();
-                byte[] avatar = pabl.select(this.persona.getCedula());
+                byte[] avatar = pabl.select(persona.getCedula());
                 if (avatar != null) {
                     ImageIcon image = new ImageIcon(avatar);
                     lblFoto.setIcon(
@@ -396,9 +396,9 @@ public class Personas_Formulario extends SGCForm {
                     lblFoto.setToolTipText("Clic para cambiar la foto");
                     btnQuitarFoto.setVisible(true);
                 }
-            } catch (SQLException e) {
-                System.out.println(e.toString());
             }
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
     }//GEN-LAST:event_formComponentShown
 

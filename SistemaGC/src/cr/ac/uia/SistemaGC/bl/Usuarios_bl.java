@@ -37,7 +37,7 @@ public class Usuarios_bl {
     }
 
     public boolean update(Usuarios usuarios, boolean updatePass) throws SQLException, IOException {
-        if(updatePass){
+        if (updatePass) {
             return insert_update(usuarios, "update_contrasena");
         } else {
             return insert_update(usuarios, "update");
@@ -55,7 +55,7 @@ public class Usuarios_bl {
         if (al.size() > 0) {
             usuarios = al.get(0);
             control = udb.login(usuarios.getUsuario(),
-                    AES.encrypt(usuarios.getCedula().toString(),
+                    AES.encrypt(usuarios.getCedula(),
                             usuarios.getUsuario(),
                             contrasena));
         }

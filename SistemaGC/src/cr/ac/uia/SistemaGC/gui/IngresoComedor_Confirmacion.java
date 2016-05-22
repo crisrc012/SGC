@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class IngresoComedor_Confirmacion extends SGCForm {
 
-    private Integer cedula;
+    private Long cedula;
     private Integer comida;
     private Integer cantidad;
 
@@ -36,7 +36,7 @@ public class IngresoComedor_Confirmacion extends SGCForm {
         initComponents();
     }
 
-    public IngresoComedor_Confirmacion(Integer cedula, Integer comida, Integer cantidad) {
+    public IngresoComedor_Confirmacion(Long cedula, Integer comida, Integer cantidad) {
         initComponents();
         SGCconf();
         this.cedula = cedula;

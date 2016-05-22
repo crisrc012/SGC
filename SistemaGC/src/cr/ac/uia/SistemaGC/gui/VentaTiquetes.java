@@ -422,7 +422,7 @@ public class VentaTiquetes extends SGCForm {
             txtCedula.setEnabled(false);
             Personas_bl pbl = new Personas_bl();
             Personas p = new Personas();
-            p.setCedula(Integer.parseInt(txtCedula.getText().trim()));
+            p.setCedula(Long.parseLong(txtCedula.getText().trim()));
             ArrayList<Personas> al = pbl.select(p);
             if (al.size() > 0) {
                 txtNombre.setText(
@@ -525,7 +525,7 @@ public class VentaTiquetes extends SGCForm {
         try {
             Becados b = new Becados();
             Becados_bl bbl = new Becados_bl();
-            b.setId_persona(Integer.parseInt(txtCedula.getText()));
+            b.setId_persona(Long.parseLong(txtCedula.getText()));
             ArrayList<Becados> al = bbl.select(b);
             int beca = 0;
             if (al.size() > 0) {

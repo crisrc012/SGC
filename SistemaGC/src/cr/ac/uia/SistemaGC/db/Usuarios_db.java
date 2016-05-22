@@ -6,6 +6,7 @@
 package cr.ac.uia.SistemaGC.db;
 
 import cr.ac.uia.SistemaGC.entities.Usuarios;
+import cr.ac.uia.SistemaGC.utils.AES;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +29,7 @@ public class Usuarios_db {
             ps = con.getConnection()
                     .prepareStatement("select * from f_usuarios('select',?,?,null,?,?,?,?,?);");
             if (usuario.getCedula() != null) {
-                ps.setInt(1, usuario.getCedula());
+                ps.setLong(1, usuario.getCedula());
             } else {
                 ps.setNull(1, java.sql.Types.INTEGER);
             }
@@ -65,7 +66,7 @@ public class Usuarios_db {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Usuarios u = new Usuarios();
-                    u.setCedula(rs.getInt("cedula"));
+                    u.setCedula(rs.getLong("cedula"));
                     u.setUsuario(rs.getString("usuario"));
                     u.setNombre(rs.getString("nombre"));
                     u.setApellidos(rs.getString("apellidos"));
@@ -91,9 +92,9 @@ public class Usuarios_db {
             con = new Conexion();
             ps = con.getConnection().prepareStatement("select f_usuarios(?,?,?,?,?,?,?,?,?);");
             ps.setString(1, dml);
-            ps.setInt(2, usuario.getCedula());
+            ps.setLong(2, usuario.getCedula());
             ps.setString(3, usuario.getUsuario());
-            ps.setString(4, usuario.getContrasena());
+            ps.setString(4, AES.encrypt(usuario.getCedula(), usuario.getUsuario(), usuario.getContrasena()));
             ps.setString(5, usuario.getNombre());
             ps.setString(6, usuario.getApellidos());
             ps.setBoolean(7, usuario.getActivo());

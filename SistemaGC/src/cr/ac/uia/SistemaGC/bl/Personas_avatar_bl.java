@@ -23,7 +23,7 @@ public class Personas_avatar_bl {
         padb = new Personas_avatar_db();
     }
 
-    public byte[] select(int cedula) throws SQLException {
+    public byte[] select(Long cedula) throws SQLException {
         return padb.select(cedula);
     }
 

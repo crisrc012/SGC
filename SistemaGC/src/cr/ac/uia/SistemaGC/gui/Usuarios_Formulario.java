@@ -247,13 +247,13 @@ public class Usuarios_Formulario extends SGCForm {
         try {
             Usuarios_bl p_bl = new Usuarios_bl();
             usuarios.setContrasena(Arrays.toString(txtContraseña.getPassword()));
-            usuarios.setCedula((Integer) txtCedula.getValue());
+            usuarios.setCedula((Long) txtCedula.getValue());
             usuarios.setNombre(txtNombre.getText().trim());
             usuarios.setApellidos(txtApellidos.getText());
             usuarios.setUsuario(txtUsuario.getText().trim());
             usuarios.setActivo(CBActivo.isSelected());
             usuarios.setObservaciones(txtObsUsuario.getText().trim());
-            usuarios.setId_rol(1);
+            usuarios.setId_rol(1000);
             if (this.isUpdate) {
                 if (p_bl.update(usuarios, chckCambioContrasena.isSelected())) {
                     JOptionPane.showMessageDialog(this,

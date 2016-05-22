@@ -181,10 +181,10 @@ public class Becados_Principal extends SGCForm {
             }
             Becados_bl bbl = new Becados_bl();
             Becados b = new Becados();
-            b.setId_persona((Integer) tblAdmBecas.getValueAt(i, 0));
+            b.setId_persona((Long) tblAdmBecas.getValueAt(i, 0));
             new Becados_Formulario(true,
                     new Becados(bbl.select(b).get(0).getId(),
-                            (Integer) tblAdmBecas.getValueAt(i, 0),
+                            (Long) tblAdmBecas.getValueAt(i, 0),
                             id, (Boolean) tblAdmBecas.getValueAt(i, 6),
                             (String) tblAdmBecas.getValueAt(i, 3))
             ).setVisible(true);
@@ -236,7 +236,7 @@ public class Becados_Principal extends SGCForm {
         try {
             Becados_bl bbl = new Becados_bl();
             Becados b = new Becados();
-            b.setId_persona((Integer) tblAdmBecas.getValueAt(i, 0));
+            b.setId_persona((Long) tblAdmBecas.getValueAt(i, 0));
             b = bbl.select(b).get(0);
             b.setActivo(!b.getActivo());
             if (bbl.update(b)) {

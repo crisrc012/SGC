@@ -30,7 +30,7 @@ values
 	(2,'Funcionario');
 
 create table tbl_personas(
-	cedula integer primary key,
+	cedula bigint primary key,
 	nombre text not null,
 	apellidos text not null,
 	fecha_nacimiento date not null,
@@ -47,7 +47,7 @@ create table tbl_personas_avatar(
 
 create table tbl_becados(
 	id serial primary key,
-	id_persona integer references tbl_personas(cedula),
+	id_persona bigint references tbl_personas(cedula),
 	id_beca integer references tbl_becas(id),
 	activo boolean not null,
 	observaciones text not null
@@ -79,7 +79,7 @@ values
 
 create table tbl_tiquetes(
 	id serial primary key,
-	id_persona integer references tbl_personas(cedula),
+	id_persona bigint references tbl_personas(cedula),
 	id_precio integer references tbl_precio(id),
 	fecha_compra date not null,
 	fecha_uso date,
@@ -92,8 +92,12 @@ create table tbl_roles(
 	descripcion text unique
 );
 
+insert into tbl_roles
+values
+	(1000,'Administrador');
+
 create table tbl_usuarios(
-	cedula integer primary key,
+	cedula bigint primary key,
 	usuario text not null unique,
 	contrasena text not null,
 	nombre text not null,
@@ -105,7 +109,7 @@ create table tbl_usuarios(
 
 insert into tbl_usuarios
 values
-	(0,'root','Jj8OpRmCIuqBLvN+35WZJw==','root','root',true,'Superusuario',1);
+	(0,'root','Jj8OpRmCIuqBLvN+35WZJw==','root','root',true,'Superusuario',1000);
 
 -- Tabla de Datos de la institución
 create table tbl_institucion(
@@ -116,34 +120,17 @@ create table tbl_institucion(
 
 insert into tbl_institucion values(0,null,null);
 
--- Vistas
-create view vw_becados as
-	select tps.cedula, tps.nombre, tps.apellidos, tp.descripcion, tb.nombre as beca, tb.porcentaje, tbs.activo
-	from tbl_becados tbs, tbl_persona tp, tbl_personas tps, tbl_becas tb
-	where
-	tbs.id_persona = tps.cedula and
-	tps.id_persona = tp.id and
-	tbs.id_beca = tb.id
-	order by tps.apellidos;
-	
-create view vw_semanales as
-	select f_semanales(fecha_compra) as Semana, count(*) as Cantidad
-	from tbl_tiquetes t inner join tbl_personas p
-	on t.id_persona = p.cedula inner join tbl_becados b
-	on t.id_persona = b.id_persona
-	group by f_semanales(fecha_compra)
-
 -- Funciones
 create or replace function f_becados(
 	in dml text,
 	in _id integer,
-	in _id_persona integer,
+	in _id_persona bigint,
 	in _id_beca integer,
 	in _activo boolean,
 	in _observaciones text)
 returns table(
 	id integer,
-	id_persona integer,
+	id_persona bigint,
 	id_beca integer,
 	activo boolean,
 	observaciones text) as
@@ -287,7 +274,7 @@ language plpgsql;
 
 create or replace function f_personas(
 	in dml text,
-	in _cedula integer,
+	in _cedula bigint,
 	in _nombre text,
 	in _apellidos text,
 	in _fecha_nacimiento date,
@@ -296,7 +283,7 @@ create or replace function f_personas(
 	in _encargado text,
 	in _id_persona integer)
 returns table(
-	cedula integer,
+	cedula bigint,
 	nombre text,
 	apellidos text,
 	fecha_nacimiento date,
@@ -462,7 +449,7 @@ language plpgsql;
 
 create or replace function f_usuarios(
 	in dml text,
-	in _cedula integer,
+	in _cedula bigint,
 	in _usuario text,
 	in _contrasena text,
 	in _nombre text,
@@ -471,7 +458,7 @@ create or replace function f_usuarios(
 	in _observaciones text,
 	in _id_rol integer)
 returns table(
-	cedula integer,
+	cedula bigint,
 	usuario text,
 	nombre text,
 	apellidos text,
@@ -543,7 +530,7 @@ language plpgsql;
 
 create or replace function f_personas_avatar(
 	in dml text,
-	in _cedula integer,
+	in _cedula bigint,
 	in _foto bytea)
 returns table(
 	foto bytea) as
@@ -566,3 +553,79 @@ begin
 end;
 $body$
 language plpgsql;
+
+-- Reportes
+create or replace function f_reportes(
+	in _periodo text,
+	in _inicio date,
+	in _fin date,
+	in _persona integer,
+	in _beca boolean)
+returns table(Periodo text, Cantidad bigint) as
+$body$
+begin
+	case _periodo
+		when 'Semanal' then
+			if _beca then
+				-- Estudiantes becados
+				return query
+				select date_trunc('week', fecha_compra)::date || ' a ' || (date_trunc('week', fecha_compra)+ '6 days'::interval)::date,
+				count(*)
+				from tbl_tiquetes t inner join tbl_personas p
+				on t.id_persona = p.cedula left join tbl_becados b
+				on t.id_persona = b.id_persona
+				where p.id_persona = _persona and
+				t.fecha_compra between _inicio and _fin and
+				b.id is not null
+				group by date_trunc('week', fecha_compra)::date || ' a ' || (date_trunc('week', fecha_compra)+ '6 days'::interval)::date;
+			else
+				-- Funcionarios y estuantes sin beca
+				return query
+				select date_trunc('week', fecha_compra)::date || ' a ' || (date_trunc('week', fecha_compra)+ '6 days'::interval)::date,
+				count(*)
+				from tbl_tiquetes t inner join tbl_personas p
+				on t.id_persona = p.cedula left join tbl_becados b
+				on t.id_persona = b.id_persona
+				where p.id_persona = _persona and
+				t.fecha_compra between _inicio and _fin and
+				b.id is null
+				group by date_trunc('week', fecha_compra)::date || ' a ' || (date_trunc('week', fecha_compra)+ '6 days'::interval)::date;
+			end if;
+		when 'Mensual' then
+			if _beca then
+				-- Estudiantes becados
+				return query
+				select to_char(fecha_compra,'MONTHYYYY'), count(*)
+				from tbl_tiquetes t inner join tbl_personas p
+				on t.id_persona = p.cedula left join tbl_becados b
+				on t.id_persona = b.id_persona
+				where p.id_persona = _persona and
+				t.fecha_compra between _inicio and _fin and
+				b.id is not null
+				group by to_char(fecha_compra,'MONTHYYYY');
+			else
+				-- Funcionarios y estuantes sin beca
+				return query
+				select to_char(fecha_compra,'MONTHYYYY'), count(*)
+				from tbl_tiquetes t inner join tbl_personas p
+				on t.id_persona = p.cedula left join tbl_becados b
+				on t.id_persona = b.id_persona
+				where p.id_persona = _persona and
+				t.fecha_compra between _inicio and _fin and
+				b.id is null
+				group by to_char(fecha_compra,'MONTHYYYY');
+			end if;
+	end case;
+end;
+$body$
+LANGUAGE plpgsql;
+
+-- Vistas
+create view vw_becados as
+	select tps.cedula, tps.nombre, tps.apellidos, tp.descripcion, tb.nombre as beca, tb.porcentaje, tbs.activo
+	from tbl_becados tbs, tbl_persona tp, tbl_personas tps, tbl_becas tb
+	where
+	tbs.id_persona = tps.cedula and
+	tps.id_persona = tp.id and
+	tbs.id_beca = tb.id
+	order by tps.apellidos;

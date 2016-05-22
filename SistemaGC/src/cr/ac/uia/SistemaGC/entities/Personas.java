@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Personas {
 
-    private Integer cedula;
+    private Long cedula;
     private String nombre;
     private String apellidos;
     private Date fecha_nacimiento;
@@ -33,7 +33,7 @@ public class Personas {
         this.id_persona = null;
     }
 
-    public Personas(Integer cedula, String nombre, String apellidos, Date fecha_nacimiento, Integer tel_celular, Integer tel_habitacion, String encargado, Integer id_persona) {
+    public Personas(Long cedula, String nombre, String apellidos, Date fecha_nacimiento, Integer tel_celular, Integer tel_habitacion, String encargado, Integer id_persona) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -44,11 +44,11 @@ public class Personas {
         this.id_persona = id_persona;
     }
 
-    public Integer getCedula() {
+    public Long getCedula() {
         return cedula;
     }
 
-    public void setCedula(Integer cedula) {
+    public void setCedula(Long cedula) {
         this.cedula = cedula;
     }
 
