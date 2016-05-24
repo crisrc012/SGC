@@ -434,6 +434,7 @@ public class VentaTiquetes extends SGCForm {
                 JOptionPane.showMessageDialog(this,
                         "No existe ninguna persona relacionada a la cédula ingresada",
                         "Error", JOptionPane.ERROR_MESSAGE);
+                limpiar();
             }
             Persona ps = new Persona();
             ps.setId(id_persona);
