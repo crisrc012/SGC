@@ -31,6 +31,9 @@ public class Acercade extends SGCForm {
         jPanel1 = new javax.swing.JPanel();
         logoUIA = new javax.swing.JLabel();
         btnCerrar = new SGCButton();
+        lblDescripcion = new javax.swing.JLabel();
+        lblNombre1 = new javax.swing.JLabel();
+        lblNombre2 = new javax.swing.JLabel();
 
         setName("Acercade"); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -48,6 +51,15 @@ public class Acercade extends SGCForm {
             }
         });
 
+        lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblDescripcion.setText("Proyecto de Extensión de Escuela de Ingeniería Informática: ");
+
+        lblNombre1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombre1.setText("Paola Aguirre Méndez");
+
+        lblNombre2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombre2.setText("Cristopher Robles Ríos");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -61,13 +73,26 @@ public class Acercade extends SGCForm {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(logoUIA)
                         .addGap(140, 140, 140))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNombre2)
+                    .addComponent(lblNombre1)
+                    .addComponent(lblDescripcion))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(logoUIA)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addComponent(lblDescripcion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNombre1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNombre2)
+                .addGap(4, 4, 4)
                 .addComponent(btnCerrar)
                 .addContainerGap())
         );
@@ -132,6 +157,9 @@ public class Acercade extends SGCForm {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblNombre1;
+    private javax.swing.JLabel lblNombre2;
     private javax.swing.JLabel logoUIA;
     // End of variables declaration//GEN-END:variables
 }
