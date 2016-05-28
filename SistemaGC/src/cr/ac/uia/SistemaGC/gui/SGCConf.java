@@ -23,7 +23,7 @@ public class SGCConf extends SGCForm {
      * Creates new form SGCConf
      */
     Properties prop;
-
+    
     public SGCConf() {
         initComponents();
         SGCconf();
@@ -200,7 +200,7 @@ public class SGCConf extends SGCForm {
     private void btnDescartarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescartarActionPerformed
         dispose();
     }//GEN-LAST:event_btnDescartarActionPerformed
-
+    
     private void error() {
         JOptionPane.showMessageDialog(this, "Error al actualizar, por favor verifique los datos",
                 "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -222,6 +222,8 @@ public class SGCConf extends SGCForm {
             prop.store(output, null);
             JOptionPane.showMessageDialog(this, "Configuración actualizada correctamente",
                     "Correcto", JOptionPane.INFORMATION_MESSAGE);
+            new Iniciar_Sesion().setVisible(true);
+            dispose();
         } catch (FileNotFoundException e) {
             error();
             System.out.println(e.toString());
