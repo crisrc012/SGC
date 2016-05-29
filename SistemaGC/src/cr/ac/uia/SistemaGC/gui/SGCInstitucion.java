@@ -50,6 +50,7 @@ public class SGCInstitucion extends SGCForm {
         lblFoto = new javax.swing.JLabel();
         btnGuardar = new SGCButton();
         btnQuitarFoto = new javax.swing.JButton();
+        lblLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -62,11 +63,11 @@ public class SGCInstitucion extends SGCForm {
         lblInstitucion.setText("Mi institución");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Nombre");
+        jLabel1.setText("Nombre:");
 
         lblFoto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFoto.setText("Agregar foto");
+        lblFoto.setText("Agregar logo");
         lblFoto.setToolTipText("Clic para agregar una foto");
         lblFoto.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 153, 204), new java.awt.Color(0, 0, 0)), null));
         lblFoto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -91,6 +92,9 @@ public class SGCInstitucion extends SGCForm {
             }
         });
 
+        lblLogo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblLogo.setText("Logo:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -102,8 +106,10 @@ public class SGCInstitucion extends SGCForm {
                         .addComponent(lblInstitucion)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(lblLogo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMiInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -124,7 +130,9 @@ public class SGCInstitucion extends SGCForm {
                     .addComponent(txtMiInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLogo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
@@ -179,7 +187,7 @@ public class SGCInstitucion extends SGCForm {
     private void quitarFoto() {
         this.foto = null;
         lblFoto.setIcon(null);
-        lblFoto.setText("Agregar foto");
+        lblFoto.setText("Agregar logo");
         lblFoto.setToolTipText("Clic para agregar una foto");
     }
 
@@ -274,6 +282,7 @@ public class SGCInstitucion extends SGCForm {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblInstitucion;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JTextField txtMiInstitucion;
     // End of variables declaration//GEN-END:variables
 }
