@@ -115,7 +115,7 @@ values
 create table tbl_institucion(
 	id int not null,
 	nombre text,
-	logo bytea
+	foto bytea
 );
 
 insert into tbl_institucion values(0,null,null);
@@ -549,6 +549,30 @@ begin
 			update tbl_personas_avatar t
 			set foto = _foto
 			where t.cedula = _cedula;
+	end case;
+end;
+$body$
+language plpgsql;
+
+create or replace function f_institucion(
+	in dml text,
+	in _nombre text,
+	in _foto bytea)
+returns table(
+	nombre text,
+	foto bytea) as
+$body$
+begin
+	case dml
+		when 'select' then
+			return query
+			select t.nombre, t.foto
+			from tbl_institucion t;
+		when 'update' then
+			update tbl_institucion t
+			set foto = _foto,
+			nombre = _nombre
+			where t.id = 0;
 	end case;
 end;
 $body$

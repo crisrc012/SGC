@@ -5,8 +5,11 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Institucion_bl;
+import cr.ac.uia.SistemaGC.entities.Institucion;
 import java.awt.Toolkit;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -21,7 +24,6 @@ public class Principal extends SGCForm {
         initComponents();
         SGCconf();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -218,11 +220,11 @@ public class Principal extends SGCForm {
         this.setLocation(0, 0);
     }//GEN-LAST:event_formComponentMoved
 
-    private void desactivar(){
+    private void desactivar() {
         this.setEnabled(false);
         this.setAutoRequestFocus(false);
     }
-    
+
     private void MUsurioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MUsurioMousePressed
         desactivar();
         try {
@@ -277,6 +279,7 @@ public class Principal extends SGCForm {
         this.setLocation(0, 0);
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height - 37);
+        cargarLogo();
     }//GEN-LAST:event_formWindowOpened
 
     private void MRespaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MRespaldoActionPerformed
@@ -284,7 +287,7 @@ public class Principal extends SGCForm {
     }//GEN-LAST:event_MRespaldoActionPerformed
 
     private void MInstitucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MInstitucionActionPerformed
-        new Institucion().setVisible(true);
+        new SGCInstitucion().setVisible(true);
     }//GEN-LAST:event_MInstitucionActionPerformed
 
     /**
@@ -332,4 +335,17 @@ public class Principal extends SGCForm {
     private javax.swing.JLabel lblNombreInstitucion;
     private javax.swing.JLabel lblSGC;
     // End of variables declaration//GEN-END:variables
+
+    public void cargarLogo() {
+        try {
+            // Descangando logo de la base de datos
+            Institucion_bl ibl = new Institucion_bl();
+            Institucion i = ibl.select();
+            ImageIcon image = new ImageIcon(i.getInFoto());
+            lblNombreInstitucion.setText(i.getNombre());
+            lblLogoInstitucion.setIcon(image);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
 }
