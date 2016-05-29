@@ -7,12 +7,9 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -22,7 +19,7 @@ import javax.swing.table.TableRowSorter;
  * @author Pao
  */
 public class Personas_Principal extends SGCForm {
-    private TableRowSorter tblRS;
+
     /**
      * Creates new form Personas
      */
@@ -45,7 +42,7 @@ public class Personas_Principal extends SGCForm {
         tblPersonas = new javax.swing.JTable();
         lblTituloGP = new javax.swing.JLabel();
         btnAgregarPersona = new SGCButton();
-        btnModificarPersona = new javax.swing.JButton();
+        btnModificarPersona = new SGCButton();
         btnDesactivarPersona = new SGCButton();
         btnImprimirCodigo = new SGCButton();
         jLabel1 = new javax.swing.JLabel();
@@ -96,7 +93,6 @@ public class Personas_Principal extends SGCForm {
             }
         });
 
-        btnModificarPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnModificarPersona.setText("Modificar Persona");
         btnModificarPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +112,9 @@ public class Personas_Principal extends SGCForm {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/persons.png"))); // NOI18N
 
         txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtFiltroKeyTyped(evt);
             }
@@ -134,7 +133,7 @@ public class Personas_Principal extends SGCForm {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btnModificarPersona)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 399, Short.MAX_VALUE)
                         .addComponent(btnDesactivarPersona)
                         .addGap(166, 166, 166)
                         .addComponent(btnImprimirCodigo))
@@ -173,7 +172,7 @@ public class Personas_Principal extends SGCForm {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnModificarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificarPersona)
                     .addComponent(btnImprimirCodigo)
                     .addComponent(btnDesactivarPersona))
                 .addContainerGap(90, Short.MAX_VALUE))
@@ -226,17 +225,13 @@ public class Personas_Principal extends SGCForm {
     }//GEN-LAST:event_btnImprimirCodigoActionPerformed
 
     private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
-        txtFiltro.addKeyListener(new KeyAdapter() {
-            public void keyReleased(final KeyEvent e) {
-                String cadena = (txtFiltro.getText()).toUpperCase();
-                txtFiltro.setText(cadena);
-                repaint();
-                Filtro();
-            }
-        });
-        tblRS = new TableRowSorter(tblPersonas.getModel());
-        tblPersonas.setRowSorter(tblRS);
+        // Busqueda por nombre
+        new SGCFiltro().Filtrar(txtFiltro, tblPersonas);
     }//GEN-LAST:event_txtFiltroKeyTyped
+
+    private void txtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyReleased
+        txtFiltro.setText(txtFiltro.getText().toUpperCase());
+    }//GEN-LAST:event_txtFiltroKeyReleased
 
     /**
      * @param args the command line arguments
@@ -300,10 +295,5 @@ public class Personas_Principal extends SGCForm {
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
-    }
-    
-    private void Filtro(){
-    tblRS.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), 1));
-    
     }
 }

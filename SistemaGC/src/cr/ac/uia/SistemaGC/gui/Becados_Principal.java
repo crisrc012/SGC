@@ -50,6 +50,8 @@ public class Becados_Principal extends SGCForm {
         btnModificarAsignacion = new SGCButton();
         btnDesasignarBeca = new SGCButton();
         jLabel1 = new javax.swing.JLabel();
+        lblFiltro = new javax.swing.JLabel();
+        txtFiltro = new SGCTextField();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -111,6 +113,18 @@ public class Becados_Principal extends SGCForm {
             }
         });
 
+        lblFiltro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFiltro.setText("Búsqueda por nombre:");
+
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,10 +132,16 @@ public class Becados_Principal extends SGCForm {
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(66, Short.MAX_VALUE)
-                .addComponent(lblTituloAdmiBecas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addGap(194, 194, 194)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTituloAdmiBecas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblFiltro)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(108, 108, 108)
                 .addComponent(btnAsignarBeca)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -134,17 +154,21 @@ public class Becados_Principal extends SGCForm {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(btnAsignarBeca))
+                        .addComponent(btnAsignarBeca)
+                        .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(lblTituloAdmiBecas)))
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTituloAdmiBecas)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFiltro))
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -181,10 +205,10 @@ public class Becados_Principal extends SGCForm {
             }
             Becados_bl bbl = new Becados_bl();
             Becados b = new Becados();
-            b.setId_persona((Long) tblAdmBecas.getValueAt(i, 0));
+            b.setId_persona(Long.parseLong(tblAdmBecas.getValueAt(i, 0).toString()));
             new Becados_Formulario(true,
                     new Becados(bbl.select(b).get(0).getId(),
-                            (Long) tblAdmBecas.getValueAt(i, 0),
+                            Long.parseLong(tblAdmBecas.getValueAt(i, 0).toString()),
                             id, (Boolean) tblAdmBecas.getValueAt(i, 6),
                             (String) tblAdmBecas.getValueAt(i, 3))
             ).setVisible(true);
@@ -256,6 +280,14 @@ public class Becados_Principal extends SGCForm {
         }
     }//GEN-LAST:event_btnDesasignarBecaActionPerformed
 
+    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
+        new SGCFiltro().Filtrar(txtFiltro, tblAdmBecas);
+    }//GEN-LAST:event_txtFiltroKeyTyped
+
+    private void txtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyReleased
+        txtFiltro.setText(txtFiltro.getText().toUpperCase());
+    }//GEN-LAST:event_txtFiltroKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -288,7 +320,9 @@ public class Becados_Principal extends SGCForm {
     private javax.swing.JButton btnModificarAsignacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblFiltro;
     private javax.swing.JLabel lblTituloAdmiBecas;
     private javax.swing.JTable tblAdmBecas;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

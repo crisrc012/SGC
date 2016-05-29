@@ -70,6 +70,7 @@ public class Principal extends SGCForm {
         lblSGC.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblSGC.setText("Sistema de Gestión de Comedores");
 
+        lblNombreInstitucion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombreInstitucion.setText("Mi institución");
 
         MenuBar.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)), "Menú", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
@@ -205,7 +206,7 @@ public class Principal extends SGCForm {
                 .addComponent(lblSGC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombreInstitucion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogoEscuela, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblLogoInstitucion, javax.swing.GroupLayout.Alignment.TRAILING))

@@ -209,7 +209,7 @@
               <Component id="lblSGC" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblNombreInstitucion" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="165" max="32767" attributes="0"/>
+              <EmptySpace pref="159" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblLogoEscuela" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLogoInstitucion" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -239,6 +239,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblNombreInstitucion">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mi instituci&#xf3;n"/>
       </Properties>
     </Component>

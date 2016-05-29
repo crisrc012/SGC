@@ -48,6 +48,8 @@ public class Usuarios_Principal extends SGCForm {
         btnModificarUsuario = new SGCButton();
         btnDesHabilitarUsuario = new SGCButton();
         lblUsuarios = new javax.swing.JLabel();
+        lblFiltro = new javax.swing.JLabel();
+        txtFiltro = new SGCTextField();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -109,6 +111,18 @@ public class Usuarios_Principal extends SGCForm {
 
         lblUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/user.png"))); // NOI18N
 
+        lblFiltro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFiltro.setText("Búsqueda por nombre:");
+
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,10 +132,17 @@ public class Usuarios_Principal extends SGCForm {
                 .addGap(14, 14, 14)
                 .addComponent(lblUsuarios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTituloUsuarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
-                .addComponent(btnAgregarUsuario)
-                .addGap(25, 25, 25))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTituloUsuarios)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                        .addComponent(btnAgregarUsuario)
+                        .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblFiltro)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(98, 98, 98)
                 .addComponent(btnModificarUsuario)
@@ -134,17 +155,17 @@ public class Usuarios_Principal extends SGCForm {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(btnAgregarUsuario))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(lblTituloUsuarios)))
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(btnAgregarUsuario))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(lblUsuarios)
-                        .addGap(18, 18, 18)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblTituloUsuarios)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblFiltro)))))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -250,6 +271,14 @@ public class Usuarios_Principal extends SGCForm {
         }
     }//GEN-LAST:event_btnDesHabilitarUsuarioActionPerformed
 
+    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
+        new SGCFiltro().Filtrar(txtFiltro, tblUsuarios);
+    }//GEN-LAST:event_txtFiltroKeyTyped
+
+    private void txtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyReleased
+        txtFiltro.setText(txtFiltro.getText().toLowerCase());
+    }//GEN-LAST:event_txtFiltroKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -286,8 +315,10 @@ public class Usuarios_Principal extends SGCForm {
     private javax.swing.JButton btnDesHabilitarUsuario;
     private javax.swing.JButton btnModificarUsuario;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblFiltro;
     private javax.swing.JLabel lblTituloUsuarios;
     private javax.swing.JLabel lblUsuarios;
     private javax.swing.JTable tblUsuarios;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }
