@@ -309,10 +309,10 @@ public class Personas_Formulario extends SGCForm {
         Personas_avatar_bl pabl = new Personas_avatar_bl();
         if (isUpdate) {
             pabl.update(new Personas_avatar(
-                    Integer.parseInt(txtCedulaPersona.getText()), thumbnail));
+                    Long.parseLong(txtCedulaPersona.getText()), thumbnail));
         } else {
             pabl.insert(new Personas_avatar(
-                    Integer.parseInt(txtCedulaPersona.getText()), thumbnail));
+                    Long.parseLong(txtCedulaPersona.getText()), thumbnail));
         }
     }
 

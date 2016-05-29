@@ -50,7 +50,7 @@ public class Personas_avatar_db {
             ps = con.getConnection()
                     .prepareStatement("select f_personas_avatar(?,?,?);");
             ps.setString(1, dml);
-            ps.setInt(2, pa.getCedula());
+            ps.setLong(2, pa.getCedula());
             if (pa.getFoto() != null) {
                 FileInputStream fis = new FileInputStream(pa.getFoto());
                 ps.setBinaryStream(3, fis, (int) pa.getFoto().length());

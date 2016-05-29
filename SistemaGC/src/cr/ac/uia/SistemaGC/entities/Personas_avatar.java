@@ -13,7 +13,7 @@ import java.io.File;
  */
 public class Personas_avatar {
 
-    private Integer cedula;
+    private Long cedula;
     private File foto;
 
     public Personas_avatar() {
@@ -21,16 +21,16 @@ public class Personas_avatar {
         this.foto = null;
     }
 
-    public Personas_avatar(Integer cedula, File foto) {
+    public Personas_avatar(Long cedula, File foto) {
         this.cedula = cedula;
         this.foto = foto;
     }
 
-    public Integer getCedula() {
+    public Long getCedula() {
         return cedula;
     }
 
-    public void setCedula(Integer cedula) {
+    public void setCedula(Long cedula) {
         this.cedula = cedula;
     }
 
