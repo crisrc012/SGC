@@ -293,6 +293,9 @@ public class Becados_Formulario extends SGCForm {
                 JOptionPane.showMessageDialog(this,
                         "No existe ninguna persona relacionada a la cédula ingresada",
                         "Error", JOptionPane.ERROR_MESSAGE);
+                txtCedEstudiante.setText("");
+                txtCedEstudiante.setEnabled(true);
+                return;
             }
 
         } catch (SQLException e) {
