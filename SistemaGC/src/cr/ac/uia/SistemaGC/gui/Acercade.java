@@ -51,8 +51,8 @@ public class Acercade extends SGCForm {
             }
         });
 
-        lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblDescripcion.setText("Proyecto de Extensión de Escuela de Ingeniería Informática: ");
+        lblDescripcion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDescripcion.setText("Proyecto de Extensión de la Escuela de Ingeniería Informática: ");
 
         lblNombre1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre1.setText("Paola Aguirre Méndez");
@@ -74,23 +74,23 @@ public class Acercade extends SGCForm {
                         .addComponent(logoUIA)
                         .addGap(140, 140, 140))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addGap(71, 71, 71)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDescripcion)
                     .addComponent(lblNombre2)
-                    .addComponent(lblNombre1)
-                    .addComponent(lblDescripcion))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblNombre1))
+                .addGap(2, 126, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(logoUIA)
-                .addGap(10, 10, 10)
-                .addComponent(lblDescripcion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblDescripcion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(lblNombre1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombre2)
                 .addGap(4, 4, 4)
                 .addComponent(btnCerrar)
