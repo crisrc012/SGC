@@ -7,9 +7,12 @@ package cr.ac.uia.SistemaGC.gui;
 
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -19,7 +22,7 @@ import javax.swing.table.TableRowSorter;
  * @author Pao
  */
 public class Personas_Principal extends SGCForm {
-
+    private TableRowSorter tblRS;
     /**
      * Creates new form Personas
      */
@@ -46,6 +49,8 @@ public class Personas_Principal extends SGCForm {
         btnDesactivarPersona = new SGCButton();
         btnImprimirCodigo = new SGCButton();
         jLabel1 = new javax.swing.JLabel();
+        txtFiltro = new SGCTextField();
+        lblFiltro = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -110,6 +115,15 @@ public class Personas_Principal extends SGCForm {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/persons.png"))); // NOI18N
 
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyTyped(evt);
+            }
+        });
+
+        lblFiltro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFiltro.setText("Búsqueda por nombre:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,7 +142,12 @@ public class Personas_Principal extends SGCForm {
                         .addContainerGap()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTituloGP)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblFiltro)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblTituloGP))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAgregarPersona)))
                 .addGap(34, 34, 34))
@@ -138,11 +157,15 @@ public class Personas_Principal extends SGCForm {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
-                                .addComponent(lblTituloGP)))
+                                .addComponent(lblTituloGP)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFiltro))))
                         .addGap(13, 13, 13))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnAgregarPersona)
@@ -202,6 +225,19 @@ public class Personas_Principal extends SGCForm {
         }
     }//GEN-LAST:event_btnImprimirCodigoActionPerformed
 
+    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
+        txtFiltro.addKeyListener(new KeyAdapter() {
+            public void keyReleased(final KeyEvent e) {
+                String cadena = (txtFiltro.getText()).toUpperCase();
+                txtFiltro.setText(cadena);
+                repaint();
+                Filtro();
+            }
+        });
+        tblRS = new TableRowSorter(tblPersonas.getModel());
+        tblPersonas.setRowSorter(tblRS);
+    }//GEN-LAST:event_txtFiltroKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -235,8 +271,10 @@ public class Personas_Principal extends SGCForm {
     private javax.swing.JButton btnModificarPersona;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblFiltro;
     private javax.swing.JLabel lblTituloGP;
     private javax.swing.JTable tblPersonas;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 
     private void refreshTable() {
@@ -262,5 +300,10 @@ public class Personas_Principal extends SGCForm {
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
+    }
+    
+    private void Filtro(){
+    tblRS.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), 1));
+    
     }
 }
