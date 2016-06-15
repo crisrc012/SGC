@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author crisrc012
  */
-public class Personas {
+public class Personas_VW {
 
     private Long cedula;
     private String nombre;
@@ -20,9 +20,9 @@ public class Personas {
     private Integer tel_celular;
     private Integer tel_habitacion;
     private String encargado;
-    private Integer id_persona;
+    private String descripcion;
 
-    public Personas() {
+    public Personas_VW() {
         this.cedula = null;
         this.nombre = null;
         this.apellidos = null;
@@ -30,10 +30,10 @@ public class Personas {
         this.tel_celular = null;
         this.tel_habitacion = null;
         this.encargado = null;
-        this.id_persona = null;
+        this.descripcion = null;
     }
 
-    public Personas(Long cedula, String nombre, String apellidos, Date fecha_nacimiento, Integer tel_celular, Integer tel_habitacion, String encargado, Integer id_persona) {
+    public Personas_VW(Long cedula, String nombre, String apellidos, Date fecha_nacimiento, Integer tel_celular, Integer tel_habitacion, String encargado, String descripcion) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -41,7 +41,7 @@ public class Personas {
         this.tel_celular = tel_celular;
         this.tel_habitacion = tel_habitacion;
         this.encargado = encargado;
-        this.id_persona = id_persona;
+        this.descripcion = descripcion;
     }
 
     public Long getCedula() {
@@ -100,11 +100,11 @@ public class Personas {
         this.encargado = encargado;
     }
 
-    public Integer getId_persona() {
-        return id_persona;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setId_persona(Integer id_persona) {
-        this.id_persona = id_persona;
+    public void setId_persona(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

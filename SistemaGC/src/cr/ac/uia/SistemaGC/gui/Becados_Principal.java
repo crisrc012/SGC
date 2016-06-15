@@ -222,7 +222,7 @@ public class Becados_Principal extends SGCForm {
         try {
             DefaultTableModel tableModel = (DefaultTableModel) tblAdmBecas.getModel();
             tableModel.setRowCount(0); // Limpiando tabla
-            TableRowSorter<TableModel> order = new TableRowSorter<TableModel>(tableModel);
+            TableRowSorter<TableModel> order = new TableRowSorter<>(tableModel);
             tblAdmBecas.setRowSorter(order);
             Becados_VW_bl bbl = new Becados_VW_bl();
             ArrayList<Becados_VW> al = bbl.select(new Becados_VW());

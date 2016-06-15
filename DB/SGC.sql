@@ -653,3 +653,10 @@ create view vw_becados as
 	tps.id_persona = tp.id and
 	tbs.id_beca = tb.id
 	order by tps.apellidos;
+	
+create view vw_personas as
+	select ps.cedula,ps.nombre,ps.apellidos,ps.fecha_nacimiento,ps.tel_celular,ps.tel_habitacion,ps.encargado,p.descripcion as descripcion
+	from tbl_personas ps
+	inner join tbl_persona p
+	on ps.id_persona = p.id
+	order by apellidos;
