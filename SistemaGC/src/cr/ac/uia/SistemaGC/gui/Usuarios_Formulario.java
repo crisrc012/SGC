@@ -247,7 +247,7 @@ public class Usuarios_Formulario extends SGCForm {
         try {
             Usuarios_bl p_bl = new Usuarios_bl();
             usuarios.setContrasena(Arrays.toString(txtContraseña.getPassword()));
-            usuarios.setCedula((Long) txtCedula.getValue());
+            usuarios.setCedula(Long.parseLong(txtCedula.getValue().toString()));
             usuarios.setNombre(txtNombre.getText().trim());
             usuarios.setApellidos(txtApellidos.getText());
             usuarios.setUsuario(txtUsuario.getText().trim());
