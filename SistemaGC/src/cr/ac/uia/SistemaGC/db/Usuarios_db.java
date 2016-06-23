@@ -94,7 +94,7 @@ public class Usuarios_db {
             ps.setString(1, dml);
             ps.setLong(2, usuario.getCedula());
             ps.setString(3, usuario.getUsuario());
-            if(dml.equals("update_contrasena") || dml.equals("insert")){
+            if (dml.equals("update_contrasena") || dml.equals("insert")) {
                 ps.setString(4, AES.encrypt(usuario.getCedula(), usuario.getUsuario(), usuario.getContrasena()));
             } else {
                 ps.setNull(4, java.sql.Types.VARCHAR);
