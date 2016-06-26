@@ -30,14 +30,12 @@ public class Becados_Formulario extends SGCForm {
      */
     public Becados_Formulario() {
         initComponents();
-        SGCconf();
         isUpdate = false;
         this.becado = new Becados();
     }
 
     public Becados_Formulario(boolean isUpdate, Becados becado) {
         initComponents();
-        SGCconf();
         this.isUpdate = isUpdate;
         this.becado = becado;
     }
@@ -66,7 +64,6 @@ public class Becados_Formulario extends SGCForm {
         ScrollPane = new javax.swing.JScrollPane();
         txtObsBeca = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -100,6 +97,12 @@ public class Becados_Formulario extends SGCForm {
         btnGuardarAsignacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarAsignacionActionPerformed(evt);
+            }
+        });
+
+        txtCedEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedEstudianteKeyReleased(evt);
             }
         });
 
@@ -233,8 +236,9 @@ public class Becados_Formulario extends SGCForm {
                             JOptionPane.ERROR_MESSAGE);
                 }
                 txtCedEstudiante.setEnabled(true);
-            } catch (SQLException e) {
-                System.out.println(e.toString());
+            } catch (ClassNotFoundException | SQLException e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
             }
         }
     }//GEN-LAST:event_btnGuardarAsignacionActionPerformed
@@ -254,16 +258,22 @@ public class Becados_Formulario extends SGCForm {
                 ConsultarCedula();
                 txtObsBeca.setText(becado.getObservaciones());
             }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_formComponentShown
 
     private void btnConsultarCedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCedActionPerformed
-        ConsultarCedula();
+        try {
+            ConsultarCedula();
+        } catch (ClassNotFoundException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
     }//GEN-LAST:event_btnConsultarCedActionPerformed
-    
-    public void ConsultarCedula() {
+
+    public void ConsultarCedula() throws ClassNotFoundException {
         try {
             if (txtCedEstudiante.getText().isEmpty()) {
                 return;
@@ -295,11 +305,10 @@ public class Becados_Formulario extends SGCForm {
                         "Error", JOptionPane.ERROR_MESSAGE);
                 txtCedEstudiante.setText("");
                 txtCedEstudiante.setEnabled(true);
-                return;
             }
-
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }
     private void cboBecasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboBecasItemStateChanged
@@ -310,14 +319,24 @@ public class Becados_Formulario extends SGCForm {
             beca = Bbl.select(beca).get(0);
             id_beca = beca.getId();
             txtPorcentaje.setText(beca.getPorcentaje().toString());
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_cboBecasItemStateChanged
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        new Becados_Principal().setVisible(true);
+        try {
+            new Becados_Principal().setVisible(true);
+        } catch (ClassNotFoundException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
     }//GEN-LAST:event_formWindowClosed
+
+    private void txtCedEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedEstudianteKeyReleased
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtCedEstudiante);
+    }//GEN-LAST:event_txtCedEstudianteKeyReleased
 
     /**
      * @param args the command line arguments

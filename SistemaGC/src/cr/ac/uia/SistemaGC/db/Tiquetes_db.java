@@ -21,7 +21,7 @@ public class Tiquetes_db {
     private Conexion con;
     private PreparedStatement ps;
 
-    public ArrayList<Tiquetes> select(Tiquetes tiquete) throws SQLException {
+    public ArrayList<Tiquetes> select(Tiquetes tiquete) throws SQLException, ClassNotFoundException {
         ArrayList<Tiquetes> tiqueteslst = new ArrayList<>();
         try {
             this.con = new Conexion();
@@ -72,14 +72,16 @@ public class Tiquetes_db {
             }
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return tiqueteslst;
     }
 
-    public boolean insert_update(Tiquetes tiquete, String dml) throws SQLException {
+    public boolean insert_update(Tiquetes tiquete, String dml) throws SQLException, ClassNotFoundException {
         Boolean control = false;
         try {
             con = new Conexion();
@@ -98,14 +100,16 @@ public class Tiquetes_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return control;
     }
 
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
         Boolean control = false;
         try {
             con = new Conexion();
@@ -115,14 +119,16 @@ public class Tiquetes_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return control;
     }
 
-    public int count(Long id_persona, Integer id_comida) throws SQLException, IOException {
+    public int count(Long id_persona, Integer id_comida) throws SQLException, IOException, ClassNotFoundException {
         int cantidad = 0;
         con = new Conexion();
         ps = con.getConnection()
@@ -136,14 +142,16 @@ public class Tiquetes_db {
             rs.close();
             ps.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return cantidad;
     }
 
-    public ArrayList<Tiquetes> activos(Long id_persona, Integer id_comida) throws SQLException, IOException {
+    public ArrayList<Tiquetes> activos(Long id_persona, Integer id_comida) throws SQLException, IOException, ClassNotFoundException {
         ArrayList<Tiquetes> tiqueteslst = new ArrayList<>();
         try {
             con = new Conexion();
@@ -165,7 +173,9 @@ public class Tiquetes_db {
             }
             ps.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }

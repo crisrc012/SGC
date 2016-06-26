@@ -22,7 +22,7 @@ public class Becados_VW_db {
     private Conexion conn;
     private PreparedStatement ps;
 
-    public ArrayList<Becados_VW> select() throws SQLException {
+    public ArrayList<Becados_VW> select() throws SQLException, ClassNotFoundException {
         ArrayList<Becados_VW> becadoslst = new ArrayList<>();
         try {
             conn = new Conexion();
@@ -44,7 +44,9 @@ public class Becados_VW_db {
                 ps.close();
             }
         } catch (SQLException | IOException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             conn.close();
         }

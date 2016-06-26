@@ -79,7 +79,9 @@ public class Usuarios_db {
             }
             ps.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
@@ -107,7 +109,9 @@ public class Usuarios_db {
             control = ps.execute();
             ps.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
@@ -123,7 +127,9 @@ public class Usuarios_db {
             ps.setInt(1, cedula);
             control = ps.execute();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
@@ -145,7 +151,9 @@ public class Usuarios_db {
             }
             ps.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }

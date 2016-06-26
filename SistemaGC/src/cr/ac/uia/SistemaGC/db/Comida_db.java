@@ -21,7 +21,7 @@ public class Comida_db {
     private Conexion con;
     private PreparedStatement ps;
 
-    public ArrayList<Comida> select(Comida comida) throws SQLException {
+    public ArrayList<Comida> select(Comida comida) throws SQLException, ClassNotFoundException {
         ArrayList<Comida> comidalst = new ArrayList<>();
         try {
             con = new Conexion();
@@ -48,7 +48,9 @@ public class Comida_db {
             }
             ps.close();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
@@ -66,14 +68,16 @@ public class Comida_db {
             control = ps.execute();
             ps.close();
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return control;
     }
 
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
         Boolean control = false;
         try {
             con = new Conexion();
@@ -83,7 +87,9 @@ public class Comida_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }

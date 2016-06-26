@@ -38,7 +38,6 @@ public class IngresoComedor_Confirmacion extends SGCForm {
 
     public IngresoComedor_Confirmacion(Long cedula, Integer comida, Integer cantidad) {
         initComponents();
-        SGCconf();
         this.cedula = cedula;
         this.comida = comida;
         this.cantidad = cantidad;
@@ -215,8 +214,9 @@ public class IngresoComedor_Confirmacion extends SGCForm {
                             "Correcto", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
-        } catch (IOException | HeadlessException | SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | IOException | HeadlessException | SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         } finally {
             completo();
         }
@@ -235,8 +235,10 @@ public class IngresoComedor_Confirmacion extends SGCForm {
             lblDescripcion.setText(pb.select(pp).get(0).getDescripcion());
             Comida_bl cbl = new Comida_bl();
             lblTipoComida.setText(cbl.select(new Comida(comida, null)).get(0).getDescripcion());
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_formComponentShown
 
@@ -265,8 +267,6 @@ public class IngresoComedor_Confirmacion extends SGCForm {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(IngresoComedor_Confirmacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
         //</editor-fold>
 
         /* Create and display the form */

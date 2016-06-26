@@ -6,10 +6,7 @@
 package cr.ac.uia.SistemaGC.bl;
 
 import cr.ac.uia.SistemaGC.db.Institucion_db;
-import cr.ac.uia.SistemaGC.db.Institucion_db;
 import cr.ac.uia.SistemaGC.entities.Institucion;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.SQLException;
 
 /**
@@ -24,11 +21,11 @@ public class Institucion_bl {
         idb = new Institucion_db();
     }
 
-    public Institucion select() throws SQLException {
+    public Institucion select() throws SQLException, ClassNotFoundException {
         return idb.select();
     }
 
-    public boolean update(Institucion i) throws SQLException {
+    public boolean update(Institucion i) throws SQLException, ClassNotFoundException {
         return idb.update(i);
     }
 }

@@ -34,7 +34,6 @@ public class Personas_Formulario extends SGCForm {
      */
     public Personas_Formulario() {
         initComponents();
-        SGCconf();
         RBEstudiante.setSelected(true);
         isUpdate = false;
         this.persona = new Personas();
@@ -43,7 +42,6 @@ public class Personas_Formulario extends SGCForm {
 
     public Personas_Formulario(boolean Update, Personas persona) {
         initComponents();
-        SGCconf();
         RBEstudiante.setSelected(true);
         this.isUpdate = Update;
         this.persona = persona;
@@ -68,7 +66,6 @@ public class Personas_Formulario extends SGCForm {
         lblTituloAgPersona = new javax.swing.JLabel();
         lblCedulaPersona = new javax.swing.JLabel();
         lblNombrePersona = new javax.swing.JLabel();
-        txtCedulaPersona = new SGCTextField();
         txtNombrePersona = new SGCTextField();
         lblApellidosPersona = new javax.swing.JLabel();
         txtApellidosPersona = new SGCTextField();
@@ -82,6 +79,7 @@ public class Personas_Formulario extends SGCForm {
         lblContactoPersona = new javax.swing.JLabel();
         txtContactoPersona = new SGCTextField();
         btnGuardarPersona = new SGCButton();
+        txtCedulaPersona = new SGCTextField();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -143,9 +141,21 @@ public class Personas_Formulario extends SGCForm {
         lblTelefonosPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTelefonosPersona.setText("Teléfonos:");
 
+        txtTelefono1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTelefono1KeyReleased(evt);
+            }
+        });
+
         lblCel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Celular.png"))); // NOI18N
 
         lblTel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Telefono.png"))); // NOI18N
+
+        txtTelefono2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTelefono2KeyReleased(evt);
+            }
+        });
 
         lblContactoPersona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblContactoPersona.setText("Persona para contacto:");
@@ -154,6 +164,12 @@ public class Personas_Formulario extends SGCForm {
         btnGuardarPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarPersonaActionPerformed(evt);
+            }
+        });
+
+        txtCedulaPersona.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaPersonaKeyReleased(evt);
             }
         });
 
@@ -178,24 +194,18 @@ public class Personas_Formulario extends SGCForm {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblTituloAgPersona)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCedulaPersona)
                                     .addComponent(lblNombrePersona))
                                 .addGap(101, 101, 101)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCedulaPersona)
                                     .addComponent(txtNombrePersona)
-                                    .addComponent(txtApellidosPersona)))
+                                    .addComponent(txtApellidosPersona)
+                                    .addComponent(txtCedulaPersona)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblContactoPersona)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtContactoPersona))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblApellidosPersona)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblFechaPersona)
                                 .addGap(24, 24, 24)
@@ -210,7 +220,12 @@ public class Personas_Formulario extends SGCForm {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtTelefono1)
-                                    .addComponent(txtTelefono2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(txtTelefono2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTituloAgPersona)
+                                    .addComponent(lblApellidosPersona))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(403, Short.MAX_VALUE)
@@ -360,7 +375,8 @@ public class Personas_Formulario extends SGCForm {
                             "Guardar Persona", JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch (SQLException | IOException e) {
-                System.out.println(e.toString());
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
             }
         }
     }//GEN-LAST:event_btnGuardarPersonaActionPerformed
@@ -398,7 +414,8 @@ public class Personas_Formulario extends SGCForm {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.toString());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_formComponentShown
 
@@ -438,6 +455,18 @@ public class Personas_Formulario extends SGCForm {
         quitarFoto();
         btnQuitarFoto.setVisible(false);
     }//GEN-LAST:event_btnQuitarFotoActionPerformed
+
+    private void txtCedulaPersonaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaPersonaKeyReleased
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtCedulaPersona);
+    }//GEN-LAST:event_txtCedulaPersonaKeyReleased
+
+    private void txtTelefono1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefono1KeyReleased
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtTelefono1);
+    }//GEN-LAST:event_txtTelefono1KeyReleased
+
+    private void txtTelefono2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefono2KeyReleased
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtTelefono2);
+    }//GEN-LAST:event_txtTelefono2KeyReleased
 
     /**
      * @param args the command line arguments

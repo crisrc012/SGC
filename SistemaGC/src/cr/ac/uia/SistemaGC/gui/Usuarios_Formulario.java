@@ -27,7 +27,6 @@ public class Usuarios_Formulario extends SGCForm {
      */
     public Usuarios_Formulario() {
         initComponents();
-        SGCconf();
         isUpdate = false;
         this.usuarios = new Usuarios();
         chckCambioContrasena.setVisible(false);
@@ -35,7 +34,6 @@ public class Usuarios_Formulario extends SGCForm {
 
     public Usuarios_Formulario(boolean update, Usuarios usuarios) {
         initComponents();
-        SGCconf();
         isUpdate = update;
         this.usuarios = usuarios;
     }
@@ -68,7 +66,7 @@ public class Usuarios_Formulario extends SGCForm {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObsUsuario = new javax.swing.JTextPane();
         chckCambioContrasena = new javax.swing.JCheckBox();
-        txtCedula = new javax.swing.JSpinner();
+        txtCedula = new SGCTextField();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -130,7 +128,11 @@ public class Usuarios_Formulario extends SGCForm {
             }
         });
 
-        txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,15 +168,14 @@ public class Usuarios_Formulario extends SGCForm {
                                         .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(CBActivo)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(txtRepetirCont, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(txtCedula)))))))))
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                                            .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtRepetirCont, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtCedula))))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -220,7 +221,7 @@ public class Usuarios_Formulario extends SGCForm {
                             .addComponent(lblObservacionesUsuario))))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarUsuario)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -228,7 +229,7 @@ public class Usuarios_Formulario extends SGCForm {
 
     private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
         // Validaciones de campos
-        if (txtCedula.getValue().toString().isEmpty()
+        if (txtCedula.getText().isEmpty()
                 || txtNombre.getText().isEmpty() || txtUsuario.getText().isEmpty()
                 || txtObsUsuario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this,
@@ -247,7 +248,7 @@ public class Usuarios_Formulario extends SGCForm {
         try {
             Usuarios_bl p_bl = new Usuarios_bl();
             usuarios.setContrasena(Arrays.toString(txtContraseña.getPassword()));
-            usuarios.setCedula(Long.parseLong(txtCedula.getValue().toString()));
+            usuarios.setCedula(Long.parseLong(txtCedula.getText()));
             usuarios.setNombre(txtNombre.getText().trim());
             usuarios.setApellidos(txtApellidos.getText());
             usuarios.setUsuario(txtUsuario.getText().trim());
@@ -280,19 +281,20 @@ public class Usuarios_Formulario extends SGCForm {
                         JOptionPane.ERROR_MESSAGE);
             }
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         if (this.isUpdate) {
             btnGuardarUsuario.setText("Modificar Usuario");
-            txtApellidos.setText(this.usuarios.getApellidos());
-            txtCedula.setValue(this.usuarios.getCedula());
-            txtNombre.setText(this.usuarios.getNombre());
-            txtObsUsuario.setText(this.usuarios.getObservaciones());
-            txtUsuario.setText(this.usuarios.getUsuario());
-            CBActivo.setSelected(this.usuarios.getActivo());
+            txtApellidos.setText(usuarios.getApellidos());
+            txtCedula.setText(usuarios.getCedula().toString());
+            txtNombre.setText(usuarios.getNombre());
+            txtObsUsuario.setText(usuarios.getObservaciones());
+            txtUsuario.setText(usuarios.getUsuario());
+            CBActivo.setSelected(usuarios.getActivo());
             txtCedula.setEnabled(false);
             txtContraseña.setEnabled(false);
             txtRepetirCont.setEnabled(false);
@@ -304,7 +306,8 @@ public class Usuarios_Formulario extends SGCForm {
         try {
             new Usuarios_Principal().setVisible(true);
         } catch (IOException e) {
-            System.out.println(e.toString());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_formWindowClosed
 
@@ -312,6 +315,10 @@ public class Usuarios_Formulario extends SGCForm {
         txtContraseña.setEnabled(chckCambioContrasena.isSelected());
         txtRepetirCont.setEnabled(chckCambioContrasena.isSelected());
     }//GEN-LAST:event_chckCambioContrasenaActionPerformed
+
+    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtCedula);
+    }//GEN-LAST:event_txtCedulaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -354,7 +361,7 @@ public class Usuarios_Formulario extends SGCForm {
     private javax.swing.JLabel lblRepetir;
     private javax.swing.JLabel lblTituloGU;
     private javax.swing.JTextField txtApellidos;
-    private javax.swing.JSpinner txtCedula;
+    private javax.swing.JTextField txtCedula;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextPane txtObsUsuario;

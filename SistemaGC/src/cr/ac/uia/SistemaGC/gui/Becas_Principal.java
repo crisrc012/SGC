@@ -26,7 +26,6 @@ public class Becas_Principal extends SGCForm {
      */
     public Becas_Principal() {
         initComponents();
-        SGCconf();
         refreshJTable();
     }
 
@@ -202,7 +201,7 @@ public class Becas_Principal extends SGCForm {
         try {
             DefaultTableModel tableModel = (DefaultTableModel) tblTiposBecas.getModel();
             tableModel.setRowCount(0); // Limpiando tabla
-            TableRowSorter<TableModel> order = new TableRowSorter<TableModel>(tableModel);
+            TableRowSorter<TableModel> order = new TableRowSorter<>(tableModel);
             tblTiposBecas.setRowSorter(order);
             Becas_bl bbl = new Becas_bl();
             ArrayList<Becas> al = bbl.select(new Becas());
@@ -221,8 +220,10 @@ public class Becas_Principal extends SGCForm {
             this.tblTiposBecas.getColumnModel().getColumn(0).setMinWidth(0);
             this.tblTiposBecas.getColumnModel().getColumn(0).setMaxWidth(0);
             this.tblTiposBecas.getColumnModel().getColumn(0).setWidth(0);
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }
 
@@ -254,8 +255,10 @@ public class Becas_Principal extends SGCForm {
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_btnDesHabilitarBecaActionPerformed
 

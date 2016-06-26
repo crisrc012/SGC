@@ -21,7 +21,7 @@ public class Institucion_db {
     private Conexion con;
     private PreparedStatement ps;
 
-    public Institucion select() throws SQLException {
+    public Institucion select() throws SQLException, ClassNotFoundException {
         Institucion institucion = new Institucion();
         try {
             con = new Conexion();
@@ -36,14 +36,16 @@ public class Institucion_db {
             }
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return institucion;
     }
 
-    public boolean update(Institucion i) throws SQLException {
+    public boolean update(Institucion i) throws SQLException, ClassNotFoundException {
         Boolean control = false;
         try {
             con = new Conexion();
@@ -59,7 +61,9 @@ public class Institucion_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }

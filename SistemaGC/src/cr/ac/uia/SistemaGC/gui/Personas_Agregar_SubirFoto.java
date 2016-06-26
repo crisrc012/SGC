@@ -17,7 +17,6 @@ public class Personas_Agregar_SubirFoto extends SGCForm {
      */
     public Personas_Agregar_SubirFoto() {
         initComponents();
-        SGCconf();
     }
 
     /**

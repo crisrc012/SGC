@@ -47,7 +47,9 @@ public class AES {
             byte[] encrypted = cipher.doFinal(contrasena.getBytes());
             return Base64.encodeBase64String(encrypted);
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         }
         return null;
         //</editor-fold>
@@ -63,7 +65,9 @@ public class AES {
 //            byte[] original = cipher.doFinal(Base64.decodeBase64(encrypted));
 //            return new String(original);
 //        } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
-//            System.out.println(e.toString());
+//            e.printStackTrace();
+//            System.err.println(e.getClass().getName()+": "+e.getMessage());
+//            System.exit(0);
 //        }
 //        return null;
 //    }

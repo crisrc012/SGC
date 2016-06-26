@@ -9,6 +9,7 @@ import cr.ac.uia.SistemaGC.bl.Institucion_bl;
 import cr.ac.uia.SistemaGC.entities.Institucion;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 
 /**
@@ -22,7 +23,6 @@ public class Principal extends SGCForm {
      */
     public Principal() {
         initComponents();
-        SGCconf();
     }
 
     /**
@@ -231,7 +231,9 @@ public class Principal extends SGCForm {
         try {
             new Usuarios_Principal().setVisible(true);
         } catch (IOException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_MUsurioMousePressed
 
@@ -247,7 +249,13 @@ public class Principal extends SGCForm {
 
     private void MAdmBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MAdmBecaMousePressed
         desactivar();
-        new Becados_Principal().setVisible(true);
+        try {
+            new Becados_Principal().setVisible(true);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
     }//GEN-LAST:event_MAdmBecaMousePressed
 
     private void MVentaTiqMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MVentaTiqMousePressed
@@ -342,11 +350,14 @@ public class Principal extends SGCForm {
             // Descangando logo de la base de datos
             Institucion_bl ibl = new Institucion_bl();
             Institucion i = ibl.select();
-            ImageIcon image = new ImageIcon(i.getInFoto());
-            lblNombreInstitucion.setText(i.getNombre());
-            lblLogoInstitucion.setIcon(image);
-        } catch (Exception e) {
-            System.out.println(e.toString());
+            if (i.getInFoto() != null) {
+                ImageIcon image = new ImageIcon(i.getInFoto());
+                lblNombreInstitucion.setText(i.getNombre());
+                lblLogoInstitucion.setIcon(image);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }
 }

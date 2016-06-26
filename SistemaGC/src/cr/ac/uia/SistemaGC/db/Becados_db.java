@@ -21,7 +21,7 @@ public class Becados_db {
     private Conexion con;
     private PreparedStatement ps;
 
-    public ArrayList<Becados> select(Becados becados) throws SQLException {
+    public ArrayList<Becados> select(Becados becados) throws SQLException, ClassNotFoundException {
         ArrayList<Becados> becadoslst = new ArrayList<>();
         try {
             con = new Conexion();
@@ -66,14 +66,16 @@ public class Becados_db {
             }
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return becadoslst;
     }
 
-    public boolean insert_update(Becados becados, String dml) throws SQLException {
+    public boolean insert_update(Becados becados, String dml) throws SQLException, ClassNotFoundException {
         Boolean control = false;
         try {
             con = new Conexion();
@@ -92,14 +94,16 @@ public class Becados_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return control;
     }
 
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
         Boolean control = false;
         try {
             this.con = new Conexion();
@@ -108,7 +112,9 @@ public class Becados_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }

@@ -27,13 +27,11 @@ public class BarCode_Formulario extends SGCForm {
      */
     public BarCode_Formulario() {
         initComponents();
-        SGCconf();
         this.cedula = 0;
     }
 
     public BarCode_Formulario(int cedula) {
         initComponents();
-        SGCconf();
         this.cedula = cedula;
     }
 

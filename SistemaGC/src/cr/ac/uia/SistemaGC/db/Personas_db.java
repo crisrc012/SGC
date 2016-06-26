@@ -84,7 +84,9 @@ public class Personas_db {
             }
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
@@ -117,7 +119,9 @@ public class Personas_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
@@ -133,7 +137,9 @@ public class Personas_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }

@@ -38,7 +38,6 @@ public class Reportes extends SGCForm {
      */
     public Reportes() {
         initComponents();
-        SGCconf();
         reportSource = "src/cr/ac/uia/SistemaGC/reports/Reporte.jrxml";
     }
 
@@ -284,7 +283,9 @@ public class Reportes extends SGCForm {
             // Mostrando reporte
             JasperViewer.viewReport(this.jasperPrint, false);
         } catch (IOException | SQLException | JRException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         }
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 

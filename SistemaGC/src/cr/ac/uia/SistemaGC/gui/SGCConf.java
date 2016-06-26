@@ -26,7 +26,6 @@ public class SGCConf extends SGCForm {
     
     public SGCConf() {
         initComponents();
-        SGCconf();
         prop = new Properties();
     }
 
@@ -191,9 +190,13 @@ public class SGCConf extends SGCForm {
             txtContrasena.setText(prop.getProperty("Clave"));
             txtPuerto.setValue(Integer.parseInt(prop.getProperty("Puerto")));
         } catch (FileNotFoundException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } catch (IOException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         }
     }//GEN-LAST:event_formComponentShown
 
@@ -226,10 +229,14 @@ public class SGCConf extends SGCForm {
             dispose();
         } catch (FileNotFoundException e) {
             error();
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } catch (IOException e) {
             error();
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 

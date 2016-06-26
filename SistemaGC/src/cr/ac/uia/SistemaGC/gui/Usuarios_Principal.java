@@ -28,7 +28,6 @@ public class Usuarios_Principal extends SGCForm {
      */
     public Usuarios_Principal() throws IOException {
         initComponents();
-        SGCconf();
         refreshJTable();
     }
 
@@ -199,7 +198,9 @@ public class Usuarios_Principal extends SGCForm {
             this.tblUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             this.tblUsuarios.setModel(tableModel);
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         }
     }
 
@@ -267,7 +268,9 @@ public class Usuarios_Principal extends SGCForm {
                         JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException | IOException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         }
     }//GEN-LAST:event_btnDesHabilitarUsuarioActionPerformed
 
@@ -305,7 +308,9 @@ public class Usuarios_Principal extends SGCForm {
             try {
                 new Usuarios_Principal().setVisible(true);
             } catch (IOException e) {
-                System.out.println(e.toString());
+                e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
             }
         });
     }

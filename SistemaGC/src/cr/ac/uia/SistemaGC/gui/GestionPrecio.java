@@ -24,7 +24,6 @@ public class GestionPrecio extends SGCForm {
      */
     public GestionPrecio() {
         initComponents();
-        SGCconf();
     }
 
     /**
@@ -93,12 +92,32 @@ public class GestionPrecio extends SGCForm {
         });
 
         txtDesEstudiante.setEnabled(false);
+        txtDesEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDesEstudianteKeyReleased(evt);
+            }
+        });
 
         txtDesProfesor.setEnabled(false);
+        txtDesProfesor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDesProfesorKeyReleased(evt);
+            }
+        });
 
         txtAlmEstudiante.setEnabled(false);
+        txtAlmEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAlmEstudianteKeyReleased(evt);
+            }
+        });
 
         txtAlmProfesor.setEnabled(false);
+        txtAlmProfesor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAlmProfesorKeyReleased(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("₡");
@@ -252,7 +271,9 @@ public class GestionPrecio extends SGCForm {
                             JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch (SQLException e) {
-                System.out.println(e.toString());
+                e.printStackTrace();
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
             }
         }
     }//GEN-LAST:event_btnGuardarParametrosActionPerformed
@@ -266,13 +287,30 @@ public class GestionPrecio extends SGCForm {
             txtAlmEstudiante.setText(ap.get(2).getPrecio().toString());
             txtAlmProfesor.setText(ap.get(3).getPrecio().toString());
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_formComponentShown
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
+
+    private void txtDesEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDesEstudianteKeyReleased
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtDesEstudiante);
+    }//GEN-LAST:event_txtDesEstudianteKeyReleased
+
+    private void txtDesProfesorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDesProfesorKeyReleased
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtDesProfesor);
+    }//GEN-LAST:event_txtDesProfesorKeyReleased
+
+    private void txtAlmEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlmEstudianteKeyReleased
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtAlmEstudiante);
+    }//GEN-LAST:event_txtAlmEstudianteKeyReleased
+
+    private void txtAlmProfesorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlmProfesorKeyReleased
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtAlmProfesor);
+    }//GEN-LAST:event_txtAlmProfesorKeyReleased
 
     /**
      * @param args the command line arguments

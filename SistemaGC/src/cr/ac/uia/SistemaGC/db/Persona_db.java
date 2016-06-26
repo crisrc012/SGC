@@ -21,7 +21,7 @@ public class Persona_db {
     private Conexion con;
     private PreparedStatement ps;
 
-    public ArrayList<Persona> select(Persona persona) throws SQLException {
+    public ArrayList<Persona> select(Persona persona) throws SQLException, ClassNotFoundException {
         ArrayList<Persona> personalst = new ArrayList<>();
         try {
             con = new Conexion();
@@ -48,14 +48,16 @@ public class Persona_db {
             }
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return personalst;
     }
 
-    public boolean insert_update(Persona persona, String dml) throws SQLException {
+    public boolean insert_update(Persona persona, String dml) throws SQLException, ClassNotFoundException {
         Boolean control = false;
         try {
             con = new Conexion();
@@ -67,14 +69,16 @@ public class Persona_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return control;
     }
 
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
         Boolean control = false;
         try {
             con = new Conexion();
@@ -84,7 +88,9 @@ public class Persona_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }

@@ -27,10 +27,11 @@ public class Becados_Principal extends SGCForm {
 
     /**
      * Creates new form AdministrarBecas
+     *
+     * @throws java.lang.ClassNotFoundException
      */
-    public Becados_Principal() {
+    public Becados_Principal() throws ClassNotFoundException {
         initComponents();
-        SGCconf();
         refreshJTable();
     }
 
@@ -213,12 +214,13 @@ public class Becados_Principal extends SGCForm {
                             (String) tblAdmBecas.getValueAt(i, 3))
             ).setVisible(true);
             setVisible(false);
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_btnModificarAsignacionActionPerformed
 
-    private void refreshJTable() {
+    private void refreshJTable() throws ClassNotFoundException {
         try {
             DefaultTableModel tableModel = (DefaultTableModel) tblAdmBecas.getModel();
             tableModel.setRowCount(0); // Limpiando tabla
@@ -240,7 +242,8 @@ public class Becados_Principal extends SGCForm {
             this.tblAdmBecas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             this.tblAdmBecas.setModel(tableModel);
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }
 
@@ -275,8 +278,9 @@ public class Becados_Principal extends SGCForm {
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_btnDesasignarBecaActionPerformed
 
@@ -310,7 +314,12 @@ public class Becados_Principal extends SGCForm {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Becados_Principal().setVisible(true);
+            try {
+                new Becados_Principal().setVisible(true);
+            } catch (ClassNotFoundException e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
+            }
         });
     }
 

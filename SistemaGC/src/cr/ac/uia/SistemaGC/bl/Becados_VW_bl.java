@@ -22,7 +22,7 @@ public class Becados_VW_bl {
         bdb = new Becados_VW_db();
     }
 
-    public ArrayList<Becados_VW> select(Becados_VW becados) throws SQLException {
+    public ArrayList<Becados_VW> select(Becados_VW becados) throws SQLException, ClassNotFoundException {
         return bdb.select();
     }
 }

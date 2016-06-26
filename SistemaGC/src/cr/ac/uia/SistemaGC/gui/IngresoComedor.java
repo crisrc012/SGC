@@ -27,7 +27,6 @@ public class IngresoComedor extends SGCForm {
      */
     public IngresoComedor() {
         initComponents();
-        SGCconf();
     }
 
     /**
@@ -81,9 +80,6 @@ public class IngresoComedor extends SGCForm {
         lblTituloGI.setText("Ingreso al Comedor");
 
         txtCedPersona.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCedPersonaKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCedPersonaKeyReleased(evt);
             }
@@ -201,8 +197,10 @@ public class IngresoComedor extends SGCForm {
                     limpiar();
                 }
             }
-        } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | IOException | SQLException e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }
 
@@ -236,8 +234,10 @@ public class IngresoComedor extends SGCForm {
                     return false;
                 }
             }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
         return true;
     }
@@ -247,26 +247,13 @@ public class IngresoComedor extends SGCForm {
         Iniciar_Sesion.activarPrincipal();
     }//GEN-LAST:event_formWindowClosed
 
-    private void txtCedPersonaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedPersonaKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            aplicarIngreso();
-        }
-    }//GEN-LAST:event_txtCedPersonaKeyPressed
-
     private void txtCedPersonaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedPersonaKeyReleased
-        if (!txtCedPersona.getText().isEmpty()) {
-            try {
-                Integer.parseInt(txtCedPersona.getText().trim());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Digite únicamente números", "Error", JOptionPane.ERROR_MESSAGE);
-                txtCedPersona.setText("");
-            }
-        }
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtCedPersona);
     }//GEN-LAST:event_txtCedPersonaKeyReleased
 
     /**
-         * @param args the command line arguments
-         */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

@@ -30,7 +30,6 @@ public class SGCInstitucion extends SGCForm {
      */
     public SGCInstitucion() {
         initComponents();
-        SGCconf();
         this.foto = null;
     }
 
@@ -52,7 +51,6 @@ public class SGCInstitucion extends SGCForm {
         btnQuitarFoto = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -215,16 +213,17 @@ public class SGCInstitucion extends SGCForm {
                     txtMiInstitucion.getText(), thumbnail, null));
             JOptionPane.showMessageDialog(this,
                     "Se han actualizado correctamente la informacion de la institución.\n\n"
-                            + "Es necesario reiniciar el programa para que se apliquen los cambios.",
+                    + "Es necesario reiniciar el programa para que se apliquen los cambios.",
                     "Correcto",
                     JOptionPane.INFORMATION_MESSAGE);
             dispose();
-        } catch (SQLException | IOException e) {
+        } catch (ClassNotFoundException | SQLException | IOException e) {
             JOptionPane.showMessageDialog(this,
                     "Ha ocurrido un error, revise los datos ingresados.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
-            System.out.println(e.toString());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -233,13 +232,16 @@ public class SGCInstitucion extends SGCForm {
             // Descangando logo de la base de datos
             Institucion_bl ibl = new Institucion_bl();
             Institucion i = ibl.select();
-            ImageIcon image = new ImageIcon(i.getInFoto());
-            txtMiInstitucion.setText(i.getNombre());
-            lblFoto.setIcon(image);
-            lblFoto.setText("");
-            btnQuitarFoto.setVisible(true);
-        } catch (Exception e) {
-            System.out.println(e.toString());
+            if (i.getInFoto() != null) {
+                ImageIcon image = new ImageIcon(i.getInFoto());
+                txtMiInstitucion.setText(i.getNombre());
+                lblFoto.setIcon(image);
+                lblFoto.setText("");
+                btnQuitarFoto.setVisible(true);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_formComponentShown
 

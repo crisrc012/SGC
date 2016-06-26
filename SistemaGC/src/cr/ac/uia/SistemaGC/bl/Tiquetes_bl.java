@@ -23,31 +23,31 @@ public class Tiquetes_bl {
         tdb = new Tiquetes_db();
     }
     
-    public ArrayList<Tiquetes> select(Tiquetes tiquete) throws SQLException {
+    public ArrayList<Tiquetes> select(Tiquetes tiquete) throws SQLException, ClassNotFoundException {
         return tdb.select(tiquete);
     }
     
-    private boolean insert_update(Tiquetes tiquete, String dml) throws SQLException {
+    private boolean insert_update(Tiquetes tiquete, String dml) throws SQLException, ClassNotFoundException {
         return tdb.insert_update(tiquete, dml);
     }
     
-    public boolean insert(Tiquetes tiquetes) throws SQLException {
+    public boolean insert(Tiquetes tiquetes) throws SQLException, ClassNotFoundException {
         return insert_update(tiquetes, "insert");
     }
     
-    public boolean update(Tiquetes tiquetes) throws SQLException {
+    public boolean update(Tiquetes tiquetes) throws SQLException, ClassNotFoundException {
         return insert_update(tiquetes, "update");
     }
     
-    public boolean delete(Integer id) throws SQLException {
+    public boolean delete(Integer id) throws SQLException, ClassNotFoundException {
         return tdb.delete(id);
     }
     
-    public int count(Long cedula, Integer comida) throws SQLException, IOException {
+    public int count(Long cedula, Integer comida) throws SQLException, IOException, ClassNotFoundException {
         return tdb.count(cedula, comida);
     }
     
-    public ArrayList<Tiquetes> activos(Long id_persona, Integer id_comida) throws SQLException, IOException{
+    public ArrayList<Tiquetes> activos(Long id_persona, Integer id_comida) throws SQLException, IOException, ClassNotFoundException{
         return tdb.activos(id_persona, id_comida);
     }
 }

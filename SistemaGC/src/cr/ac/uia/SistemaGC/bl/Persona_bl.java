@@ -22,23 +22,23 @@ public class Persona_bl {
         pdb = new Persona_db();
     }
 
-    public ArrayList<Persona> select(Persona persona) throws SQLException {
+    public ArrayList<Persona> select(Persona persona) throws SQLException, ClassNotFoundException {
         return pdb.select(persona);
     }
 
-    private boolean insert_update(Persona persona, String dml) throws SQLException {
+    private boolean insert_update(Persona persona, String dml) throws SQLException, ClassNotFoundException {
         return pdb.insert_update(persona, dml);
     }
 
-    public boolean insert(Persona persona) throws SQLException {
+    public boolean insert(Persona persona) throws SQLException, ClassNotFoundException {
         return insert_update(persona, "insert");
     }
 
-    public boolean update(Persona persona) throws SQLException {
+    public boolean update(Persona persona) throws SQLException, ClassNotFoundException {
         return insert_update(persona, "update");
     }
 
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
         return pdb.delete(id);
     }
 }

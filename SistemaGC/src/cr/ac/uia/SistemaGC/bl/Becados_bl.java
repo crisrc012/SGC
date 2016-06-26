@@ -22,23 +22,23 @@ public class Becados_bl {
         bdb = new Becados_db();
     }
     
-    public ArrayList<Becados> select(Becados becados) throws SQLException {
+    public ArrayList<Becados> select(Becados becados) throws SQLException, ClassNotFoundException {
         return bdb.select(becados);
     }
     
-    private boolean insert_update(Becados becados, String dml) throws SQLException {
+    private boolean insert_update(Becados becados, String dml) throws SQLException, ClassNotFoundException {
         return bdb.insert_update(becados, dml);
     }
     
-    public boolean insert(Becados becados) throws SQLException {
+    public boolean insert(Becados becados) throws SQLException, ClassNotFoundException {
         return insert_update(becados, "insert");
     }
     
-    public boolean update(Becados becados) throws SQLException {
+    public boolean update(Becados becados) throws SQLException, ClassNotFoundException {
         return insert_update(becados, "update");
     }
     
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
         return bdb.delete(id);
     }
 }

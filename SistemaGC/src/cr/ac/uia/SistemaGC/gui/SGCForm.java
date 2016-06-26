@@ -10,9 +10,13 @@ package cr.ac.uia.SistemaGC.gui;
  * @author crobles
  */
 public class SGCForm extends javax.swing.JFrame {
+    
+    public SGCForm(){
+        SGCconf();
+    }
 
-    public final void SGCconf() {
-        setLocationRelativeTo(null);
+    private void SGCconf() {
+        setLocationByPlatform(true);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/Icono.png")).getImage());
         setResizable(false);
         setAlwaysOnTop(true);

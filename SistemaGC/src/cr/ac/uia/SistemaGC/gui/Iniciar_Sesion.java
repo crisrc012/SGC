@@ -28,7 +28,6 @@ public class Iniciar_Sesion extends SGCForm {
      */
     public Iniciar_Sesion() {
         initComponents();
-        SGCconf();
         usuario = new Usuarios();
         ubl = new Usuarios_bl();
     }
@@ -97,7 +96,7 @@ public class Iniciar_Sesion extends SGCForm {
         lblTituloSGC.setText("Sistema Gestor de Comedores");
 
         lblConexion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        lblConexion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/cancelar.png")));
+        lblConexion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/uia/SistemaGC/img/cancelar.png"))); // NOI18N
         lblConexion.setText("Estado de la conexión");
         lblConexion.setToolTipText("Clic para comprobar la conexión");
         lblConexion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -153,13 +152,13 @@ public class Iniciar_Sesion extends SGCForm {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblConexion)
                     .addComponent(btnLogin))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void iniciarSesion() {
+    private void iniciarSesion() throws ClassNotFoundException {
         try {
             new cr.ac.uia.SistemaGC.db.Conexion().getConnection();
             if (txtUserName.getText().trim().isEmpty()
@@ -192,7 +191,13 @@ public class Iniciar_Sesion extends SGCForm {
     }
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        iniciarSesion();
+        try {
+            iniciarSesion();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -215,7 +220,13 @@ public class Iniciar_Sesion extends SGCForm {
 
     private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            iniciarSesion();
+            try {
+                iniciarSesion();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
+            }
         }
     }//GEN-LAST:event_txtPasswordKeyPressed
 

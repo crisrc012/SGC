@@ -78,9 +78,9 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtCedulaPersona" max="32767" attributes="0"/>
                                       <Component id="txtNombrePersona" max="32767" attributes="0"/>
                                       <Component id="txtApellidosPersona" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtCedulaPersona" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -280,11 +280,6 @@
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCedulaPersona">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SGCTextField()"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JTextField" name="txtNombrePersona">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SGCTextField()"/>
@@ -328,6 +323,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTelefono1">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTelefono1KeyReleased"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SGCTextField()"/>
           </AuxValues>
@@ -347,6 +345,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTelefono2">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTelefono2KeyReleased"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SGCTextField()"/>
           </AuxValues>
@@ -373,6 +374,14 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SGCButton()"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtCedulaPersona">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCedulaPersonaKeyReleased"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SGCTextField()"/>
           </AuxValues>
         </Component>
       </SubComponents>

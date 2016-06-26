@@ -26,14 +26,12 @@ public class Becas_Formulario extends SGCForm {
      */
     public Becas_Formulario() {
         initComponents();
-        SGCconf();
         isUpdate = false;
         this.becas = new Becas();
     }
 
     public Becas_Formulario(boolean update, Becas becas) {
         initComponents();
-        SGCconf();
         isUpdate = update;
         this.becas = becas;
     }
@@ -202,29 +200,23 @@ public class Becas_Formulario extends SGCForm {
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (SQLException e) {
-                System.out.println(e.toString());
+            } catch (ClassNotFoundException | SQLException e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
             }
         }
     }//GEN-LAST:event_btnGuardarBecaActionPerformed
 
     private void txtPorcentajeBecaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPorcentajeBecaKeyReleased
-        try {
-            if (txtPorcentajeBeca.getText().length() > 0) {
-                if (Integer.parseInt(txtPorcentajeBeca.getText()) > 100) {
-                    txtPorcentajeBeca.setText("100");
-                    JOptionPane.showMessageDialog(this,
-                            "Por favor ingrese unicamente números iguales o menores a 100.",
-                            "Error",
-                            JOptionPane.ERROR_MESSAGE);
-                }
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtPorcentajeBeca);
+        if (!txtPorcentajeBeca.getText().isEmpty()) {
+            if (Integer.parseInt(txtPorcentajeBeca.getText()) > 100) {
+                txtPorcentajeBeca.setText("100");
+                JOptionPane.showMessageDialog(this,
+                        "Por favor ingrese unicamente números iguales o menores a 100.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
-        } catch (NumberFormatException | HeadlessException e) {
-            txtPorcentajeBeca.setText("");
-            JOptionPane.showMessageDialog(this,
-                    "Por favor ingrese unicamente números.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_txtPorcentajeBecaKeyReleased
 

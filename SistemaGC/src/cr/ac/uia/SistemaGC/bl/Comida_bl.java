@@ -22,7 +22,7 @@ public class Comida_bl {
         cdb = new Comida_db();
     }
 
-    public ArrayList<Comida> select(Comida comida) throws SQLException {
+    public ArrayList<Comida> select(Comida comida) throws SQLException, ClassNotFoundException {
         return cdb.select(comida);
     }
 
@@ -38,7 +38,7 @@ public class Comida_bl {
         return insert_update(comida, "update");
     }
 
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
         return cdb.delete(id);
     }
 }

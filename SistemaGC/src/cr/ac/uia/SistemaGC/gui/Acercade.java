@@ -16,7 +16,6 @@ public class Acercade extends SGCForm {
      */
     public Acercade() {
         initComponents();
-        SGCconf();
     }
 
     /**
@@ -144,8 +143,6 @@ public class Acercade extends SGCForm {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Acercade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        
         //</editor-fold>
 
         /* Create and display the form */

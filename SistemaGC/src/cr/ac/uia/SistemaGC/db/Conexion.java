@@ -19,10 +19,17 @@ public class Conexion {
 
     private final java.sql.Connection Connection;
 
-    public Conexion() throws SQLException, IOException {
+    public Conexion() throws IOException, SQLException {
+        try{
+            Class.forName("org.postgresql.Driver");
+        } catch(ClassNotFoundException e){
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
+        }
         Properties prop = new Properties();
         prop.load(new FileInputStream("src/cr/ac/uia/SistemaGC/conf/db.properties"));
-        this.Connection
+        Connection
                 = DriverManager.getConnection(
                         "jdbc:postgresql://"
                         + prop.getProperty("Servidor") + "/"

@@ -21,7 +21,7 @@ public class Becas_db {
     private Conexion con;
     private PreparedStatement ps;
 
-    public ArrayList<Becas> select(Becas becas) throws SQLException {
+    public ArrayList<Becas> select(Becas becas) throws SQLException, ClassNotFoundException {
         ArrayList<Becas> becaslst = new ArrayList<>();
         try {
             con = new Conexion();
@@ -66,14 +66,16 @@ public class Becas_db {
             }
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return becaslst;
     }
 
-    public boolean insert_update(Becas becas, String dml) throws SQLException {
+    public boolean insert_update(Becas becas, String dml) throws SQLException, ClassNotFoundException {
         Boolean control = false;
         try {
             con = new Conexion();
@@ -92,14 +94,16 @@ public class Becas_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }
         return control;
     }
 
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
         Boolean control = false;
         try {
             con = new Conexion();
@@ -109,7 +113,9 @@ public class Becas_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         } finally {
             con.close();
         }

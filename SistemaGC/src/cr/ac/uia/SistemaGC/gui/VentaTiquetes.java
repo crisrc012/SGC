@@ -17,12 +17,10 @@ import cr.ac.uia.SistemaGC.entities.Persona;
 import cr.ac.uia.SistemaGC.entities.Personas;
 import cr.ac.uia.SistemaGC.entities.Precio;
 import cr.ac.uia.SistemaGC.entities.Tiquetes;
-import java.awt.HeadlessException;
 import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -40,7 +38,6 @@ public class VentaTiquetes extends SGCForm {
      */
     public VentaTiquetes() {
         initComponents();
-        SGCconf();
     }
 
     /**
@@ -401,8 +398,9 @@ public class VentaTiquetes extends SGCForm {
             } else {
                 limpiar();
             }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_btnComprarActionPerformed
 
@@ -443,26 +441,11 @@ public class VentaTiquetes extends SGCForm {
             if (ap.size() > 0) {
                 txtDescripcion.setText(ap.get(0).getDescripcion());
             }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }//GEN-LAST:event_btnCosultarCedActionPerformed
-
-    private void validarEnteros(JTextField txt) {
-        try {
-            if (Integer.parseInt(txt.getText()) < 1) {
-                JOptionPane.showMessageDialog(this,
-                        "Por favor digite únicamente números positivos",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                txt.setText("");
-            }
-        } catch (NumberFormatException | HeadlessException e) {
-            JOptionPane.showMessageDialog(this,
-                    "Por favor digite únicamente números",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-            txt.setText("");
-        }
-    }
 
     private void Precios(int id_persona) {
         Precio_bl pbl = new Precio_bl();
@@ -491,12 +474,13 @@ public class VentaTiquetes extends SGCForm {
             lblPrecioDes.setText(precioD.toString());
             lblPrecioAlm.setText(precioA.toString());
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }
 
     private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
-        validarEnteros(txtCedula);
+        cr.ac.uia.SistemaGC.utils.ValidarGUI.validar(this, txtCedula);
     }//GEN-LAST:event_txtCedulaKeyReleased
 
     private void cboTiposComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTiposComidaActionPerformed
@@ -548,8 +532,9 @@ public class VentaTiquetes extends SGCForm {
             lblPrecioAlm.setText(total.toString());
             total = (precioD - (precioD * desc)) * cantidad;
             lblPrecioDes.setText(total.toString());
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }
 

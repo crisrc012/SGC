@@ -25,7 +25,6 @@ public class Personas_Principal extends SGCForm {
      */
     public Personas_Principal() {
         initComponents();
-        SGCconf();
         refreshTable();
     }
 
@@ -293,7 +292,9 @@ public class Personas_Principal extends SGCForm {
             }
             this.tblPersonas.setModel(tableModel);
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+         System.exit(0);
         }
     }
 }
