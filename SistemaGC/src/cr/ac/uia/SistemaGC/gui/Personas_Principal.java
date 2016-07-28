@@ -219,7 +219,7 @@ public class Personas_Principal extends SGCForm {
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         } else {
-            new BarCode_Formulario((Integer) tblPersonas.getValueAt(i, 0)).setVisible(true);
+            new BarCode_Formulario((Long) tblPersonas.getValueAt(i, 0)).setVisible(true);
         }
     }//GEN-LAST:event_btnImprimirCodigoActionPerformed
 

@@ -19,7 +19,7 @@ import net.sourceforge.barbecue.BarcodeFactory;
  */
 public class BarCode_Formulario extends SGCForm {
 
-    private final int cedula;
+    private final Long cedula;
     private Barcode b = null;
 
     /**
@@ -27,10 +27,10 @@ public class BarCode_Formulario extends SGCForm {
      */
     public BarCode_Formulario() {
         initComponents();
-        this.cedula = 0;
+        this.cedula = null;
     }
 
-    public BarCode_Formulario(int cedula) {
+    public BarCode_Formulario(Long cedula) {
         initComponents();
         this.cedula = cedula;
     }
