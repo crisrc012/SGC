@@ -73,8 +73,8 @@ public class Tiquetes_db {
             ps.close();
         } catch (IOException | SQLException e) {
             e.printStackTrace();
-         System.err.println(e.getClass().getName()+": "+e.getMessage());
-         System.exit(0);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         } finally {
             con.close();
         }
@@ -87,7 +87,11 @@ public class Tiquetes_db {
             con = new Conexion();
             ps = con.getConnection().prepareStatement("SELECT f_tiquetes(?,?,?,?,?,?,?);");
             ps.setString(1, dml);
-            ps.setInt(2, tiquete.getId());
+            if (tiquete.getId() != null) {
+                ps.setInt(2, tiquete.getId());
+            } else {
+                ps.setNull(2, java.sql.Types.INTEGER);
+            }
             ps.setInt(3, tiquete.getId_persona());
             ps.setInt(4, tiquete.getId_precio());
             ps.setDate(5, tiquete.getFecha_compra());
@@ -100,9 +104,8 @@ public class Tiquetes_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            e.printStackTrace();
-         System.err.println(e.getClass().getName()+": "+e.getMessage());
-         System.exit(0);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         } finally {
             con.close();
         }
@@ -119,9 +122,8 @@ public class Tiquetes_db {
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {
-            e.printStackTrace();
-         System.err.println(e.getClass().getName()+": "+e.getMessage());
-         System.exit(0);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         } finally {
             con.close();
         }
@@ -142,9 +144,8 @@ public class Tiquetes_db {
             rs.close();
             ps.close();
         } catch (SQLException e) {
-            e.printStackTrace();
-         System.err.println(e.getClass().getName()+": "+e.getMessage());
-         System.exit(0);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         } finally {
             con.close();
         }
@@ -173,9 +174,8 @@ public class Tiquetes_db {
             }
             ps.close();
         } catch (SQLException e) {
-            e.printStackTrace();
-         System.err.println(e.getClass().getName()+": "+e.getMessage());
-         System.exit(0);
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         } finally {
             con.close();
         }
