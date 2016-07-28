@@ -198,7 +198,6 @@ public class IngresoComedor extends SGCForm {
                 }
             }
         } catch (ClassNotFoundException | IOException | SQLException e) {
-            e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
