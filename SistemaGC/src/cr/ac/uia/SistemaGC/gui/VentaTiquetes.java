@@ -360,6 +360,7 @@ public class VentaTiquetes extends SGCForm {
         txtNombre.setText("");
         lblPrecioAlm.setText("0");
         lblPrecioDes.setText("0");
+        txtDescripcion.setText("");
     }
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         if (txtCedula.getText().isEmpty()) {
@@ -454,22 +455,21 @@ public class VentaTiquetes extends SGCForm {
         try {
             ArrayList<Precio> ap = pbl.select(new Precio());
             for (int i = 0; i < ap.size(); i++) {
-                if (id_persona == 1) {
                     if (ap.get(i).getId_persona() == 1) { // Estudiante
                         if (ap.get(i).getId_comida() == 1) {
                             precioD = ap.get(i).getPrecio();
                         } else if (ap.get(i).getId_comida() == 2) {
                             precioA = ap.get(i).getPrecio();
                         }
-                    } else // Docente
-                     if (id_persona == 2) {
+                    } else { // Docente
+                        if (id_persona == 2) {
                             if (ap.get(i).getId_comida() == 1) {
                                 precioD = ap.get(i).getPrecio();
                             } else if (ap.get(i).getId_comida() == 2) {
                                 precioA = ap.get(i).getPrecio();
                             }
                         }
-                }//id=1
+                    }
             }
             lblPrecioDes.setText(precioD.toString());
             lblPrecioAlm.setText(precioA.toString());
