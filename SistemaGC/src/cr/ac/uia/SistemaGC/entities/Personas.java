@@ -20,6 +20,7 @@ public class Personas {
     private Integer tel_celular;
     private Integer tel_habitacion;
     private String encargado;
+    private Boolean activo;
     private Integer id_persona;
 
     public Personas() {
@@ -30,10 +31,11 @@ public class Personas {
         this.tel_celular = null;
         this.tel_habitacion = null;
         this.encargado = null;
+        this.activo = null;
         this.id_persona = null;
     }
 
-    public Personas(Long cedula, String nombre, String apellidos, Date fecha_nacimiento, Integer tel_celular, Integer tel_habitacion, String encargado, Integer id_persona) {
+    public Personas(Long cedula, String nombre, String apellidos, Date fecha_nacimiento, Integer tel_celular, Integer tel_habitacion, String encargado,Boolean activo, Integer id_persona) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -41,6 +43,7 @@ public class Personas {
         this.tel_celular = tel_celular;
         this.tel_habitacion = tel_habitacion;
         this.encargado = encargado;
+        this.activo = activo;
         this.id_persona = id_persona;
     }
 
@@ -98,6 +101,14 @@ public class Personas {
 
     public void setEncargado(String encargado) {
         this.encargado = encargado;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
     public Integer getId_persona() {

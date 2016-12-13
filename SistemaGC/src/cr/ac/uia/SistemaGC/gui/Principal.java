@@ -10,6 +10,8 @@ import cr.ac.uia.SistemaGC.entities.Institucion;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -239,7 +241,11 @@ public class Principal extends SGCForm {
 
     private void MPersonasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MPersonasMousePressed
         desactivar();
-        new Personas_Principal().setVisible(true);
+        try {
+            new Personas_Principal().setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_MPersonasMousePressed
 
     private void MTipoBecaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MTipoBecaMousePressed

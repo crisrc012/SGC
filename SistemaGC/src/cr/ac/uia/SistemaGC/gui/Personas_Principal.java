@@ -5,10 +5,14 @@
  */
 package cr.ac.uia.SistemaGC.gui;
 
+import cr.ac.uia.SistemaGC.bl.Personas_VW_bl;
 import cr.ac.uia.SistemaGC.bl.Personas_bl;
 import cr.ac.uia.SistemaGC.entities.Personas;
+import cr.ac.uia.SistemaGC.entities.Personas_VW;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -23,7 +27,7 @@ public class Personas_Principal extends SGCForm {
     /**
      * Creates new form Personas
      */
-    public Personas_Principal() {
+    public Personas_Principal() throws ClassNotFoundException {
         initComponents();
         refreshTable();
     }
@@ -60,14 +64,14 @@ public class Personas_Principal extends SGCForm {
 
             },
             new String [] {
-                "Cédula", "Nombre", "Apellidos", "Fecha de Nacimiento", "Celular", "Teléfono", "Encargado", "Descripción"
+                "Cédula", "Nombre", "Apellidos", "Fecha de Nacimiento", "Celular", "Teléfono", "Encargado", "Activo", "Descripción"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -99,7 +103,12 @@ public class Personas_Principal extends SGCForm {
             }
         });
 
-        btnDesactivarPersona.setText("Desactivar Persona");
+        btnDesactivarPersona.setLabel("Des/activar Persona");
+        btnDesactivarPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDesactivarPersonaActionPerformed(evt);
+            }
+        });
 
         btnImprimirCodigo.setText("Imprimir Código de Barra");
         btnImprimirCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +141,7 @@ public class Personas_Principal extends SGCForm {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btnModificarPersona)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 399, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 395, Short.MAX_VALUE)
                         .addComponent(btnDesactivarPersona)
                         .addGap(166, 166, 166)
                         .addComponent(btnImprimirCodigo))
@@ -203,7 +212,8 @@ public class Personas_Principal extends SGCForm {
                         (Integer) tblPersonas.getValueAt(i, 4),
                         (Integer) tblPersonas.getValueAt(i, 5),
                         (String) tblPersonas.getValueAt(i, 6),
-                        (Integer) tblPersonas.getValueAt(i, 7))).setVisible(true);
+                        (Boolean) tblPersonas.getValueAt(i, 7),
+                        (Integer) tblPersonas.getValueAt(i, 8))).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnModificarPersonaActionPerformed
 
@@ -232,6 +242,39 @@ public class Personas_Principal extends SGCForm {
         txtFiltro.setText(txtFiltro.getText().toUpperCase());
     }//GEN-LAST:event_txtFiltroKeyReleased
 
+    private void btnDesactivarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesactivarPersonaActionPerformed
+        int i = tblPersonas.getSelectedRow();
+        if (i < 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor seleccione una persona en la tabla.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            Personas_bl pbl = new Personas_bl();
+            Personas p = new Personas();
+            p.setCedula(Long.parseLong(tblPersonas.getValueAt(i, 0).toString()));
+            p = pbl.select(p).get(0);
+            p.setActivo(!p.getActivo());
+            if (pbl.update(p)) {
+                refreshTable();
+                JOptionPane.showMessageDialog(this,
+                        "Se ha actualizado correctamente la asiganción de beca.",
+                        "Correcto",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Ha ocurrido un error.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }        
+    }//GEN-LAST:event_btnDesactivarPersonaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,7 +297,11 @@ public class Personas_Principal extends SGCForm {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Personas_Principal().setVisible(true);
+            try {
+                new Personas_Principal().setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Personas_Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 
@@ -271,14 +318,14 @@ public class Personas_Principal extends SGCForm {
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 
-    private void refreshTable() {
+    private void refreshTable() throws ClassNotFoundException {
         try {
             DefaultTableModel tableModel = (DefaultTableModel) tblPersonas.getModel();
             tableModel.setRowCount(0);
             TableRowSorter<TableModel> order = new TableRowSorter<>(tableModel);
             tblPersonas.setRowSorter(order);
-            Personas_bl pbl = new Personas_bl();
-            ArrayList<Personas> al = pbl.select(new Personas());
+            Personas_VW_bl pbl = new Personas_VW_bl();
+            ArrayList<Personas_VW> al = pbl.select(new Personas_VW());
             for (int i = 0; i < al.size(); i++) {
                 Object[] ap = {al.get(i).getCedula(),
                     al.get(i).getNombre(),
@@ -287,7 +334,8 @@ public class Personas_Principal extends SGCForm {
                     al.get(i).getTel_celular(),
                     al.get(i).getTel_habitacion(),
                     al.get(i).getEncargado(),
-                    al.get(i).getId_persona()};
+                    al.get(i).getActivo(),
+                    al.get(i).getDescripcion()};
                 tableModel.addRow(ap);
             }
             this.tblPersonas.setModel(tableModel);
@@ -298,3 +346,5 @@ public class Personas_Principal extends SGCForm {
         }
     }
 }
+
+

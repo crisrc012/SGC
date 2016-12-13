@@ -13,6 +13,8 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -354,6 +356,7 @@ public class Personas_Formulario extends SGCForm {
                 persona.setTel_celular(Integer.parseInt(txtTelefono1.getText()));
                 persona.setTel_habitacion(Integer.parseInt(txtTelefono2.getText()));
                 persona.setEncargado(txtContactoPersona.getText().trim());
+                persona.setActivo(true);
                 persona.setId_persona(id);
                 if (this.isUpdate) { // Se valida si se va a actualizar o a insertar
                     if (blp.update(persona)) { // Se actualiza la persona
@@ -420,7 +423,11 @@ public class Personas_Formulario extends SGCForm {
     }//GEN-LAST:event_formComponentShown
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        new Personas_Principal().setVisible(true);
+        try {
+            new Personas_Principal().setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Personas_Formulario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_formWindowClosed
 
     private void cargarFoto() {
