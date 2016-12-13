@@ -297,14 +297,22 @@ public class Becados_Formulario extends SGCForm {
             Personas p = new Personas();
             p.setCedula(Long.parseLong(txtCedEstudiante.getText().trim()));
             ArrayList<Personas> al = pbl.select(p);
-            if (al.size() > 0) {
-                txtNombreEstudiante.setText(al.get(0).getNombre() + " " + al.get(0).getApellidos());
-            } else {
+            if(al.get(0).getActivo() == false){
                 JOptionPane.showMessageDialog(this,
-                        "No existe ninguna persona relacionada a la cédula ingresada",
+                        "Esta persona se encuentra deshabilitada",
                         "Error", JOptionPane.ERROR_MESSAGE);
                 txtCedEstudiante.setText("");
                 txtCedEstudiante.setEnabled(true);
+            }else{
+                if (al.size() > 0) {
+                    txtNombreEstudiante.setText(al.get(0).getNombre() + " " + al.get(0).getApellidos());
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "No existe ninguna persona relacionada a la cédula ingresada",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    txtCedEstudiante.setText("");
+                    txtCedEstudiante.setEnabled(true);
+                }
             }
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
