@@ -26,7 +26,7 @@ public class Personas_db {
         try {
             con = new Conexion();
             ps = con.getConnection()
-                    .prepareStatement("SELECT * FROM f_personas('select',?,?,?,?,?,?,?,?);");
+                    .prepareStatement("SELECT * FROM f_personas('select',?,?,?,?,?,?,?,?,?);");
             if (persona.getCedula() != null) {
                 ps.setLong(1, persona.getCedula());
             } else {
@@ -62,10 +62,15 @@ public class Personas_db {
             } else {
                 ps.setNull(7, java.sql.Types.VARCHAR);
             }
-            if (persona.getId_persona() != null) {
-                ps.setInt(8, persona.getId_persona());
+            if (persona.getActivo() != null) {
+                ps.setBoolean(8, persona.getActivo());
             } else {
-                ps.setNull(8, java.sql.Types.INTEGER);
+                ps.setNull(8, java.sql.Types.BOOLEAN);
+            }
+            if (persona.getId_persona() != null) {
+                ps.setInt(9, persona.getId_persona());
+            } else {
+                ps.setNull(9, java.sql.Types.INTEGER);
             }
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -77,6 +82,7 @@ public class Personas_db {
                     p.setTel_celular(rs.getInt("tel_celular"));
                     p.setTel_habitacion(rs.getInt("tel_habitacion"));
                     p.setEncargado(rs.getString("encargado"));
+                    p.setActivo(rs.getBoolean("activo"));
                     p.setId_persona(rs.getInt("id_persona"));
                     personaslst.add(p);
                 }
@@ -98,7 +104,7 @@ public class Personas_db {
         try {
             con = new Conexion();
             ps = con.getConnection()
-                    .prepareStatement("select * from f_personas(?,?,?,?,?,?,?,?,?);");
+                    .prepareStatement("select * from f_personas(?,?,?,?,?,?,?,?,?,?);");
             ps.setString(1, dml);
             ps.setLong(2, persona.getCedula());
             ps.setString(3, persona.getNombre());
@@ -115,7 +121,8 @@ public class Personas_db {
                 ps.setNull(7, java.sql.Types.INTEGER);
             }
             ps.setString(8, persona.getEncargado());
-            ps.setInt(9, persona.getId_persona());
+            ps.setBoolean(9, persona.getActivo());
+            ps.setInt(10, persona.getId_persona());
             control = ps.execute();
             ps.close();
         } catch (IOException | SQLException e) {

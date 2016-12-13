@@ -1,4 +1,4 @@
---Tablas de SGC
+﻿--Tablas de SGC
 --PostgreSQL 9.5
 
 drop database "dbSGC";
@@ -37,6 +37,7 @@ create table tbl_personas(
 	tel_celular integer,
 	tel_habitacion integer,
 	encargado text not null,
+	activo boolean not null,
 	id_persona integer references tbl_persona(id)
 );
 
@@ -281,6 +282,7 @@ create or replace function f_personas(
 	in _tel_celular integer,
 	in _tel_habitacion integer,
 	in _encargado text,
+	in _activo boolean,
 	in _id_persona integer)
 returns table(
 	cedula bigint,
@@ -290,6 +292,7 @@ returns table(
 	tel_celular integer,
 	tel_habitacion integer,
 	encargado text,
+	activo boolean,
 	id_persona integer) as
 $body$
 begin
@@ -304,12 +307,13 @@ begin
 			t.fecha_nacimiento = coalesce(_fecha_nacimiento, t.fecha_nacimiento) and
 			t.tel_celular = coalesce(_tel_celular, t.tel_celular) and
 			t.tel_habitacion = coalesce(_tel_habitacion, t.tel_habitacion) and
+			t.activo = coalesce(_activo, t.activo) and
 			t.encargado like '%' || coalesce(upper(_encargado), t.encargado) || '%' and
 			t.id_persona = coalesce(_id_persona, t.id_persona)
 			order by t.nombre;
 		when 'insert' then
-			insert into tbl_personas (cedula, nombre, apellidos, fecha_nacimiento, tel_celular, tel_habitacion, encargado, id_persona)
-			values (_cedula, upper(_nombre), upper(_apellidos), _fecha_nacimiento, _tel_celular, _tel_habitacion, upper(_encargado), _id_persona);
+			insert into tbl_personas (cedula, nombre, apellidos, fecha_nacimiento, tel_celular, tel_habitacion, encargado, activo, id_persona)
+			values (_cedula, upper(_nombre), upper(_apellidos), _fecha_nacimiento, _tel_celular, _tel_habitacion, upper(_encargado), _activo, _id_persona);
 		when 'update' then
 			update tbl_personas t
 			set nombre = upper(_nombre),
@@ -318,6 +322,7 @@ begin
 			tel_celular = _tel_celular,
 			tel_habitacion = _tel_habitacion,
 			encargado = upper(_encargado),
+			activo = _activo,
 			id_persona = _id_persona
 			where t.cedula = _cedula;
 		when 'delete' then
@@ -655,7 +660,7 @@ create view vw_becados as
 	order by tps.apellidos;
 	
 create view vw_personas as
-	select ps.cedula,ps.nombre,ps.apellidos,ps.fecha_nacimiento,ps.tel_celular,ps.tel_habitacion,ps.encargado,p.descripcion as descripcion
+	select ps.cedula,ps.nombre,ps.apellidos,ps.fecha_nacimiento,ps.tel_celular,ps.tel_habitacion,ps.encargado,ps.activo,p.descripcion as descripcion
 	from tbl_personas ps
 	inner join tbl_persona p
 	on ps.id_persona = p.id
