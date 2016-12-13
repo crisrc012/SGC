@@ -20,6 +20,7 @@ public class Personas_VW {
     private Integer tel_celular;
     private Integer tel_habitacion;
     private String encargado;
+    private Boolean activo;
     private String descripcion;
 
     public Personas_VW() {
@@ -30,10 +31,11 @@ public class Personas_VW {
         this.tel_celular = null;
         this.tel_habitacion = null;
         this.encargado = null;
+        this.activo = null;
         this.descripcion = null;
     }
 
-    public Personas_VW(Long cedula, String nombre, String apellidos, Date fecha_nacimiento, Integer tel_celular, Integer tel_habitacion, String encargado, String descripcion) {
+    public Personas_VW(Long cedula, String nombre, String apellidos, Date fecha_nacimiento, Integer tel_celular, Integer tel_habitacion, String encargado,Boolean activo, String descripcion) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -41,6 +43,7 @@ public class Personas_VW {
         this.tel_celular = tel_celular;
         this.tel_habitacion = tel_habitacion;
         this.encargado = encargado;
+        this.activo = activo;
         this.descripcion = descripcion;
     }
 
@@ -100,8 +103,20 @@ public class Personas_VW {
         this.encargado = encargado;
     }
 
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
     public String getDescripcion() {
         return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public void setId_persona(String descripcion) {
