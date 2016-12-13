@@ -423,7 +423,7 @@ public class VentaTiquetes extends SGCForm {
             Personas p = new Personas();
             p.setCedula(Long.parseLong(txtCedula.getText().trim()));
             ArrayList<Personas> al = pbl.select(p);
-            if (al.size() > 0) {
+            if (al.size() > 0 && al.get(0).getActivo() == true) {
                 txtNombre.setText(
                         al.get(0).getNombre() + " " + al.get(0).getApellidos());
                 id_persona = al.get(0).getId_persona();
@@ -431,7 +431,7 @@ public class VentaTiquetes extends SGCForm {
                 calcularTotal();
             } else {
                 JOptionPane.showMessageDialog(this,
-                        "No existe ninguna persona relacionada a la cédula ingresada",
+                        "No existe ninguna persona relacionada a la cédula ingresada o esta se encuentra deshabilitada",
                         "Error", JOptionPane.ERROR_MESSAGE);
                 limpiar();
             }
