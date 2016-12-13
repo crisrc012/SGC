@@ -263,7 +263,7 @@ public class Becados_Principal extends SGCForm {
         try {
             Becados_bl bbl = new Becados_bl();
             Becados b = new Becados();
-            b.setId_persona((Long) tblAdmBecas.getValueAt(i, 0));
+            b.setId_persona(Long.parseLong(tblAdmBecas.getValueAt(i, 0).toString()));
             b = bbl.select(b).get(0);
             b.setActivo(!b.getActivo());
             if (bbl.update(b)) {
